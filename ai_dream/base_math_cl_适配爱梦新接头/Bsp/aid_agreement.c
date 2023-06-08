@@ -10,9 +10,9 @@
 #include "cJSON.h"
 
 
-//#define ENABLE_DEBUG_USART_LOG 
+#define ENABLE_DEBUG_USART_LOG 
 
-#define SEND_TEST_TOTAL 20000
+#define SEND_TEST_TOTAL 200
 #define MAX_SEND_RAW_SIZE_TOTAL 160
 #define MAX_SEND_NEXT 153
 #define AID_HEADER_SIZE 7
@@ -256,14 +256,14 @@ int aid_ack_message(aid_agreement_context_t *agreement_context)
     json_count = sizeof(aijson_context) / sizeof(json_context_t);
     if (recv_session_context->cmd_finish == true)
     {
-        //usart_dma_send_data(USART_3_TR, (uint8_t *)recv_session_context->service, recv_session_context->service_length);
+        //usart_dma_send_data(USART_2_TR, (uint8_t *)recv_session_context->service, recv_session_context->service_length);
         //delay_1ms(20);
 
         body_length = CircBuf_GetUsedSize(&agreement_context->circular_handle);
         if (body_length > 0)
         {
             CircBuf_Pop(&agreement_context->circular_handle, recv_session_context->body_cache, body_length);
-            //usart_dma_send_data(USART_3_TR, (uint8_t *)recv_session_context->body_cache, body_length);
+            //usart_dma_send_data(USART_2_TR, (uint8_t *)recv_session_context->body_cache, body_length);
             //delay_1ms(20);
         }
 
@@ -288,13 +288,16 @@ int aid_ack_message(aid_agreement_context_t *agreement_context)
         }
 
 #if 1
-        aid_message_raw_buffer_send(ack_session_context->header.message_id,
-                                    ack_session_context->service,
-                                    ack_session_context->service_length,
-                                    ack_session_context->body_cache,
-                                    ack_session_context->total_body_size
-                                    );
-        delay_1ms(500);
+        if (cmd_count <= json_count)
+        {
+            aid_message_raw_buffer_send(ack_session_context->header.message_id,
+                                        ack_session_context->service,
+                                        ack_session_context->service_length,
+                                        ack_session_context->body_cache,
+                                        ack_session_context->total_body_size
+                                        );
+            delay_1ms(100);
+        }
 #endif
         aid_clean_message_session(agreement_context);
     }
@@ -382,10 +385,10 @@ int aid_message_raw_buffer_auto_ack(uint8_t message_id,
                body_done_frame_size + 2);
     }
 
-    usart_dma_send_data(USART_2_TR, (uint8_t *)&aid_message, AID_HEADER_SIZE + service_length + body_done_frame_size + 4);
+    usart_dma_send_data(USART_3_TR, (uint8_t *)&aid_message, AID_HEADER_SIZE + service_length + body_done_frame_size + 4);
 
 #ifdef ENABLE_DEBUG_USART_LOG
-    usart_dma_send_data(USART_3_TR, (uint8_t *)&aid_message, AID_HEADER_SIZE + service_length + body_done_frame_size + 4);
+    usart_dma_send_data(USART_2_TR, (uint8_t *)&aid_message, AID_HEADER_SIZE + service_length + body_done_frame_size + 4);
 #endif
     delay_1ms(2);
 
@@ -396,17 +399,17 @@ int aid_message_raw_buffer_auto_ack(uint8_t message_id,
         {
             memcpy((uint8_t *)&aid_message.message_payload, body_buffer + body_done_frame_size, MAX_SEND_NEXT);
             aid_message.message_header.payload_size = MAX_SEND_NEXT;
-            usart_dma_send_data(USART_2_TR, (uint8_t *)&aid_message, AID_HEADER_SIZE + MAX_SEND_NEXT);
-#ifdef ENABLE_DEBUG_USART_LOG
             usart_dma_send_data(USART_3_TR, (uint8_t *)&aid_message, AID_HEADER_SIZE + MAX_SEND_NEXT);
+#ifdef ENABLE_DEBUG_USART_LOG
+            usart_dma_send_data(USART_2_TR, (uint8_t *)&aid_message, AID_HEADER_SIZE + MAX_SEND_NEXT);
 #endif
         }
         else {
             memcpy((uint8_t *)&aid_message.message_payload, body_buffer + body_done_frame_size, body_size - body_done_frame_size);
             aid_message.message_header.payload_size = body_size - body_done_frame_size;
-            usart_dma_send_data(USART_2_TR, (uint8_t *)&aid_message, AID_HEADER_SIZE + body_size - body_done_frame_size);
-#ifdef ENABLE_DEBUG_USART_LOG
             usart_dma_send_data(USART_3_TR, (uint8_t *)&aid_message, AID_HEADER_SIZE + body_size - body_done_frame_size);
+#ifdef ENABLE_DEBUG_USART_LOG
+            usart_dma_send_data(USART_2_TR, (uint8_t *)&aid_message, AID_HEADER_SIZE + body_size - body_done_frame_size);
 #endif
         }
         delay_1ms(2);
@@ -483,7 +486,7 @@ void aid_init_raw_sensor_data()
     }
 }
 
-//#define ENABLE_USART3_DEBUG_RAW_DATA
+#define ENABLE_USART2_DEBUG_RAW_DATA
 void aid_mx_value_send_raw(aid_agreement_context_t *agreement_context,
                            uint8_t *raw_value,
                            uint16_t raw_size)
@@ -518,10 +521,10 @@ void aid_mx_value_send_raw(aid_agreement_context_t *agreement_context,
                 sizeof(aid_sensor_value_data_t) - 2);
 
 #if 1
-#ifdef ENABLE_USART3_DEBUG_RAW_DATA
+#ifdef ENABLE_USART2_DEBUG_RAW_DATA
         printf("send once %d\n", agreement_context->send_count);
 #endif
-        usart_dma_send_data(USART_2_TR,
+        usart_dma_send_data(USART_3_TR,
                             (uint8_t *)&sensor_data,
                             sizeof(aid_sensor_value_data_t));
 #else
@@ -543,20 +546,20 @@ void raw_buffer_send_split(uint8_t *buffer, uint16_t size, uint16_t once_max)
     {
         if (total_buffer_size - send_buffer_done < once_max)
         {
-            usart_dma_send_data(USART_2_TR,
+            usart_dma_send_data(USART_3_TR,
                                 buffer + send_buffer_done,
                                 total_buffer_size - send_buffer_done);
-#ifdef ENABLE_USART3_DEBUG_RAW_DATA
-            usart_dma_send_data(USART_3_TR,
+#ifdef ENABLE_USART2_DEBUG_RAW_DATA
+            usart_dma_send_data(USART_2_TR,
                                 buffer + send_buffer_done,
                                 total_buffer_size - send_buffer_done);
 #endif
         } else {
-            usart_dma_send_data(USART_2_TR,
+            usart_dma_send_data(USART_3_TR,
                                 buffer + send_buffer_done,
                                 once_max);
-#ifdef ENABLE_USART3_DEBUG_RAW_DATA
-            usart_dma_send_data(USART_3_TR,
+#ifdef ENABLE_USART2_DEBUG_RAW_DATA
+            usart_dma_send_data(USART_2_TR,
                                 buffer + send_buffer_done,
                                 once_max);
 #endif
@@ -611,12 +614,12 @@ int aid_message_raw_buffer_send(uint8_t message_id,
            (uint8_t *)&body_match,
            body_match.body_length + 2);
 
-    usart_dma_send_data(USART_2_TR, (uint8_t *)&aid_message, AID_HEADER_SIZE + service_length + body_done_frame_size + 4);
+    usart_dma_send_data(USART_3_TR, (uint8_t *)&aid_message, AID_HEADER_SIZE + service_length + body_done_frame_size + 4);
 
 #ifdef ENABLE_DEBUG_USART_LOG
-    usart_dma_send_data(USART_3_TR, (uint8_t *)&aid_message, AID_HEADER_SIZE + service_length + body_done_frame_size + 4);
+    usart_dma_send_data(USART_2_TR, (uint8_t *)&aid_message, AID_HEADER_SIZE + service_length + body_done_frame_size + 4);
 #endif
-    delay_1ms(800);
+    delay_1ms(200);
 
     for (; body_done_frame_size < body_size; body_done_frame_size += MAX_SEND_NEXT)
     {
@@ -625,20 +628,20 @@ int aid_message_raw_buffer_send(uint8_t message_id,
         {
             memcpy((uint8_t *)&aid_message.message_payload, body_buffer + body_done_frame_size, MAX_SEND_NEXT);
             aid_message.message_header.payload_size = MAX_SEND_NEXT;
-            usart_dma_send_data(USART_2_TR, (uint8_t *)&aid_message, AID_HEADER_SIZE + MAX_SEND_NEXT);
-#ifdef ENABLE_DEBUG_USART_LOG
             usart_dma_send_data(USART_3_TR, (uint8_t *)&aid_message, AID_HEADER_SIZE + MAX_SEND_NEXT);
+#ifdef ENABLE_DEBUG_USART_LOG
+            usart_dma_send_data(USART_2_TR, (uint8_t *)&aid_message, AID_HEADER_SIZE + MAX_SEND_NEXT);
 #endif
         }
         else {
             memcpy((uint8_t *)&aid_message.message_payload, body_buffer + body_done_frame_size, body_size - body_done_frame_size);
             aid_message.message_header.payload_size = body_size - body_done_frame_size;
-            usart_dma_send_data(USART_2_TR, (uint8_t *)&aid_message, AID_HEADER_SIZE + body_size - body_done_frame_size);
-#ifdef ENABLE_DEBUG_USART_LOG
             usart_dma_send_data(USART_3_TR, (uint8_t *)&aid_message, AID_HEADER_SIZE + body_size - body_done_frame_size);
+#ifdef ENABLE_DEBUG_USART_LOG
+            usart_dma_send_data(USART_2_TR, (uint8_t *)&aid_message, AID_HEADER_SIZE + body_size - body_done_frame_size);
 #endif
         }
-        delay_1ms(800);
+        delay_1ms(200);
     }
 
     return 0;

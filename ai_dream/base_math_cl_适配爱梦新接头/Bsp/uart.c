@@ -520,8 +520,8 @@ void nvic_config(uint32_t com)
 /* retarget the C library printf function to the USART */
 int fputc(int ch, FILE *f)
 {
-    usart_data_transmit(EVAL_COM3, (uint8_t)ch);
-    while(RESET == usart_flag_get(EVAL_COM3, USART_FLAG_TBE));
+    usart_data_transmit(EVAL_COM2, (uint8_t)ch);
+    while(RESET == usart_flag_get(EVAL_COM2, USART_FLAG_TBE));
     return ch;
 }
 

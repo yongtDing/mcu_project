@@ -31,7 +31,7 @@
    PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
    WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY
-   OF SUCH DAMAGE.
+   OF SUCH DAMAGEp
    */
 
 #include <stdlib.h>
@@ -86,7 +86,7 @@ int main(void)
 {
     bool led_flag = false;
     uint8_t count = 0;
-		uint16_t cache_len = 0;
+    uint16_t cache_len = 0;
     aid_agreement_context_t *aid_agreement_context = NULL;
 
     systick_config();
@@ -99,8 +99,8 @@ int main(void)
     nvic_irq_enable( TIMER3_IRQn, 2, 0 );
     timer_config(TIMER3, 1); //20ms
 #endif
-    usart2_init(460800);
-    usart3_init(460800);
+    usart2_init(460800); //485
+    usart3_init(460800); //ble
 
 
     while( 1 )
@@ -113,11 +113,11 @@ int main(void)
             led_flag = !led_flag;
             GREEN_LED(led_flag);
 
-            if(!usart_rx_probe(USART_3_TR))
+            if(!usart_rx_probe(USART_2_TR))
             {
                 memset(process_handle.recv_cache, 0x00, CACHE_BUFFER_SIZE);
-                cache_len = usart_get_rx_data_count(USART_3_TR);
-                usart_recv(USART_3_TR, process_handle.recv_cache, cache_len);
+                cache_len = usart_get_rx_data_count(USART_2_TR);
+                usart_recv(USART_2_TR, process_handle.recv_cache, cache_len);
 
 #if 0
                 //aid_create_json(process_handle.recv_cache, cache_len);
@@ -131,18 +131,29 @@ int main(void)
             }
 
             if (1)
-                if(!usart_rx_probe(USART_2_TR))
+                if(!usart_rx_probe(USART_3_TR))
                 {
                     memset(process_handle.printf_buffer, 0x00, CACHE_BUFFER_SIZE);
-                    cache_len = usart_get_rx_data_count(USART_2_TR);
-                    usart_recv(USART_2_TR, process_handle.printf_buffer, cache_len);
+                    cache_len = usart_get_rx_data_count(USART_3_TR);
+                    usart_recv(USART_3_TR, process_handle.printf_buffer, cache_len);
 
                     if (1)
                     {
-                        usart_dma_send_data(USART_3_TR,
+                        printf("\n");
+                        printf("\n");
+
+                        printf("\n");
+                        printf("\n");
+
+                        usart_dma_send_data(USART_2_TR,
                                 (uint8_t *)process_handle.printf_buffer,
                                 cache_len);
                         delay_1ms(10);
+                        printf("\n");
+                        printf("\n");
+                        printf("\n");
+                        printf("\n");
+                        printf("\n");
                     }
                     aid_message_match(aid_agreement_context, process_handle.printf_buffer, cache_len);
                 }
@@ -200,7 +211,7 @@ int main(void)
             memcpy((uint8_t *)serial_frame.adc_value, (uint8_t *)process_handle.adc_cali_value, SENSOR_POS_X * SENSOR_POS_Y);
             serial_frame.checksum = CalChecksum((uint8_t *)&serial_frame, sizeof(serial_frame) - 2);
 
-            if (1)
+            if (0)
             {
                 usart_dma_send_data(USART_2_TR, (uint8_t *)&serial_frame, sizeof(serial_frame));
             }
