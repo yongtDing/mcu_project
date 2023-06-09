@@ -74,6 +74,8 @@ typedef struct {
 
 #pragma pack ()
 
+//#define DEBUG_MODE
+
 bool timer3_interrupt = true;
 uint32_t time_1ms = 0;
 
@@ -130,33 +132,33 @@ int main(void)
 #endif
             }
 
-            if (1)
-                if(!usart_rx_probe(USART_3_TR))
+            if(!usart_rx_probe(USART_3_TR))
+            {
+                memset(process_handle.printf_buffer, 0x00, CACHE_BUFFER_SIZE);
+                cache_len = usart_get_rx_data_count(USART_3_TR);
+                usart_recv(USART_3_TR, process_handle.printf_buffer, cache_len);
+
+#ifdef DEBUG_MODE
                 {
-                    memset(process_handle.printf_buffer, 0x00, CACHE_BUFFER_SIZE);
-                    cache_len = usart_get_rx_data_count(USART_3_TR);
-                    usart_recv(USART_3_TR, process_handle.printf_buffer, cache_len);
+                    printf("\n");
+                    printf("\n");
 
-                    if (1)
-                    {
-                        printf("\n");
-                        printf("\n");
+                    printf("\n");
+                    printf("\n");
 
-                        printf("\n");
-                        printf("\n");
-
-                        usart_dma_send_data(USART_2_TR,
-                                (uint8_t *)process_handle.printf_buffer,
-                                cache_len);
-                        delay_1ms(10);
-                        printf("\n");
-                        printf("\n");
-                        printf("\n");
-                        printf("\n");
-                        printf("\n");
-                    }
-                    aid_message_match(aid_agreement_context, process_handle.printf_buffer, cache_len);
+                    usart_dma_send_data(USART_2_TR,
+                            (uint8_t *)process_handle.printf_buffer,
+                            cache_len);
+                    delay_1ms(10);
+                    printf("\n");
+                    printf("\n");
+                    printf("\n");
+                    printf("\n");
+                    printf("\n");
                 }
+#endif
+                aid_message_match(aid_agreement_context, process_handle.printf_buffer, cache_len);
+            }
 
         }
 
@@ -211,10 +213,11 @@ int main(void)
             memcpy((uint8_t *)serial_frame.adc_value, (uint8_t *)process_handle.adc_cali_value, SENSOR_POS_X * SENSOR_POS_Y);
             serial_frame.checksum = CalChecksum((uint8_t *)&serial_frame, sizeof(serial_frame) - 2);
 
-            if (0)
+#ifndef DEBUG_MODE
             {
                 usart_dma_send_data(USART_2_TR, (uint8_t *)&serial_frame, sizeof(serial_frame));
             }
+#endif
         }
 
         delay_1ms(1);

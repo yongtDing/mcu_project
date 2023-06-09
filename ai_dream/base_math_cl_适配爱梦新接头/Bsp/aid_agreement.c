@@ -10,7 +10,8 @@
 #include "cJSON.h"
 
 
-#define ENABLE_DEBUG_USART_LOG 
+//#define ENABLE_DEBUG_USART_LOG 
+//#define ENABLE_USART2_DEBUG_RAW_DATA
 
 #define SEND_TEST_TOTAL 200
 #define MAX_SEND_RAW_SIZE_TOTAL 160
@@ -296,7 +297,7 @@ int aid_ack_message(aid_agreement_context_t *agreement_context)
                                         ack_session_context->body_cache,
                                         ack_session_context->total_body_size
                                         );
-            delay_1ms(100);
+            delay_1ms(50);
         }
 #endif
         aid_clean_message_session(agreement_context);
@@ -390,7 +391,7 @@ int aid_message_raw_buffer_auto_ack(uint8_t message_id,
 #ifdef ENABLE_DEBUG_USART_LOG
     usart_dma_send_data(USART_2_TR, (uint8_t *)&aid_message, AID_HEADER_SIZE + service_length + body_done_frame_size + 4);
 #endif
-    delay_1ms(2);
+    delay_1ms(50);
 
     for (; body_done_frame_size < body_size; body_done_frame_size += MAX_SEND_NEXT)
     {
@@ -412,7 +413,7 @@ int aid_message_raw_buffer_auto_ack(uint8_t message_id,
             usart_dma_send_data(USART_2_TR, (uint8_t *)&aid_message, AID_HEADER_SIZE + body_size - body_done_frame_size);
 #endif
         }
-        delay_1ms(2);
+        delay_1ms(50);
     }
 
     return 0;
@@ -486,7 +487,6 @@ void aid_init_raw_sensor_data()
     }
 }
 
-#define ENABLE_USART2_DEBUG_RAW_DATA
 void aid_mx_value_send_raw(aid_agreement_context_t *agreement_context,
                            uint8_t *raw_value,
                            uint16_t raw_size)
@@ -619,7 +619,7 @@ int aid_message_raw_buffer_send(uint8_t message_id,
 #ifdef ENABLE_DEBUG_USART_LOG
     usart_dma_send_data(USART_2_TR, (uint8_t *)&aid_message, AID_HEADER_SIZE + service_length + body_done_frame_size + 4);
 #endif
-    delay_1ms(200);
+    delay_1ms(50);
 
     for (; body_done_frame_size < body_size; body_done_frame_size += MAX_SEND_NEXT)
     {
@@ -641,7 +641,7 @@ int aid_message_raw_buffer_send(uint8_t message_id,
             usart_dma_send_data(USART_2_TR, (uint8_t *)&aid_message, AID_HEADER_SIZE + body_size - body_done_frame_size);
 #endif
         }
-        delay_1ms(200);
+        delay_1ms(50);
     }
 
     return 0;
