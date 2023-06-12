@@ -51,6 +51,7 @@
 #include "oled.h"
 #include "math.h"
 #include "aid_agreement.h"
+#include "ble_type_E104.h"
 
 /*!
   \brief      main function
@@ -104,8 +105,9 @@ int main(void)
     usart2_init(460800); //485
     usart3_init(460800); //ble
 
+    E104_bt5032A_init(USART_3_TR);
 
-    while( 1 )
+    while(1)
     {
         time_1ms ++;
         //LED…¡À∏

@@ -110,7 +110,7 @@ int main(void)
         time_1ms ++;
         //LED…¡À∏
 
-        if(time_1ms % 50 == 0)
+        if(time_1ms % 100 == 0)
         {
             led_flag = !led_flag;
             GREEN_LED(led_flag);

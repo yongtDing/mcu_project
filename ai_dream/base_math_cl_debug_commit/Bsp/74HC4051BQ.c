@@ -18,6 +18,7 @@ void Hc4051Delay(uint32_t num)
 void Hc4051IoInit(void)
 {
     rcu_periph_clock_enable(RCU_GPIOB); 
+    rcu_periph_clock_enable(RCU_GPIOC); 
     rcu_periph_clock_enable(RCU_GPIOD);
     rcu_periph_clock_enable(RCU_GPIOE);
     rcu_periph_clock_enable(RCU_AF);
@@ -27,7 +28,6 @@ void Hc4051IoInit(void)
     gpio_init(GPIOE, GPIO_MODE_OUT_PP, GPIO_OSPEED_50MHZ, GPIO_PIN_ALL);
 
     gpio_init(GPIOA, GPIO_MODE_OUT_PP, GPIO_OSPEED_50MHZ,  GPIO_PIN_8 | GPIO_PIN_9 | GPIO_PIN_10);
-    gpio_init(GPIOB, GPIO_MODE_IN_FLOATING, GPIO_OSPEED_50MHZ, GPIO_PIN_3);
     XC_A(0);
     XC_B(0);
     XC_C(1);

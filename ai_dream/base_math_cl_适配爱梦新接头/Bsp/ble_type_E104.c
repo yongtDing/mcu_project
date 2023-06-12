@@ -1,8 +1,8 @@
 /*************************************************************************
-	> File Name: ble_type_E104.c
-	> Author: ma6174
-	> Mail: ma6174@163.com 
-	> Created Time: 2023/1/28 14:39:45
+  > File Name: ble_type_E104.c
+  > Author: ma6174
+  > Mail: ma6174@163.com 
+  > Created Time: 2023/1/28 14:39:45
  ************************************************************************/
 
 #include "uart.h"
@@ -70,14 +70,23 @@ void ble_config_at_cmd(USART_COM_ID_T com, char *cmd, char *value)
 void E104_bt5032A_init(USART_COM_ID_T com)
 {
     char cmd_recv[CMD_LEN_E104] = {0};
-
+    
+    gpio_init(GPIOB, GPIO_MODE_IN_FLOATING, GPIO_OSPEED_50MHZ, GPIO_PIN_3);
+    gpio_init(GPIOB, GPIO_MODE_OUT_PP, GPIO_OSPEED_2MHZ, GPIO_PIN_5);
+    gpio_init(GPIOC, GPIO_MODE_OUT_PP, GPIO_OSPEED_2MHZ, GPIO_PIN_12);
+    delay_1ms(500);
+		
+    BLE_RESET_E104;
+    BLE_MODE_AT;
+    delay_1ms(500);
+    ble_config_at_cmd(com, "at+reset", "");
+    delay_1ms(500);
     ble_consult_at_cmd(com, "at+mac?", cmd_recv, CMD_LEN_E104);
     reverse(cmd_recv);
     ble_config_at_cmd(com, "at+advdat=", cmd_recv);
     ble_config_at_cmd(com, "at+reset", "");
+    delay_1ms(500);
 
-    delay_1ms(1000);
+    BLE_MODE_UART;
 }
-
-
 

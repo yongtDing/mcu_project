@@ -263,7 +263,9 @@ AHB1_BUS_BASE	.\Firmware\CMSIS\GD\GD32E10x\Include\gd32e10x.h	220;"	d
 AHB3_BUS_BASE	.\Firmware\CMSIS\GD\GD32E10x\Include\gd32e10x.h	221;"	d
 AHBEN_REG_OFFSET	.\Firmware\GD32E10x_standard_peripheral\Include\gd32e10x_rcu.h	279;"	d
 AHBRST_REG_OFFSET	.\Firmware\GD32E10x_standard_peripheral\Include\gd32e10x_rcu.h	285;"	d
-AID_HEADER_SIZE	.\Bsp\aid_agreement.c	61;"	d	file:
+AID_CIR_BUF	.\Bsp\aid_agreement.c	24;"	d	file:
+AID_HEADER_SIZE	.\Bsp\aid_agreement.c	18;"	d	file:
+AID_LENGTH_SIZE	.\Bsp\aid_agreement.c	19;"	d	file:
 AIRCR	.\Firmware\CMSIS\core_cm4.h	/^  __IO uint32_t AIRCR;                   \/*!< Offset: 0x00C (R\/W)  Application Interrupt and Reset Control Register      *\/$/;"	m	struct:__anon20
 ALIGNEDMODE_MASK	.\Firmware\GD32E10x_standard_peripheral\Source\gd32e10x_timer.c	40;"	d	file:
 ALL_SELECT	.\Bsp\math_filter.h	/^    ALL_SELECT$/;"	e	enum:__anon9
@@ -412,6 +414,7 @@ BLE_G75_UT_RECOVERY	.\Bsp\ble_type_G75.h	/^    BLE_G75_UT_RECOVERY \/\/恢复默
 BLE_G75_UT_RESET	.\Bsp\ble_type_G75.h	/^    BLE_G75_UT_RESET,   \/\/重启蓝牙$/;"	e	enum:__anon3
 BLE_G75_UT_VER	.\Bsp\ble_type_G75.h	/^	BLE_G75_UT_VER,     \/\/蓝牙软硬件版本$/;"	e	enum:__anon3
 BLE_G75_UT_WKMODE	.\Bsp\ble_type_G75.h	/^    BLE_G75_UT_WKMODE,   \/\/自定义关闭蓝牙透传指令$/;"	e	enum:__anon3
+BLE_LINK_GET	.\Bsp\74HC4051BQ.h	29;"	d
 BMP1	.\Bsp\oledpic.h	/^unsigned char BMP1[] =$/;"	v
 BT_BAUDPSC	.\Firmware\GD32E10x_standard_peripheral\Include\gd32e10x_can.h	527;"	d
 BT_BS1	.\Firmware\GD32E10x_standard_peripheral\Include\gd32e10x_can.h	530;"	d
@@ -427,7 +430,7 @@ BusFault_Handler	.\Project\gd32e10x_it.c	/^void BusFault_Handler(void)$/;"	f
 BusFault_IRQn	.\Firmware\CMSIS\GD\GD32E10x\Include\gd32e10x.h	/^    BusFault_IRQn                = -11,    \/*!< 5 Cortex-M4 bus fault interrupt                          *\/$/;"	e	enum:IRQn
 C	.\Firmware\CMSIS\core_cm4.h	/^    uint32_t C:1;                        \/*!< bit:     29  Carry condition code flag          *\/$/;"	m	struct:__anon11::__anon12
 C	.\Firmware\CMSIS\core_cm4.h	/^    uint32_t C:1;                        \/*!< bit:     29  Carry condition code flag          *\/$/;"	m	struct:__anon15::__anon16
-CACHE_BUFFER_SIZE	.\Bsp\74HC4051BQ.h	39;"	d
+CACHE_BUFFER_SIZE	.\Bsp\74HC4051BQ.h	42;"	d
 CALIB	.\Firmware\CMSIS\core_cm4.h	/^  __I  uint32_t CALIB;                   \/*!< Offset: 0x00C (R\/ )  SysTick Calibration Register        *\/$/;"	m	struct:__anon22
 CAN0	.\Firmware\GD32E10x_standard_peripheral\Include\gd32e10x_can.h	43;"	d
 CAN0_EWMC_IRQHandler	.\Firmware\CMSIS\GD\GD32E10x\Source\ARM\startup_gd32e10x.s	/^CAN0_EWMC_IRQHandler               $/;"	l
@@ -910,6 +913,7 @@ CLT2_DENR	.\Firmware\GD32E10x_standard_peripheral\Include\gd32e10x_usart.h	299;"
 CLT2_DENT	.\Firmware\GD32E10x_standard_peripheral\Include\gd32e10x_usart.h	304;"	d
 CLT2_RTSEN	.\Firmware\GD32E10x_standard_peripheral\Include\gd32e10x_usart.h	309;"	d
 CMD_FSM_ID	.\Firmware\GD32E10x_usbfs_driver\Include\usbh_core.h	65;"	d
+CMD_LEN_E104	.\Bsp\ble_type_E104.c	11;"	d	file:
 COMP0	.\Firmware\CMSIS\core_cm4.h	/^  __IO uint32_t COMP0;                   \/*!< Offset: 0x020 (R\/W)  Comparator Register 0                     *\/$/;"	m	struct:__anon25
 COMP1	.\Firmware\CMSIS\core_cm4.h	/^  __IO uint32_t COMP1;                   \/*!< Offset: 0x030 (R\/W)  Comparator Register 1                     *\/$/;"	m	struct:__anon25
 COMP2	.\Firmware\CMSIS\core_cm4.h	/^  __IO uint32_t COMP2;                   \/*!< Offset: 0x040 (R\/W)  Comparator Register 2                     *\/$/;"	m	struct:__anon25
@@ -1056,7 +1060,7 @@ CTRL_SETUP	.\Firmware\GD32E10x_usbfs_driver\Include\usbh_core.h	/^    CTRL_SETUP
 CTRL_STALLED	.\Firmware\GD32E10x_usbfs_driver\Include\usbh_core.h	/^    CTRL_STALLED,                      \/* the ctrl stalled state definition *\/$/;"	e	enum:__anon83
 CTRL_STATUS	.\Firmware\GD32E10x_usbfs_driver\Include\usbh_core.h	/^    CTRL_STATUS,                       \/* the ctrl status state definition *\/$/;"	e	enum:__anon83
 CYCCNT	.\Firmware\CMSIS\core_cm4.h	/^  __IO uint32_t CYCCNT;                  \/*!< Offset: 0x004 (R\/W)  Cycle Count Register                      *\/$/;"	m	struct:__anon25
-CalChecksum	.\Project\main.c	/^uint16_t CalChecksum(uint8_t * data, uint16_t len)$/;"	f
+CalChecksum	.\Bsp\aid_agreement.c	/^uint16_t CalChecksum(uint8_t *data, uint16_t len)$/;"	f
 CircBuf_Alloc	.\Bsp\circular_buffer.c	/^int CircBuf_Alloc(CircBuf_t *CBuf, unsigned int Size) {$/;"	f
 CircBuf_At	.\Bsp\circular_buffer.c	/^unsigned char CircBuf_At(CircBuf_t *CBuf, unsigned int offset) {$/;"	f
 CircBuf_Drop	.\Bsp\circular_buffer.c	/^void CircBuf_Drop(CircBuf_t *CBuf, unsigned int LenToDrop) {$/;"	f
@@ -1630,7 +1634,10 @@ DebugMon_Handler	.\Firmware\CMSIS\GD\GD32E10x\Source\IAR\startup_gd32e10x.s	/^De
 DebugMon_Handler	.\Project\gd32e10x_it.c	/^void DebugMon_Handler(void)$/;"	f
 DebugMonitor_IRQn	.\Firmware\CMSIS\GD\GD32E10x\Include\gd32e10x.h	/^    DebugMonitor_IRQn            = -4,     \/*!< 12 Cortex-M4 debug monitor interrupt                     *\/$/;"	e	enum:IRQn
 Default_Handler	.\Firmware\CMSIS\GD\GD32E10x\Source\ARM\startup_gd32e10x.s	/^Default_Handler PROC$/;"	l
+E104_bt5032A_init	.\Bsp\ble_type_E104.c	/^void E104_bt5032A_init(USART_COM_ID_T com)$/;"	f
 ENABLE	.\Firmware\CMSIS\GD\GD32E10x\Include\gd32e10x.h	/^typedef enum {DISABLE = 0, ENABLE = !DISABLE} EventStatus, ControlStatus;$/;"	e	enum:__anon30
+ENABLE_DEBUG_USART_LOG	.\Bsp\aid_agreement.c	13;"	d	file:
+ENABLE_USART2_DEBUG_RAW_DATA	.\Bsp\aid_agreement.c	493;"	d	file:
 ENG_LANGID	.\Firmware\GD32E10x_usbfs_driver\Include\usbd_std.h	59;"	d
 ENUM_DEV_CONFIGURED	.\Firmware\GD32E10x_usbfs_driver\Include\usbh_core.h	/^    ENUM_DEV_CONFIGURED                \/* the enum device configuration state definition *\/$/;"	e	enum:__anon82
 ENUM_EVENT_SET_ADDR	.\Firmware\GD32E10x_usbfs_driver\Include\usbh_std.h	/^    ENUM_EVENT_SET_ADDR,                   \/* the enum set address event *\/$/;"	e	enum:__anon97
@@ -2566,7 +2573,7 @@ GUSBCS_HNPCEN	.\Firmware\GD32E10x_usbfs_driver\Include\usb_regs.h	145;"	d
 GUSBCS_SRPCEN	.\Firmware\GD32E10x_usbfs_driver\Include\usb_regs.h	146;"	d
 GUSBCS_TOC	.\Firmware\GD32E10x_usbfs_driver\Include\usb_regs.h	147;"	d
 GUSBCS_UTT	.\Firmware\GD32E10x_usbfs_driver\Include\usb_regs.h	144;"	d
-GetAdcValue	.\Bsp\adc.c	/^float GetAdcValue(uint8_t index)$/;"	f
+GetAdcValue	.\Bsp\adc.c	/^uint16_t GetAdcValue(uint8_t index)$/;"	f
 HACHINTEN_CINTEN	.\Firmware\GD32E10x_usbfs_driver\Include\usb_regs.h	278;"	d
 HACHINT_HACHINT	.\Firmware\GD32E10x_usbfs_driver\Include\usb_regs.h	275;"	d
 HCCHAR_BULK	.\Firmware\GD32E10x_usbfs_driver\Include\usb_defines.h	108;"	d
@@ -3052,7 +3059,7 @@ LOCATE_HCHCTL	.\Firmware\GD32E10x_usbfs_driver\Include\usb_regs.h	46;"	d
 LOCATE_HCHINTEN	.\Firmware\GD32E10x_usbfs_driver\Include\usb_regs.h	48;"	d
 LOCATE_HCHINTF	.\Firmware\GD32E10x_usbfs_driver\Include\usb_regs.h	47;"	d
 LOCATE_HCHLEN	.\Firmware\GD32E10x_usbfs_driver\Include\usb_regs.h	49;"	d
-LOG_PRINTF	.\Project\main.c	64;"	d	file:
+LOG_PRINTF	.\Project\main.c	65;"	d	file:
 LOWBYTE	.\Firmware\GD32E10x_usbfs_driver\Include\usbd_std.h	64;"	d
 LSB_16BIT_MASK	.\Firmware\GD32E10x_standard_peripheral\Source\gd32e10x_gpio.c	41;"	d	file:
 LSR	.\Firmware\CMSIS\core_cm4.h	/^  __I  uint32_t LSR;                     \/*!< Offset: 0xFB4 (R\/ )  ITM Lock Status Register                  *\/$/;"	m	struct:__anon23
@@ -3068,8 +3075,8 @@ MASK2	.\Firmware\CMSIS\core_cm4.h	/^  __IO uint32_t MASK2;                   \/*
 MASK3	.\Firmware\CMSIS\core_cm4.h	/^  __IO uint32_t MASK3;                   \/*!< Offset: 0x054 (R\/W)  Mask Register 3                           *\/$/;"	m	struct:__anon25
 MAX	.\Bsp\circular_buffer.h	9;"	d
 MAX_RING_BUF_SIZE	.\Bsp\uart.c	6;"	d	file:
-MAX_SEND_NEXT	.\Bsp\aid_agreement.c	60;"	d	file:
-MAX_SEND_RAW_SIZE_TOTAL	.\Bsp\aid_agreement.c	59;"	d	file:
+MAX_SEND_NEXT	.\Bsp\aid_agreement.c	17;"	d	file:
+MAX_SEND_RAW_SIZE_TOTAL	.\Bsp\aid_agreement.c	16;"	d	file:
 MAX_USBH_STATE_STACK_DEEP	.\Firmware\GD32E10x_usbfs_driver\Include\usbh_core.h	60;"	d
 MAX_USBH_STATE_TABLE_NUM	.\Firmware\GD32E10x_usbfs_driver\Include\usbh_core.h	61;"	d
 MIN	.\Bsp\circular_buffer.h	8;"	d
@@ -4070,8 +4077,9 @@ SEL_IRC8M	.\Firmware\CMSIS\GD\GD32E10x\Source\system_gd32e10x.c	64;"	d	file:
 SEL_IRC8M	.\Firmware\GD32E10x_standard_peripheral\Source\gd32e10x_rcu.c	40;"	d	file:
 SEL_PLL	.\Firmware\CMSIS\GD\GD32E10x\Source\system_gd32e10x.c	66;"	d	file:
 SEL_PLL	.\Firmware\GD32E10x_standard_peripheral\Source\gd32e10x_rcu.c	42;"	d	file:
-SENSOR_POS_X	.\Bsp\74HC4051BQ.h	30;"	d
-SENSOR_POS_Y	.\Bsp\74HC4051BQ.h	31;"	d
+SEND_TEST_TOTAL	.\Bsp\aid_agreement.c	15;"	d	file:
+SENSOR_POS_X	.\Bsp\74HC4051BQ.h	33;"	d
+SENSOR_POS_Y	.\Bsp\74HC4051BQ.h	34;"	d
 SET	.\Firmware\CMSIS\GD\GD32E10x\Include\gd32e10x.h	/^typedef enum {RESET = 0, SET = !RESET} FlagStatus;$/;"	e	enum:__anon31
 SHCSR	.\Firmware\CMSIS\core_cm4.h	/^  __IO uint32_t SHCSR;                   \/*!< Offset: 0x024 (R\/W)  System Handler Control and State Register             *\/$/;"	m	struct:__anon20
 SHP	.\Firmware\CMSIS\core_cm4.h	/^  __IO uint8_t  SHP[12];                 \/*!< Offset: 0x018 (R\/W)  System Handlers Priority Registers (4-7, 8-11, 12-15) *\/$/;"	m	struct:__anon20
@@ -4317,7 +4325,7 @@ TIMER2_IRQn	.\Firmware\CMSIS\GD\GD32E10x\Include\gd32e10x.h	/^    TIMER2_IRQn   
 TIMER3	.\Firmware\GD32E10x_standard_peripheral\Include\gd32e10x_timer.h	46;"	d
 TIMER3_IRQHandler	.\Firmware\CMSIS\GD\GD32E10x\Source\ARM\startup_gd32e10x.s	/^TIMER3_IRQHandler                 $/;"	l
 TIMER3_IRQHandler	.\Firmware\CMSIS\GD\GD32E10x\Source\IAR\startup_gd32e10x.s	/^TIMER3_IRQHandler                 $/;"	l
-TIMER3_IRQHandler	.\Project\main.c	/^void TIMER3_IRQHandler( void )$/;"	f
+TIMER3_IRQHandler	.\Project\main.c	/^void TIMER3_IRQHandler(void)$/;"	f
 TIMER3_IRQn	.\Firmware\CMSIS\GD\GD32E10x\Include\gd32e10x.h	/^    TIMER3_IRQn                  = 30,     \/*!< TIMER3 interrupts                                        *\/$/;"	e	enum:IRQn
 TIMER4	.\Firmware\GD32E10x_standard_peripheral\Include\gd32e10x_timer.h	47;"	d
 TIMER4_IRQHandler	.\Firmware\CMSIS\GD\GD32E10x\Source\ARM\startup_gd32e10x.s	/^TIMER4_IRQHandler                 $/;"	l
@@ -5247,7 +5255,7 @@ V	.\Firmware\CMSIS\core_cm4.h	/^    uint32_t V:1;                        \/*!< b
 V	.\Firmware\CMSIS\core_cm4.h	/^    uint32_t V:1;                        \/*!< bit:     28  Overflow condition code flag       *\/$/;"	m	struct:__anon15::__anon16
 VAL	.\Firmware\CMSIS\core_cm4.h	/^  __IO uint32_t VAL;                     \/*!< Offset: 0x008 (R\/W)  SysTick Current Value Register      *\/$/;"	m	struct:__anon22
 VECT_TAB_OFFSET	.\Firmware\CMSIS\GD\GD32E10x\Source\system_gd32e10x.c	47;"	d	file:
-VOLT_MULT	.\Bsp\74HC4051BQ.h	32;"	d
+VOLT_MULT	.\Bsp\74HC4051BQ.h	35;"	d
 VTOR	.\Firmware\CMSIS\core_cm4.h	/^  __IO uint32_t VTOR;                    \/*!< Offset: 0x008 (R\/W)  Vector Table Offset Register                          *\/$/;"	m	struct:__anon20
 WDHT_WDHT	.\Firmware\GD32E10x_standard_peripheral\Include\gd32e10x_adc.h	217;"	d
 WDLT_WDLT	.\Firmware\GD32E10x_standard_peripheral\Include\gd32e10x_adc.h	220;"	d
@@ -5345,7 +5353,7 @@ Z	.\Firmware\CMSIS\core_cm4.h	/^    uint32_t Z:1;                        \/*!< b
 [48]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[48]"><\/a>CAN1_EWMC_IRQHandler<\/STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_gd32e10x.o(.text))$/;"	a
 [49]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[49]"><\/a>USBFS_IRQHandler<\/STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_gd32e10x.o(.text))$/;"	a
 [4]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[4]"><\/a>BusFault_Handler<\/STRONG> (Thumb, 4 bytes, Stack size 0 bytes, gd32e10x_it.o(i.BusFault_Handler))$/;"	a
-[4a]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[4a]"><\/a>main<\/STRONG> (Thumb, 308 bytes, Stack size 0 bytes, main.o(i.main))$/;"	a
+[4a]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[4a]"><\/a>main<\/STRONG> (Thumb, 404 bytes, Stack size 8 bytes, main.o(i.main))$/;"	a
 [4b]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[4b]"><\/a>SystemInit<\/STRONG> (Thumb, 76 bytes, Stack size 8 bytes, system_gd32e10x.o(i.SystemInit))$/;"	a
 [4c]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[4c]"><\/a>__main<\/STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry.o(.ARM.Collect$$$$00000000))$/;"	a
 [4d]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[4d]"><\/a>fputc<\/STRONG> (Thumb, 32 bytes, Stack size 16 bytes, uart.o(i.fputc))$/;"	a
@@ -5379,145 +5387,169 @@ Z	.\Firmware\CMSIS\core_cm4.h	/^    uint32_t Z:1;                        \/*!< b
 [68]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[68]"><\/a>dma_interrupt_flag_get<\/STRONG> (Thumb, 130 bytes, Stack size 16 bytes, gd32e10x_dma.o(i.dma_interrupt_flag_get))$/;"	a
 [69]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[69]"><\/a>dma_interrupt_flag_clear<\/STRONG> (Thumb, 16 bytes, Stack size 8 bytes, gd32e10x_dma.o(i.dma_interrupt_flag_clear))$/;"	a
 [6]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[6]"><\/a>SVC_Handler<\/STRONG> (Thumb, 2 bytes, Stack size 0 bytes, gd32e10x_it.o(i.SVC_Handler))$/;"	a
-[6a]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[6a]"><\/a>read_adc_value<\/STRONG> (Thumb, 98 bytes, Stack size 0 bytes, adc.o(i.read_adc_value))$/;"	a
-[6b]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[6b]"><\/a>GetAdcValue<\/STRONG> (Thumb, 30 bytes, Stack size 4 bytes, adc.o(i.GetAdcValue))$/;"	a
-[6c]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[6c]"><\/a>Hc4051IoInit<\/STRONG> (Thumb, 116 bytes, Stack size 8 bytes, 74hc4051bq.o(i.Hc4051IoInit))$/;"	a
-[6d]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[6d]"><\/a>rcu_periph_clock_enable<\/STRONG> (Thumb, 28 bytes, Stack size 0 bytes, gd32e10x_rcu.o(i.rcu_periph_clock_enable))$/;"	a
-[6e]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[6e]"><\/a>gpio_pin_remap_config<\/STRONG> (Thumb, 138 bytes, Stack size 20 bytes, gd32e10x_gpio.o(i.gpio_pin_remap_config))$/;"	a
-[6f]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[6f]"><\/a>gpio_init<\/STRONG> (Thumb, 188 bytes, Stack size 20 bytes, gd32e10x_gpio.o(i.gpio_init))$/;"	a
-[70]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[70]"><\/a>gpio_bit_reset<\/STRONG> (Thumb, 4 bytes, Stack size 0 bytes, gd32e10x_gpio.o(i.gpio_bit_reset))$/;"	a
-[71]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[71]"><\/a>gpio_bit_set<\/STRONG> (Thumb, 4 bytes, Stack size 0 bytes, gd32e10x_gpio.o(i.gpio_bit_set))$/;"	a
-[72]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[72]"><\/a>delay_decrement<\/STRONG> (Thumb, 18 bytes, Stack size 0 bytes, systick.o(i.delay_decrement))$/;"	a
-[73]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[73]"><\/a>system_clock_config<\/STRONG> (Thumb, 8 bytes, Stack size 8 bytes, system_gd32e10x.o(i.system_clock_config))$/;"	a
-[74]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[74]"><\/a>nvic_vector_table_set<\/STRONG> (Thumb, 12 bytes, Stack size 0 bytes, gd32e10x_misc.o(i.nvic_vector_table_set))$/;"	a
-[75]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[75]"><\/a>timer_interrupt_flag_get<\/STRONG> (Thumb, 24 bytes, Stack size 0 bytes, gd32e10x_timer.o(i.timer_interrupt_flag_get))$/;"	a
-[76]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[76]"><\/a>timer_interrupt_flag_clear<\/STRONG> (Thumb, 6 bytes, Stack size 0 bytes, gd32e10x_timer.o(i.timer_interrupt_flag_clear))$/;"	a
-[77]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[77]"><\/a>timer_channel_capture_value_register_read<\/STRONG> (Thumb, 42 bytes, Stack size 0 bytes, gd32e10x_timer.o(i.timer_channel_capture_value_register_read))$/;"	a
-[78]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[78]"><\/a>usart_interrupt_flag_get<\/STRONG> (Thumb, 56 bytes, Stack size 16 bytes, gd32e10x_usart.o(i.usart_interrupt_flag_get))$/;"	a
-[79]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[79]"><\/a>dma_channel_disable<\/STRONG> (Thumb, 50 bytes, Stack size 16 bytes, gd32e10x_dma.o(i.dma_channel_disable))$/;"	a
+[6a]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[6a]"><\/a>read_adc_value<\/STRONG> (Thumb, 64 bytes, Stack size 0 bytes, adc.o(i.read_adc_value))$/;"	a
+[6b]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[6b]"><\/a>E104_bt5032A_init<\/STRONG> (Thumb, 72 bytes, Stack size 72 bytes, ble_type_e104.o(i.E104_bt5032A_init))$/;"	a
+[6c]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[6c]"><\/a>__aeabi_memclr4<\/STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memseta.o(.text))$/;"	a
+[6d]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[6d]"><\/a>delay_1ms<\/STRONG> (Thumb, 16 bytes, Stack size 0 bytes, systick.o(i.delay_1ms))$/;"	a
+[6e]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[6e]"><\/a>ble_consult_at_cmd<\/STRONG> (Thumb, 106 bytes, Stack size 32 bytes, ble_type_e104.o(i.ble_consult_at_cmd))$/;"	a
+[6f]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[6f]"><\/a>reverse<\/STRONG> (Thumb, 44 bytes, Stack size 24 bytes, ble_type_e104.o(i.reverse))$/;"	a
+[70]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[70]"><\/a>ble_config_at_cmd<\/STRONG> (Thumb, 122 bytes, Stack size 152 bytes, ble_type_e104.o(i.ble_config_at_cmd))$/;"	a
+[71]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[71]"><\/a>Hc4051IoInit<\/STRONG> (Thumb, 128 bytes, Stack size 8 bytes, 74hc4051bq.o(i.Hc4051IoInit))$/;"	a
+[72]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[72]"><\/a>rcu_periph_clock_enable<\/STRONG> (Thumb, 28 bytes, Stack size 0 bytes, gd32e10x_rcu.o(i.rcu_periph_clock_enable))$/;"	a
+[73]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[73]"><\/a>gpio_pin_remap_config<\/STRONG> (Thumb, 138 bytes, Stack size 20 bytes, gd32e10x_gpio.o(i.gpio_pin_remap_config))$/;"	a
+[74]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[74]"><\/a>gpio_init<\/STRONG> (Thumb, 188 bytes, Stack size 20 bytes, gd32e10x_gpio.o(i.gpio_init))$/;"	a
+[75]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[75]"><\/a>gpio_bit_reset<\/STRONG> (Thumb, 4 bytes, Stack size 0 bytes, gd32e10x_gpio.o(i.gpio_bit_reset))$/;"	a
+[76]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[76]"><\/a>gpio_bit_set<\/STRONG> (Thumb, 4 bytes, Stack size 0 bytes, gd32e10x_gpio.o(i.gpio_bit_set))$/;"	a
+[77]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[77]"><\/a>delay_decrement<\/STRONG> (Thumb, 18 bytes, Stack size 0 bytes, systick.o(i.delay_decrement))$/;"	a
+[78]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[78]"><\/a>system_clock_config<\/STRONG> (Thumb, 8 bytes, Stack size 8 bytes, system_gd32e10x.o(i.system_clock_config))$/;"	a
+[79]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[79]"><\/a>nvic_vector_table_set<\/STRONG> (Thumb, 12 bytes, Stack size 0 bytes, gd32e10x_misc.o(i.nvic_vector_table_set))$/;"	a
 [7]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[7]"><\/a>DebugMon_Handler<\/STRONG> (Thumb, 2 bytes, Stack size 0 bytes, gd32e10x_it.o(i.DebugMon_Handler))$/;"	a
-[7a]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[7a]"><\/a>dma_transfer_number_get<\/STRONG> (Thumb, 34 bytes, Stack size 16 bytes, gd32e10x_dma.o(i.dma_transfer_number_get))$/;"	a
-[7b]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[7b]"><\/a>dma_transfer_number_config<\/STRONG> (Thumb, 38 bytes, Stack size 16 bytes, gd32e10x_dma.o(i.dma_transfer_number_config))$/;"	a
-[7c]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[7c]"><\/a>dma_channel_enable<\/STRONG> (Thumb, 50 bytes, Stack size 16 bytes, gd32e10x_dma.o(i.dma_channel_enable))$/;"	a
-[7d]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[7d]"><\/a>__0printf<\/STRONG> (Thumb, 22 bytes, Stack size 24 bytes, printfa.o(i.__0printf), UNUSED)$/;"	a
-[7e]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[7e]"><\/a>_printf_core<\/STRONG> (Thumb, 1704 bytes, Stack size 136 bytes, printfa.o(i._printf_core), UNUSED)$/;"	a
-[7f]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[7f]"><\/a>_fp_digits<\/STRONG> (Thumb, 366 bytes, Stack size 64 bytes, printfa.o(i._fp_digits), UNUSED)$/;"	a
-[80]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[80]"><\/a>__aeabi_cdrcmple<\/STRONG> (Thumb, 48 bytes, Stack size 0 bytes, cdrcmple.o(.text), UNUSED)$/;"	a
-[81]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[81]"><\/a>_printf_pre_padding<\/STRONG> (Thumb, 46 bytes, Stack size 24 bytes, printfa.o(i._printf_pre_padding), UNUSED)$/;"	a
-[82]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[82]"><\/a>_printf_post_padding<\/STRONG> (Thumb, 36 bytes, Stack size 24 bytes, printfa.o(i._printf_post_padding), UNUSED)$/;"	a
-[83]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[83]"><\/a>__aeabi_uidivmod<\/STRONG> (Thumb, 44 bytes, Stack size 12 bytes, uidiv.o(.text), UNUSED)$/;"	a
-[84]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[84]"><\/a>adc_config<\/STRONG> (Thumb, 204 bytes, Stack size 8 bytes, adc.o(i.adc_config))$/;"	a
-[85]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[85]"><\/a>adc_deinit<\/STRONG> (Thumb, 60 bytes, Stack size 8 bytes, gd32e10x_adc.o(i.adc_deinit))$/;"	a
-[86]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[86]"><\/a>adc_mode_config<\/STRONG> (Thumb, 22 bytes, Stack size 0 bytes, gd32e10x_adc.o(i.adc_mode_config))$/;"	a
-[87]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[87]"><\/a>adc_special_function_config<\/STRONG> (Thumb, 90 bytes, Stack size 0 bytes, gd32e10x_adc.o(i.adc_special_function_config))$/;"	a
-[88]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[88]"><\/a>adc_data_alignment_config<\/STRONG> (Thumb, 22 bytes, Stack size 0 bytes, gd32e10x_adc.o(i.adc_data_alignment_config))$/;"	a
-[89]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[89]"><\/a>adc_channel_length_config<\/STRONG> (Thumb, 70 bytes, Stack size 12 bytes, gd32e10x_adc.o(i.adc_channel_length_config))$/;"	a
+[7a]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[7a]"><\/a>timer_interrupt_flag_get<\/STRONG> (Thumb, 24 bytes, Stack size 0 bytes, gd32e10x_timer.o(i.timer_interrupt_flag_get))$/;"	a
+[7b]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[7b]"><\/a>timer_interrupt_flag_clear<\/STRONG> (Thumb, 6 bytes, Stack size 0 bytes, gd32e10x_timer.o(i.timer_interrupt_flag_clear))$/;"	a
+[7c]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[7c]"><\/a>timer_channel_capture_value_register_read<\/STRONG> (Thumb, 42 bytes, Stack size 0 bytes, gd32e10x_timer.o(i.timer_channel_capture_value_register_read))$/;"	a
+[7d]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[7d]"><\/a>usart_interrupt_flag_get<\/STRONG> (Thumb, 56 bytes, Stack size 16 bytes, gd32e10x_usart.o(i.usart_interrupt_flag_get))$/;"	a
+[7e]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[7e]"><\/a>dma_channel_disable<\/STRONG> (Thumb, 50 bytes, Stack size 16 bytes, gd32e10x_dma.o(i.dma_channel_disable))$/;"	a
+[7f]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[7f]"><\/a>dma_transfer_number_get<\/STRONG> (Thumb, 34 bytes, Stack size 16 bytes, gd32e10x_dma.o(i.dma_transfer_number_get))$/;"	a
+[80]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[80]"><\/a>dma_transfer_number_config<\/STRONG> (Thumb, 38 bytes, Stack size 16 bytes, gd32e10x_dma.o(i.dma_transfer_number_config))$/;"	a
+[81]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[81]"><\/a>dma_channel_enable<\/STRONG> (Thumb, 50 bytes, Stack size 16 bytes, gd32e10x_dma.o(i.dma_channel_enable))$/;"	a
+[82]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[82]"><\/a>__0printf<\/STRONG> (Thumb, 22 bytes, Stack size 24 bytes, printfa.o(i.__0printf), UNUSED)$/;"	a
+[83]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[83]"><\/a>_printf_core<\/STRONG> (Thumb, 1704 bytes, Stack size 136 bytes, printfa.o(i._printf_core), UNUSED)$/;"	a
+[84]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[84]"><\/a>_fp_digits<\/STRONG> (Thumb, 366 bytes, Stack size 64 bytes, printfa.o(i._fp_digits), UNUSED)$/;"	a
+[85]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[85]"><\/a>__aeabi_cdrcmple<\/STRONG> (Thumb, 48 bytes, Stack size 0 bytes, cdrcmple.o(.text), UNUSED)$/;"	a
+[86]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[86]"><\/a>_printf_pre_padding<\/STRONG> (Thumb, 46 bytes, Stack size 24 bytes, printfa.o(i._printf_pre_padding), UNUSED)$/;"	a
+[87]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[87]"><\/a>_printf_post_padding<\/STRONG> (Thumb, 36 bytes, Stack size 24 bytes, printfa.o(i._printf_post_padding), UNUSED)$/;"	a
+[88]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[88]"><\/a>__aeabi_uidivmod<\/STRONG> (Thumb, 44 bytes, Stack size 12 bytes, uidiv.o(.text), UNUSED)$/;"	a
+[89]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[89]"><\/a>adc_calculation_calibration_once<\/STRONG> (Thumb, 252 bytes, Stack size 24 bytes, 74hc4051bq.o(i.adc_calculation_calibration_once))$/;"	a
 [8]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[8]"><\/a>PendSV_Handler<\/STRONG> (Thumb, 2 bytes, Stack size 0 bytes, gd32e10x_it.o(i.PendSV_Handler))$/;"	a
-[8a]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[8a]"><\/a>adc_regular_channel_config<\/STRONG> (Thumb, 172 bytes, Stack size 20 bytes, gd32e10x_adc.o(i.adc_regular_channel_config))$/;"	a
-[8b]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[8b]"><\/a>adc_external_trigger_source_config<\/STRONG> (Thumb, 48 bytes, Stack size 0 bytes, gd32e10x_adc.o(i.adc_external_trigger_source_config))$/;"	a
-[8c]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[8c]"><\/a>adc_external_trigger_config<\/STRONG> (Thumb, 62 bytes, Stack size 0 bytes, gd32e10x_adc.o(i.adc_external_trigger_config))$/;"	a
-[8d]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[8d]"><\/a>adc_enable<\/STRONG> (Thumb, 18 bytes, Stack size 0 bytes, gd32e10x_adc.o(i.adc_enable))$/;"	a
-[8e]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[8e]"><\/a>delay_1ms<\/STRONG> (Thumb, 16 bytes, Stack size 0 bytes, systick.o(i.delay_1ms))$/;"	a
-[8f]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[8f]"><\/a>adc_calibration_enable<\/STRONG> (Thumb, 42 bytes, Stack size 0 bytes, gd32e10x_adc.o(i.adc_calibration_enable))$/;"	a
-[90]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[90]"><\/a>adc_dma_mode_enable<\/STRONG> (Thumb, 10 bytes, Stack size 0 bytes, gd32e10x_adc.o(i.adc_dma_mode_enable))$/;"	a
-[91]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[91]"><\/a>adc_software_trigger_enable<\/STRONG> (Thumb, 30 bytes, Stack size 0 bytes, gd32e10x_adc.o(i.adc_software_trigger_enable))$/;"	a
-[92]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[92]"><\/a>rcu_periph_reset_enable<\/STRONG> (Thumb, 28 bytes, Stack size 0 bytes, gd32e10x_rcu.o(i.rcu_periph_reset_enable))$/;"	a
-[93]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[93]"><\/a>rcu_periph_reset_disable<\/STRONG> (Thumb, 28 bytes, Stack size 0 bytes, gd32e10x_rcu.o(i.rcu_periph_reset_disable))$/;"	a
-[94]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[94]"><\/a>adc_init<\/STRONG> (Thumb, 24 bytes, Stack size 8 bytes, adc.o(i.adc_init))$/;"	a
-[95]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[95]"><\/a>rcu_config<\/STRONG> (Thumb, 42 bytes, Stack size 8 bytes, adc.o(i.rcu_config))$/;"	a
-[96]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[96]"><\/a>systick_config<\/STRONG> (Thumb, 74 bytes, Stack size 8 bytes, systick.o(i.systick_config))$/;"	a
-[97]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[97]"><\/a>gpio_config<\/STRONG> (Thumb, 100 bytes, Stack size 8 bytes, adc.o(i.gpio_config))$/;"	a
-[98]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[98]"><\/a>dma_config<\/STRONG> (Thumb, 84 bytes, Stack size 32 bytes, adc.o(i.dma_config))$/;"	a
-[99]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[99]"><\/a>adc_value_read<\/STRONG> (Thumb, 284 bytes, Stack size 32 bytes, 74hc4051bq.o(i.adc_value_read))$/;"	a
+[8a]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[8a]"><\/a>adc_config<\/STRONG> (Thumb, 204 bytes, Stack size 8 bytes, adc.o(i.adc_config))$/;"	a
+[8b]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[8b]"><\/a>adc_deinit<\/STRONG> (Thumb, 60 bytes, Stack size 8 bytes, gd32e10x_adc.o(i.adc_deinit))$/;"	a
+[8c]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[8c]"><\/a>adc_mode_config<\/STRONG> (Thumb, 22 bytes, Stack size 0 bytes, gd32e10x_adc.o(i.adc_mode_config))$/;"	a
+[8d]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[8d]"><\/a>adc_special_function_config<\/STRONG> (Thumb, 90 bytes, Stack size 0 bytes, gd32e10x_adc.o(i.adc_special_function_config))$/;"	a
+[8e]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[8e]"><\/a>adc_data_alignment_config<\/STRONG> (Thumb, 22 bytes, Stack size 0 bytes, gd32e10x_adc.o(i.adc_data_alignment_config))$/;"	a
+[8f]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[8f]"><\/a>adc_channel_length_config<\/STRONG> (Thumb, 70 bytes, Stack size 12 bytes, gd32e10x_adc.o(i.adc_channel_length_config))$/;"	a
+[90]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[90]"><\/a>adc_regular_channel_config<\/STRONG> (Thumb, 172 bytes, Stack size 20 bytes, gd32e10x_adc.o(i.adc_regular_channel_config))$/;"	a
+[91]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[91]"><\/a>adc_external_trigger_source_config<\/STRONG> (Thumb, 48 bytes, Stack size 0 bytes, gd32e10x_adc.o(i.adc_external_trigger_source_config))$/;"	a
+[92]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[92]"><\/a>adc_external_trigger_config<\/STRONG> (Thumb, 62 bytes, Stack size 0 bytes, gd32e10x_adc.o(i.adc_external_trigger_config))$/;"	a
+[93]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[93]"><\/a>adc_enable<\/STRONG> (Thumb, 18 bytes, Stack size 0 bytes, gd32e10x_adc.o(i.adc_enable))$/;"	a
+[94]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[94]"><\/a>adc_calibration_enable<\/STRONG> (Thumb, 42 bytes, Stack size 0 bytes, gd32e10x_adc.o(i.adc_calibration_enable))$/;"	a
+[95]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[95]"><\/a>adc_dma_mode_enable<\/STRONG> (Thumb, 10 bytes, Stack size 0 bytes, gd32e10x_adc.o(i.adc_dma_mode_enable))$/;"	a
+[96]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[96]"><\/a>adc_software_trigger_enable<\/STRONG> (Thumb, 30 bytes, Stack size 0 bytes, gd32e10x_adc.o(i.adc_software_trigger_enable))$/;"	a
+[97]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[97]"><\/a>rcu_periph_reset_enable<\/STRONG> (Thumb, 28 bytes, Stack size 0 bytes, gd32e10x_rcu.o(i.rcu_periph_reset_enable))$/;"	a
+[98]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[98]"><\/a>rcu_periph_reset_disable<\/STRONG> (Thumb, 28 bytes, Stack size 0 bytes, gd32e10x_rcu.o(i.rcu_periph_reset_disable))$/;"	a
+[99]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[99]"><\/a>adc_init<\/STRONG> (Thumb, 24 bytes, Stack size 8 bytes, adc.o(i.adc_init))$/;"	a
 [9]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[9]"><\/a>SysTick_Handler<\/STRONG> (Thumb, 8 bytes, Stack size 8 bytes, gd32e10x_it.o(i.SysTick_Handler))$/;"	a
-[9a]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[9a]"><\/a>select_x_control<\/STRONG> (Thumb, 56 bytes, Stack size 16 bytes, 74hc4051bq.o(i.select_x_control))$/;"	a
-[9b]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[9b]"><\/a>Hc4051Delay<\/STRONG> (Thumb, 12 bytes, Stack size 0 bytes, 74hc4051bq.o(i.Hc4051Delay))$/;"	a
-[9c]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[9c]"><\/a>aid_message_match<\/STRONG> (Thumb, 160 bytes, Stack size 24 bytes, aid_agreement.o(i.aid_message_match))$/;"	a
-[9d]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[9d]"><\/a>__2printf<\/STRONG> (Thumb, 0 bytes, Stack size 24 bytes, printfa.o(i.__0printf))$/;"	a
-[9e]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[9e]"><\/a>dma0_ch1_usart2_tx_init<\/STRONG> (Thumb, 114 bytes, Stack size 32 bytes, uart.o(i.dma0_ch1_usart2_tx_init))$/;"	a
-[9f]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[9f]"><\/a>dma_deinit<\/STRONG> (Thumb, 112 bytes, Stack size 16 bytes, gd32e10x_dma.o(i.dma_deinit))$/;"	a
-[a0]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[a0]"><\/a>dma_struct_para_init<\/STRONG> (Thumb, 28 bytes, Stack size 0 bytes, gd32e10x_dma.o(i.dma_struct_para_init))$/;"	a
-[a1]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[a1]"><\/a>dma_init<\/STRONG> (Thumb, 302 bytes, Stack size 24 bytes, gd32e10x_dma.o(i.dma_init))$/;"	a
-[a2]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[a2]"><\/a>dma_circulation_disable<\/STRONG> (Thumb, 50 bytes, Stack size 16 bytes, gd32e10x_dma.o(i.dma_circulation_disable))$/;"	a
-[a3]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[a3]"><\/a>dma_memory_to_memory_disable<\/STRONG> (Thumb, 50 bytes, Stack size 16 bytes, gd32e10x_dma.o(i.dma_memory_to_memory_disable))$/;"	a
-[a4]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[a4]"><\/a>dma_interrupt_enable<\/STRONG> (Thumb, 50 bytes, Stack size 16 bytes, gd32e10x_dma.o(i.dma_interrupt_enable))$/;"	a
-[a5]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[a5]"><\/a>dma0_ch2_usart2_rx_init<\/STRONG> (Thumb, 122 bytes, Stack size 32 bytes, uart.o(i.dma0_ch2_usart2_rx_init))$/;"	a
-[a6]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[a6]"><\/a>__aeabi_memclr4<\/STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memseta.o(.text))$/;"	a
-[a7]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[a7]"><\/a>usart_dma_receive_config<\/STRONG> (Thumb, 16 bytes, Stack size 0 bytes, gd32e10x_usart.o(i.usart_dma_receive_config))$/;"	a
-[a8]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[a8]"><\/a>dma1_ch2_usart3_rx_init<\/STRONG> (Thumb, 122 bytes, Stack size 32 bytes, uart.o(i.dma1_ch2_usart3_rx_init))$/;"	a
-[a9]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[a9]"><\/a>dma1_ch4_usart3_tx_init<\/STRONG> (Thumb, 114 bytes, Stack size 32 bytes, uart.o(i.dma1_ch4_usart3_tx_init))$/;"	a
+[9a]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[9a]"><\/a>rcu_config<\/STRONG> (Thumb, 42 bytes, Stack size 8 bytes, adc.o(i.rcu_config))$/;"	a
+[9b]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[9b]"><\/a>systick_config<\/STRONG> (Thumb, 74 bytes, Stack size 8 bytes, systick.o(i.systick_config))$/;"	a
+[9c]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[9c]"><\/a>gpio_config<\/STRONG> (Thumb, 100 bytes, Stack size 8 bytes, adc.o(i.gpio_config))$/;"	a
+[9d]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[9d]"><\/a>dma_config<\/STRONG> (Thumb, 84 bytes, Stack size 32 bytes, adc.o(i.dma_config))$/;"	a
+[9e]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[9e]"><\/a>adc_value_read<\/STRONG> (Thumb, 238 bytes, Stack size 32 bytes, 74hc4051bq.o(i.adc_value_read))$/;"	a
+[9f]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[9f]"><\/a>select_x_control<\/STRONG> (Thumb, 56 bytes, Stack size 16 bytes, 74hc4051bq.o(i.select_x_control))$/;"	a
+[a0]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[a0]"><\/a>Hc4051Delay<\/STRONG> (Thumb, 12 bytes, Stack size 0 bytes, 74hc4051bq.o(i.Hc4051Delay))$/;"	a
+[a1]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[a1]"><\/a>GetAdcValue<\/STRONG> (Thumb, 18 bytes, Stack size 0 bytes, adc.o(i.GetAdcValue))$/;"	a
+[a2]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[a2]"><\/a>aid_ack_message<\/STRONG> (Thumb, 226 bytes, Stack size 40 bytes, aid_agreement.o(i.aid_ack_message))$/;"	a
+[a3]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[a3]"><\/a>CircBuf_GetUsedSize<\/STRONG> (Thumb, 10 bytes, Stack size 0 bytes, circular_buffer.o(i.CircBuf_GetUsedSize))$/;"	a
+[a4]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[a4]"><\/a>strcmp<\/STRONG> (Thumb, 28 bytes, Stack size 8 bytes, strcmp.o(.text))$/;"	a
+[a5]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[a5]"><\/a>strlen<\/STRONG> (Thumb, 14 bytes, Stack size 0 bytes, strlen.o(.text))$/;"	a
+[a6]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[a6]"><\/a>aid_message_raw_buffer_send<\/STRONG> (Thumb, 394 bytes, Stack size 672 bytes, aid_agreement.o(i.aid_message_raw_buffer_send))$/;"	a
+[a7]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[a7]"><\/a>aid_clean_message_session<\/STRONG> (Thumb, 30 bytes, Stack size 8 bytes, aid_agreement.o(i.aid_clean_message_session))$/;"	a
+[a8]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[a8]"><\/a>aid_cmd_circular_init<\/STRONG> (Thumb, 30 bytes, Stack size 8 bytes, aid_agreement.o(i.aid_cmd_circular_init))$/;"	a
+[a9]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[a9]"><\/a>aid_init_raw_sensor_data<\/STRONG> (Thumb, 30 bytes, Stack size 8 bytes, aid_agreement.o(i.aid_init_raw_sensor_data))$/;"	a
 [a]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[a]"><\/a>WWDGT_IRQHandler<\/STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_gd32e10x.o(.text))$/;"	a
-[aa]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[aa]"><\/a>dma_periph_and_channel_check<\/STRONG> (Thumb, 18 bytes, Stack size 0 bytes, gd32e10x_dma.o(i.dma_periph_and_channel_check))$/;"	a
-[ab]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[ab]"><\/a>dma_circulation_enable<\/STRONG> (Thumb, 50 bytes, Stack size 16 bytes, gd32e10x_dma.o(i.dma_circulation_enable))$/;"	a
-[ac]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[ac]"><\/a>dma_memory_address_config<\/STRONG> (Thumb, 36 bytes, Stack size 16 bytes, gd32e10x_dma.o(i.dma_memory_address_config))$/;"	a
-[ad]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[ad]"><\/a>usart_data_transmit<\/STRONG> (Thumb, 8 bytes, Stack size 0 bytes, gd32e10x_usart.o(i.usart_data_transmit))$/;"	a
-[ae]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[ae]"><\/a>usart_flag_get<\/STRONG> (Thumb, 30 bytes, Stack size 8 bytes, gd32e10x_usart.o(i.usart_flag_get))$/;"	a
-[af]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[af]"><\/a>gd_eval_com_init<\/STRONG> (Thumb, 152 bytes, Stack size 16 bytes, uart.o(i.gd_eval_com_init))$/;"	a
-[b0]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[b0]"><\/a>usart_deinit<\/STRONG> (Thumb, 136 bytes, Stack size 8 bytes, gd32e10x_usart.o(i.usart_deinit))$/;"	a
-[b1]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[b1]"><\/a>usart_baudrate_set<\/STRONG> (Thumb, 136 bytes, Stack size 32 bytes, gd32e10x_usart.o(i.usart_baudrate_set))$/;"	a
-[b2]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[b2]"><\/a>usart_receive_config<\/STRONG> (Thumb, 16 bytes, Stack size 0 bytes, gd32e10x_usart.o(i.usart_receive_config))$/;"	a
-[b3]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[b3]"><\/a>usart_transmit_config<\/STRONG> (Thumb, 16 bytes, Stack size 0 bytes, gd32e10x_usart.o(i.usart_transmit_config))$/;"	a
-[b4]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[b4]"><\/a>usart_enable<\/STRONG> (Thumb, 10 bytes, Stack size 0 bytes, gd32e10x_usart.o(i.usart_enable))$/;"	a
-[b5]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[b5]"><\/a>usart_interrupt_enable<\/STRONG> (Thumb, 26 bytes, Stack size 8 bytes, gd32e10x_usart.o(i.usart_interrupt_enable))$/;"	a
-[b6]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[b6]"><\/a>led_init<\/STRONG> (Thumb, 48 bytes, Stack size 8 bytes, led.o(i.led_init))$/;"	a
-[b7]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[b7]"><\/a>usart2_init<\/STRONG> (Thumb, 40 bytes, Stack size 8 bytes, uart.o(i.usart2_init))$/;"	a
-[b8]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[b8]"><\/a>usart3_init<\/STRONG> (Thumb, 40 bytes, Stack size 8 bytes, uart.o(i.usart3_init))$/;"	a
-[b9]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[b9]"><\/a>usart_rx_probe<\/STRONG> (Thumb, 56 bytes, Stack size 8 bytes, uart.o(i.usart_rx_probe))$/;"	a
+[aa]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[aa]"><\/a>aid_make_up_message_next<\/STRONG> (Thumb, 58 bytes, Stack size 24 bytes, aid_agreement.o(i.aid_make_up_message_next))$/;"	a
+[ab]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[ab]"><\/a>aid_message_match<\/STRONG> (Thumb, 80 bytes, Stack size 16 bytes, aid_agreement.o(i.aid_message_match))$/;"	a
+[ac]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[ac]"><\/a>aid_recive_message_first_frame<\/STRONG> (Thumb, 296 bytes, Stack size 32 bytes, aid_agreement.o(i.aid_recive_message_first_frame))$/;"	a
+[ad]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[ad]"><\/a>__2printf<\/STRONG> (Thumb, 0 bytes, Stack size 24 bytes, printfa.o(i.__0printf))$/;"	a
+[ae]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[ae]"><\/a>aid_message_match_char<\/STRONG> (Thumb, 146 bytes, Stack size 368 bytes, aid_agreement.o(i.aid_message_match_char))$/;"	a
+[af]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[af]"><\/a>usart_dma_send_data<\/STRONG> (Thumb, 72 bytes, Stack size 16 bytes, uart.o(i.usart_dma_send_data))$/;"	a
+[b0]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[b0]"><\/a>aid_mx_value_send_raw<\/STRONG> (Thumb, 152 bytes, Stack size 16 bytes, aid_agreement.o(i.aid_mx_value_send_raw))$/;"	a
+[b1]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[b1]"><\/a>__aeabi_memcpy4<\/STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memcpya.o(.text))$/;"	a
+[b2]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[b2]"><\/a>CalChecksum<\/STRONG> (Thumb, 26 bytes, Stack size 8 bytes, aid_agreement.o(i.CalChecksum))$/;"	a
+[b3]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[b3]"><\/a>strcat<\/STRONG> (Thumb, 24 bytes, Stack size 0 bytes, strcat.o(.text))$/;"	a
+[b4]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[b4]"><\/a>usart_rx_probe<\/STRONG> (Thumb, 56 bytes, Stack size 8 bytes, uart.o(i.usart_rx_probe))$/;"	a
+[b5]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[b5]"><\/a>usart_get_rx_data_count<\/STRONG> (Thumb, 56 bytes, Stack size 8 bytes, uart.o(i.usart_get_rx_data_count))$/;"	a
+[b6]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[b6]"><\/a>usart_recv<\/STRONG> (Thumb, 84 bytes, Stack size 16 bytes, uart.o(i.usart_recv))$/;"	a
+[b7]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[b7]"><\/a>strncmp<\/STRONG> (Thumb, 30 bytes, Stack size 12 bytes, strncmp.o(.text))$/;"	a
+[b8]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[b8]"><\/a>strcpy<\/STRONG> (Thumb, 18 bytes, Stack size 0 bytes, strcpy.o(.text))$/;"	a
+[b9]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[b9]"><\/a>dma0_ch1_usart2_tx_init<\/STRONG> (Thumb, 114 bytes, Stack size 32 bytes, uart.o(i.dma0_ch1_usart2_tx_init))$/;"	a
 [b]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[b]"><\/a>LVD_IRQHandler<\/STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_gd32e10x.o(.text))$/;"	a
-[ba]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[ba]"><\/a>usart_get_rx_data_count<\/STRONG> (Thumb, 56 bytes, Stack size 8 bytes, uart.o(i.usart_get_rx_data_count))$/;"	a
-[bb]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[bb]"><\/a>usart_recv<\/STRONG> (Thumb, 84 bytes, Stack size 16 bytes, uart.o(i.usart_recv))$/;"	a
-[bc]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[bc]"><\/a>usart_dma_send_data<\/STRONG> (Thumb, 72 bytes, Stack size 16 bytes, uart.o(i.usart_dma_send_data))$/;"	a
-[bd]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[bd]"><\/a>select_y_control_volt<\/STRONG> (Thumb, 104 bytes, Stack size 24 bytes, 74hc4051bq.o(i.select_y_control_volt))$/;"	a
-[be]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[be]"><\/a>CalChecksum<\/STRONG> (Thumb, 26 bytes, Stack size 8 bytes, main.o(i.CalChecksum))$/;"	a
-[bf]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[bf]"><\/a>nvic_config<\/STRONG> (Thumb, 162 bytes, Stack size 8 bytes, uart.o(i.nvic_config))$/;"	a
-[c0]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[c0]"><\/a>nvic_irq_enable<\/STRONG> (Thumb, 162 bytes, Stack size 24 bytes, gd32e10x_misc.o(i.nvic_irq_enable))$/;"	a
-[c1]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[c1]"><\/a>nvic_priority_group_set<\/STRONG> (Thumb, 10 bytes, Stack size 0 bytes, gd32e10x_misc.o(i.nvic_priority_group_set))$/;"	a
-[c2]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[c2]"><\/a>rcu_adc_clock_config<\/STRONG> (Thumb, 98 bytes, Stack size 0 bytes, gd32e10x_rcu.o(i.rcu_adc_clock_config))$/;"	a
-[c3]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[c3]"><\/a>gpio_output_port_get<\/STRONG> (Thumb, 8 bytes, Stack size 0 bytes, gd32e10x_gpio.o(i.gpio_output_port_get))$/;"	a
-[c4]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[c4]"><\/a>gpio_port_write<\/STRONG> (Thumb, 4 bytes, Stack size 0 bytes, gd32e10x_gpio.o(i.gpio_port_write))$/;"	a
-[c5]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[c5]"><\/a>system_clock_120m_hxtal<\/STRONG> (Thumb, 226 bytes, Stack size 0 bytes, system_gd32e10x.o(i.system_clock_120m_hxtal))$/;"	a
-[c6]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[c6]"><\/a>NVIC_SetPriority<\/STRONG> (Thumb, 32 bytes, Stack size 8 bytes, systick.o(i.NVIC_SetPriority))$/;"	a
-[c7]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[c7]"><\/a>uart3_dma_send_data<\/STRONG> (Thumb, 68 bytes, Stack size 16 bytes, uart.o(i.uart3_dma_send_data))$/;"	a
-[c8]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[c8]"><\/a>usart_dma_transmit_config<\/STRONG> (Thumb, 16 bytes, Stack size 0 bytes, gd32e10x_usart.o(i.usart_dma_transmit_config))$/;"	a
-[c9]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[c9]"><\/a>usart0_dma_send_data<\/STRONG> (Thumb, 68 bytes, Stack size 16 bytes, uart.o(i.usart0_dma_send_data))$/;"	a
+[ba]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[ba]"><\/a>dma_deinit<\/STRONG> (Thumb, 112 bytes, Stack size 16 bytes, gd32e10x_dma.o(i.dma_deinit))$/;"	a
+[bb]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[bb]"><\/a>dma_struct_para_init<\/STRONG> (Thumb, 28 bytes, Stack size 0 bytes, gd32e10x_dma.o(i.dma_struct_para_init))$/;"	a
+[bc]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[bc]"><\/a>dma_init<\/STRONG> (Thumb, 302 bytes, Stack size 24 bytes, gd32e10x_dma.o(i.dma_init))$/;"	a
+[bd]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[bd]"><\/a>dma_circulation_disable<\/STRONG> (Thumb, 50 bytes, Stack size 16 bytes, gd32e10x_dma.o(i.dma_circulation_disable))$/;"	a
+[be]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[be]"><\/a>dma_memory_to_memory_disable<\/STRONG> (Thumb, 50 bytes, Stack size 16 bytes, gd32e10x_dma.o(i.dma_memory_to_memory_disable))$/;"	a
+[bf]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[bf]"><\/a>dma_interrupt_enable<\/STRONG> (Thumb, 50 bytes, Stack size 16 bytes, gd32e10x_dma.o(i.dma_interrupt_enable))$/;"	a
+[c0]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[c0]"><\/a>dma0_ch2_usart2_rx_init<\/STRONG> (Thumb, 122 bytes, Stack size 32 bytes, uart.o(i.dma0_ch2_usart2_rx_init))$/;"	a
+[c1]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[c1]"><\/a>usart_dma_receive_config<\/STRONG> (Thumb, 16 bytes, Stack size 0 bytes, gd32e10x_usart.o(i.usart_dma_receive_config))$/;"	a
+[c2]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[c2]"><\/a>dma1_ch2_usart3_rx_init<\/STRONG> (Thumb, 122 bytes, Stack size 32 bytes, uart.o(i.dma1_ch2_usart3_rx_init))$/;"	a
+[c3]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[c3]"><\/a>dma1_ch4_usart3_tx_init<\/STRONG> (Thumb, 114 bytes, Stack size 32 bytes, uart.o(i.dma1_ch4_usart3_tx_init))$/;"	a
+[c4]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[c4]"><\/a>dma_periph_and_channel_check<\/STRONG> (Thumb, 18 bytes, Stack size 0 bytes, gd32e10x_dma.o(i.dma_periph_and_channel_check))$/;"	a
+[c5]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[c5]"><\/a>dma_circulation_enable<\/STRONG> (Thumb, 50 bytes, Stack size 16 bytes, gd32e10x_dma.o(i.dma_circulation_enable))$/;"	a
+[c6]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[c6]"><\/a>dma_memory_address_config<\/STRONG> (Thumb, 36 bytes, Stack size 16 bytes, gd32e10x_dma.o(i.dma_memory_address_config))$/;"	a
+[c7]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[c7]"><\/a>usart_data_transmit<\/STRONG> (Thumb, 8 bytes, Stack size 0 bytes, gd32e10x_usart.o(i.usart_data_transmit))$/;"	a
+[c8]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[c8]"><\/a>usart_flag_get<\/STRONG> (Thumb, 30 bytes, Stack size 8 bytes, gd32e10x_usart.o(i.usart_flag_get))$/;"	a
+[c9]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[c9]"><\/a>gd_eval_com_init<\/STRONG> (Thumb, 152 bytes, Stack size 16 bytes, uart.o(i.gd_eval_com_init))$/;"	a
 [c]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[c]"><\/a>TAMPER_IRQHandler<\/STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_gd32e10x.o(.text))$/;"	a
-[ca]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[ca]"><\/a>usart1_dma_send_data<\/STRONG> (Thumb, 68 bytes, Stack size 16 bytes, uart.o(i.usart1_dma_send_data))$/;"	a
-[cb]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[cb]"><\/a>usart2_dma_send_data<\/STRONG> (Thumb, 68 bytes, Stack size 16 bytes, uart.o(i.usart2_dma_send_data))$/;"	a
-[cc]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[cc]"><\/a>rcu_clock_freq_get<\/STRONG> (Thumb, 352 bytes, Stack size 96 bytes, gd32e10x_rcu.o(i.rcu_clock_freq_get))$/;"	a
-[cd]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[cd]"><\/a>CircBuf_GetUsedSize<\/STRONG> (Thumb, 10 bytes, Stack size 0 bytes, circular_buffer.o(i.CircBuf_GetUsedSize))$/;"	a
-[ce]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[ce]"><\/a>CircBuf_IsEmpty<\/STRONG> (Thumb, 22 bytes, Stack size 0 bytes, circular_buffer.o(i.CircBuf_IsEmpty))$/;"	a
-[cf]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[cf]"><\/a>_main_stk<\/STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry2.o(.ARM.Collect$$$$00000001))$/;"	a
-[d0]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[d0]"><\/a>_main_clock<\/STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry7b.o(.ARM.Collect$$$$00000008))$/;"	a
-[d1]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[d1]"><\/a>_main_cpp_init<\/STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry8b.o(.ARM.Collect$$$$0000000A))$/;"	a
-[d2]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[d2]"><\/a>_main_init<\/STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry9a.o(.ARM.Collect$$$$0000000B))$/;"	a
-[d3]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[d3]"><\/a>__rt_lib_shutdown_fini<\/STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry12b.o(.ARM.Collect$$$$0000000E))$/;"	a
-[d4]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[d4]"><\/a>__rt_final_cpp<\/STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry10a.o(.ARM.Collect$$$$0000000F))$/;"	a
-[d5]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[d5]"><\/a>__rt_final_exit<\/STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry11a.o(.ARM.Collect$$$$00000011))$/;"	a
-[d6]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[d6]"><\/a>__aeabi_memcpy4<\/STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memcpya.o(.text), UNUSED)$/;"	a
-[d7]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[d7]"><\/a>__aeabi_memcpy8<\/STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memcpya.o(.text), UNUSED)$/;"	a
-[d8]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[d8]"><\/a>__aeabi_memset4<\/STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memseta.o(.text), UNUSED)$/;"	a
-[d9]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[d9]"><\/a>__aeabi_memset8<\/STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memseta.o(.text), UNUSED)$/;"	a
+[ca]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[ca]"><\/a>usart_deinit<\/STRONG> (Thumb, 136 bytes, Stack size 8 bytes, gd32e10x_usart.o(i.usart_deinit))$/;"	a
+[cb]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[cb]"><\/a>usart_baudrate_set<\/STRONG> (Thumb, 136 bytes, Stack size 32 bytes, gd32e10x_usart.o(i.usart_baudrate_set))$/;"	a
+[cc]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[cc]"><\/a>usart_receive_config<\/STRONG> (Thumb, 16 bytes, Stack size 0 bytes, gd32e10x_usart.o(i.usart_receive_config))$/;"	a
+[cd]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[cd]"><\/a>usart_transmit_config<\/STRONG> (Thumb, 16 bytes, Stack size 0 bytes, gd32e10x_usart.o(i.usart_transmit_config))$/;"	a
+[ce]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[ce]"><\/a>usart_enable<\/STRONG> (Thumb, 10 bytes, Stack size 0 bytes, gd32e10x_usart.o(i.usart_enable))$/;"	a
+[cf]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[cf]"><\/a>usart_interrupt_enable<\/STRONG> (Thumb, 26 bytes, Stack size 8 bytes, gd32e10x_usart.o(i.usart_interrupt_enable))$/;"	a
+[d0]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[d0]"><\/a>led_init<\/STRONG> (Thumb, 52 bytes, Stack size 8 bytes, led.o(i.led_init))$/;"	a
+[d1]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[d1]"><\/a>usart2_init<\/STRONG> (Thumb, 40 bytes, Stack size 8 bytes, uart.o(i.usart2_init))$/;"	a
+[d2]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[d2]"><\/a>usart3_init<\/STRONG> (Thumb, 78 bytes, Stack size 8 bytes, uart.o(i.usart3_init))$/;"	a
+[d3]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[d3]"><\/a>select_y_control_volt<\/STRONG> (Thumb, 104 bytes, Stack size 24 bytes, 74hc4051bq.o(i.select_y_control_volt))$/;"	a
+[d4]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[d4]"><\/a>gpio_input_bit_get<\/STRONG> (Thumb, 16 bytes, Stack size 0 bytes, gd32e10x_gpio.o(i.gpio_input_bit_get))$/;"	a
+[d5]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[d5]"><\/a>aid_mx_set_auto_ack<\/STRONG> (Thumb, 22 bytes, Stack size 0 bytes, aid_agreement.o(i.aid_mx_set_auto_ack))$/;"	a
+[d6]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[d6]"><\/a>nvic_config<\/STRONG> (Thumb, 162 bytes, Stack size 8 bytes, uart.o(i.nvic_config))$/;"	a
+[d7]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[d7]"><\/a>nvic_irq_enable<\/STRONG> (Thumb, 162 bytes, Stack size 24 bytes, gd32e10x_misc.o(i.nvic_irq_enable))$/;"	a
+[d8]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[d8]"><\/a>nvic_priority_group_set<\/STRONG> (Thumb, 10 bytes, Stack size 0 bytes, gd32e10x_misc.o(i.nvic_priority_group_set))$/;"	a
+[d9]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[d9]"><\/a>rcu_adc_clock_config<\/STRONG> (Thumb, 98 bytes, Stack size 0 bytes, gd32e10x_rcu.o(i.rcu_adc_clock_config))$/;"	a
 [d]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[d]"><\/a>RTC_IRQHandler<\/STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_gd32e10x.o(.text))$/;"	a
-[da]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[da]"><\/a>__aeabi_memclr8<\/STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memseta.o(.text), UNUSED)$/;"	a
-[db]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[db]"><\/a>__aeabi_uidiv<\/STRONG> (Thumb, 0 bytes, Stack size 12 bytes, uidiv.o(.text), UNUSED)$/;"	a
-[dc]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[dc]"><\/a>_ll_ushift_r<\/STRONG> (Thumb, 0 bytes, Stack size 0 bytes, llushr.o(.text), UNUSED)$/;"	a
-[dd]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[dd]"><\/a>__I$use$fp<\/STRONG> (Thumb, 0 bytes, Stack size 8 bytes, iusefp.o(.text), UNUSED)$/;"	a
-[de]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[de]"><\/a>__scatterload_rt2<\/STRONG> (Thumb, 0 bytes, Stack size 0 bytes, init.o(.text), UNUSED)$/;"	a
-[df]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[df]"><\/a>_ll_shift_l<\/STRONG> (Thumb, 0 bytes, Stack size 0 bytes, llshl.o(.text), UNUSED)$/;"	a
-[e0]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[e0]"><\/a>_ll_sshift_r<\/STRONG> (Thumb, 0 bytes, Stack size 0 bytes, llsshr.o(.text), UNUSED)$/;"	a
-[e1]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[e1]"><\/a>__1printf<\/STRONG> (Thumb, 0 bytes, Stack size 24 bytes, printfa.o(i.__0printf), UNUSED)$/;"	a
-[e2]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[e2]"><\/a>__c89printf<\/STRONG> (Thumb, 0 bytes, Stack size 24 bytes, printfa.o(i.__0printf), UNUSED)$/;"	a
-[e3]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[e3]"><\/a>printf<\/STRONG> (Thumb, 0 bytes, Stack size 24 bytes, printfa.o(i.__0printf), UNUSED)$/;"	a
-[e4]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[e4]"><\/a>__scatterload_copy<\/STRONG> (Thumb, 14 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_copy), UNUSED)$/;"	a
-[e5]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[e5]"><\/a>__scatterload_null<\/STRONG> (Thumb, 2 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_null), UNUSED)$/;"	a
-[e6]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[e6]"><\/a>__scatterload_zeroinit<\/STRONG> (Thumb, 14 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_zeroinit), UNUSED)$/;"	a
+[da]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[da]"><\/a>gpio_output_port_get<\/STRONG> (Thumb, 8 bytes, Stack size 0 bytes, gd32e10x_gpio.o(i.gpio_output_port_get))$/;"	a
+[db]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[db]"><\/a>gpio_port_write<\/STRONG> (Thumb, 4 bytes, Stack size 0 bytes, gd32e10x_gpio.o(i.gpio_port_write))$/;"	a
+[dc]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[dc]"><\/a>system_clock_120m_hxtal<\/STRONG> (Thumb, 226 bytes, Stack size 0 bytes, system_gd32e10x.o(i.system_clock_120m_hxtal))$/;"	a
+[dd]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[dd]"><\/a>NVIC_SetPriority<\/STRONG> (Thumb, 32 bytes, Stack size 8 bytes, systick.o(i.NVIC_SetPriority))$/;"	a
+[de]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[de]"><\/a>uart3_dma_send_data<\/STRONG> (Thumb, 68 bytes, Stack size 16 bytes, uart.o(i.uart3_dma_send_data))$/;"	a
+[df]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[df]"><\/a>usart_dma_transmit_config<\/STRONG> (Thumb, 16 bytes, Stack size 0 bytes, gd32e10x_usart.o(i.usart_dma_transmit_config))$/;"	a
+[e0]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[e0]"><\/a>usart0_dma_send_data<\/STRONG> (Thumb, 68 bytes, Stack size 16 bytes, uart.o(i.usart0_dma_send_data))$/;"	a
+[e1]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[e1]"><\/a>usart1_dma_send_data<\/STRONG> (Thumb, 68 bytes, Stack size 16 bytes, uart.o(i.usart1_dma_send_data))$/;"	a
+[e2]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[e2]"><\/a>usart2_dma_send_data<\/STRONG> (Thumb, 68 bytes, Stack size 16 bytes, uart.o(i.usart2_dma_send_data))$/;"	a
+[e3]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[e3]"><\/a>rcu_clock_freq_get<\/STRONG> (Thumb, 352 bytes, Stack size 96 bytes, gd32e10x_rcu.o(i.rcu_clock_freq_get))$/;"	a
+[e4]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[e4]"><\/a>CircBuf_IsEmpty<\/STRONG> (Thumb, 22 bytes, Stack size 0 bytes, circular_buffer.o(i.CircBuf_IsEmpty))$/;"	a
+[e5]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[e5]"><\/a>_main_stk<\/STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry2.o(.ARM.Collect$$$$00000001))$/;"	a
+[e6]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[e6]"><\/a>_main_clock<\/STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry7b.o(.ARM.Collect$$$$00000008))$/;"	a
+[e7]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[e7]"><\/a>_main_cpp_init<\/STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry8b.o(.ARM.Collect$$$$0000000A))$/;"	a
+[e8]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[e8]"><\/a>_main_init<\/STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry9a.o(.ARM.Collect$$$$0000000B))$/;"	a
+[e9]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[e9]"><\/a>__rt_lib_shutdown_fini<\/STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry12b.o(.ARM.Collect$$$$0000000E))$/;"	a
 [e]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[e]"><\/a>FMC_IRQHandler<\/STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_gd32e10x.o(.text))$/;"	a
+[ea]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[ea]"><\/a>__rt_final_cpp<\/STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry10a.o(.ARM.Collect$$$$0000000F))$/;"	a
+[eb]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[eb]"><\/a>__rt_final_exit<\/STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry11a.o(.ARM.Collect$$$$00000011))$/;"	a
+[ec]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[ec]"><\/a>__aeabi_memcpy8<\/STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memcpya.o(.text), UNUSED)$/;"	a
+[ed]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[ed]"><\/a>__aeabi_memset4<\/STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memseta.o(.text), UNUSED)$/;"	a
+[ee]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[ee]"><\/a>__aeabi_memset8<\/STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memseta.o(.text), UNUSED)$/;"	a
+[ef]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[ef]"><\/a>__aeabi_memclr8<\/STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memseta.o(.text), UNUSED)$/;"	a
+[f0]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[f0]"><\/a>__aeabi_uidiv<\/STRONG> (Thumb, 0 bytes, Stack size 12 bytes, uidiv.o(.text), UNUSED)$/;"	a
+[f1]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[f1]"><\/a>_ll_ushift_r<\/STRONG> (Thumb, 0 bytes, Stack size 0 bytes, llushr.o(.text), UNUSED)$/;"	a
+[f2]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[f2]"><\/a>__I$use$fp<\/STRONG> (Thumb, 0 bytes, Stack size 8 bytes, iusefp.o(.text), UNUSED)$/;"	a
+[f3]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[f3]"><\/a>__scatterload_rt2<\/STRONG> (Thumb, 0 bytes, Stack size 0 bytes, init.o(.text), UNUSED)$/;"	a
+[f4]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[f4]"><\/a>_ll_shift_l<\/STRONG> (Thumb, 0 bytes, Stack size 0 bytes, llshl.o(.text), UNUSED)$/;"	a
+[f5]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[f5]"><\/a>_ll_sshift_r<\/STRONG> (Thumb, 0 bytes, Stack size 0 bytes, llsshr.o(.text), UNUSED)$/;"	a
+[f6]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[f6]"><\/a>__decompress<\/STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __dclz77c.o(.text), UNUSED)$/;"	a
+[f7]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[f7]"><\/a>__decompress2<\/STRONG> (Thumb, 94 bytes, Stack size unknown bytes, __dclz77c.o(.text), UNUSED)$/;"	a
+[f8]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[f8]"><\/a>__1printf<\/STRONG> (Thumb, 0 bytes, Stack size 24 bytes, printfa.o(i.__0printf), UNUSED)$/;"	a
+[f9]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[f9]"><\/a>__c89printf<\/STRONG> (Thumb, 0 bytes, Stack size 24 bytes, printfa.o(i.__0printf), UNUSED)$/;"	a
 [f]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[f]"><\/a>RCU_CTC_IRQHandler<\/STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_gd32e10x.o(.text))$/;"	a
+[fa]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[fa]"><\/a>printf<\/STRONG> (Thumb, 0 bytes, Stack size 24 bytes, printfa.o(i.__0printf), UNUSED)$/;"	a
+[fb]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[fb]"><\/a>__scatterload_copy<\/STRONG> (Thumb, 14 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_copy), UNUSED)$/;"	a
+[fc]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[fc]"><\/a>__scatterload_null<\/STRONG> (Thumb, 2 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_null), UNUSED)$/;"	a
+[fd]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[fd]"><\/a>__scatterload_zeroinit<\/STRONG> (Thumb, 14 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_zeroinit), UNUSED)$/;"	a
 _CRT_SECURE_NO_DEPRECATE	.\Bsp\cJSON.c	28;"	d	file:
 _WIDE_STRING	.\Firmware\GD32E10x_usbfs_driver\Include\usbd_std.h	70;"	d
 __74HC4051B_h	.\Bsp\74HC4051BQ.h	2;"	d
 __ADC_h	.\Bsp\adc.h	2;"	d
 __AID_AGREEMENT_H__	.\Bsp\aid_agreement.h	9;"	d
+__AI_JSON_H__	.\Bsp\ai_json.h	9;"	d
 __ASM	.\Firmware\CMSIS\core_cm4.h	105;"	d
 __ASM	.\Firmware\CMSIS\core_cm4.h	80;"	d
 __ASM	.\Firmware\CMSIS\core_cm4.h	85;"	d
@@ -5823,7 +5855,9 @@ _reserved0	.\Firmware\CMSIS\core_cm4.h	/^    uint32_t _reserved0:29;            
 _reserved0	.\Firmware\CMSIS\core_cm4.h	/^    uint32_t _reserved0:7;               \/*!< bit:  9..15  Reserved                           *\/$/;"	m	struct:__anon15::__anon16
 _reserved1	.\Firmware\CMSIS\core_cm4.h	/^    uint32_t _reserved1:4;               \/*!< bit: 20..23  Reserved                           *\/$/;"	m	struct:__anon15::__anon16
 _setup_packet_struct	.\Firmware\GD32E10x_usbfs_driver\Include\usb_std.h	/^    struct _setup_packet_struct$/;"	s	union:__anon114
+ack_session_context	.\Bsp\aid_agreement.h	/^    aid_session_context_t ack_session_context;$/;"	m	struct:aid_agreement_context
 adc_calculation_calibration	.\Bsp\74HC4051BQ.c	/^void adc_calculation_calibration(process_handle_t *process_handle)$/;"	f
+adc_calculation_calibration_once	.\Bsp\74HC4051BQ.c	/^void adc_calculation_calibration_once(process_handle_t *process_handle)$/;"	f
 adc_cali_value	.\Bsp\74HC4051BQ.h	/^    uint8_t adc_cali_value[SENSOR_POS_X][SENSOR_POS_Y];$/;"	m	struct:__anon2
 adc_calibration_enable	.\Firmware\GD32E10x_standard_peripheral\Source\gd32e10x_adc.c	/^void adc_calibration_enable(uint32_t adc_periph)$/;"	f
 adc_channel_choice_num	.\Bsp\74HC4051BQ.c	/^uint8_t adc_channel_choice_num[8] = {6, 5, 4, 7, 3, 0, 2, 1};$/;"	v
@@ -5854,8 +5888,8 @@ adc_oversample_mode_config	.\Firmware\GD32E10x_standard_peripheral\Source\gd32e1
 adc_oversample_mode_disable	.\Firmware\GD32E10x_standard_peripheral\Source\gd32e10x_adc.c	/^void adc_oversample_mode_disable(uint32_t adc_periph)$/;"	f
 adc_oversample_mode_enable	.\Firmware\GD32E10x_standard_peripheral\Source\gd32e10x_adc.c	/^void adc_oversample_mode_enable(uint32_t adc_periph)$/;"	f
 adc_rank	.\Bsp\74HC4051BQ.c	/^uint8_t adc_rank[8] = {0, 3, 2, 1, 5, 6 ,7, 4};$/;"	v
-adc_raw_value	.\Bsp\74HC4051BQ.h	/^    uint8_t adc_raw_value[SENSOR_POS_X][SENSOR_POS_Y];$/;"	m	struct:__anon2
-adc_raw_value_last	.\Bsp\74HC4051BQ.h	/^    uint8_t adc_raw_value_last[SENSOR_POS_X][SENSOR_POS_Y];$/;"	m	struct:__anon2
+adc_raw_value	.\Bsp\74HC4051BQ.h	/^    uint16_t adc_raw_value[SENSOR_POS_X][SENSOR_POS_Y];$/;"	m	struct:__anon2
+adc_raw_value_visual	.\Bsp\74HC4051BQ.h	/^    uint8_t adc_raw_value_visual[SENSOR_POS_X][SENSOR_POS_Y];$/;"	m	struct:__anon2
 adc_regular_channel_config	.\Firmware\GD32E10x_standard_peripheral\Source\gd32e10x_adc.c	/^void adc_regular_channel_config(uint32_t adc_periph , uint8_t rank , uint8_t adc_channel , uint32_t sample_time)$/;"	f
 adc_regular_data_read	.\Firmware\GD32E10x_standard_peripheral\Source\gd32e10x_adc.c	/^uint16_t adc_regular_data_read(uint32_t adc_periph)$/;"	f
 adc_regular_software_startconv_flag_get	.\Firmware\GD32E10x_standard_peripheral\Source\gd32e10x_adc.c	/^FlagStatus adc_regular_software_startconv_flag_get(uint32_t adc_periph)$/;"	f
@@ -5878,24 +5912,49 @@ add_item_to_array	.\Bsp\cJSON.c	/^static cJSON_bool add_item_to_array(cJSON *arr
 add_item_to_object	.\Bsp\cJSON.c	/^static cJSON_bool add_item_to_object(cJSON * const object, const char * const string, cJSON * const item, const internal_hooks * const hooks, const cJSON_bool constant_key)$/;"	f	file:
 address	.\Firmware\GD32E10x_usbfs_driver\Include\usbh_core.h	/^    uint8_t                              address;                                           \/* the device address *\/$/;"	m	struct:__anon87
 address_data_mux	.\Firmware\GD32E10x_standard_peripheral\Include\gd32e10x_exmc.h	/^    uint32_t address_data_mux;                                          \/*!< specifies whether the data bus and address bus are multiplexed *\/$/;"	m	struct:__anon50
+agreement_context_common	.\Bsp\aid_agreement.c	/^aid_agreement_context_t agreement_context_common = {0};$/;"	v
+aid_ack_message	.\Bsp\aid_agreement.c	/^int aid_ack_message(aid_agreement_context_t *agreement_context)$/;"	f
+aid_agreement_context	.\Bsp\aid_agreement.h	/^typedef struct aid_agreement_context {$/;"	s
+aid_agreement_context_t	.\Bsp\aid_agreement.h	/^} aid_agreement_context_t;$/;"	t	typeref:struct:aid_agreement_context
+aid_cir_buffer	.\Bsp\aid_agreement.c	/^uint8_t aid_cir_buffer[AID_CIR_BUF] = {0};$/;"	v
+aid_clean_message_session	.\Bsp\aid_agreement.c	/^int aid_clean_message_session(aid_agreement_context_t *aid_agreement_context)$/;"	f
+aid_cmd_circular_init	.\Bsp\aid_agreement.c	/^void aid_cmd_circular_init(aid_agreement_context_t **agreement_context)$/;"	f
+aid_create_json	.\Bsp\aid_agreement.c	/^void aid_create_json(uint8_t *json_buffer, uint16_t json_size)$/;"	f
+aid_create_session	.\Bsp\aid_agreement.c	/^int aid_create_session()$/;"	f
+aid_custom_context	.\Bsp\aid_agreement.h	/^typedef struct aid_custom_context {$/;"	s
+aid_custom_context_t	.\Bsp\aid_agreement.h	/^} aid_custom_context_t;$/;"	t	typeref:struct:aid_custom_context
+aid_custom_value	.\Bsp\aid_agreement.c	/^aid_custom_value_data_t aid_custom_value = {0};$/;"	v
+aid_custom_value_data	.\Bsp\aid_agreement.h	/^typedef struct aid_custom_value_data {$/;"	s
+aid_custom_value_data_t	.\Bsp\aid_agreement.h	/^} aid_custom_value_data_t;$/;"	t	typeref:struct:aid_custom_value_data
+aid_frame_check	.\Bsp\aid_agreement.c	/^int aid_frame_check(aid_agreement_context_t *agreement_context,$/;"	f
+aid_init_raw_sensor_data	.\Bsp\aid_agreement.c	/^void aid_init_raw_sensor_data()$/;"	f
+aid_make_up_message_next	.\Bsp\aid_agreement.c	/^int aid_make_up_message_next(aid_agreement_context_t *agreement_context,$/;"	f
 aid_message	.\Bsp\aid_agreement.c	/^aid_message_t aid_message = {0};$/;"	v
 aid_message	.\Bsp\aid_agreement.h	/^typedef struct aid_message {$/;"	s
 aid_message_body_match	.\Bsp\aid_agreement.h	/^typedef struct aid_message_body_match {$/;"	s
 aid_message_body_match_t	.\Bsp\aid_agreement.h	/^} aid_message_body_match_t;$/;"	t	typeref:struct:aid_message_body_match
 aid_message_header	.\Bsp\aid_agreement.h	/^typedef struct aid_message_header {$/;"	s
 aid_message_header_t	.\Bsp\aid_agreement.h	/^} aid_message_header_t;$/;"	t	typeref:struct:aid_message_header
-aid_message_match	.\Bsp\aid_agreement.c	/^int aid_message_match(uint8_t *cache_buffer, uint8_t cache_size)$/;"	f
-aid_message_match	.\Bsp\aid_agreement.h	/^typedef struct aid_message_match {$/;"	s
-aid_message_match_t	.\Bsp\aid_agreement.h	/^} aid_message_match_t;$/;"	t	typeref:struct:aid_message_match
+aid_message_match	.\Bsp\aid_agreement.c	/^int aid_message_match(aid_agreement_context_t *agreement_context,$/;"	f
+aid_message_match_char	.\Bsp\aid_agreement.c	/^int aid_message_match_char(void *buffer, uint16_t buffer_size)$/;"	f
 aid_message_payload	.\Bsp\aid_agreement.h	/^typedef struct aid_message_payload {$/;"	s
-aid_message_payload_match	.\Bsp\aid_agreement.h	/^typedef struct aid_message_payload_match {$/;"	s
-aid_message_payload_match_t	.\Bsp\aid_agreement.h	/^} aid_message_payload_match_t;$/;"	t	typeref:struct:aid_message_payload_match
 aid_message_payload_t	.\Bsp\aid_agreement.h	/^} aid_message_payload_t;$/;"	t	typeref:struct:aid_message_payload
-aid_message_raw_buffer_send	.\Bsp\aid_agreement.c	/^int aid_message_raw_buffer_send(uint8_t *service_name, uint8_t service_length,  uint8_t *body_buffer, uint16_t body_size)$/;"	f
+aid_message_raw_buffer_auto_ack	.\Bsp\aid_agreement.c	/^int aid_message_raw_buffer_auto_ack(uint8_t message_id,$/;"	f
+aid_message_raw_buffer_send	.\Bsp\aid_agreement.c	/^int aid_message_raw_buffer_send(uint8_t message_id,$/;"	f
 aid_message_service_match	.\Bsp\aid_agreement.h	/^typedef struct aid_message_service_match {$/;"	s
 aid_message_service_match_t	.\Bsp\aid_agreement.h	/^} aid_message_service_match_t;$/;"	t	typeref:struct:aid_message_service_match
 aid_message_t	.\Bsp\aid_agreement.h	/^} aid_message_t;$/;"	t	typeref:struct:aid_message
-aid_paser_json	.\Bsp\aid_agreement.c	/^void aid_paser_json(uint8_t *json_buffer, uint16_t json_size)$/;"	f
+aid_mx_set_auto_ack	.\Bsp\aid_agreement.c	/^void aid_mx_set_auto_ack(aid_agreement_context_t *agreement_context,$/;"	f
+aid_mx_value_send	.\Bsp\aid_agreement.c	/^void aid_mx_value_send(aid_agreement_context_t *agreement_context,$/;"	f
+aid_mx_value_send_raw	.\Bsp\aid_agreement.c	/^void aid_mx_value_send_raw(aid_agreement_context_t *agreement_context,$/;"	f
+aid_paser_json	.\Bsp\aid_agreement.c	/^void aid_paser_json(uint8_t *json_buffer,$/;"	f
+aid_printf_message_session	.\Bsp\aid_agreement.c	/^int aid_printf_message_session(aid_agreement_context_t *agreement_context)$/;"	f
+aid_recive_message_first_frame	.\Bsp\aid_agreement.c	/^int aid_recive_message_first_frame(aid_agreement_context_t *aid_agreement_context,$/;"	f
+aid_sensor_value_data	.\Bsp\aid_agreement.h	/^typedef struct aid_sensor_value_data {$/;"	s
+aid_sensor_value_data_t	.\Bsp\aid_agreement.h	/^}aid_sensor_value_data_t;$/;"	t	typeref:struct:aid_sensor_value_data
+aid_session_context	.\Bsp\aid_agreement.h	/^typedef struct aid_session_context {$/;"	s
+aid_session_context_t	.\Bsp\aid_agreement.h	/^} aid_session_context_t;$/;"	t	typeref:struct:aid_session_context
+aijson_context	.\Bsp\aid_agreement.c	/^json_context_t aijson_context[] =$/;"	v
 alignedmode	.\Firmware\GD32E10x_standard_peripheral\Include\gd32e10x_timer.h	/^    uint16_t alignedmode;                                    \/*!< aligned mode *\/$/;"	m	struct:__anon71
 allocate	.\Bsp\cJSON.c	/^    void *(CJSON_CDECL *allocate)(size_t size);$/;"	m	struct:internal_hooks	file:
 array	.\Bsp\cJSON.h	/^CJSON_PUBLIC(int) cJSON_GetArraySize(const cJSON *array);$/;"	v
@@ -5957,6 +6016,8 @@ bkp_rtc_signal_output_enable	.\Firmware\GD32E10x_standard_peripheral\Source\gd32
 bkp_tamper_active_level_set	.\Firmware\GD32E10x_standard_peripheral\Source\gd32e10x_bkp.c	/^void bkp_tamper_active_level_set(uint16_t level)$/;"	f
 bkp_tamper_detection_disable	.\Firmware\GD32E10x_standard_peripheral\Source\gd32e10x_bkp.c	/^void bkp_tamper_detection_disable(void)$/;"	f
 bkp_tamper_detection_enable	.\Firmware\GD32E10x_standard_peripheral\Source\gd32e10x_bkp.c	/^void bkp_tamper_detection_enable(void)$/;"	f
+ble_config_at_cmd	.\Bsp\ble_type_E104.c	/^void ble_config_at_cmd(USART_COM_ID_T com, char *cmd, char *value)$/;"	f
+ble_consult_at_cmd	.\Bsp\ble_type_E104.c	/^void ble_consult_at_cmd(USART_COM_ID_T com, char *input_cmd, char *output_cmd, uint16_t output_cmd_len)$/;"	f
 ble_g75_cfg_t	.\Bsp\ble_type_G75.h	/^} ble_g75_cfg_t;$/;"	t	typeref:enum:__anon4
 ble_g75_cmd_context	.\Bsp\ble_type_G75.h	/^const ble_g75_command_context_t ble_g75_cmd_context[] = {$/;"	v
 ble_g75_cmd_t	.\Bsp\ble_type_G75.h	/^} ble_g75_cmd_t;$/;"	t	typeref:enum:__anon3
@@ -5966,11 +6027,11 @@ bmAttributes	.\Firmware\GD32E10x_usbfs_driver\Include\usb_std.h	/^    uint8_t  b
 bmAttributes	.\Firmware\GD32E10x_usbfs_driver\Include\usb_std.h	/^    uint8_t  bmAttributes;                \/*!< endpoint attributes *\/$/;"	m	struct:__anon119
 bmRequestType	.\Firmware\GD32E10x_usbfs_driver\Include\usb_core.h	/^    uint8_t         bmRequestType;  \/* USB device request type *\/$/;"	m	struct:__anon106
 bmRequestType	.\Firmware\GD32E10x_usbfs_driver\Include\usb_std.h	/^        uint8_t           bmRequestType;  \/*!< type of request *\/$/;"	m	struct:__anon114::_setup_packet_struct
+body	.\Bsp\ai_json.h	/^    char body[256];$/;"	m	struct:json_context
 body	.\Bsp\aid_agreement.h	/^    uint8_t body[168];$/;"	m	struct:aid_message_body_match
-body	.\Bsp\aid_agreement.h	/^    uint8_t body[168];$/;"	m	struct:aid_message_payload_match
 body	.\Bsp\aid_agreement.h	/^    uint8_t body[256];$/;"	m	struct:aid_message_payload
+body_cache	.\Bsp\aid_agreement.h	/^    uint8_t body_cache[512];$/;"	m	struct:aid_session_context
 body_length	.\Bsp\aid_agreement.h	/^    uint16_t body_length;$/;"	m	struct:aid_message_body_match
-body_length	.\Bsp\aid_agreement.h	/^    uint16_t body_length;$/;"	m	struct:aid_message_payload_match
 body_match	.\Bsp\aid_agreement.c	/^aid_message_body_match_t body_match = {0};$/;"	v
 boolean	.\Bsp\cJSON.h	/^CJSON_PUBLIC(cJSON *) cJSON_CreateBool(cJSON_bool boolean);$/;"	v
 breakpolarity	.\Firmware\GD32E10x_standard_peripheral\Include\gd32e10x_timer.h	/^    uint16_t breakpolarity;                                  \/*!< break polarity *\/$/;"	m	struct:__anon72
@@ -6064,6 +6125,7 @@ cJSON_bool	.\Bsp\cJSON.h	/^typedef int cJSON_bool;$/;"	t
 cJSON_free	.\Bsp\cJSON.c	/^CJSON_PUBLIC(void) cJSON_free(void *object)$/;"	f
 cJSON_malloc	.\Bsp\cJSON.c	/^CJSON_PUBLIC(void *) cJSON_malloc(size_t size)$/;"	f
 cJSON_strdup	.\Bsp\cJSON.c	/^static unsigned char* cJSON_strdup(const unsigned char* string, const internal_hooks * const hooks)$/;"	f	file:
+cache_char	.\Bsp\aid_agreement.c	/^uint8_t cache_char[512] = {0};$/;"	v
 can0_init	.\Bsp\can.c	/^void can0_init(void)$/;"	f
 can1_filter_start_bank	.\Firmware\GD32E10x_standard_peripheral\Source\gd32e10x_can.c	/^void can1_filter_start_bank(uint8_t start_bank)$/;"	f
 can_access_at_index	.\Bsp\cJSON.c	260;"	d	file:
@@ -6125,6 +6187,7 @@ checksum	.\Project\main.c	/^    uint16_t checksum;$/;"	m	struct:__anon121	file:
 child	.\Bsp\cJSON.h	/^    struct cJSON *child;$/;"	m	struct:cJSON	typeref:struct:cJSON::cJSON
 child	.\Bsp\cJSON.h	/^CJSON_PUBLIC(cJSON *) cJSON_CreateArrayReference(const cJSON *child);$/;"	v
 child	.\Bsp\cJSON.h	/^CJSON_PUBLIC(cJSON *) cJSON_CreateObjectReference(const cJSON *child);$/;"	v
+circular_handle	.\Bsp\aid_agreement.h	/^    CircBuf_t circular_handle;$/;"	m	struct:aid_agreement_context
 cjson_min	.\Bsp\cJSON.c	1085;"	d	file:
 class_backup_state	.\Firmware\GD32E10x_usbfs_driver\Include\usbh_core.h	/^    uint8_t                              class_backup_state;    \/* the class backup state *\/$/;"	m	struct:__anon89
 class_data_handler	.\Firmware\GD32E10x_usbfs_driver\Include\usb_core.h	/^    uint8_t (*class_data_handler) (void *pudev, usb_dir_enum rx_tx, uint8_t ep_num);  \/* device data handler *\/$/;"	m	struct:__anon107
@@ -6138,6 +6201,11 @@ class_req_state_polling_fun	.\Firmware\GD32E10x_usbfs_driver\Source\usbh_core.c	
 class_state_polling_fun	.\Firmware\GD32E10x_usbfs_driver\Source\usbh_core.c	/^static usbh_status_enum class_state_polling_fun (usb_core_handle_struct *pudev, usbh_host_struct *puhost, void *pustate)$/;"	f	file:
 clock_polarity_phase	.\Firmware\GD32E10x_standard_peripheral\Include\gd32e10x_spi.h	/^    uint32_t clock_polarity_phase;                                              \/*!< SPI clock phase and polarity *\/$/;"	m	struct:__anon70
 clockdivision	.\Firmware\GD32E10x_standard_peripheral\Include\gd32e10x_timer.h	/^    uint16_t clockdivision;                                  \/*!< clock division value *\/$/;"	m	struct:__anon71
+cmd_finish	.\Bsp\aid_agreement.h	/^    bool  cmd_finish;$/;"	m	struct:aid_session_context
+column_context	.\Bsp\aid_agreement.h	/^    aid_custom_context_t column_context;$/;"	m	struct:aid_custom_value_data
+column_context	.\Bsp\aid_agreement.h	/^    aid_custom_context_t column_context;$/;"	m	struct:aid_sensor_value_data
+column_value	.\Bsp\aid_agreement.h	/^    uint8_t column_value;$/;"	m	struct:aid_custom_value_data
+column_value	.\Bsp\aid_agreement.h	/^    uint8_t column_value;$/;"	m	struct:aid_sensor_value_data
 command	.\Bsp\ble_type_G75.h	/^    ble_g75_cmd_t command;$/;"	m	struct:ble_g75_command_context
 config_desc	.\Firmware\GD32E10x_usbfs_driver\Include\usb_core.h	/^    uint8_t  *config_desc;               \/* configuration descriptor *\/$/;"	m	struct:__anon107
 config_num	.\Firmware\GD32E10x_usbfs_driver\Include\usb_core.h	/^    uint8_t         config_num;          \/* USB configuration number *\/$/;"	m	struct:__anon107
@@ -6228,6 +6296,7 @@ dac_wave_mode_config	.\Firmware\GD32E10x_standard_peripheral\Source\gd32e10x_dac
 data	.\Firmware\GD32E10x_usbfs_driver\Include\usb_std.h	/^    uint8_t data[8];$/;"	m	union:__anon114
 data_prescaler	.\Firmware\GD32E10x_standard_peripheral\Include\gd32e10x_can.h	/^    uint16_t data_prescaler;                                            \/*!< baudrate prescaler *\/$/;"	m	struct:__anon37
 data_resync_jump_width	.\Firmware\GD32E10x_standard_peripheral\Include\gd32e10x_can.h	/^    uint8_t data_resync_jump_width;                                     \/*!< CAN resynchronization jump width *\/$/;"	m	struct:__anon37
+data_static	.\Bsp\aid_agreement.c	/^uint8_t data_static[] =$/;"	v
 data_tg_in	.\Firmware\GD32E10x_usbfs_driver\Include\usb_core.h	/^    uint8_t         data_tg_in;   \/* data in toggle *\/$/;"	m	struct:__anon108
 data_tg_out	.\Firmware\GD32E10x_usbfs_driver\Include\usb_core.h	/^    uint8_t         data_tg_out;  \/* data out toggle *\/$/;"	m	struct:__anon108
 data_time_segment_1	.\Firmware\GD32E10x_standard_peripheral\Include\gd32e10x_can.h	/^    uint8_t data_time_segment_1;                                        \/*!< time segment 1 *\/$/;"	m	struct:__anon37
@@ -6314,6 +6383,8 @@ dma_struct_para_init	.\Firmware\GD32E10x_standard_peripheral\Source\gd32e10x_dma
 dma_transfer_direction_config	.\Firmware\GD32E10x_standard_peripheral\Source\gd32e10x_dma.c	/^void dma_transfer_direction_config(uint32_t dma_periph, dma_channel_enum channelx, uint32_t direction)$/;"	f
 dma_transfer_number_config	.\Firmware\GD32E10x_standard_peripheral\Source\gd32e10x_dma.c	/^void dma_transfer_number_config(uint32_t dma_periph, dma_channel_enum channelx, uint32_t number)$/;"	f
 dma_transfer_number_get	.\Firmware\GD32E10x_standard_peripheral\Source\gd32e10x_dma.c	/^uint32_t dma_transfer_number_get(uint32_t dma_periph, dma_channel_enum channelx)$/;"	f
+enable_raw_value_ack	.\Bsp\aid_agreement.h	/^    bool enable_raw_value_ack;$/;"	m	struct:aid_agreement_context
+enable_raw_value_ble_ack	.\Bsp\aid_agreement.h	/^    bool enable_raw_value_ble_ack;$/;"	m	struct:aid_agreement_context
 encry_type	.\Bsp\aid_agreement.h	/^    uint8_t encry_type;$/;"	m	struct:aid_message_header
 endian	.\Firmware\GD32E10x_standard_peripheral\Include\gd32e10x_spi.h	/^    uint32_t endian;                                                            \/*!< SPI big endian or little endian *\/$/;"	m	struct:__anon70
 endp_frame	.\Firmware\GD32E10x_usbfs_driver\Include\usb_core.h	/^    uint8_t         endp_frame;  \/* USB endpoint frame *\/$/;"	m	struct:__anon105
@@ -6475,7 +6546,8 @@ hcd_is_device_connected	.\Firmware\GD32E10x_usbfs_driver\Source\usbh_core.c	/^ui
 hcd_submit_request	.\Firmware\GD32E10x_usbfs_driver\Source\usbh_ctrl.c	/^uint32_t hcd_submit_request (usb_core_handle_struct *pudev, uint8_t channel_num) $/;"	f
 hcd_urb_state_get	.\Firmware\GD32E10x_usbfs_driver\Source\usbh_core.c	/^urb_state_enum hcd_urb_state_get (usb_core_handle_struct *pudev, uint8_t channel_num) $/;"	f
 hcd_xfer_count_get	.\Firmware\GD32E10x_usbfs_driver\Source\usbh_core.c	/^uint32_t hcd_xfer_count_get (usb_core_handle_struct *pudev, uint8_t channel_num) $/;"	f
-hmac	.\Bsp\aid_agreement.h	/^    uint32_t hmac;$/;"	m	struct:aid_message_payload_match
+header	.\Bsp\aid_agreement.h	/^    aid_message_header_t header;$/;"	m	struct:aid_session_context
+header	.\Bsp\aid_agreement.h	/^    char header[11];$/;"	m	struct:aid_sensor_value_data
 hooks	.\Bsp\cJSON.c	/^    internal_hooks hooks;$/;"	m	struct:__anon6	file:
 hooks	.\Bsp\cJSON.c	/^    internal_hooks hooks;$/;"	m	struct:__anon7	file:
 hooks	.\Bsp\cJSON.h	/^CJSON_PUBLIC(void) cJSON_InitHooks(cJSON_Hooks* hooks);$/;"	v
@@ -6581,6 +6653,10 @@ item	.\Bsp\cJSON.h	/^CJSON_PUBLIC(char *) cJSON_Print(const cJSON *item);$/;"	v
 item	.\Bsp\cJSON.h	/^CJSON_PUBLIC(char *) cJSON_PrintUnformatted(const cJSON *item);$/;"	v
 itf_desc	.\Firmware\GD32E10x_usbfs_driver\Include\usbh_core.h	/^    usb_descriptor_interface_struct      itf_desc[USBH_MAX_INTERFACES_NUM];                 \/* the interface descripter *\/$/;"	m	struct:__anon87
 json	.\Bsp\cJSON.c	/^    const unsigned char *json;$/;"	m	struct:__anon5	file:
+json_context	.\Bsp\ai_json.h	/^typedef struct json_context {$/;"	s
+json_context_t	.\Bsp\ai_json.h	/^} json_context_t;$/;"	t	typeref:struct:json_context
+json_raw_value_end	.\Bsp\aid_agreement.c	/^char json_raw_value_end[8] =$/;"	v
+json_raw_value_start	.\Bsp\aid_agreement.c	/^char json_raw_value_start[88] =$/;"	v
 key_point	.\Bsp\math_filter.h	/^    value_pos_t key_point[10];$/;"	m	struct:value_pos_aggregate
 keyword_cmd_char	.\Bsp\ble_type_G75.h	/^    uint8_t           keyword_cmd_char[24];$/;"	m	struct:ble_g75_command_context
 led_init	.\Bsp\led.c	/^void led_init(void)$/;"	f
@@ -6598,6 +6674,7 @@ math_clean_aggre_surplus	.\Bsp\math_filter.c	/^void math_clean_aggre_surplus(pro
 math_display_key_point	.\Bsp\math_filter.c	/^void math_display_key_point(process_handle_t *handle,$/;"	f
 math_filter_min_value	.\Bsp\math_filter.c	/^void math_filter_min_value(uint8_t *value_aggre,$/;"	f
 math_get_max_value	.\Bsp\math_filter.c	/^void math_get_max_value(process_handle_t *handle,$/;"	f
+math_max	.\Bsp\74HC4051BQ.c	/^uint8_t math_max = 5;$/;"	v
 max	.\Bsp\flash.h	/^    float max[5];$/;"	m	struct:__anon8
 max_fifo_size	.\Firmware\GD32E10x_usbfs_driver\Include\usb_core.h	/^    uint16_t       max_fifo_size;      \/* USB fifo size *\/$/;"	m	struct:__anon101
 max_packet_size	.\Firmware\GD32E10x_usbfs_driver\Include\usb_core.h	/^    uint16_t       max_packet_size;    \/* USB max packet size *\/$/;"	m	struct:__anon101
@@ -6608,10 +6685,8 @@ memory_type	.\Firmware\GD32E10x_standard_peripheral\Include\gd32e10x_exmc.h	/^  
 memory_width	.\Firmware\GD32E10x_standard_peripheral\Include\gd32e10x_dma.h	/^    uint32_t memory_width;      \/*!< transfer data size of memory *\/$/;"	m	struct:__anon48
 memory_write	.\Firmware\GD32E10x_standard_peripheral\Include\gd32e10x_exmc.h	/^    uint32_t memory_write;                                              \/*!< enable or disable the write operation *\/$/;"	m	struct:__anon50
 message_header	.\Bsp\aid_agreement.h	/^    aid_message_header_t message_header;$/;"	m	struct:aid_message
-message_header	.\Bsp\aid_agreement.h	/^    aid_message_header_t message_header;$/;"	m	struct:aid_message_match
 message_id	.\Bsp\aid_agreement.h	/^    uint8_t message_id;$/;"	m	struct:aid_message_header
 message_payload	.\Bsp\aid_agreement.h	/^    aid_message_payload_t message_payload;$/;"	m	struct:aid_message
-message_payload_match	.\Bsp\aid_agreement.h	/^    aid_message_payload_match_t message_payload_match;$/;"	m	struct:aid_message_match
 nPRIV	.\Firmware\CMSIS\core_cm4.h	/^    uint32_t nPRIV:1;                    \/*!< bit:      0  Execution privilege in Thread mode *\/$/;"	m	struct:__anon17::__anon18
 next	.\Bsp\cJSON.h	/^    struct cJSON *next;$/;"	m	struct:cJSON	typeref:struct:cJSON::cJSON
 next_state	.\Firmware\GD32E10x_usbfs_driver\Include\usbh_core.h	/^    uint8_t                              next_state;            \/* the next state *\/$/;"	m	struct:__anon91
@@ -6660,6 +6735,7 @@ parse_number	.\Bsp\cJSON.c	/^static cJSON_bool parse_number(cJSON * const item, 
 parse_object	.\Bsp\cJSON.c	/^static cJSON_bool parse_object(cJSON * const item, parse_buffer * const input_buffer)$/;"	f	file:
 parse_string	.\Bsp\cJSON.c	/^static cJSON_bool parse_string(cJSON * const item, parse_buffer * const input_buffer)$/;"	f	file:
 parse_value	.\Bsp\cJSON.c	/^static cJSON_bool parse_value(cJSON * const item, parse_buffer * const input_buffer)$/;"	f	file:
+payload_size	.\Bsp\aid_agreement.h	/^    uint8_t payload_size;$/;"	m	struct:aid_message_header
 period	.\Firmware\GD32E10x_standard_peripheral\Include\gd32e10x_timer.h	/^    uint32_t period;                                         \/*!< period value *\/$/;"	m	struct:__anon71
 periph_addr	.\Firmware\GD32E10x_standard_peripheral\Include\gd32e10x_dma.h	/^    uint32_t periph_addr;       \/*!< peripheral base address *\/$/;"	m	struct:__anon48
 periph_inc	.\Firmware\GD32E10x_standard_peripheral\Include\gd32e10x_dma.h	/^    uint8_t periph_inc;         \/*!< peripheral increasing mode *\/$/;"	m	struct:__anon48
@@ -6706,6 +6782,9 @@ qspi_io23_output_disable	.\Firmware\GD32E10x_standard_peripheral\Source\gd32e10x
 qspi_io23_output_enable	.\Firmware\GD32E10x_standard_peripheral\Source\gd32e10x_spi.c	/^void qspi_io23_output_enable(uint32_t spi_periph)$/;"	f
 qspi_read_enable	.\Firmware\GD32E10x_standard_peripheral\Source\gd32e10x_spi.c	/^void qspi_read_enable(uint32_t spi_periph)$/;"	f
 qspi_write_enable	.\Firmware\GD32E10x_standard_peripheral\Source\gd32e10x_spi.c	/^void qspi_write_enable(uint32_t spi_periph)$/;"	f
+raw_buffer_send_split	.\Bsp\aid_agreement.c	/^void raw_buffer_send_split(uint8_t *buffer, uint16_t size, uint16_t once_max)$/;"	f
+raw_value	.\Bsp\aid_agreement.h	/^    uint8_t raw_value[32][64];$/;"	m	struct:aid_custom_value_data
+raw_value	.\Bsp\aid_agreement.h	/^    uint8_t raw_value[32][64];$/;"	m	struct:aid_sensor_value_data
 rcu_adc_clock_config	.\Firmware\GD32E10x_standard_peripheral\Source\gd32e10x_rcu.c	/^void rcu_adc_clock_config(uint32_t adc_psc)$/;"	f
 rcu_ahb_clock_config	.\Firmware\GD32E10x_standard_peripheral\Source\gd32e10x_rcu.c	/^void rcu_ahb_clock_config(uint32_t ck_ahb)$/;"	f
 rcu_all_reset_flag_clear	.\Firmware\GD32E10x_standard_peripheral\Source\gd32e10x_rcu.c	/^void rcu_all_reset_flag_clear(void)$/;"	f
@@ -6766,9 +6845,11 @@ read_write_timing	.\Firmware\GD32E10x_standard_peripheral\Include\gd32e10x_exmc.
 readvalue1	.\Project\gd32e10x_it.c	/^uint16_t readvalue1 = 0, readvalue2 = 0;$/;"	v
 readvalue2	.\Project\gd32e10x_it.c	/^uint16_t readvalue1 = 0, readvalue2 = 0;$/;"	v
 reallocate	.\Bsp\cJSON.c	/^    void *(CJSON_CDECL *reallocate)(void *pointer, size_t size);$/;"	m	struct:internal_hooks	file:
+rec_body_size	.\Bsp\aid_agreement.h	/^    uint16_t rec_body_size;$/;"	m	struct:aid_session_context
 rec_fifo_overwrite	.\Firmware\GD32E10x_standard_peripheral\Include\gd32e10x_can.h	/^    ControlStatus rec_fifo_overwrite;                                   \/*!< receive FIFO overwrite mode *\/$/;"	m	struct:__anon38
 recv_cache	.\Bsp\74HC4051BQ.h	/^    uint8_t recv_cache[CACHE_BUFFER_SIZE];$/;"	m	struct:__anon2
 recv_cmd_buffer	.\Bsp\ble_type_G75.c	/^uint8_t recv_cmd_buffer[128] = {0};$/;"	v
+recv_session_context	.\Bsp\aid_agreement.h	/^    aid_session_context_t recv_session_context;$/;"	m	struct:aid_agreement_context
 refine_y_pos_aosha	.\Bsp\74HC4051BQ.c	/^uint8_t refine_y_pos_aosha[32] = {19, 18, 17, 16, 31, 30, 29, 20,$/;"	v
 refine_y_pos_normal	.\Bsp\74HC4051BQ.c	/^uint8_t refine_y_pos_normal[32] = {22, 21, 20, 19, 18, 17, 16, 7,$/;"	v
 remain_len	.\Firmware\GD32E10x_usbfs_driver\Include\usb_core.h	/^    uint32_t        remain_len;          \/* USB remain length *\/$/;"	m	struct:__anon107
@@ -6777,10 +6858,13 @@ repetitioncounter	.\Firmware\GD32E10x_standard_peripheral\Include\gd32e10x_timer
 replace_item_in_object	.\Bsp\cJSON.c	/^static cJSON_bool replace_item_in_object(cJSON *object, const char *string, cJSON *replacement, cJSON_bool case_sensitive)$/;"	f	file:
 resync_jump_width	.\Firmware\GD32E10x_standard_peripheral\Include\gd32e10x_can.h	/^    uint8_t resync_jump_width;                                          \/*!< CAN resynchronization jump width *\/$/;"	m	struct:__anon38
 return_type	.\Bsp\aid_agreement.h	/^    uint8_t return_type;$/;"	m	struct:aid_message_header
-rev_res	.\Bsp\aid_agreement.h	/^    uint8_t rev_res;$/;"	m	struct:aid_message_header
 rev_res	.\Bsp\aid_agreement.h	/^    uint8_t rev_res;$/;"	m	struct:aid_message_payload
-rev_res	.\Bsp\aid_agreement.h	/^    uint8_t rev_res;$/;"	m	struct:aid_message_payload_match
 rev_res	.\Bsp\aid_agreement.h	/^    uint8_t rev_res;$/;"	m	struct:aid_message_service_match
+reverse	.\Bsp\ble_type_E104.c	/^void reverse(char *str)$/;"	f
+row_context	.\Bsp\aid_agreement.h	/^    aid_custom_context_t row_context;$/;"	m	struct:aid_custom_value_data
+row_context	.\Bsp\aid_agreement.h	/^    aid_custom_context_t row_context;$/;"	m	struct:aid_sensor_value_data
+row_value	.\Bsp\aid_agreement.h	/^    uint8_t row_value;$/;"	m	struct:aid_custom_value_data
+row_value	.\Bsp\aid_agreement.h	/^    uint8_t row_value;$/;"	m	struct:aid_sensor_value_data
 rtc_alarm_config	.\Firmware\GD32E10x_standard_peripheral\Source\gd32e10x_rtc.c	/^void rtc_alarm_config(uint32_t alarm)$/;"	f
 rtc_configuration_mode_enter	.\Firmware\GD32E10x_standard_peripheral\Source\gd32e10x_rtc.c	/^void rtc_configuration_mode_enter(void)$/;"	f
 rtc_configuration_mode_exit	.\Firmware\GD32E10x_standard_peripheral\Source\gd32e10x_rtc.c	/^void rtc_configuration_mode_exit(void)$/;"	f
@@ -6817,14 +6901,16 @@ select_x_control	.\Bsp\74HC4051BQ.c	/^void select_x_control(uint8_t x_value)$/;"
 select_y_control_volt	.\Bsp\74HC4051BQ.c	/^void select_y_control_volt(process_handle_t *process_handle, uint8_t y_value, ADC_MODE_TYPE_T adc_mode)$/;"	f
 send_can0_data	.\Bsp\can.c	/^void send_can0_data(uint32_t id, uint8_t *msg)$/;"	f
 send_cmd_buffer	.\Bsp\ble_type_G75.c	/^uint8_t send_cmd_buffer[128] = {0};$/;"	v
+send_count	.\Bsp\aid_agreement.h	/^    uint32_t send_count;$/;"	m	struct:aid_agreement_context
+sensor_data	.\Bsp\aid_agreement.c	/^aid_sensor_value_data_t sensor_data = {0};$/;"	v
 serial_frame	.\Project\main.c	/^SerialFrame_t serial_frame;$/;"	v
 serial_num_string	.\Firmware\GD32E10x_usbfs_driver\Include\usbh_core.h	/^    void (*serial_num_string)           (void *serial_string);  \/* the user callback serial number string function *\/$/;"	m	struct:__anon88
+service	.\Bsp\ai_json.h	/^    char service[32];$/;"	m	struct:json_context
 service	.\Bsp\aid_agreement.h	/^    uint8_t service[168];$/;"	m	struct:aid_message_service_match
+service	.\Bsp\aid_agreement.h	/^    uint8_t service[32];$/;"	m	struct:aid_session_context
 service_length	.\Bsp\aid_agreement.h	/^    uint8_t service_length;$/;"	m	struct:aid_message_payload
-service_length	.\Bsp\aid_agreement.h	/^    uint8_t service_length;$/;"	m	struct:aid_message_payload_match
 service_length	.\Bsp\aid_agreement.h	/^    uint8_t service_length;$/;"	m	struct:aid_message_service_match
-service_match	.\Bsp\aid_agreement.c	/^aid_message_service_match_t service_match = {0};$/;"	v
-service_name	.\Bsp\aid_agreement.h	/^    uint8_t service_name[168];$/;"	m	struct:aid_message_payload_match
+service_length	.\Bsp\aid_agreement.h	/^    uint8_t service_length;$/;"	m	struct:aid_session_context
 set_keyword	.\Bsp\ble_type_G75.h	/^    uint8_t           set_keyword[1];$/;"	m	struct:ble_g75_command_context
 setup	.\Firmware\GD32E10x_usbfs_driver\Include\usbh_core.h	/^    usb_setup_union       setup;       \/* the setup packet *\/$/;"	m	struct:__anon86
 setup_packet	.\Firmware\GD32E10x_usbfs_driver\Include\usb_core.h	/^    uint8_t         setup_packet[8 * 3]; \/* USB setup packet *\/$/;"	m	struct:__anon107
@@ -6875,6 +6961,8 @@ status	.\Firmware\GD32E10x_usbfs_driver\Include\usb_core.h	/^    hc_status_enum 
 string	.\Bsp\cJSON.h	/^    char *string;$/;"	m	struct:cJSON
 strings	.\Firmware\GD32E10x_usbfs_driver\Include\usb_core.h	/^    uint8_t* *strings;                   \/* configuration strings *\/$/;"	m	struct:__anon107
 suffix_object	.\Bsp\cJSON.c	/^static void suffix_object(cJSON *prev, cJSON *item)$/;"	f	file:
+sum_check	.\Bsp\aid_agreement.h	/^    uint16_t sum_check;$/;"	m	struct:aid_custom_value_data
+sum_check	.\Bsp\aid_agreement.h	/^    uint16_t sum_check;$/;"	m	struct:aid_sensor_value_data
 sum_len	.\Firmware\GD32E10x_usbfs_driver\Include\usb_core.h	/^    uint32_t        sum_len;             \/* USB sum length *\/$/;"	m	struct:__anon107
 syn_clk_division	.\Firmware\GD32E10x_standard_peripheral\Include\gd32e10x_exmc.h	/^    uint32_t syn_clk_division;                                          \/*!< configure the clock divide ratio *\/$/;"	m	struct:__anon49
 syn_data_latency	.\Firmware\GD32E10x_standard_peripheral\Include\gd32e10x_exmc.h	/^    uint32_t syn_data_latency;                                          \/*!< configure the data latency *\/$/;"	m	struct:__anon49
@@ -6985,7 +7073,9 @@ timer_update_event_enable	.\Firmware\GD32E10x_standard_peripheral\Source\gd32e10
 timer_update_source_config	.\Firmware\GD32E10x_standard_peripheral\Source\gd32e10x_timer.c	/^void timer_update_source_config(uint32_t timer_periph, uint32_t update)$/;"	f
 timer_write_chxval_register_config	.\Firmware\GD32E10x_standard_peripheral\Source\gd32e10x_timer.c	/^void timer_write_chxval_register_config(uint32_t timer_periph, uint16_t ccsel)$/;"	f
 timing_pts	.\Firmware\GD32E10x_standard_peripheral\Source\gd32e10x_can.c	/^static const uint32_t timing_pts[23][2] = {$/;"	v	file:
+total_body_size	.\Bsp\aid_agreement.h	/^    uint16_t total_body_size;$/;"	m	struct:aid_session_context
 total_frame	.\Bsp\aid_agreement.h	/^    uint8_t total_frame;$/;"	m	struct:aid_message_header
+total_struct_size	.\Bsp\aid_agreement.h	/^    uint16_t total_struct_size;$/;"	m	struct:aid_sensor_value_data
 tran_type	.\Project\main.c	/^    uint8_t tran_type;$/;"	m	struct:__anon121	file:
 trans_fifo_order	.\Firmware\GD32E10x_standard_peripheral\Include\gd32e10x_can.h	/^    ControlStatus trans_fifo_order;                                     \/*!< transmit FIFO order *\/$/;"	m	struct:__anon38
 trans_mode	.\Firmware\GD32E10x_standard_peripheral\Include\gd32e10x_spi.h	/^    uint32_t trans_mode;                                                        \/*!< SPI transtype *\/$/;"	m	struct:__anon70
@@ -7229,10 +7319,15 @@ user_input	.\Firmware\GD32E10x_usbfs_driver\Include\usbh_core.h	/^    usbh_user_
 usr_cb	.\Firmware\GD32E10x_usbfs_driver\Include\usbh_core.h	/^    usbh_user_callback_struct           *usr_cb;                                       \/* the user callback function *\/$/;"	m	struct:__anon90
 utf16_literal_to_utf8	.\Bsp\cJSON.c	/^static unsigned char utf16_literal_to_utf8(const unsigned char * const input_pointer, const unsigned char * const input_end, unsigned char **output_pointer)$/;"	f	file:
 value	.\Bsp\math_filter.h	/^    uint8_t value;$/;"	m	struct:value_pos
+value_context	.\Bsp\aid_agreement.h	/^    aid_custom_context_t value_context;$/;"	m	struct:aid_custom_value_data
+value_context	.\Bsp\aid_agreement.h	/^    aid_custom_context_t value_context;$/;"	m	struct:aid_sensor_value_data
+value_length	.\Bsp\aid_agreement.h	/^    uint16_t value_length;$/;"	m	struct:aid_custom_context
 value_pos	.\Bsp\math_filter.h	/^typedef struct value_pos {$/;"	s
 value_pos_aggregate	.\Bsp\math_filter.h	/^typedef struct value_pos_aggregate{$/;"	s
 value_pos_aggregate_t	.\Bsp\math_filter.h	/^} value_pos_aggregate_t;$/;"	t	typeref:struct:value_pos_aggregate
 value_pos_t	.\Bsp\math_filter.h	/^} value_pos_t;$/;"	t	typeref:struct:value_pos
+value_type	.\Bsp\aid_agreement.h	/^    uint8_t value_type;$/;"	m	struct:aid_custom_context
+value_type	.\Bsp\aid_agreement.h	/^    uint8_t value_type;$/;"	m	struct:aid_custom_value_data
 valuedouble	.\Bsp\cJSON.h	/^    double valuedouble;$/;"	m	struct:cJSON
 valueint	.\Bsp\cJSON.h	/^    int valueint;$/;"	m	struct:cJSON
 valuestring	.\Bsp\cJSON.h	/^    char *valuestring;$/;"	m	struct:cJSON

@@ -25,9 +25,6 @@
     gpio_bit_set(GPIOA, GPIO_PIN_8);\
     else		\
     gpio_bit_reset(GPIOA, GPIO_PIN_8)				
-
-#define BLE_LINK_GET \
-    gpio_input_bit_get(GPIOB, GPIO_PIN_3)\
     
 
 #define SENSOR_POS_X 32

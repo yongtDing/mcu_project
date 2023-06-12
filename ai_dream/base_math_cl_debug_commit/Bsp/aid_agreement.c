@@ -322,6 +322,10 @@ int aid_message_match(aid_agreement_context_t *agreement_context,
     if (agreement_context->recv_session_context.cmd_finish)
     {
         aid_ack_message(agreement_context);
+    } else {
+#ifdef ENABLE_DEBUG_USART_LOG
+        printf("recv need too more!\n");
+#endif
     }
 
     return 0;
