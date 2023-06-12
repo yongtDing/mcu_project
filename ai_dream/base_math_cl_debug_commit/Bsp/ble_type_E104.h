@@ -8,5 +8,6 @@
 #ifndef __BLE_TYPE_H__
 #define __BLE_TYPE_H__
 
+void E104_bt5032A_init(USART_COM_ID_T com);
 
 #endif

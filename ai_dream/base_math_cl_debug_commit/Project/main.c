@@ -51,6 +51,7 @@
 #include "oled.h"
 #include "math.h"
 #include "aid_agreement.h"
+#include "ble_type_E104.h"
 
 /*!
   \brief      main function
@@ -102,6 +103,7 @@ int main(void)
     usart2_init(460800); //485
     usart3_init(460800); //ble
 
+    E104_bt5032A_init(USART_3_TR);
 
     while( 1 )
     {
@@ -139,21 +141,12 @@ int main(void)
 
                     if (1)
                     {
-                        printf("\n");
-                        printf("\n");
-
-                        printf("\n");
-                        printf("\n");
-
+                        printf(" recv cmd\n ");
                         usart_dma_send_data(USART_2_TR,
                                 (uint8_t *)process_handle.printf_buffer,
                                 cache_len);
                         delay_1ms(10);
-                        printf("\n");
-                        printf("\n");
-                        printf("\n");
-                        printf("\n");
-                        printf("\n");
+                        printf(" send cmd\n ");
                     }
                     aid_message_match(aid_agreement_context, process_handle.printf_buffer, cache_len);
                 }
