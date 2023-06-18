@@ -52,6 +52,7 @@
 #include "math.h"
 #include "aid_agreement.h"
 #include "ble_type_E104.h"
+#include "malloc.h"
 
 /*!
   \brief      main function
@@ -62,7 +63,6 @@
 
 #pragma pack (1)
 
-#define LOG_PRINTF 0
 
 typedef struct {
     uint16_t sof;
@@ -75,7 +75,7 @@ typedef struct {
 
 #pragma pack ()
 
-bool timer3_interrupt = true;
+#define DEBUG_MODE
 uint32_t time_1ms = 0;
 
 SerialFrame_t serial_frame;
@@ -95,7 +95,7 @@ int main(void)
     adc_init();
     Hc4051IoInit();
     aid_cmd_circular_init(&aid_agreement_context);
-    //select_y_control_volt(&process_handle, 0, SINGLE_VCC_READ);
+    my_mem_init(SRAMIN);
 #if 0
     nvic_irq_enable( TIMER3_IRQn, 2, 0 );
     timer_config(TIMER3, 1); //20ms
@@ -103,14 +103,14 @@ int main(void)
     usart2_init(460800); //485
     usart3_init(460800); //ble
 
-    E104_bt5032A_init(USART_3_TR);
+    //E104_bt5032A_init(USART_3_TR);
 
     while( 1 )
     {
         time_1ms ++;
         //LED…¡À∏
 
-        if(time_1ms % 100 == 0)
+        if(time_1ms % 50 == 0)
         {
             led_flag = !led_flag;
             GREEN_LED(led_flag);
@@ -138,8 +138,7 @@ int main(void)
                     memset(process_handle.printf_buffer, 0x00, CACHE_BUFFER_SIZE);
                     cache_len = usart_get_rx_data_count(USART_3_TR);
                     usart_recv(USART_3_TR, process_handle.printf_buffer, cache_len);
-
-                    if (1)
+#ifdef DEBUG_MODE
                     {
                         printf(" recv cmd\n ");
                         usart_dma_send_data(USART_2_TR,
@@ -148,6 +147,7 @@ int main(void)
                         delay_1ms(10);
                         printf(" send cmd\n ");
                     }
+#endif
                     aid_message_match(aid_agreement_context, process_handle.printf_buffer, cache_len);
                 }
 
@@ -175,6 +175,11 @@ int main(void)
             }
         }
 
+        if (time_1ms % 1000 == 0)
+        {
+            printf("line %d  %d\n", __LINE__, my_mem_perused(SRAMIN));
+        }
+
         if (time_1ms % 100 == 0)
         {
 
@@ -200,39 +205,18 @@ int main(void)
             serial_frame.type = 0x01;
 
             adc_calculation_calibration_once(&process_handle);
-            //memcpy((uint8_t *)serial_frame.adc_value, (uint8_t *)process_handle.adc_raw_value_visual, SENSOR_POS_X * SENSOR_POS_Y);
             memcpy((uint8_t *)serial_frame.adc_value, (uint8_t *)process_handle.adc_cali_value, SENSOR_POS_X * SENSOR_POS_Y);
             serial_frame.checksum = CalChecksum((uint8_t *)&serial_frame, sizeof(serial_frame) - 2);
 
-            if (0)
+#ifndef DEBUG_MODE
             {
                 usart_dma_send_data(USART_2_TR, (uint8_t *)&serial_frame, sizeof(serial_frame));
             }
+#endif
         }
 
         delay_1ms(1);
     }
-}
-
-void read_can0_data(can_receive_message_struct *receive_message)
-{
-    uint16_t count = 0;
-
-    for (count = 0; count < 8; count ++)
-    {
-
-    }
-}
-
-void CAN0_RX0_IRQHandler(void)
-{
-    static bool led_flag_red = false;
-    led_flag_red = !led_flag_red;
-    can_receive_message_struct receive_message;
-
-    /* check the receive message */
-    can_message_receive(CAN0, CAN_FIFO0, &receive_message);
-    read_can0_data(&receive_message);
 }
 
 void TIMER3_IRQHandler(void)

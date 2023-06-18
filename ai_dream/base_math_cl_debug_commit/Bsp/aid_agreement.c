@@ -7,7 +7,7 @@
 
 #include "aid_agreement.h"
 #include "uart.h"
-#include "cJSON.h"
+#include "ai_json.h"
 
 
 #define ENABLE_DEBUG_USART_LOG 
@@ -21,56 +21,12 @@
 aid_message_t aid_message = {0};
 aid_message_body_match_t body_match = {0};
 
-#define AID_CIR_BUF 2048
+#define AID_CIR_BUF 1024
 uint8_t aid_cir_buffer[AID_CIR_BUF] = {0};
 
-uint8_t cache_char[512] = {0};
 
 void raw_buffer_send_split(uint8_t *buffer, uint16_t size, uint16_t once_max);
 void aid_init_raw_sensor_data(void);
-json_context_t aijson_context[] =
-{
-    {"AiCfgVer","{\"ver\":100}"},
-
-    {"deviceInfo",
-//     "{\"sn\":\"D0BAE48F0893\",\"vendor\":{\"devName\":\"\",\"deviceInfo\":{\"productId\":\"D001\",\"manu\":\"DREAM1\",\"blemac\":\"D0BAE48F0893\",\"wifimac\":\"\",\"fwv\":\"1.0.1\",\"hwv\":\"C65.1.0\"}}}"
-     "{\"sn\":\"D0BAE48F0893\",\"vendor\":{\"devName\":\"\",\"deviceInfo\":{\"productId\":\"D101\",\"manu\":\"DREAM1\",\"blemac\":\"D0BAE48F0893\"}}}"
-    },
-
-    {"authSetup",
-     "{\"errcode\":0}"
-    },
-
-    {"createSession",
-     "{\"seq\":1,\"sn2\":\"6233373430326635\",\"uuid\":\"123454\"}"
-    },
-
-    {"customData",
-     "{\"errcode\":0}"
-    },
-
-    {"customSecData",
-     "{\"errcode\":0}"
-    },
-
-    {"autosend",
-     "{\"seq\":123,\"vendor\":[{\"sid\":\"Press:upload\",\"data\":{\"column\":32,\"row\":64,\"frame\":123456781234567812345678123456781234567812345678123456781234567812345678123456781234567812345678123456781234567812345678}}]}"
-    },
-
-    {"default_deviceInfo",
-     "{\"sn\":\"D0BAE48F0893\",\"vendor\":{\"devName\":\"\",\"deviceInfo\":{\"productId\":\"D001\",\"manu\":\"DREAM1\",\"blemac\":\"D0BAE48F0893\",\"wifimac\":\"\",\"fwv\":\"1.0.1\",\"hwv\":\"C65.1.0\"}}}"
-    }
-};
-
-char json_raw_value_start[88] =
-{
-    "{\"seq\":123,\"vendor\":[{\"sid\":\"Press:upload\",\"data\":{\"column\":32,\"row\":64,\"frame\":"
-};
-
-char json_raw_value_end[8] =
-{
-    "}}]}"
-};
 
 aid_custom_value_data_t aid_custom_value = {0};
 
@@ -248,12 +204,10 @@ int aid_printf_message_session(aid_agreement_context_t *agreement_context)
 int aid_ack_message(aid_agreement_context_t *agreement_context)
 {
     uint16_t  body_length = 0x00;
-    uint8_t cmd_count = 0;
-    uint16_t json_count = 0;
+    json_context_t *json_context = NULL;
     aid_session_context_t *recv_session_context = &agreement_context->recv_session_context;
     aid_session_context_t *ack_session_context = &agreement_context->ack_session_context;
 
-    json_count = sizeof(aijson_context) / sizeof(json_context_t);
     if (recv_session_context->cmd_finish == true)
     {
         //usart_dma_send_data(USART_2_TR, (uint8_t *)recv_session_context->service, recv_session_context->service_length);
@@ -267,28 +221,31 @@ int aid_ack_message(aid_agreement_context_t *agreement_context)
             //delay_1ms(20);
         }
 
-        for (cmd_count = 0; cmd_count < json_count; cmd_count ++)
-        {
-            if (!strcmp((const char *)aijson_context[cmd_count].service,
-                        (const char *)ack_session_context->service))
-            {
-                memcpy(ack_session_context->body_cache,
-                        aijson_context[cmd_count].body,
-                        strlen(aijson_context[cmd_count].body));
 
-                ack_session_context->total_body_size
-                    = strlen(aijson_context[cmd_count].body);
-            }
+        json_context = aid_paser_json_context((char *)ack_session_context->service);
+        if (json_context)
+        {
+            memcpy(ack_session_context->body_cache,
+                    json_context->body,
+                    strlen(json_context->body));
+
+            ack_session_context->total_body_size
+                = strlen(json_context->body);
 
             if (!strcmp((const char*)ack_session_context->service, "customData"))
             {
                 agreement_context->enable_raw_value_ack = true;
                 agreement_context->send_count = 0;
             }
+
+            aid_extract_config(json_context,
+                               recv_session_context->body_cache,
+                               recv_session_context->total_body_size);
         }
 
+
 #if 1
-        if (cmd_count <= json_count)
+        if (json_context)
         {
             aid_message_raw_buffer_send(ack_session_context->header.message_id,
                                         ack_session_context->service,
@@ -651,56 +608,3 @@ int aid_message_raw_buffer_send(uint8_t message_id,
     return 0;
 }
 
-void aid_paser_json(uint8_t *json_buffer,
-                    uint16_t json_size)
-{
-    cJSON *cjson = NULL, *single_json = NULL;
-    char *buffer = NULL;
-    json_buffer = (uint8_t *)aijson_context[3].body;
-    json_size = strlen(aijson_context[3].body);
-    cjson = cJSON_Parse((const char*)json_buffer);
-    single_json = cJSON_GetObjectItem(cjson, "vendor");
-    single_json = cJSON_GetObjectItem(single_json, "deviceInfo");
-    single_json = cJSON_GetObjectItem(single_json, "manu");
-    printf("%s:json size %d  %s\n", __FUNCTION__, json_size, single_json->valuestring);
-    cJSON_Delete(cjson);
-
-
-    cjson = cJSON_CreateObject();
-    cJSON_AddStringToObject(cjson, "wzh", "like");
-    buffer = cJSON_PrintUnformatted(cjson);
-    printf("%s  %d", buffer, strlen(buffer));
-    cJSON_Delete(cjson);
-}
-
-#if 1
-void aid_create_json(uint8_t *json_buffer, uint16_t json_size)
-{
-    cJSON *main_json = NULL, *seq_json = NULL, *vendor_json = NULL, *value_json = NULL;
-    char *buffer = NULL;
-
-    main_json = cJSON_CreateObject();
-    seq_json = cJSON_CreateObject();
-    vendor_json = cJSON_CreateArray();
-    value_json = cJSON_CreateObject();
-
-    cJSON_AddStringToObject(main_json, "seq", "1");
-
-    cJSON_AddItemToObject(main_json, "seq_1", seq_json);
-    cJSON_AddStringToObject(seq_json, "seq_single", "2");
-
-    cJSON_AddItemToObject(main_json, "vendor_2", vendor_json);
-
-    cJSON_AddItemToObject(vendor_json, "sensor", value_json);
-
-    cJSON_AddStringToObject(value_json, "value_0", "1-1");
-    cJSON_AddStringToObject(value_json, "frame", "1234567890");
-    cJSON_AddStringToObject(value_json, "frame", "1234567890");
-
-    buffer = cJSON_PrintUnformatted(main_json);
-    //usart_dma_send_data(USART_3_TR, buffer, strlen(buffer));
-    printf("%d", strlen(buffer));
-    cJSON_Delete(main_json);
-
-}
-#endif

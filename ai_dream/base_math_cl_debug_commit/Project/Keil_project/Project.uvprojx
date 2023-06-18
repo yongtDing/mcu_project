@@ -607,6 +607,16 @@
               <FileType>1</FileType>
               <FilePath>..\..\Bsp\cJSON.c</FilePath>
             </File>
+            <File>
+              <FileName>malloc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\Bsp\malloc.c</FilePath>
+            </File>
+            <File>
+              <FileName>ai_json.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\Bsp\ai_json.c</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>
