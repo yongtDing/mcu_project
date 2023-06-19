@@ -12,8 +12,12 @@
 #include <stdbool.h>
 #include "uart.h"
 #include "malloc.h"
+#include "aid_agreement.h"
 
-void aid_paser_authSetup_json(uint8_t *json_buffer, uint16_t json_size);
+void aid_paser_authSetup_json(uint8_t *json_buffer, uint16_t json_size, void *process_handle);
+void aid_paser_customSecData_json(uint8_t *json_buffer, uint16_t json_size, void *process_handle);
+void aid_paser_customData_json(uint8_t *json_buffer, uint16_t json_size, void *process_handle);
+
 json_context_t aijson_context[] =
 {
     {   "AiCfgVer",
@@ -33,11 +37,13 @@ json_context_t aijson_context[] =
     },
 
     {   "customData",
-        "{\"errcode\":0}"
+        "{\"errcode\":0}",
+        aid_paser_customData_json
     },
 
     {   "customSecData",
-        "{\"errcode\":0}"
+        "{\"errcode\":0}",
+        aid_paser_customSecData_json
     },
 
     {   "autosend",
@@ -69,15 +75,61 @@ json_context_t *aid_paser_json_context(char *service_name)
     return json_context;
 }
 
-void *aid_extract_config(json_context_t *json_context, uint8_t *cmd, uint16_t cmd_size)
+void *aid_extract_config(json_context_t *json_context, uint8_t *cmd, uint16_t cmd_size, void *process_handle)
 {
     if (json_context->match_extract)
     {
-        json_context->match_extract(cmd, cmd_size);
+        json_context->match_extract(cmd, cmd_size, process_handle);
     }
     return NULL;
 }
 
+
+void aid_paser_authSetup_json(uint8_t *json_buffer, uint16_t json_size, void *process_handle)
+{
+    cJSON *total_cjson = NULL, *single_json = NULL;
+    total_cjson = cJSON_Parse((const char*)json_buffer);
+
+    single_json = cJSON_GetObjectItem(total_cjson, "authCode");
+    if (single_json)
+        printf("%s:  %s/%s\n", __FUNCTION__, single_json->string, single_json->valuestring);
+    else {
+        printf("%s can not find authCode name\n", __FUNCTION__);
+    }
+
+    single_json = cJSON_GetObjectItem(total_cjson, "devSecret");
+    printf("%s: %s/%s\n", __FUNCTION__, single_json->string, single_json->valuestring);
+
+    single_json = cJSON_GetObjectItem(total_cjson, "productkey");
+    printf("%s: %s/%s\n", __FUNCTION__, single_json->string, single_json->valuestring);
+
+    single_json = cJSON_GetObjectItem(total_cjson, "devName");
+    printf("%s: %s/%s\n", __FUNCTION__, single_json->string, single_json->valuestring);
+
+    cJSON_Delete(total_cjson);
+}
+
+void aid_paser_customSecData_json(uint8_t *json_buffer, uint16_t json_size, void *process_handle)
+{
+    aid_agreement_context_t *aid_agreement_context = (aid_agreement_context_t *)process_handle;
+}
+
+void aid_paser_customData_json(uint8_t *json_buffer, uint16_t json_size, void *process_handle)
+{
+    cJSON *total_cjson = NULL, *single_json = NULL;
+    aid_agreement_context_t *agreement_context = (aid_agreement_context_t *)process_handle;
+    total_cjson = cJSON_Parse((const char*)json_buffer);
+
+    single_json = cJSON_GetObjectItem(total_cjson, "vendor");
+    if (single_json) {
+        agreement_context->enable_raw_value_ack = true;
+        agreement_context->send_count = 0;
+    } else {
+
+    }
+}
+
+#ifdef SJON_DEMO_ENABLE
 void aid_paser_json_demo(uint8_t *json_buffer,
         uint16_t json_size)
 {
@@ -96,33 +148,6 @@ void aid_paser_json_demo(uint8_t *json_buffer,
 
     cJSON_Delete(cjson);
 }
-
-void aid_match_json(uint8_t *service_buffer, uint8_t *body_buffer, uint16_t body_size)
-{
-
-}
-
-
-void aid_paser_authSetup_json(uint8_t *json_buffer, uint16_t json_size)
-{
-    cJSON *total_cjson = NULL, *single_json = NULL;
-    total_cjson = cJSON_Parse((const char*)json_buffer);
-
-    single_json = cJSON_GetObjectItem(total_cjson, "authCode");
-    printf("%s:  %s/%s\n", __FUNCTION__, single_json->string, single_json->valuestring);
-
-    single_json = cJSON_GetObjectItem(total_cjson, "devSecret");
-    printf("%s: %s/%s\n", __FUNCTION__, single_json->string, single_json->valuestring);
-
-    single_json = cJSON_GetObjectItem(total_cjson, "productkey");
-    printf("%s: %s/%s\n", __FUNCTION__, single_json->string, single_json->valuestring);
-
-    single_json = cJSON_GetObjectItem(total_cjson, "devName");
-    printf("%s: %s/%s\n", __FUNCTION__, single_json->string, single_json->valuestring);
-
-    cJSON_Delete(total_cjson);
-}
-
 
 void aid_create_json_demo(uint8_t *json_buffer, uint16_t json_size)
 {
@@ -158,3 +183,5 @@ void aid_create_json_demo(uint8_t *json_buffer, uint16_t json_size)
     board_free((uint8_t *)buffer);
     printf("line %d  %d\n", __LINE__, my_mem_perused(SRAMIN));
 }
+
+#endif

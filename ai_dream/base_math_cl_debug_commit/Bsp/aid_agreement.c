@@ -240,7 +240,8 @@ int aid_ack_message(aid_agreement_context_t *agreement_context)
 
             aid_extract_config(json_context,
                                recv_session_context->body_cache,
-                               recv_session_context->total_body_size);
+                               recv_session_context->total_body_size,
+                               (void *)agreement_context);
         }
 
 

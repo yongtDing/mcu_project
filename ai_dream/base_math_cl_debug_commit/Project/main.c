@@ -175,9 +175,9 @@ int main(void)
             }
         }
 
-        if (time_1ms % 1000 == 0)
+        if (time_1ms % 5000 == 0)
         {
-            printf("line %d  %d\n", __LINE__, my_mem_perused(SRAMIN));
+            printf("board mem used %d%\n", my_mem_perused(SRAMIN));
         }
 
         if (time_1ms % 100 == 0)
