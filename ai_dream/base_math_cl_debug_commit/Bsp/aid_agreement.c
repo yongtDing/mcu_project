@@ -12,7 +12,7 @@
 
 #define ENABLE_DEBUG_USART_LOG 
 
-#define SEND_TEST_TOTAL 200
+#define SEND_TEST_TOTAL 1
 #define MAX_SEND_RAW_SIZE_TOTAL 160
 #define MAX_SEND_NEXT 153
 #define AID_HEADER_SIZE 7
@@ -24,6 +24,8 @@ aid_message_body_match_t body_match = {0};
 #define AID_CIR_BUF 1024
 uint8_t aid_cir_buffer[AID_CIR_BUF] = {0};
 
+uint8_t wifi_set_ack[] =
+    "{\"seq\": 123,\"vendor\":[{\"sid\":\"WifiMod:WifiSet\",\"data\": 0}]}";
 
 void raw_buffer_send_split(uint8_t *buffer, uint16_t size, uint16_t once_max);
 void aid_init_raw_sensor_data(void);
@@ -232,12 +234,6 @@ int aid_ack_message(aid_agreement_context_t *agreement_context)
             ack_session_context->total_body_size
                 = strlen(json_context->body);
 
-            if (!strcmp((const char*)ack_session_context->service, "customData"))
-            {
-                agreement_context->enable_raw_value_ack = true;
-                agreement_context->send_count = 0;
-            }
-
             aid_extract_config(json_context,
                                recv_session_context->body_cache,
                                recv_session_context->total_body_size,
@@ -255,6 +251,17 @@ int aid_ack_message(aid_agreement_context_t *agreement_context)
                                         ack_session_context->total_body_size
                                         );
             delay_1ms(50);
+
+            if (agreement_context->wifi_set_success)
+            {
+                delay_1ms(2000);
+                aid_message_raw_buffer_send(ack_session_context->header.message_id,
+                                            "customSecData",
+                                            13,
+                                            wifi_set_ack,
+                                            strlen((char *)wifi_set_ack)
+                                            );
+            }
         }
 #endif
         aid_clean_message_session(agreement_context);

@@ -153,6 +153,21 @@ void *myrealloc(uint8_t memx,void *ptr,uint32_t size)
     }  
 }
 
+void *board_malloc(uint32_t size)
+{
+    return mymalloc(SRAMIN, size);
+}
+
+void *board_realloc(void *ptr, uint32_t size)
+{
+    return myrealloc(SRAMIN, ptr, size);
+}
+
+void board_free(void *ptr)
+{
+    myfree(SRAMIN, ptr);
+}
+
 
 
 

@@ -75,7 +75,7 @@ void E104_bt53_init(USART_COM_ID_T com)
     gpio_init(GPIOB, GPIO_MODE_OUT_OD, GPIO_OSPEED_2MHZ, GPIO_PIN_5);
     gpio_init(GPIOC, GPIO_MODE_OUT_PP, GPIO_OSPEED_2MHZ, GPIO_PIN_12);
     delay_1ms(500);
-		
+
     BLE_RESET_E104;
     BLE_MODE_AT;
     delay_1ms(500);
@@ -83,13 +83,12 @@ void E104_bt53_init(USART_COM_ID_T com)
     delay_1ms(500);
 //    ble_consult_at_cmd(com, "at+mac?", cmd_recv, CMD_LEN_E104);
 //    reverse(cmd_recv);
-//    ble_config_at_cmd(com, "at+advdat=", cmd_recv);
-		ble_config_at_cmd(com, "AT+CONN_INTERVAL=6\r\n", cmd_recv);
+    ble_config_at_cmd(com, "AT+ADVDATA=1,8CF681449CD7\r\n", cmd_recv);
+	ble_config_at_cmd(com, "AT+CONN_INTERVAL=6\r\n", cmd_recv);
     ble_config_at_cmd(com, "at+reset\r\n", "");
     delay_1ms(500);
 
     BLE_MODE_UART;
-		
-		;
+	;
 }
 

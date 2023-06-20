@@ -11,12 +11,14 @@
 #include "stdbool.h"
 #include "stdlib.h"
 #include "stdint.h"
-#include "cJSON.h"
 
 typedef struct json_context {
     char service[32];
     char body[256];
+	void (*match_extract)(uint8_t*, uint16_t, void *);
 } json_context_t;
 
+json_context_t *aid_paser_json_context(char *service_name);
+void *aid_extract_config(json_context_t *json_context, uint8_t *cmd, uint16_t cmd_size, void *process_handle);
 #endif
 

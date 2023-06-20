@@ -14,7 +14,7 @@
 
 
 //mem1内存参数设定.mem1完全处于内部SRAM里面.
-#define MEM1_BLOCK_SIZE			32  	  						//内存块大小为32字节
+#define MEM1_BLOCK_SIZE			8  	  						//内存块大小为8字节
 #define MEM1_MAX_SIZE			4*1024  						//最大管理内存 40K
 #define MEM1_ALLOC_TABLE_SIZE	MEM1_MAX_SIZE/MEM1_BLOCK_SIZE 	//内存表大小
 
@@ -47,17 +47,8 @@ uint8_t my_mem_perused(uint8_t memx);				//获得内存使用率(外/内部调用)
 void myfree(uint8_t memx,void *ptr);  			//内存释放(外部调用)
 void *mymalloc(uint8_t memx,uint32_t size);			//内存分配(外部调用)
 void *myrealloc(uint8_t memx,void *ptr,uint32_t size);//重新分配内存(外部调用)
+void *board_malloc(uint32_t size);
+void board_free(void *ptr);
+void *board_realloc(void *ptr, uint32_t size);
 #endif
-
-
-
-
-
-
-
-
-
-
-
-
 

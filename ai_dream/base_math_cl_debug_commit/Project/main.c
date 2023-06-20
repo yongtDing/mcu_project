@@ -53,6 +53,7 @@
 #include "aid_agreement.h"
 #include "ble_type_E104.h"
 #include "malloc.h"
+#include "ai_json.h"
 
 /*!
   \brief      main function
@@ -103,7 +104,7 @@ int main(void)
     usart2_init(460800); //485
     usart3_init(460800); //ble
 
-    //E104_bt5032A_init(USART_3_TR);
+    E104_bt5032A_init(USART_3_TR);
 
     while( 1 )
     {
@@ -175,9 +176,9 @@ int main(void)
             }
         }
 
-        if (time_1ms % 5000 == 0)
+        if (time_1ms % 1000 == 0)
         {
-            printf("board mem used %d%\n", my_mem_perused(SRAMIN));
+            //printf("board mem used %d%\n", my_mem_perused(SRAMIN));
         }
 
         if (time_1ms % 100 == 0)

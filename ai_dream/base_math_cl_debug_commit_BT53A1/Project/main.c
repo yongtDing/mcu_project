@@ -101,7 +101,7 @@ int main(void)
     timer_config(TIMER3, 1); //20ms
 #endif
     usart2_init(460800); //485
-    usart3_init(460800); //ble
+    usart3_init(921600); //ble
 
     E104_bt53_init(USART_3_TR);
 
@@ -110,7 +110,7 @@ int main(void)
         time_1ms ++;
         //LED…¡À∏
 
-        if(time_1ms % 50 == 0)
+        if(time_1ms % 500 == 0)
         {
             led_flag = !led_flag;
             GREEN_LED(led_flag);
@@ -124,6 +124,7 @@ int main(void)
 #if 0
                 //aid_create_json(process_handle.recv_cache, cache_len);
                 aid_message_match(aid_agreement_context, process_handle.recv_cache, cache_len);
+
 #else
                 aid_message_match_char(process_handle.recv_cache, cache_len);
                 //usart_dma_send_data(USART_3_TR,

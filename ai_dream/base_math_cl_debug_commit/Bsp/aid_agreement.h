@@ -95,6 +95,7 @@ typedef struct aid_agreement_context {
     CircBuf_t circular_handle;
     bool enable_raw_value_ack;
     bool enable_raw_value_ble_ack;
+    bool wifi_set_success;
     uint32_t send_count;
 } aid_agreement_context_t;
 

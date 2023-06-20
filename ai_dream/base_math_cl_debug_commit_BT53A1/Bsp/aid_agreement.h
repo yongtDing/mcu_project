@@ -14,7 +14,6 @@
 #include "circular_buffer.h"
 #include <stdbool.h>
 #include <stdlib.h>
-#include "ai_json.h"
 
 #pragma pack (1)
 
@@ -80,6 +79,13 @@ typedef struct aid_sensor_value_data {
 
 #pragma pack ()
 
+typedef enum {
+    WIFI_CONNECTING,
+    WIFI_CONNECTED,
+    WIFI_NEED_CONNECT_MESSAGE,
+    WIFI_CONNECT_MESSAGE_OK
+} WIFI_STATUS_T;
+
 typedef struct aid_session_context {
     aid_message_header_t header;
     uint8_t service_length;
@@ -96,6 +102,7 @@ typedef struct aid_agreement_context {
     CircBuf_t circular_handle;
     bool enable_raw_value_ack;
     bool enable_raw_value_ble_ack;
+    WIFI_STATUS_T wifi_connect_status;
     uint32_t send_count;
 } aid_agreement_context_t;
 
@@ -104,8 +111,6 @@ int aid_message_raw_buffer_send(uint8_t message_id,
                                 uint8_t service_length,
                                 uint8_t *body_buffer,
                                 uint16_t body_size);
-void aid_paser_json(uint8_t *json_buffer,
-                    uint16_t json_size);
 void aid_cmd_circular_init(aid_agreement_context_t **agreement_context);
 int aid_message_match(aid_agreement_context_t *agreement_context,
                       uint8_t *cache_buffer,
@@ -116,8 +121,6 @@ int aid_message_match_char(void *buffer,
 void aid_mx_value_send(aid_agreement_context_t *agreement_context,
                        uint8_t *raw_value,
                        uint16_t raw_size);
-void aid_create_json(uint8_t *json_buffer,
-                     uint16_t json_size);
 
 uint16_t CalChecksum(uint8_t *data, uint16_t len);
 
@@ -127,5 +130,4 @@ void aid_mx_set_auto_ack(aid_agreement_context_t *agreement_context,
 void aid_mx_value_send_raw(aid_agreement_context_t *agreement_context,
                            uint8_t *raw_value,
                            uint16_t raw_size);
-
 #endif

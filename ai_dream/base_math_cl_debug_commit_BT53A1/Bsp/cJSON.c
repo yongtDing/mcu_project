@@ -43,6 +43,7 @@
 #include <stdlib.h>
 #include <limits.h>
 #include <ctype.h>
+#include "malloc.h"
 
 #ifdef ENABLE_LOCALES
 #include <locale.h>
@@ -139,9 +140,9 @@ static void * CJSON_CDECL internal_realloc(void *pointer, size_t size)
     return realloc(pointer, size);
 }
 #else
-#define internal_malloc malloc
-#define internal_free free
-#define internal_realloc realloc
+#define internal_malloc board_malloc
+#define internal_free board_free
+#define internal_realloc board_realloc
 #endif
 
 static internal_hooks global_hooks = { internal_malloc, internal_free, internal_realloc };
@@ -172,9 +173,9 @@ CJSON_PUBLIC(void) cJSON_InitHooks(cJSON_Hooks* hooks)
     if (hooks == NULL)
     {
         /* Reset hooks */
-        global_hooks.allocate = malloc;
-        global_hooks.deallocate = free;
-        global_hooks.reallocate = realloc;
+        global_hooks.allocate = board_malloc;
+        global_hooks.deallocate = board_free;
+        global_hooks.reallocate = board_realloc;
         return;
     }
 

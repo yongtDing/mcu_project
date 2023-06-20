@@ -10,6 +10,7 @@
 
 #define CMD_LEN_E104 64
 
+#define DEBUG_LOG_BLE_CONFIG_ENABLE
 
 void reverse(char *str)
 {
@@ -40,7 +41,9 @@ void ble_consult_at_cmd(USART_COM_ID_T com, char *input_cmd, char *output_cmd, u
     if (strncmp("+OK=", output_cmd, strlen("+OK=")) == 0)
     {
         strcpy(output_cmd, output_cmd + strlen("+OK="));
+#ifdef DEBUG_LOG_BLE_CONFIG_ENABLE
         printf("%s\n", output_cmd);
+#endif
     }
 }
 
@@ -63,7 +66,9 @@ void ble_config_at_cmd(USART_COM_ID_T com, char *cmd, char *value)
 
     if (strncmp("+OK", cmd_recv, strlen("+OK")) == 0)
     {
+#ifdef DEBUG_LOG_BLE_CONFIG_ENABLE
         printf("set %s%s success!", cmd, value);
+#endif
     }
 }
 

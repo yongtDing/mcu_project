@@ -2,7 +2,6 @@
 #include "circular_buffer.h"
 #include "led.h"
 
-#define USART0_BUF_SIZE         512
 #define MAX_RING_BUF_SIZE       512
 #define USART_RX_CACHE_BUFFER_SIZE 512
 
@@ -56,10 +55,10 @@ void dma_test(void);
 
 #define EVAL_COM0                        USART0
 #define EVAL_COM0_CLK                    RCU_USART0
-#define EVAL_COM0_TX_PIN                 GPIO_PIN_9
-#define EVAL_COM0_RX_PIN                 GPIO_PIN_10
+#define EVAL_COM0_TX_PIN                 GPIO_PIN_6
+#define EVAL_COM0_RX_PIN                 GPIO_PIN_7
 #define EVAL_COM0_GPIO_PORT              GPIOA
-#define EVAL_COM0_GPIO_CLK               RCU_GPIOA
+#define EVAL_COM0_GPIO_CLK               RCU_GPIOB
 
 #define EVAL_COM1                        USART1
 #define EVAL_COM1_CLK                    RCU_USART1
