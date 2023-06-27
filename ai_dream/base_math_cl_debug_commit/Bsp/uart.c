@@ -57,7 +57,7 @@ void dma_test(void);
 #define EVAL_COM0_CLK                    RCU_USART0
 #define EVAL_COM0_TX_PIN                 GPIO_PIN_6
 #define EVAL_COM0_RX_PIN                 GPIO_PIN_7
-#define EVAL_COM0_GPIO_PORT              GPIOA
+#define EVAL_COM0_GPIO_PORT              GPIOB
 #define EVAL_COM0_GPIO_CLK               RCU_GPIOB
 
 #define EVAL_COM1                        USART1
@@ -137,11 +137,6 @@ void usart3_init(uint32_t bps)
 
     dma1_ch4_usart3_tx_init();
     dma1_ch2_usart3_rx_init();
-
-
-    gpio_init(GPIOC, GPIO_MODE_AIN, GPIO_OSPEED_MAX, GPIO_PIN_3);
-    gpio_init(GPIOC, GPIO_MODE_AIN, GPIO_OSPEED_MAX, GPIO_PIN_2);
-    gpio_init(GPIOB, GPIO_MODE_AIN, GPIO_OSPEED_MAX, GPIO_PIN_15);
 }
 
 
@@ -445,6 +440,7 @@ void gd_eval_com_init(uint32_t com, uint32_t bps)
     uint32_t com_id = 0U;
     if(EVAL_COM0 == com) {
         com_id = 0U;
+        gpio_pin_remap_config(GPIO_USART0_REMAP, ENABLE);
     } else if (EVAL_COM1 == com) {
         com_id = 1U;
     } else if (EVAL_COM2 == com) {
@@ -464,7 +460,6 @@ void gd_eval_com_init(uint32_t com, uint32_t bps)
 
     /* connect port to USARTx_Rx */
     gpio_init(COM_GPIO_PORT[com_id], GPIO_MODE_IN_FLOATING, GPIO_OSPEED_50MHZ, COM_RX_PIN[com_id]);
-
 
     /* USART configure */
     usart_deinit(com);
@@ -868,7 +863,7 @@ int usart_rx_probe(USART_COM_ID_T com_id)
         case USART_3_TR:
             return CircBuf_IsEmpty(&USART3_RxCBuf);
         default:
-            return 0;
+            return 1;
     }
 }
 

@@ -1,8 +1,6 @@
 #include "flash.h"
 #include <stdio.h>
 
-Config g_config_params = {0};
-
 __IO fmc_state_enum fmc_state = FMC_READY;
 
 void fmc_program(uint32_t *data, uint32_t data_len)
@@ -28,23 +26,17 @@ void fmc_program(uint32_t *data, uint32_t data_len)
 }
 
  
-int load_config_params()
+int load_config_params(uint8_t *params, uint16_t param_len)
 {	
     uint32_t *ptr = (uint32_t*)FMC_WRITE_START_ADDR;													
     {
-        memcpy((uint32_t *)&g_config_params, ptr, sizeof(Config));						 
+        memcpy((uint32_t *)&params, ptr, param_len);						 
         return 0;
     }
 }
  
-Config get_config_params()
+int save_config_params(uint8_t *params, uint16_t param_len)
 {
-	return g_config_params;
-}
-
-
-int save_config_params(Config *params)
-{
-    fmc_program((uint32_t *)params, sizeof(Config));
+    fmc_program((uint32_t *)params, param_len);
     return 0;
 }

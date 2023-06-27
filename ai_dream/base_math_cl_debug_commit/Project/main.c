@@ -54,6 +54,7 @@
 #include "ble_type_E104.h"
 #include "malloc.h"
 #include "ai_json.h"
+#include "ESP32_WROOM_WIFI.h"
 
 /*!
   \brief      main function
@@ -101,11 +102,13 @@ int main(void)
     nvic_irq_enable( TIMER3_IRQn, 2, 0 );
     timer_config(TIMER3, 1); //20ms
 #endif
+    usart0_init(2764800); //wifi
     usart2_init(460800); //485
     usart3_init(460800); //ble
 
-    E104_bt5032A_init(USART_3_TR);
-
+    //E104_bt5032A_init(USART_3_TR);
+    wifi_esp32_gpio_init();
+    wifi_esp32_wroom_init(USART_0_TR);
     while( 1 )
     {
         time_1ms ++;
@@ -152,6 +155,16 @@ int main(void)
                     aid_message_match(aid_agreement_context, process_handle.printf_buffer, cache_len);
                 }
 
+        }
+
+        if (time_1ms % 500 == 0)
+        {
+            wifi_config_thread(NULL);
+        }
+
+        if (time_1ms % 2000 == 0)
+        {
+            wifi_config_ap("name", "1234", WIFI_CONFIG_FORCE);
         }
 
         //50Hz速率采集第一快压感数据

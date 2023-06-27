@@ -607,11 +607,11 @@ ARM Macro Assembler    Page 10
               00000000 
 Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M4.fp --apcs=int
 erwork --depend=.\output\startup_gd32e10x.d -o.\output\startup_gd32e10x.o -I.\R
-TE\_GD32E10X -IC:\Keil_v5\ARM\PACK\GigaDevice\GD32E10x_DFP\1.2.0\Device\Include
- -IC:\Keil_v5\ARM\CMSIS\Include --predefine="__EVAL SETA 1" --predefine="__MICR
-OLIB SETA 1" --predefine="__UVISION_VERSION SETA 523" --predefine="GD32E10x SET
-A 1" --list=.\list\startup_gd32e10x.lst ..\..\Firmware\CMSIS\GD\GD32E10x\Source
-\ARM\startup_gd32e10x.s
+TE\_GD32E10X -IC:\Users\abbott.wei\AppData\Local\Arm\Packs\GigaDevice\GD32E10x_
+DFP\1.2.1\Device\Include -ID:\Keil_v5\ARM\CMSIS\Include --predefine="__MICROLIB
+ SETA 1" --predefine="__UVISION_VERSION SETA 527" --predefine="GD32E10x SETA 1"
+ --list=.\list\startup_gd32e10x.lst ..\..\Firmware\CMSIS\GD\GD32E10x\Source\ARM
+\startup_gd32e10x.s
 
 
 
@@ -1801,4 +1801,4 @@ d32e10x.s
 d32e10x.s
 Comment: __main used once
 2 symbols
-428 symbols in table
+427 symbols in table

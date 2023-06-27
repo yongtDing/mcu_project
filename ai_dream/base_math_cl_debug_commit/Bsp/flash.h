@@ -10,15 +10,8 @@
 #define FMC_WRITE_START_ADDR    ((uint32_t)(0x0801FC00U - 0x400))
 #define FMC_WRITE_END_ADDR      ((uint32_t)(0x0801FFFFU))
 
-typedef struct
-{
-    float max[5];
-}Config;
-
-extern int load_config_params(void);
+int load_config_params(uint8_t *params, uint16_t param_len);
  
-extern Config get_config_params(void);
- 
-extern int save_config_params(Config *params);
+int save_config_params(uint8_t *params, uint16_t param_len);
 
 #endif

@@ -100,7 +100,7 @@ int main(void)
     timer_config(TIMER3, 1); //20ms
 #endif
 		usart0_init(2764800);
-    usart2_init(921600);
+    usart2_init(460800);
     usart3_init(115200);
 
     while( 1 )

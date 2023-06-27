@@ -101,7 +101,7 @@ int main(void)
 #endif
 		
     usart2_init(460800);
-    usart3_init(921600);
+    usart3_init(460800);
 
     while( 1 )
     {
