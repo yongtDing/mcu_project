@@ -108,7 +108,7 @@ int main(void)
 
     //E104_bt5032A_init(USART_3_TR);
     wifi_esp32_gpio_init();
-    wifi_esp32_wroom_init(USART_0_TR);
+    //wifi_esp32_wroom_init(USART_0_TR);
     while( 1 )
     {
         time_1ms ++;
@@ -192,6 +192,7 @@ int main(void)
         if (time_1ms % 1000 == 0)
         {
             //printf("board mem used %d%\n", my_mem_perused(SRAMIN));
+            //aid_paser_json_demo(NULL, 0);
         }
 
         if (time_1ms % 100 == 0)
@@ -227,10 +228,7 @@ int main(void)
                 usart_dma_send_data(USART_2_TR, (uint8_t *)&serial_frame, sizeof(serial_frame));
             }
 #endif
-
-
         }
-
         delay_1ms(1);
     }
 }

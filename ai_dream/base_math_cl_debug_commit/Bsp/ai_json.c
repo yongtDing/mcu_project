@@ -146,24 +146,43 @@ void aid_paser_customSecData_json(uint8_t *json_buffer, uint16_t json_size, void
 
 void aid_paser_customData_json(uint8_t *json_buffer, uint16_t json_size, void *process_handle)
 {
-    cJSON *total_cjson = NULL, *single_json = NULL, *single_json_2 = NULL;
+    cJSON *total_cjson = NULL, *single_json = NULL, *single_json_2 = NULL, *vendor_json = NULL;
     aid_agreement_context_t *agreement_context = (aid_agreement_context_t *)process_handle;
     total_cjson = cJSON_Parse((const char*)json_buffer);
 
 
-    single_json = cJSON_GetObjectItem(total_cjson, "vendor");
-    if (single_json) {
-        single_json = cJSON_GetArrayItem(single_json, 0);
+    vendor_json = cJSON_GetObjectItem(total_cjson, "vendor");
+    if (vendor_json) {
+        single_json = cJSON_GetArrayItem(vendor_json, 0);
         single_json_2 = cJSON_GetObjectItem(single_json, "data");
         if (single_json_2)
         {
             single_json = cJSON_GetObjectItem(single_json_2, "key");
-            printf("%s: key/%s", __FUNCTION__, single_json->valuestring);
-            single_json = cJSON_GetObjectItem(single_json_2, "ssid");
-            printf("%s: ssid/%s", __FUNCTION__, single_json->valuestring);
             if (single_json)
-                agreement_context->wifi_set_success = true;
+            {
+                printf("%s: key/%s", __FUNCTION__, single_json->valuestring);
+                single_json = cJSON_GetObjectItem(single_json_2, "ssid");
+                printf("%s: ssid/%s", __FUNCTION__, single_json->valuestring);
+                if (single_json)
+                    agreement_context->wifi_set_success = true;
+            }
         }
+
+        single_json = cJSON_GetArrayItem(vendor_json, 0);
+        single_json_2 = cJSON_GetObjectItem(single_json, "sid");
+        if (single_json_2)
+        {
+            printf("%s: sid %s", __FUNCTION__, single_json_2->valuestring);
+            if (strcmp(single_json_2->valuestring, "Press:start") == 0)
+            {
+                agreement_context->enable_raw_value_ack = true;
+                agreement_context->send_count = 0;
+            }
+
+        } else {
+                printf("do not find sid!!\n");
+        }
+
         //single_json_2 = cJSON_GetObjectItem(single_json, "seq");
         //printf("%s: seq/%s", __FUNCTION__, single_json_2->valuestring);
 #if 0
@@ -171,7 +190,6 @@ void aid_paser_customData_json(uint8_t *json_buffer, uint16_t json_size, void *p
         agreement_context->send_count = 0;
 #endif
     } else {
-
     }
     if (total_cjson)
     {
@@ -181,7 +199,7 @@ void aid_paser_customData_json(uint8_t *json_buffer, uint16_t json_size, void *p
 
 uint8_t json_buffer_test[] = "{\"seq\":2,\"vendor\":[{\"sid\":\"WifiMod:WifiMod:WifiSet\",\"data\":{\"key\":\"88888888\",\"ssid\":\"HS\"}}]}";
 
-//#define SJON_DEMO_ENABLE
+#define SJON_DEMO_ENABLE
 #ifdef SJON_DEMO_ENABLE
 void aid_paser_json_demo(uint8_t *json_buffer,
         uint16_t json_size)
@@ -196,8 +214,7 @@ void aid_paser_json_demo(uint8_t *json_buffer,
 
     single_json = cJSON_GetObjectItem(cjson, "vendor");
     single_json = cJSON_GetArrayItem(single_json, 0);
-    single_json = cJSON_GetObjectItem(single_json, "data");
-    single_json = cJSON_GetObjectItem(single_json, "key");
+    single_json = cJSON_GetObjectItem(single_json, "sid");
     printf("%s:json size %d  %s\n", __FUNCTION__, json_size, single_json->valuestring);
 
     cJSON_Delete(cjson);

@@ -8,6 +8,9 @@
 #ifndef __BLE_TYPE_H__
 #define __BLE_TYPE_H__
 
+#define BLE_LINK_GET \
+    gpio_input_bit_get(GPIOB, GPIO_PIN_3)
+
 void E104_bt5032A_init(USART_COM_ID_T com);
 
 #endif
