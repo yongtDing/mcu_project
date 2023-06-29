@@ -99,9 +99,9 @@ int main(void)
     nvic_irq_enable( TIMER3_IRQn, 2, 0 );
     timer_config(TIMER3, 1); //20ms
 #endif
-		usart0_init(2764800);
-    usart2_init(460800);
-    usart3_init(115200);
+		usart0_init(2764800); //wifi
+    usart2_init(460800); //485
+    usart3_init(115200); //ble
 
     while( 1 )
     {

@@ -197,7 +197,7 @@ int main(void)
         if (time_1ms % 100 == 0)
         {
 
-            if (BLE_LINK_GET == RESET)
+            if (BLE_LINK_GET == SET)
             {
                 aid_mx_set_auto_ack(aid_agreement_context, true);
             } else {
@@ -227,6 +227,8 @@ int main(void)
                 usart_dma_send_data(USART_2_TR, (uint8_t *)&serial_frame, sizeof(serial_frame));
             }
 #endif
+
+
         }
 
         delay_1ms(1);
