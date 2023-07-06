@@ -51,7 +51,7 @@
 #include "oled.h"
 #include "math.h"
 #include "aid_agreement.h"
-#include "ble_type_E104.h"
+#include "ble_bt677c.h"
 #include "malloc.h"
 #include "ai_json.h"
 #include "ESP32_WROOM_WIFI.h"
@@ -102,12 +102,13 @@ int main(void)
     nvic_irq_enable( TIMER3_IRQn, 2, 0 );
     timer_config(TIMER3, 1); //20ms
 #endif
-    usart0_init(2764800); //wifi
+    usart0_init(460800); //wifi
     usart2_init(460800); //485
     usart3_init(460800); //ble
 
     //E104_bt5032A_init(USART_3_TR);
     wifi_esp32_gpio_init();
+    ble_bt677c_gpio_init(USART_3_TR);
     //wifi_esp32_wroom_init(USART_0_TR);
     while( 1 )
     {
@@ -197,18 +198,9 @@ int main(void)
 
         if (time_1ms % 100 == 0)
         {
-
-            if (BLE_LINK_GET == SET)
-            {
-                aid_mx_set_auto_ack(aid_agreement_context, true);
-            } else {
-                aid_mx_set_auto_ack(aid_agreement_context, false);
-            }
-            {
-                aid_mx_value_send_raw(aid_agreement_context,
-                        (uint8_t *)process_handle.adc_cali_value,
-                        SENSOR_POS_X * SENSOR_POS_Y);
-            }
+            ble_bt677c_thread_task((void *)aid_agreement_context,
+                                   (void *)process_handle.adc_cali_value,
+                                   SENSOR_POS_X * SENSOR_POS_Y);
         }
 
         if(time_1ms % 100 == 0)

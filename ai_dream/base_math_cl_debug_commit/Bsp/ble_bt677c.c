@@ -8,6 +8,8 @@
 #include "uart.h"
 #include "ble_bt677c.h"
 #include "at_commit_base.h"
+#include "74hc4051bq.h"
+#include "aid_agreement.h"
 
 #define CMD_LEN_E104 64
 
@@ -20,23 +22,39 @@
 #define BLE_MODE_UART \
     gpio_bit_set(GPIOB, GPIO_PIN_5)
 
-#define BLE_RESET_E104 \
+#define BLE_RESET_BT677C \
     gpio_bit_reset(GPIOC, GPIO_PIN_12);\
     delay_1ms(500);\
     gpio_bit_set(GPIOC, GPIO_PIN_12);
 
+
+void ble_bt677c_gpio_init(USART_COM_ID_T com)
+{
+    uint8_t cache_buffer[64] = {0};
+    uint16_t cache_len = 0;
+
+    gpio_init(GPIOC, GPIO_MODE_IN_FLOATING, GPIO_OSPEED_50MHZ, GPIO_PIN_3);
+    gpio_init(GPIOB, GPIO_MODE_OUT_PP, GPIO_OSPEED_2MHZ, GPIO_PIN_5);
+    gpio_init(GPIOC, GPIO_MODE_OUT_PP, GPIO_OSPEED_2MHZ, GPIO_PIN_12);
+
+#if 1
+    BLE_RESET_BT677C;
+    delay_1ms(2000);
+
+    if(!usart_rx_probe(com))
+    {
+        cache_len = usart_get_rx_data_count(com);
+        usart_recv(com, cache_buffer, cache_len);
+    }
+#endif
+}
 
 void ble_bt677c_init(USART_COM_ID_T com)
 {
     char cmd_recv[CMD_LEN_E104] = {0};
     char cmd_send[CMD_LEN_E104] = {0};
     
-    gpio_init(GPIOB, GPIO_MODE_IN_FLOATING, GPIO_OSPEED_50MHZ, GPIO_PIN_3);
-    gpio_init(GPIOB, GPIO_MODE_OUT_PP, GPIO_OSPEED_2MHZ, GPIO_PIN_5);
-    gpio_init(GPIOC, GPIO_MODE_OUT_PP, GPIO_OSPEED_2MHZ, GPIO_PIN_12);
-    delay_1ms(500);
-		
-    BLE_RESET_E104;
+    BLE_RESET_BT677C;
     BLE_MODE_AT;
     delay_1ms(500);
     at_config_at_cmd_timeout(com, "at+reset", NULL, 0, "+OK", 200);
@@ -50,5 +68,24 @@ void ble_bt677c_init(USART_COM_ID_T com)
     delay_1ms(500);
 
     BLE_MODE_UART;
+}
+
+void ble_bt677c_thread_task(void *process_handle, void *value, uint16_t value_len)
+{
+    aid_agreement_context_t *aid_agreement_context
+        = (aid_agreement_context_t *)process_handle;
+    
+    if (BLE_LINK_GET == SET)
+    {
+        aid_mx_set_auto_ack(aid_agreement_context, true);
+    } else {
+        aid_mx_set_auto_ack(aid_agreement_context, false);
+    }
+    {
+        aid_mx_value_send(aid_agreement_context,
+                (uint8_t *)value,
+                value_len);
+    }
+
 }
 

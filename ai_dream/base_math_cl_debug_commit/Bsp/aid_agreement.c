@@ -12,11 +12,14 @@
 
 #define ENABLE_DEBUG_USART_LOG 
 
-#define SEND_TEST_TOTAL 10000
+#define SEND_TEST_TOTAL 5000
 #define MAX_SEND_RAW_SIZE_TOTAL 160
 #define MAX_SEND_NEXT 153
 #define AID_HEADER_SIZE 7
 #define AID_LENGTH_SIZE 4
+
+#define BLE_DEBUG_USART USART_2_TR
+#define BLE_COMMIT_USART USART_3_TR
 
 aid_message_t aid_message = {0};
 aid_message_body_match_t body_match = {0};
@@ -212,17 +215,11 @@ int aid_ack_message(aid_agreement_context_t *agreement_context)
 
     if (recv_session_context->cmd_finish == true)
     {
-        //usart_dma_send_data(USART_2_TR, (uint8_t *)recv_session_context->service, recv_session_context->service_length);
-        //delay_1ms(20);
-
         body_length = CircBuf_GetUsedSize(&agreement_context->circular_handle);
         if (body_length > 0)
         {
             CircBuf_Pop(&agreement_context->circular_handle, recv_session_context->body_cache, body_length);
-            //usart_dma_send_data(USART_2_TR, (uint8_t *)recv_session_context->body_cache, body_length);
-            //delay_1ms(20);
         }
-
 
         json_context = aid_paser_json_context((char *)ack_session_context->service);
         if (json_context)
@@ -354,12 +351,12 @@ int aid_message_raw_buffer_auto_ack(uint8_t message_id,
                body_done_frame_size + 2);
     }
 
-    usart_dma_send_data(USART_3_TR, (uint8_t *)&aid_message, AID_HEADER_SIZE + service_length + body_done_frame_size + 4);
+    usart_dma_send_data(BLE_COMMIT_USART, (uint8_t *)&aid_message, AID_HEADER_SIZE + service_length + body_done_frame_size + 4);
 
 #ifdef ENABLE_DEBUG_USART_LOG
-    usart_dma_send_data(USART_2_TR, (uint8_t *)&aid_message, AID_HEADER_SIZE + service_length + body_done_frame_size + 4);
+    usart_dma_send_data(BLE_DEBUG_USART, (uint8_t *)&aid_message, AID_HEADER_SIZE + service_length + body_done_frame_size + 4);
 #endif
-    delay_1ms(50);
+    delay_1ms(30);
 
     for (; body_done_frame_size < body_size; body_done_frame_size += MAX_SEND_NEXT)
     {
@@ -368,20 +365,20 @@ int aid_message_raw_buffer_auto_ack(uint8_t message_id,
         {
             memcpy((uint8_t *)&aid_message.message_payload, body_buffer + body_done_frame_size, MAX_SEND_NEXT);
             aid_message.message_header.payload_size = MAX_SEND_NEXT;
-            usart_dma_send_data(USART_3_TR, (uint8_t *)&aid_message, AID_HEADER_SIZE + MAX_SEND_NEXT);
+            usart_dma_send_data(BLE_COMMIT_USART, (uint8_t *)&aid_message, AID_HEADER_SIZE + MAX_SEND_NEXT);
 #ifdef ENABLE_DEBUG_USART_LOG
-            usart_dma_send_data(USART_2_TR, (uint8_t *)&aid_message, AID_HEADER_SIZE + MAX_SEND_NEXT);
+            usart_dma_send_data(BLE_DEBUG_USART, (uint8_t *)&aid_message, AID_HEADER_SIZE + MAX_SEND_NEXT);
 #endif
         }
         else {
             memcpy((uint8_t *)&aid_message.message_payload, body_buffer + body_done_frame_size, body_size - body_done_frame_size);
             aid_message.message_header.payload_size = body_size - body_done_frame_size;
-            usart_dma_send_data(USART_3_TR, (uint8_t *)&aid_message, AID_HEADER_SIZE + body_size - body_done_frame_size);
+            usart_dma_send_data(BLE_COMMIT_USART, (uint8_t *)&aid_message, AID_HEADER_SIZE + body_size - body_done_frame_size);
 #ifdef ENABLE_DEBUG_USART_LOG
-            usart_dma_send_data(USART_2_TR, (uint8_t *)&aid_message, AID_HEADER_SIZE + body_size - body_done_frame_size);
+            usart_dma_send_data(BLE_DEBUG_USART, (uint8_t *)&aid_message, AID_HEADER_SIZE + body_size - body_done_frame_size);
 #endif
         }
-        delay_1ms(50);
+        delay_1ms(30);
     }
 
     return 0;
@@ -405,39 +402,40 @@ void aid_mx_value_send(aid_agreement_context_t *agreement_context,
                        uint16_t raw_size)
 {
 
-#if 1
-    if (!agreement_context->enable_raw_value_ble_ack)
-        goto out;
-#endif
-    aid_custom_value.value_type = 0x01;
-    aid_custom_value.column_context.value_type = 0x01;
-    aid_custom_value.column_context.value_length = 0x01;
-    aid_custom_value.column_value = 0x40;
-
-    aid_custom_value.row_context.value_type = 0x02;
-    aid_custom_value.row_context.value_length = 0x01;
-    aid_custom_value.row_value = 0x20;
-
-    aid_custom_value.value_context.value_type = 0x03;
-    aid_custom_value.value_context.value_length = raw_size;
-    memcpy(aid_custom_value.raw_value,
-           raw_value,
-           raw_size);
-
-    aid_custom_value.sum_check = CalChecksum((uint8_t *)&aid_custom_value, sizeof(aid_custom_value_data_t) - 2);
-
-    if (agreement_context->enable_raw_value_ack)
+    if (agreement_context->enable_raw_value_ack
+        && agreement_context->enable_raw_value_ble_ack
+        && agreement_context->send_count < SEND_TEST_TOTAL)
     {
-        aid_message_raw_buffer_auto_ack(0x12,
-                                        "customSumData",
-                                        13,
-                                        (uint8_t *)&aid_custom_value,
-                                        sizeof(aid_custom_value_data_t));
-        //agreement_context->enable_raw_value_ack = false;
-    }
+        agreement_context->send_count ++;
+        aid_custom_value.value_type = 0x01;
+        aid_custom_value.column_context.value_type = 0x01;
+        aid_custom_value.column_context.value_length = 0x01;
+        aid_custom_value.column_value = 0x40;
 
-out:
-    ;
+        aid_custom_value.row_context.value_type = 0x02;
+        aid_custom_value.row_context.value_length = 0x01;
+        aid_custom_value.row_value = 0x20;
+
+        aid_custom_value.value_context.value_type = 0x03;
+        aid_custom_value.value_context.value_length = raw_size;
+        memcpy(aid_custom_value.raw_value,
+                raw_value,
+                raw_size);
+
+        aid_custom_value.sum_check = CalChecksum((uint8_t *)&aid_custom_value, sizeof(aid_custom_value_data_t) - 2);
+
+        printf("split send once %d\n", agreement_context->send_count);
+        if (agreement_context->enable_raw_value_ack)
+        {
+            aid_message_raw_buffer_auto_ack(0x12,
+                    "customSumData",
+                    13,
+                    (uint8_t *)&aid_custom_value,
+                    sizeof(aid_custom_value_data_t));
+            //agreement_context->enable_raw_value_ack = false;
+        }
+
+    }
 }
 
 
@@ -455,7 +453,6 @@ void aid_init_raw_sensor_data()
     }
 }
 
-#define ENABLE_USART2_DEBUG_RAW_DATA
 void aid_mx_value_send_raw(aid_agreement_context_t *agreement_context,
                            uint8_t *raw_value,
                            uint16_t raw_size)
@@ -489,18 +486,20 @@ void aid_mx_value_send_raw(aid_agreement_context_t *agreement_context,
         sensor_data.sum_check = CalChecksum((uint8_t *)&sensor_data,
                 sizeof(aid_sensor_value_data_t) - 2);
 
-#if 1
+#if 0
 #ifdef ENABLE_USART2_DEBUG_RAW_DATA
         printf("send once %d\n", agreement_context->send_count);
 #endif
-        usart_dma_send_data(USART_3_TR,
+        usart_dma_send_data(BLE_COMMIT_USART,
                             (uint8_t *)&sensor_data,
                             sizeof(aid_sensor_value_data_t));
 #else
-        printf("send once %d\n", agreement_context->send_count);
+#ifdef ENABLE_USART2_DEBUG_RAW_DATA
+        printf("split send once %d\n", agreement_context->send_count);
+#endif
         raw_buffer_send_split((uint8_t *)&sensor_data,
                               sizeof(aid_sensor_value_data_t),
-                              243);
+                              160);
 #endif
     }
 }
@@ -515,25 +514,25 @@ void raw_buffer_send_split(uint8_t *buffer, uint16_t size, uint16_t once_max)
     {
         if (total_buffer_size - send_buffer_done < once_max)
         {
-            usart_dma_send_data(USART_3_TR,
+            usart_dma_send_data(BLE_COMMIT_USART,
                                 buffer + send_buffer_done,
                                 total_buffer_size - send_buffer_done);
 #ifdef ENABLE_USART2_DEBUG_RAW_DATA
-            usart_dma_send_data(USART_2_TR,
+            usart_dma_send_data(BLE_DEBUG_USART,
                                 buffer + send_buffer_done,
                                 total_buffer_size - send_buffer_done);
 #endif
         } else {
-            usart_dma_send_data(USART_3_TR,
+            usart_dma_send_data(BLE_COMMIT_USART,
                                 buffer + send_buffer_done,
                                 once_max);
 #ifdef ENABLE_USART2_DEBUG_RAW_DATA
-            usart_dma_send_data(USART_2_TR,
+            usart_dma_send_data(BLE_DEBUG_USART,
                                 buffer + send_buffer_done,
                                 once_max);
 #endif
         }
-        delay_1ms(3);
+        delay_1ms(10);
     }
 }
 
@@ -583,10 +582,10 @@ int aid_message_raw_buffer_send(uint8_t message_id,
            (uint8_t *)&body_match,
            body_match.body_length + 2);
 
-    usart_dma_send_data(USART_3_TR, (uint8_t *)&aid_message, AID_HEADER_SIZE + service_length + body_done_frame_size + 4);
+    usart_dma_send_data(BLE_COMMIT_USART, (uint8_t *)&aid_message, AID_HEADER_SIZE + service_length + body_done_frame_size + 4);
 
 #ifdef ENABLE_DEBUG_USART_LOG
-    usart_dma_send_data(USART_2_TR, (uint8_t *)&aid_message, AID_HEADER_SIZE + service_length + body_done_frame_size + 4);
+    usart_dma_send_data(BLE_DEBUG_USART, (uint8_t *)&aid_message, AID_HEADER_SIZE + service_length + body_done_frame_size + 4);
 #endif
     delay_1ms(50);
 
@@ -597,17 +596,17 @@ int aid_message_raw_buffer_send(uint8_t message_id,
         {
             memcpy((uint8_t *)&aid_message.message_payload, body_buffer + body_done_frame_size, MAX_SEND_NEXT);
             aid_message.message_header.payload_size = MAX_SEND_NEXT;
-            usart_dma_send_data(USART_3_TR, (uint8_t *)&aid_message, AID_HEADER_SIZE + MAX_SEND_NEXT);
+            usart_dma_send_data(BLE_COMMIT_USART, (uint8_t *)&aid_message, AID_HEADER_SIZE + MAX_SEND_NEXT);
 #ifdef ENABLE_DEBUG_USART_LOG
-            usart_dma_send_data(USART_2_TR, (uint8_t *)&aid_message, AID_HEADER_SIZE + MAX_SEND_NEXT);
+            usart_dma_send_data(BLE_DEBUG_USART, (uint8_t *)&aid_message, AID_HEADER_SIZE + MAX_SEND_NEXT);
 #endif
         }
         else {
             memcpy((uint8_t *)&aid_message.message_payload, body_buffer + body_done_frame_size, body_size - body_done_frame_size);
             aid_message.message_header.payload_size = body_size - body_done_frame_size;
-            usart_dma_send_data(USART_3_TR, (uint8_t *)&aid_message, AID_HEADER_SIZE + body_size - body_done_frame_size);
+            usart_dma_send_data(BLE_COMMIT_USART, (uint8_t *)&aid_message, AID_HEADER_SIZE + body_size - body_done_frame_size);
 #ifdef ENABLE_DEBUG_USART_LOG
-            usart_dma_send_data(USART_2_TR, (uint8_t *)&aid_message, AID_HEADER_SIZE + body_size - body_done_frame_size);
+            usart_dma_send_data(BLE_DEBUG_USART, (uint8_t *)&aid_message, AID_HEADER_SIZE + body_size - body_done_frame_size);
 #endif
         }
         delay_1ms(50);

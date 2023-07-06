@@ -142,7 +142,7 @@ void select_y_control_volt(process_handle_t *process_handle, uint8_t y_value, AD
     switch (adc_mode)
     {
         case SINGLE_VCC_READ:
-            y_value = refine_y_pos_aosha[y_value];
+            y_value = refine_y_pos_normal[y_value];
 
             if (y_value > 15) {
                 y_value -= 16;
