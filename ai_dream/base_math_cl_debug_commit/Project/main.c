@@ -77,7 +77,7 @@ typedef struct {
 
 #pragma pack ()
 
-#define DEBUG_MODE
+//#define DEBUG_MODE
 uint32_t time_1ms = 0;
 
 SerialFrame_t serial_frame;
@@ -131,9 +131,6 @@ int main(void)
                 aid_message_match(aid_agreement_context, process_handle.recv_cache, cache_len);
 #else
                 aid_message_match_char(process_handle.recv_cache, cache_len);
-                //usart_dma_send_data(USART_3_TR,
-                //       (uint8_t *)process_handle.recv_cache,
-                //        cache_len);
 #endif
             }
 
@@ -158,14 +155,9 @@ int main(void)
 
         }
 
-        if (time_1ms % 500 == 0)
-        {
-            wifi_config_thread(NULL);
-        }
-
         if (time_1ms % 2000 == 0)
-        {
-            wifi_config_ap("name", "1234", WIFI_CONFIG_FORCE);
+        {            
+            wifi_config_thread(NULL);
         }
 
         //50Hz速率采集第一快压感数据
@@ -180,9 +172,6 @@ int main(void)
                 if (count == SENSOR_POS_X)
                 {
                     count = 0;
-                    //                select_y_control_volt(&process_handle, 0, TOTAL_VCC_READ);
-                    //                adc_value_read(&process_handle, 0, TOTAL_VCC_READ);
-                    //                adc_calculation_calibration(&process_handle);
                 }
 #endif
                 select_y_control_volt(&process_handle, count, SINGLE_VCC_READ);
@@ -199,8 +188,8 @@ int main(void)
         if (time_1ms % 100 == 0)
         {
             ble_bt677c_thread_task((void *)aid_agreement_context,
-                                   (void *)process_handle.adc_cali_value,
-                                   SENSOR_POS_X * SENSOR_POS_Y);
+                    (void *)process_handle.adc_cali_value,
+                    SENSOR_POS_X * SENSOR_POS_Y);
         }
 
         if(time_1ms % 100 == 0)
@@ -218,6 +207,7 @@ int main(void)
 #ifndef DEBUG_MODE
             {
                 usart_dma_send_data(USART_2_TR, (uint8_t *)&serial_frame, sizeof(serial_frame));
+                usart_dma_send_data(USART_0_TR, (uint8_t *)&serial_frame, sizeof(serial_frame));
             }
 #endif
         }

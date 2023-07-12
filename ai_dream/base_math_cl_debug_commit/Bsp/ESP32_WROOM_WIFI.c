@@ -144,7 +144,6 @@ void wifi_config_thread(void *handle)
 {
     if (wifi_handle.connect_state == WIFI_CONNECTING)
     {
-        wifi_esp32_connect_ap();
     }
 }
 
