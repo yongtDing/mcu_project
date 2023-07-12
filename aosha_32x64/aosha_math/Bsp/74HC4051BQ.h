@@ -50,6 +50,8 @@ typedef struct {
     uint8_t adc_cali_value[SENSOR_POS_X][SENSOR_POS_Y];
     uint8_t x_max;
     uint8_t y_max;
+    int8_t ble_link_state;
+    uint16_t upload_interval;
 } process_handle_t;
 
 void adc_value_read(process_handle_t *process_handle, uint8_t count_y, ADC_MODE_TYPE_T mode_type);

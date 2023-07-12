@@ -48,6 +48,7 @@
 #include "i2c.h"
 #include "oled.h"
 #include "math.h"
+#include "ble_hc04.h"
 
 /*!
   \brief      main function
@@ -83,23 +84,28 @@ int main(void)
 {
     bool led_flag = false;
     uint8_t count = 0;
+
+    process_handle.upload_interval = 100;
     systick_config();
     adc_init();
     Hc4051IoInit();
-
-    delay_1ms(2000);
     select_y_control_volt(&process_handle, 0, SINGLE_VCC_READ);
 #if 0
     nvic_irq_enable( TIMER3_IRQn, 2, 0 );
     timer_config(TIMER3, 1); //20ms
 #endif
-    usart0_init();
+    usart0_init(460800);
+    delay_1ms(500);
+    ble_hc04_gpio_init();
+//    ble_hc04_init(USART_0_TR);
+
     while( 1 )
     {
         time_1ms ++;
         //LED闪烁
-        if(time_1ms % 500 == 0)
+        if(time_1ms % 200 == 0)
         {
+            ble_hc04_thread_loop((void *)&process_handle);
             led_flag = !led_flag;
             GREEN_LED(led_flag);
         }
@@ -122,7 +128,7 @@ int main(void)
         }
 
         //大约25Hz上传所有的数据
-        if(time_1ms % 50 == 0)
+        if(time_1ms % process_handle.upload_interval == 0)
         {
             //数据排列转换
             serial_frame.sof = 0x5aa5;
@@ -140,10 +146,8 @@ int main(void)
 
             if (1)
             {
-                dma_send_data((uint8_t *)&serial_frame, sizeof(serial_frame));
+                usart_dma_send_data(USART_0_TR, (uint8_t *)&serial_frame, sizeof(serial_frame));
             }
-
-
         }
         delay_1ms(1);
     }

@@ -1,4 +1,4 @@
-Component: ARM Compiler 5.06 update 4 (build 422) Tool: armlink [4d35d2]
+Component: ARM Compiler 5.06 update 7 (build 960) Tool: armlink [4d3601]
 
 ==============================================================================
 
@@ -12,16 +12,18 @@ Section Cross References
     main.o(i.main) refers to systick.o(i.systick_config) for systick_config
     main.o(i.main) refers to adc.o(i.adc_init) for adc_init
     main.o(i.main) refers to 74hc4051bq.o(i.Hc4051IoInit) for Hc4051IoInit
-    main.o(i.main) refers to systick.o(i.delay_1ms) for delay_1ms
     main.o(i.main) refers to 74hc4051bq.o(i.select_y_control_volt) for select_y_control_volt
     main.o(i.main) refers to uart.o(i.usart0_init) for usart0_init
+    main.o(i.main) refers to systick.o(i.delay_1ms) for delay_1ms
+    main.o(i.main) refers to ble_hc04.o(i.ble_hc04_gpio_init) for ble_hc04_gpio_init
+    main.o(i.main) refers to ble_hc04.o(i.ble_hc04_thread_loop) for ble_hc04_thread_loop
     main.o(i.main) refers to gd32e10x_gpio.o(i.gpio_bit_set) for gpio_bit_set
     main.o(i.main) refers to gd32e10x_gpio.o(i.gpio_bit_reset) for gpio_bit_reset
     main.o(i.main) refers to 74hc4051bq.o(i.adc_value_read) for adc_value_read
     main.o(i.main) refers to 74hc4051bq.o(i.adc_calculation_calibration_once) for adc_calculation_calibration_once
     main.o(i.main) refers to memcpya.o(.text) for __aeabi_memcpy
     main.o(i.main) refers to main.o(i.CalChecksum) for CalChecksum
-    main.o(i.main) refers to uart.o(i.dma_send_data) for dma_send_data
+    main.o(i.main) refers to uart.o(i.usart_dma_send_data) for usart_dma_send_data
     main.o(i.main) refers to main.o(.bss) for process_handle
     main.o(i.main) refers to main.o(.data) for time_1ms
     systick.o(i.delay_1ms) refers to systick.o(.data) for delay
@@ -140,12 +142,18 @@ Section Cross References
     startup_gd32e10x.o(RESET) refers to gd32e10x_it.o(i.PendSV_Handler) for PendSV_Handler
     startup_gd32e10x.o(RESET) refers to gd32e10x_it.o(i.SysTick_Handler) for SysTick_Handler
     startup_gd32e10x.o(RESET) refers to adc.o(i.DMA0_Channel0_IRQHandler) for DMA0_Channel0_IRQHandler
+    startup_gd32e10x.o(RESET) refers to uart.o(i.DMA0_Channel1_IRQHandler) for DMA0_Channel1_IRQHandler
     startup_gd32e10x.o(RESET) refers to uart.o(i.DMA0_Channel3_IRQHandler) for DMA0_Channel3_IRQHandler
     startup_gd32e10x.o(RESET) refers to uart.o(i.DMA0_Channel4_IRQHandler) for DMA0_Channel4_IRQHandler
+    startup_gd32e10x.o(RESET) refers to uart.o(i.DMA0_Channel6_IRQHandler) for DMA0_Channel6_IRQHandler
     startup_gd32e10x.o(RESET) refers to main.o(i.CAN0_RX0_IRQHandler) for CAN0_RX0_IRQHandler
     startup_gd32e10x.o(RESET) refers to gd32e10x_it.o(i.TIMER2_IRQHandler) for TIMER2_IRQHandler
     startup_gd32e10x.o(RESET) refers to main.o(i.TIMER3_IRQHandler) for TIMER3_IRQHandler
     startup_gd32e10x.o(RESET) refers to uart.o(i.USART0_IRQHandler) for USART0_IRQHandler
+    startup_gd32e10x.o(RESET) refers to uart.o(i.USART1_IRQHandler) for USART1_IRQHandler
+    startup_gd32e10x.o(RESET) refers to uart.o(i.USART2_IRQHandler) for USART2_IRQHandler
+    startup_gd32e10x.o(RESET) refers to uart.o(i.UART3_IRQHandler) for UART3_IRQHandler
+    startup_gd32e10x.o(RESET) refers to uart.o(i.DMA1_Channel4_IRQHandler) for DMA1_Channel4_IRQHandler
     startup_gd32e10x.o(.text) refers to system_gd32e10x.o(i.SystemInit) for SystemInit
     startup_gd32e10x.o(.text) refers to entry.o(.ARM.Collect$$$$00000000) for __main
     74hc4051bq.o(i.Hc4051IoInit) refers to gd32e10x_rcu.o(i.rcu_periph_clock_enable) for rcu_periph_clock_enable
@@ -161,7 +169,7 @@ Section Cross References
     74hc4051bq.o(i.select_x_control) refers to gd32e10x_gpio.o(i.gpio_output_port_get) for gpio_output_port_get
     74hc4051bq.o(i.select_x_control) refers to gd32e10x_gpio.o(i.gpio_port_write) for gpio_port_write
     74hc4051bq.o(i.select_y_control_volt) refers to gd32e10x_gpio.o(i.gpio_port_write) for gpio_port_write
-    74hc4051bq.o(i.select_y_control_volt) refers to 74hc4051bq.o(.data) for refine_y_pos_normal
+    74hc4051bq.o(i.select_y_control_volt) refers to 74hc4051bq.o(.data) for refine_y_pos_aosha
     adc.o(i.DMA0_Channel0_IRQHandler) refers to gd32e10x_dma.o(i.dma_interrupt_flag_get) for dma_interrupt_flag_get
     adc.o(i.DMA0_Channel0_IRQHandler) refers to gd32e10x_dma.o(i.dma_interrupt_flag_clear) for dma_interrupt_flag_clear
     adc.o(i.DMA0_Channel0_IRQHandler) refers to adc.o(i.read_adc_value) for read_adc_value
@@ -216,29 +224,67 @@ Section Cross References
     timer.o(i.timer_config2) refers to gd32e10x_timer.o(i.timer_init) for timer_init
     timer.o(i.timer_config2) refers to gd32e10x_timer.o(i.timer_interrupt_enable) for timer_interrupt_enable
     timer.o(i.timer_config2) refers to gd32e10x_timer.o(i.timer_enable) for timer_enable
+    uart.o(i.DMA0_Channel1_IRQHandler) refers to gd32e10x_dma.o(i.dma_interrupt_flag_get) for dma_interrupt_flag_get
+    uart.o(i.DMA0_Channel1_IRQHandler) refers to gd32e10x_dma.o(i.dma_interrupt_flag_clear) for dma_interrupt_flag_clear
+    uart.o(i.DMA0_Channel1_IRQHandler) refers to uart.o(.data) for dma0_ch1_idle
     uart.o(i.DMA0_Channel3_IRQHandler) refers to gd32e10x_dma.o(i.dma_interrupt_flag_get) for dma_interrupt_flag_get
     uart.o(i.DMA0_Channel3_IRQHandler) refers to gd32e10x_dma.o(i.dma_interrupt_flag_clear) for dma_interrupt_flag_clear
-    uart.o(i.DMA0_Channel3_IRQHandler) refers to uart.o(.data) for dma_idle
+    uart.o(i.DMA0_Channel3_IRQHandler) refers to uart.o(.data) for dma0_ch3_idle
     uart.o(i.DMA0_Channel4_IRQHandler) refers to gd32e10x_dma.o(i.dma_interrupt_flag_get) for dma_interrupt_flag_get
     uart.o(i.DMA0_Channel4_IRQHandler) refers to gd32e10x_dma.o(i.dma_interrupt_flag_clear) for dma_interrupt_flag_clear
+    uart.o(i.DMA0_Channel6_IRQHandler) refers to gd32e10x_dma.o(i.dma_interrupt_flag_get) for dma_interrupt_flag_get
+    uart.o(i.DMA0_Channel6_IRQHandler) refers to gd32e10x_dma.o(i.dma_interrupt_flag_clear) for dma_interrupt_flag_clear
+    uart.o(i.DMA0_Channel6_IRQHandler) refers to uart.o(.data) for dma0_ch6_idle
+    uart.o(i.DMA1_Channel4_IRQHandler) refers to gd32e10x_dma.o(i.dma_interrupt_flag_get) for dma_interrupt_flag_get
+    uart.o(i.DMA1_Channel4_IRQHandler) refers to gd32e10x_dma.o(i.dma_interrupt_flag_clear) for dma_interrupt_flag_clear
+    uart.o(i.DMA1_Channel4_IRQHandler) refers to uart.o(.data) for dma1_ch4_idle
+    uart.o(i.UART3_IRQHandler) refers to gd32e10x_usart.o(i.usart_interrupt_flag_get) for usart_interrupt_flag_get
+    uart.o(i.UART3_IRQHandler) refers to gd32e10x_dma.o(i.dma_channel_disable) for dma_channel_disable
+    uart.o(i.UART3_IRQHandler) refers to gd32e10x_dma.o(i.dma_transfer_number_get) for dma_transfer_number_get
+    uart.o(i.UART3_IRQHandler) refers to circular_buffer.o(i.CircBuf_Push) for CircBuf_Push
+    uart.o(i.UART3_IRQHandler) refers to gd32e10x_dma.o(i.dma_transfer_number_config) for dma_transfer_number_config
+    uart.o(i.UART3_IRQHandler) refers to gd32e10x_dma.o(i.dma_channel_enable) for dma_channel_enable
+    uart.o(i.UART3_IRQHandler) refers to uart.o(.bss) for USART3_RX_CACHE_BUFFER
     uart.o(i.USART0_IRQHandler) refers to gd32e10x_usart.o(i.usart_interrupt_flag_get) for usart_interrupt_flag_get
     uart.o(i.USART0_IRQHandler) refers to gd32e10x_dma.o(i.dma_channel_disable) for dma_channel_disable
     uart.o(i.USART0_IRQHandler) refers to gd32e10x_dma.o(i.dma_transfer_number_get) for dma_transfer_number_get
     uart.o(i.USART0_IRQHandler) refers to circular_buffer.o(i.CircBuf_Push) for CircBuf_Push
     uart.o(i.USART0_IRQHandler) refers to gd32e10x_dma.o(i.dma_transfer_number_config) for dma_transfer_number_config
     uart.o(i.USART0_IRQHandler) refers to gd32e10x_dma.o(i.dma_channel_enable) for dma_channel_enable
-    uart.o(i.USART0_IRQHandler) refers to uart.o(.data) for get_dma_len
-    uart.o(i.USART0_IRQHandler) refers to uart.o(.bss) for USART1_RxBuff
-    uart.o(i.USART1_At) refers to circular_buffer.o(i.CircBuf_At) for CircBuf_At
-    uart.o(i.USART1_At) refers to uart.o(.bss) for USART1_RxCBuf
-    uart.o(i.USART1_Drop) refers to circular_buffer.o(i.CircBuf_Drop) for CircBuf_Drop
-    uart.o(i.USART1_Drop) refers to uart.o(.bss) for USART1_RxCBuf
-    uart.o(i.USART1_GetDataCount) refers to circular_buffer.o(i.CircBuf_GetUsedSize) for CircBuf_GetUsedSize
-    uart.o(i.USART1_GetDataCount) refers to uart.o(.bss) for USART1_RxCBuf
-    uart.o(i.USART1_Read) refers to circular_buffer.o(i.CircBuf_Read) for CircBuf_Read
-    uart.o(i.USART1_Read) refers to uart.o(.bss) for USART1_RxCBuf
-    uart.o(i.USART1_Recv) refers to circular_buffer.o(i.CircBuf_Pop) for CircBuf_Pop
-    uart.o(i.USART1_Recv) refers to uart.o(.bss) for USART1_RxCBuf
+    uart.o(i.USART0_IRQHandler) refers to uart.o(.bss) for USART0_RX_CACHE_BUFFER
+    uart.o(i.USART1_IRQHandler) refers to gd32e10x_usart.o(i.usart_interrupt_flag_get) for usart_interrupt_flag_get
+    uart.o(i.USART1_IRQHandler) refers to gd32e10x_dma.o(i.dma_channel_disable) for dma_channel_disable
+    uart.o(i.USART1_IRQHandler) refers to gd32e10x_dma.o(i.dma_transfer_number_get) for dma_transfer_number_get
+    uart.o(i.USART1_IRQHandler) refers to circular_buffer.o(i.CircBuf_Push) for CircBuf_Push
+    uart.o(i.USART1_IRQHandler) refers to gd32e10x_dma.o(i.dma_transfer_number_config) for dma_transfer_number_config
+    uart.o(i.USART1_IRQHandler) refers to gd32e10x_dma.o(i.dma_channel_enable) for dma_channel_enable
+    uart.o(i.USART1_IRQHandler) refers to uart.o(.bss) for USART1_RX_CACHE_BUFFER
+    uart.o(i.USART2_IRQHandler) refers to gd32e10x_usart.o(i.usart_interrupt_flag_get) for usart_interrupt_flag_get
+    uart.o(i.USART2_IRQHandler) refers to gd32e10x_dma.o(i.dma_channel_disable) for dma_channel_disable
+    uart.o(i.USART2_IRQHandler) refers to gd32e10x_dma.o(i.dma_transfer_number_get) for dma_transfer_number_get
+    uart.o(i.USART2_IRQHandler) refers to circular_buffer.o(i.CircBuf_Push) for CircBuf_Push
+    uart.o(i.USART2_IRQHandler) refers to gd32e10x_dma.o(i.dma_transfer_number_config) for dma_transfer_number_config
+    uart.o(i.USART2_IRQHandler) refers to gd32e10x_dma.o(i.dma_channel_enable) for dma_channel_enable
+    uart.o(i.USART2_IRQHandler) refers to uart.o(.bss) for USART2_RX_CACHE_BUFFER
+    uart.o(i.dma0_ch1_usart2_tx_init) refers to gd32e10x_rcu.o(i.rcu_periph_clock_enable) for rcu_periph_clock_enable
+    uart.o(i.dma0_ch1_usart2_tx_init) refers to gd32e10x_dma.o(i.dma_deinit) for dma_deinit
+    uart.o(i.dma0_ch1_usart2_tx_init) refers to gd32e10x_dma.o(i.dma_struct_para_init) for dma_struct_para_init
+    uart.o(i.dma0_ch1_usart2_tx_init) refers to gd32e10x_dma.o(i.dma_init) for dma_init
+    uart.o(i.dma0_ch1_usart2_tx_init) refers to gd32e10x_dma.o(i.dma_circulation_disable) for dma_circulation_disable
+    uart.o(i.dma0_ch1_usart2_tx_init) refers to gd32e10x_dma.o(i.dma_memory_to_memory_disable) for dma_memory_to_memory_disable
+    uart.o(i.dma0_ch1_usart2_tx_init) refers to gd32e10x_dma.o(i.dma_interrupt_enable) for dma_interrupt_enable
+    uart.o(i.dma0_ch1_usart2_tx_init) refers to gd32e10x_dma.o(i.dma_channel_disable) for dma_channel_disable
+    uart.o(i.dma0_ch1_usart2_tx_init) refers to uart.o(.bss) for USART2_TxBuff
+    uart.o(i.dma0_ch2_usart2_rx_init) refers to memseta.o(.text) for __aeabi_memclr4
+    uart.o(i.dma0_ch2_usart2_rx_init) refers to gd32e10x_rcu.o(i.rcu_periph_clock_enable) for rcu_periph_clock_enable
+    uart.o(i.dma0_ch2_usart2_rx_init) refers to gd32e10x_dma.o(i.dma_deinit) for dma_deinit
+    uart.o(i.dma0_ch2_usart2_rx_init) refers to gd32e10x_dma.o(i.dma_struct_para_init) for dma_struct_para_init
+    uart.o(i.dma0_ch2_usart2_rx_init) refers to gd32e10x_dma.o(i.dma_init) for dma_init
+    uart.o(i.dma0_ch2_usart2_rx_init) refers to gd32e10x_dma.o(i.dma_circulation_disable) for dma_circulation_disable
+    uart.o(i.dma0_ch2_usart2_rx_init) refers to gd32e10x_dma.o(i.dma_memory_to_memory_disable) for dma_memory_to_memory_disable
+    uart.o(i.dma0_ch2_usart2_rx_init) refers to gd32e10x_usart.o(i.usart_dma_receive_config) for usart_dma_receive_config
+    uart.o(i.dma0_ch2_usart2_rx_init) refers to gd32e10x_dma.o(i.dma_channel_enable) for dma_channel_enable
+    uart.o(i.dma0_ch2_usart2_rx_init) refers to uart.o(.bss) for USART2_RX_CACHE_BUFFER
     uart.o(i.dma0_ch3_usart0_tx_init) refers to gd32e10x_rcu.o(i.rcu_periph_clock_enable) for rcu_periph_clock_enable
     uart.o(i.dma0_ch3_usart0_tx_init) refers to gd32e10x_dma.o(i.dma_deinit) for dma_deinit
     uart.o(i.dma0_ch3_usart0_tx_init) refers to gd32e10x_dma.o(i.dma_struct_para_init) for dma_struct_para_init
@@ -246,23 +292,55 @@ Section Cross References
     uart.o(i.dma0_ch3_usart0_tx_init) refers to gd32e10x_dma.o(i.dma_circulation_disable) for dma_circulation_disable
     uart.o(i.dma0_ch3_usart0_tx_init) refers to gd32e10x_dma.o(i.dma_memory_to_memory_disable) for dma_memory_to_memory_disable
     uart.o(i.dma0_ch3_usart0_tx_init) refers to gd32e10x_dma.o(i.dma_interrupt_enable) for dma_interrupt_enable
-    uart.o(i.dma0_ch3_usart0_tx_init) refers to uart.o(.bss) for USART1_TxBuff
+    uart.o(i.dma0_ch3_usart0_tx_init) refers to gd32e10x_dma.o(i.dma_channel_disable) for dma_channel_disable
+    uart.o(i.dma0_ch3_usart0_tx_init) refers to uart.o(.bss) for USART0_TxBuff
     uart.o(i.dma0_ch4_usart0_rx_init) refers to gd32e10x_rcu.o(i.rcu_periph_clock_enable) for rcu_periph_clock_enable
     uart.o(i.dma0_ch4_usart0_rx_init) refers to gd32e10x_dma.o(i.dma_deinit) for dma_deinit
+    uart.o(i.dma0_ch4_usart0_rx_init) refers to gd32e10x_dma.o(i.dma_struct_para_init) for dma_struct_para_init
     uart.o(i.dma0_ch4_usart0_rx_init) refers to gd32e10x_dma.o(i.dma_init) for dma_init
     uart.o(i.dma0_ch4_usart0_rx_init) refers to gd32e10x_dma.o(i.dma_circulation_disable) for dma_circulation_disable
     uart.o(i.dma0_ch4_usart0_rx_init) refers to gd32e10x_dma.o(i.dma_memory_to_memory_disable) for dma_memory_to_memory_disable
     uart.o(i.dma0_ch4_usart0_rx_init) refers to gd32e10x_usart.o(i.usart_dma_receive_config) for usart_dma_receive_config
-    uart.o(i.dma0_ch4_usart0_rx_init) refers to gd32e10x_dma.o(i.dma_interrupt_enable) for dma_interrupt_enable
     uart.o(i.dma0_ch4_usart0_rx_init) refers to gd32e10x_dma.o(i.dma_channel_enable) for dma_channel_enable
-    uart.o(i.dma0_ch4_usart0_rx_init) refers to gd32e10x_usart.o(i.usart_dma_transmit_config) for usart_dma_transmit_config
-    uart.o(i.dma0_ch4_usart0_rx_init) refers to uart.o(.bss) for USART1_RxBuff
-    uart.o(i.dma_send_data) refers to gd32e10x_dma.o(i.dma_channel_disable) for dma_channel_disable
-    uart.o(i.dma_send_data) refers to gd32e10x_dma.o(i.dma_memory_address_config) for dma_memory_address_config
-    uart.o(i.dma_send_data) refers to gd32e10x_dma.o(i.dma_transfer_number_config) for dma_transfer_number_config
-    uart.o(i.dma_send_data) refers to gd32e10x_dma.o(i.dma_channel_enable) for dma_channel_enable
-    uart.o(i.dma_send_data) refers to gd32e10x_usart.o(i.usart_dma_transmit_config) for usart_dma_transmit_config
-    uart.o(i.dma_send_data) refers to uart.o(.data) for dma_idle
+    uart.o(i.dma0_ch4_usart0_rx_init) refers to uart.o(.bss) for USART0_RX_CACHE_BUFFER
+    uart.o(i.dma0_ch5_usart1_rx_init) refers to memseta.o(.text) for __aeabi_memclr4
+    uart.o(i.dma0_ch5_usart1_rx_init) refers to gd32e10x_rcu.o(i.rcu_periph_clock_enable) for rcu_periph_clock_enable
+    uart.o(i.dma0_ch5_usart1_rx_init) refers to gd32e10x_dma.o(i.dma_deinit) for dma_deinit
+    uart.o(i.dma0_ch5_usart1_rx_init) refers to gd32e10x_dma.o(i.dma_struct_para_init) for dma_struct_para_init
+    uart.o(i.dma0_ch5_usart1_rx_init) refers to gd32e10x_dma.o(i.dma_init) for dma_init
+    uart.o(i.dma0_ch5_usart1_rx_init) refers to gd32e10x_dma.o(i.dma_circulation_disable) for dma_circulation_disable
+    uart.o(i.dma0_ch5_usart1_rx_init) refers to gd32e10x_dma.o(i.dma_memory_to_memory_disable) for dma_memory_to_memory_disable
+    uart.o(i.dma0_ch5_usart1_rx_init) refers to gd32e10x_usart.o(i.usart_dma_receive_config) for usart_dma_receive_config
+    uart.o(i.dma0_ch5_usart1_rx_init) refers to gd32e10x_dma.o(i.dma_channel_enable) for dma_channel_enable
+    uart.o(i.dma0_ch5_usart1_rx_init) refers to uart.o(.bss) for USART1_RX_CACHE_BUFFER
+    uart.o(i.dma0_ch6_usart1_tx_init) refers to gd32e10x_rcu.o(i.rcu_periph_clock_enable) for rcu_periph_clock_enable
+    uart.o(i.dma0_ch6_usart1_tx_init) refers to gd32e10x_dma.o(i.dma_deinit) for dma_deinit
+    uart.o(i.dma0_ch6_usart1_tx_init) refers to gd32e10x_dma.o(i.dma_struct_para_init) for dma_struct_para_init
+    uart.o(i.dma0_ch6_usart1_tx_init) refers to gd32e10x_dma.o(i.dma_init) for dma_init
+    uart.o(i.dma0_ch6_usart1_tx_init) refers to gd32e10x_dma.o(i.dma_circulation_disable) for dma_circulation_disable
+    uart.o(i.dma0_ch6_usart1_tx_init) refers to gd32e10x_dma.o(i.dma_memory_to_memory_disable) for dma_memory_to_memory_disable
+    uart.o(i.dma0_ch6_usart1_tx_init) refers to gd32e10x_dma.o(i.dma_interrupt_enable) for dma_interrupt_enable
+    uart.o(i.dma0_ch6_usart1_tx_init) refers to gd32e10x_dma.o(i.dma_channel_disable) for dma_channel_disable
+    uart.o(i.dma0_ch6_usart1_tx_init) refers to uart.o(.bss) for USART1_TxBuff
+    uart.o(i.dma1_ch2_usart3_rx_init) refers to memseta.o(.text) for __aeabi_memclr4
+    uart.o(i.dma1_ch2_usart3_rx_init) refers to gd32e10x_rcu.o(i.rcu_periph_clock_enable) for rcu_periph_clock_enable
+    uart.o(i.dma1_ch2_usart3_rx_init) refers to gd32e10x_dma.o(i.dma_deinit) for dma_deinit
+    uart.o(i.dma1_ch2_usart3_rx_init) refers to gd32e10x_dma.o(i.dma_struct_para_init) for dma_struct_para_init
+    uart.o(i.dma1_ch2_usart3_rx_init) refers to gd32e10x_dma.o(i.dma_init) for dma_init
+    uart.o(i.dma1_ch2_usart3_rx_init) refers to gd32e10x_dma.o(i.dma_circulation_disable) for dma_circulation_disable
+    uart.o(i.dma1_ch2_usart3_rx_init) refers to gd32e10x_dma.o(i.dma_memory_to_memory_disable) for dma_memory_to_memory_disable
+    uart.o(i.dma1_ch2_usart3_rx_init) refers to gd32e10x_usart.o(i.usart_dma_receive_config) for usart_dma_receive_config
+    uart.o(i.dma1_ch2_usart3_rx_init) refers to gd32e10x_dma.o(i.dma_channel_enable) for dma_channel_enable
+    uart.o(i.dma1_ch2_usart3_rx_init) refers to uart.o(.bss) for USART3_RX_CACHE_BUFFER
+    uart.o(i.dma1_ch4_usart3_tx_init) refers to gd32e10x_rcu.o(i.rcu_periph_clock_enable) for rcu_periph_clock_enable
+    uart.o(i.dma1_ch4_usart3_tx_init) refers to gd32e10x_dma.o(i.dma_deinit) for dma_deinit
+    uart.o(i.dma1_ch4_usart3_tx_init) refers to gd32e10x_dma.o(i.dma_struct_para_init) for dma_struct_para_init
+    uart.o(i.dma1_ch4_usart3_tx_init) refers to gd32e10x_dma.o(i.dma_init) for dma_init
+    uart.o(i.dma1_ch4_usart3_tx_init) refers to gd32e10x_dma.o(i.dma_circulation_disable) for dma_circulation_disable
+    uart.o(i.dma1_ch4_usart3_tx_init) refers to gd32e10x_dma.o(i.dma_memory_to_memory_disable) for dma_memory_to_memory_disable
+    uart.o(i.dma1_ch4_usart3_tx_init) refers to gd32e10x_dma.o(i.dma_interrupt_enable) for dma_interrupt_enable
+    uart.o(i.dma1_ch4_usart3_tx_init) refers to gd32e10x_dma.o(i.dma_channel_disable) for dma_channel_disable
+    uart.o(i.dma1_ch4_usart3_tx_init) refers to uart.o(.bss) for USART3_TxBuff
     uart.o(i.fputc) refers to gd32e10x_usart.o(i.usart_data_transmit) for usart_data_transmit
     uart.o(i.fputc) refers to gd32e10x_usart.o(i.usart_flag_get) for usart_flag_get
     uart.o(i.gd_eval_com_init) refers to gd32e10x_rcu.o(i.rcu_periph_clock_enable) for rcu_periph_clock_enable
@@ -275,12 +353,70 @@ Section Cross References
     uart.o(i.gd_eval_com_init) refers to gd32e10x_usart.o(i.usart_interrupt_enable) for usart_interrupt_enable
     uart.o(i.gd_eval_com_init) refers to uart.o(.data) for COM_GPIO_CLK
     uart.o(i.nvic_config) refers to gd32e10x_misc.o(i.nvic_irq_enable) for nvic_irq_enable
+    uart.o(i.uart3_dma_send_data) refers to gd32e10x_dma.o(i.dma_channel_disable) for dma_channel_disable
+    uart.o(i.uart3_dma_send_data) refers to gd32e10x_dma.o(i.dma_memory_address_config) for dma_memory_address_config
+    uart.o(i.uart3_dma_send_data) refers to gd32e10x_dma.o(i.dma_transfer_number_config) for dma_transfer_number_config
+    uart.o(i.uart3_dma_send_data) refers to gd32e10x_dma.o(i.dma_channel_enable) for dma_channel_enable
+    uart.o(i.uart3_dma_send_data) refers to gd32e10x_usart.o(i.usart_dma_transmit_config) for usart_dma_transmit_config
+    uart.o(i.uart3_dma_send_data) refers to uart.o(.data) for dma1_ch4_idle
+    uart.o(i.usart0_dma_send_data) refers to gd32e10x_dma.o(i.dma_channel_disable) for dma_channel_disable
+    uart.o(i.usart0_dma_send_data) refers to gd32e10x_dma.o(i.dma_memory_address_config) for dma_memory_address_config
+    uart.o(i.usart0_dma_send_data) refers to gd32e10x_dma.o(i.dma_transfer_number_config) for dma_transfer_number_config
+    uart.o(i.usart0_dma_send_data) refers to gd32e10x_dma.o(i.dma_channel_enable) for dma_channel_enable
+    uart.o(i.usart0_dma_send_data) refers to gd32e10x_usart.o(i.usart_dma_transmit_config) for usart_dma_transmit_config
+    uart.o(i.usart0_dma_send_data) refers to uart.o(.data) for dma0_ch3_idle
     uart.o(i.usart0_init) refers to uart.o(i.gd_eval_com_init) for gd_eval_com_init
     uart.o(i.usart0_init) refers to uart.o(i.nvic_config) for nvic_config
     uart.o(i.usart0_init) refers to circular_buffer.o(i.CircBuf_Init) for CircBuf_Init
     uart.o(i.usart0_init) refers to uart.o(i.dma0_ch3_usart0_tx_init) for dma0_ch3_usart0_tx_init
     uart.o(i.usart0_init) refers to uart.o(i.dma0_ch4_usart0_rx_init) for dma0_ch4_usart0_rx_init
-    uart.o(i.usart0_init) refers to uart.o(.bss) for USART1_RxBuff
+    uart.o(i.usart0_init) refers to uart.o(.bss) for USART0_RxBuff
+    uart.o(i.usart1_dma_send_data) refers to gd32e10x_dma.o(i.dma_channel_disable) for dma_channel_disable
+    uart.o(i.usart1_dma_send_data) refers to gd32e10x_dma.o(i.dma_memory_address_config) for dma_memory_address_config
+    uart.o(i.usart1_dma_send_data) refers to gd32e10x_dma.o(i.dma_transfer_number_config) for dma_transfer_number_config
+    uart.o(i.usart1_dma_send_data) refers to gd32e10x_dma.o(i.dma_channel_enable) for dma_channel_enable
+    uart.o(i.usart1_dma_send_data) refers to gd32e10x_usart.o(i.usart_dma_transmit_config) for usart_dma_transmit_config
+    uart.o(i.usart1_dma_send_data) refers to uart.o(.data) for dma0_ch6_idle
+    uart.o(i.usart1_init) refers to uart.o(i.gd_eval_com_init) for gd_eval_com_init
+    uart.o(i.usart1_init) refers to uart.o(i.nvic_config) for nvic_config
+    uart.o(i.usart1_init) refers to circular_buffer.o(i.CircBuf_Init) for CircBuf_Init
+    uart.o(i.usart1_init) refers to uart.o(i.dma0_ch6_usart1_tx_init) for dma0_ch6_usart1_tx_init
+    uart.o(i.usart1_init) refers to uart.o(i.dma0_ch5_usart1_rx_init) for dma0_ch5_usart1_rx_init
+    uart.o(i.usart1_init) refers to uart.o(.bss) for USART1_RxBuff
+    uart.o(i.usart2_dma_send_data) refers to gd32e10x_dma.o(i.dma_channel_disable) for dma_channel_disable
+    uart.o(i.usart2_dma_send_data) refers to gd32e10x_dma.o(i.dma_memory_address_config) for dma_memory_address_config
+    uart.o(i.usart2_dma_send_data) refers to gd32e10x_dma.o(i.dma_transfer_number_config) for dma_transfer_number_config
+    uart.o(i.usart2_dma_send_data) refers to gd32e10x_dma.o(i.dma_channel_enable) for dma_channel_enable
+    uart.o(i.usart2_dma_send_data) refers to gd32e10x_usart.o(i.usart_dma_transmit_config) for usart_dma_transmit_config
+    uart.o(i.usart2_dma_send_data) refers to uart.o(.data) for dma0_ch1_idle
+    uart.o(i.usart2_init) refers to uart.o(i.gd_eval_com_init) for gd_eval_com_init
+    uart.o(i.usart2_init) refers to uart.o(i.nvic_config) for nvic_config
+    uart.o(i.usart2_init) refers to circular_buffer.o(i.CircBuf_Init) for CircBuf_Init
+    uart.o(i.usart2_init) refers to uart.o(i.dma0_ch1_usart2_tx_init) for dma0_ch1_usart2_tx_init
+    uart.o(i.usart2_init) refers to uart.o(i.dma0_ch2_usart2_rx_init) for dma0_ch2_usart2_rx_init
+    uart.o(i.usart2_init) refers to uart.o(.bss) for USART2_RxBuff
+    uart.o(i.usart3_init) refers to uart.o(i.gd_eval_com_init) for gd_eval_com_init
+    uart.o(i.usart3_init) refers to uart.o(i.nvic_config) for nvic_config
+    uart.o(i.usart3_init) refers to circular_buffer.o(i.CircBuf_Init) for CircBuf_Init
+    uart.o(i.usart3_init) refers to uart.o(i.dma1_ch4_usart3_tx_init) for dma1_ch4_usart3_tx_init
+    uart.o(i.usart3_init) refers to uart.o(i.dma1_ch2_usart3_rx_init) for dma1_ch2_usart3_rx_init
+    uart.o(i.usart3_init) refers to uart.o(.bss) for USART3_RxBuff
+    uart.o(i.usart_at) refers to circular_buffer.o(i.CircBuf_At) for CircBuf_At
+    uart.o(i.usart_at) refers to uart.o(.bss) for USART0_RxCBuf
+    uart.o(i.usart_dma_send_data) refers to uart.o(i.usart0_dma_send_data) for usart0_dma_send_data
+    uart.o(i.usart_dma_send_data) refers to uart.o(i.usart1_dma_send_data) for usart1_dma_send_data
+    uart.o(i.usart_dma_send_data) refers to uart.o(i.usart2_dma_send_data) for usart2_dma_send_data
+    uart.o(i.usart_dma_send_data) refers to uart.o(i.uart3_dma_send_data) for uart3_dma_send_data
+    uart.o(i.usart_drop) refers to circular_buffer.o(i.CircBuf_Drop) for CircBuf_Drop
+    uart.o(i.usart_drop) refers to uart.o(.bss) for USART0_RxCBuf
+    uart.o(i.usart_get_rx_data_count) refers to circular_buffer.o(i.CircBuf_GetUsedSize) for CircBuf_GetUsedSize
+    uart.o(i.usart_get_rx_data_count) refers to uart.o(.bss) for USART0_RxCBuf
+    uart.o(i.usart_read) refers to circular_buffer.o(i.CircBuf_Read) for CircBuf_Read
+    uart.o(i.usart_read) refers to uart.o(.bss) for USART0_RxCBuf
+    uart.o(i.usart_recv) refers to circular_buffer.o(i.CircBuf_Pop) for CircBuf_Pop
+    uart.o(i.usart_recv) refers to uart.o(.bss) for USART0_RxCBuf
+    uart.o(i.usart_rx_probe) refers to circular_buffer.o(i.CircBuf_IsEmpty) for CircBuf_IsEmpty
+    uart.o(i.usart_rx_probe) refers to uart.o(.bss) for USART0_RxCBuf
     circular_buffer.o(i.CircBuf_Alloc) refers to circular_buffer.o(i.IsPowerOf2) for IsPowerOf2
     circular_buffer.o(i.CircBuf_Alloc) refers to circular_buffer.o(i.RoundUp_PowerOf2) for RoundUp_PowerOf2
     circular_buffer.o(i.CircBuf_Alloc) refers to calloc.o(.text) for calloc
@@ -385,8 +521,59 @@ Section Cross References
     can.o(i.can_gpio_config) refers to gd32e10x_gpio.o(i.gpio_init) for gpio_init
     can.o(i.send_can0_data) refers to gd32e10x_can.o(i.can_message_transmit) for can_message_transmit
     can.o(i.send_can0_data) refers to can.o(.bss) for g_transmit_message
-    entry.o(.ARM.Collect$$$$00000000) refers (Special) to entry10a.o(.ARM.Collect$$$$0000000D) for __rt_final_cpp
-    entry.o(.ARM.Collect$$$$00000000) refers (Special) to entry11a.o(.ARM.Collect$$$$0000000F) for __rt_final_exit
+    at_commit_base.o(i.at_config_at_cmd_timeout) refers to memseta.o(.text) for __aeabi_memclr4
+    at_commit_base.o(i.at_config_at_cmd_timeout) refers to strlen.o(.text) for strlen
+    at_commit_base.o(i.at_config_at_cmd_timeout) refers to uart.o(i.usart_dma_send_data) for usart_dma_send_data
+    at_commit_base.o(i.at_config_at_cmd_timeout) refers to at_commit_base.o(i.at_printf) for at_printf
+    at_commit_base.o(i.at_config_at_cmd_timeout) refers to systick.o(i.delay_1ms) for delay_1ms
+    at_commit_base.o(i.at_config_at_cmd_timeout) refers to uart.o(i.usart_rx_probe) for usart_rx_probe
+    at_commit_base.o(i.at_config_at_cmd_timeout) refers to uart.o(i.usart_get_rx_data_count) for usart_get_rx_data_count
+    at_commit_base.o(i.at_config_at_cmd_timeout) refers to uart.o(i.usart_recv) for usart_recv
+    at_commit_base.o(i.at_config_at_cmd_timeout) refers to strncmp.o(.text) for strncmp
+    at_commit_base.o(i.at_config_sync_succcess) refers to memseta.o(.text) for __aeabi_memclr4
+    at_commit_base.o(i.at_config_sync_succcess) refers to strcat.o(.text) for strcat
+    at_commit_base.o(i.at_config_sync_succcess) refers to strlen.o(.text) for strlen
+    at_commit_base.o(i.at_config_sync_succcess) refers to uart.o(i.usart_dma_send_data) for usart_dma_send_data
+    at_commit_base.o(i.at_config_sync_succcess) refers to at_commit_base.o(i.at_printf) for at_printf
+    at_commit_base.o(i.at_config_sync_succcess) refers to systick.o(i.delay_1ms) for delay_1ms
+    at_commit_base.o(i.at_config_sync_succcess) refers to uart.o(i.usart_rx_probe) for usart_rx_probe
+    at_commit_base.o(i.at_config_sync_succcess) refers to uart.o(i.usart_get_rx_data_count) for usart_get_rx_data_count
+    at_commit_base.o(i.at_config_sync_succcess) refers to uart.o(i.usart_recv) for usart_recv
+    at_commit_base.o(i.at_config_sync_succcess) refers to strncmp.o(.text) for strncmp
+    at_commit_base.o(i.at_consult_at_cmd) refers to memseta.o(.text) for __aeabi_memclr
+    at_commit_base.o(i.at_consult_at_cmd) refers to strlen.o(.text) for strlen
+    at_commit_base.o(i.at_consult_at_cmd) refers to uart.o(i.usart_dma_send_data) for usart_dma_send_data
+    at_commit_base.o(i.at_consult_at_cmd) refers to uart.o(i.usart_rx_probe) for usart_rx_probe
+    at_commit_base.o(i.at_consult_at_cmd) refers to uart.o(i.usart_get_rx_data_count) for usart_get_rx_data_count
+    at_commit_base.o(i.at_consult_at_cmd) refers to uart.o(i.usart_recv) for usart_recv
+    at_commit_base.o(i.at_consult_at_cmd) refers to strncmp.o(.text) for strncmp
+    at_commit_base.o(i.at_consult_at_cmd) refers to strcpy.o(.text) for strcpy
+    at_commit_base.o(i.at_consult_at_cmd) refers to at_commit_base.o(i.at_printf) for at_printf
+    at_commit_base.o(i.at_wait_cmd_ack) refers to memseta.o(.text) for __aeabi_memclr4
+    at_commit_base.o(i.at_wait_cmd_ack) refers to systick.o(i.delay_1ms) for delay_1ms
+    at_commit_base.o(i.at_wait_cmd_ack) refers to uart.o(i.usart_rx_probe) for usart_rx_probe
+    at_commit_base.o(i.at_wait_cmd_ack) refers to uart.o(i.usart_get_rx_data_count) for usart_get_rx_data_count
+    at_commit_base.o(i.at_wait_cmd_ack) refers to uart.o(i.usart_recv) for usart_recv
+    at_commit_base.o(i.at_wait_cmd_ack) refers to strlen.o(.text) for strlen
+    at_commit_base.o(i.at_wait_cmd_ack) refers to strncmp.o(.text) for strncmp
+    at_commit_base.o(i.at_wait_cmd_ack) refers to at_commit_base.o(i.at_printf) for at_printf
+    at_commit_base.o(i.at_wait_cmd_delay) refers to memseta.o(.text) for __aeabi_memclr4
+    at_commit_base.o(i.at_wait_cmd_delay) refers to systick.o(i.delay_1ms) for delay_1ms
+    at_commit_base.o(i.at_wait_cmd_delay) refers to uart.o(i.usart_rx_probe) for usart_rx_probe
+    at_commit_base.o(i.at_wait_cmd_delay) refers to uart.o(i.usart_get_rx_data_count) for usart_get_rx_data_count
+    at_commit_base.o(i.at_wait_cmd_delay) refers to uart.o(i.usart_recv) for usart_recv
+    at_commit_base.o(i.at_wait_cmd_delay) refers to strlen.o(.text) for strlen
+    at_commit_base.o(i.at_wait_cmd_delay) refers to strncmp.o(.text) for strncmp
+    at_commit_base.o(i.at_wait_cmd_delay) refers to at_commit_base.o(i.at_printf) for at_printf
+    at_commit_base.o(i.reverse) refers to strlen.o(.text) for strlen
+    ble_hc04.o(i.ble_hc04_gpio_init) refers to gd32e10x_rcu.o(i.rcu_periph_clock_enable) for rcu_periph_clock_enable
+    ble_hc04.o(i.ble_hc04_gpio_init) refers to gd32e10x_gpio.o(i.gpio_init) for gpio_init
+    ble_hc04.o(i.ble_hc04_init) refers to at_commit_base.o(i.at_config_at_cmd_timeout) for at_config_at_cmd_timeout
+    ble_hc04.o(i.ble_hc04_init) refers to systick.o(i.delay_1ms) for delay_1ms
+    ble_hc04.o(i.ble_hc04_thread_loop) refers to gd32e10x_gpio.o(i.gpio_input_bit_get) for gpio_input_bit_get
+    entry.o(.ARM.Collect$$$$00000000) refers (Special) to entry10a.o(.ARM.Collect$$$$0000000F) for __rt_final_cpp
+    entry.o(.ARM.Collect$$$$00000000) refers (Special) to entry11a.o(.ARM.Collect$$$$00000011) for __rt_final_exit
+    entry.o(.ARM.Collect$$$$00000000) refers (Special) to entry12b.o(.ARM.Collect$$$$0000000E) for __rt_lib_shutdown_fini
     entry.o(.ARM.Collect$$$$00000000) refers (Special) to entry7b.o(.ARM.Collect$$$$00000008) for _main_clock
     entry.o(.ARM.Collect$$$$00000000) refers (Special) to entry8b.o(.ARM.Collect$$$$0000000A) for _main_cpp_init
     entry.o(.ARM.Collect$$$$00000000) refers (Special) to entry9a.o(.ARM.Collect$$$$0000000B) for _main_init
@@ -696,7 +883,6 @@ Removing Unused input sections from the image.
     Removing gd32e10x_gpio.o(i.gpio_event_output_disable), (20 bytes).
     Removing gd32e10x_gpio.o(i.gpio_event_output_enable), (20 bytes).
     Removing gd32e10x_gpio.o(i.gpio_exti_source_select), (152 bytes).
-    Removing gd32e10x_gpio.o(i.gpio_input_bit_get), (16 bytes).
     Removing gd32e10x_gpio.o(i.gpio_input_port_get), (8 bytes).
     Removing gd32e10x_gpio.o(i.gpio_output_bit_get), (16 bytes).
     Removing gd32e10x_gpio.o(i.gpio_pin_lock), (18 bytes).
@@ -1002,12 +1188,22 @@ Removing Unused input sections from the image.
     Removing timer.o(i.timer_config2), (196 bytes).
     Removing uart.o(.rev16_text), (4 bytes).
     Removing uart.o(.revsh_text), (4 bytes).
-    Removing uart.o(i.USART1_At), (20 bytes).
-    Removing uart.o(i.USART1_Drop), (20 bytes).
-    Removing uart.o(i.USART1_GetDataCount), (16 bytes).
-    Removing uart.o(i.USART1_Read), (32 bytes).
-    Removing uart.o(i.USART1_Recv), (32 bytes).
+    Removing uart.o(i.dma0_ch1_usart2_tx_init), (128 bytes).
+    Removing uart.o(i.dma0_ch2_usart2_rx_init), (136 bytes).
+    Removing uart.o(i.dma0_ch5_usart1_rx_init), (136 bytes).
+    Removing uart.o(i.dma0_ch6_usart1_tx_init), (128 bytes).
+    Removing uart.o(i.dma1_ch2_usart3_rx_init), (136 bytes).
+    Removing uart.o(i.dma1_ch4_usart3_tx_init), (128 bytes).
     Removing uart.o(i.fputc), (36 bytes).
+    Removing uart.o(i.usart1_init), (52 bytes).
+    Removing uart.o(i.usart2_init), (52 bytes).
+    Removing uart.o(i.usart3_init), (52 bytes).
+    Removing uart.o(i.usart_at), (84 bytes).
+    Removing uart.o(i.usart_drop), (80 bytes).
+    Removing uart.o(i.usart_get_rx_data_count), (72 bytes).
+    Removing uart.o(i.usart_read), (100 bytes).
+    Removing uart.o(i.usart_recv), (100 bytes).
+    Removing uart.o(i.usart_rx_probe), (72 bytes).
     Removing circular_buffer.o(i.CircBuf_Alloc), (74 bytes).
     Removing circular_buffer.o(i.CircBuf_At), (22 bytes).
     Removing circular_buffer.o(i.CircBuf_Drop), (24 bytes).
@@ -1069,8 +1265,20 @@ Removing Unused input sections from the image.
     Removing math_filter.o(i.math_display_key_point), (186 bytes).
     Removing math_filter.o(i.math_filter_min_value), (2 bytes).
     Removing math_filter.o(i.math_get_max_value), (138 bytes).
+    Removing at_commit_base.o(.rev16_text), (4 bytes).
+    Removing at_commit_base.o(.revsh_text), (4 bytes).
+    Removing at_commit_base.o(i.at_config_at_cmd_timeout), (264 bytes).
+    Removing at_commit_base.o(i.at_config_sync_succcess), (336 bytes).
+    Removing at_commit_base.o(i.at_consult_at_cmd), (132 bytes).
+    Removing at_commit_base.o(i.at_printf), (2 bytes).
+    Removing at_commit_base.o(i.at_wait_cmd_ack), (224 bytes).
+    Removing at_commit_base.o(i.at_wait_cmd_delay), (224 bytes).
+    Removing at_commit_base.o(i.reverse), (44 bytes).
+    Removing ble_hc04.o(.rev16_text), (4 bytes).
+    Removing ble_hc04.o(.revsh_text), (4 bytes).
+    Removing ble_hc04.o(i.ble_hc04_init), (220 bytes).
 
-630 unused section(s) (total 28219 bytes) removed from the image.
+651 unused section(s) (total 31001 bytes) removed from the image.
 
 ==============================================================================
 
@@ -1080,30 +1288,38 @@ Image Symbol Table
 
     Symbol Name                              Value     Ov Type        Size  Object(Section)
 
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry12a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry12b.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry10a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry10b.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry9b.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry9a.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8b.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7a.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8a.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry5.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry2.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11b.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11a.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7b.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry10b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry5.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry2.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry.o ABSOLUTE
     ../clib/microlib/malloc/calloc.c         0x00000000   Number         0  calloc.o ABSOLUTE
-    ../clib/microlib/malloc/malloc.c         0x00000000   Number         0  mallocra.o ABSOLUTE
-    ../clib/microlib/malloc/malloc.c         0x00000000   Number         0  mallocr.o ABSOLUTE
     ../clib/microlib/malloc/malloc.c         0x00000000   Number         0  malloc.o ABSOLUTE
+    ../clib/microlib/malloc/malloc.c         0x00000000   Number         0  mallocr.o ABSOLUTE
+    ../clib/microlib/malloc/malloc.c         0x00000000   Number         0  mallocra.o ABSOLUTE
     ../clib/microlib/malloc/malloc.c         0x00000000   Number         0  malloca.o ABSOLUTE
     ../clib/microlib/malloc/mvars.c          0x00000000   Number         0  mvars.o ABSOLUTE
     ../clib/microlib/string/memcpy.c         0x00000000   Number         0  memcpya.o ABSOLUTE
     ../clib/microlib/string/memcpy.c         0x00000000   Number         0  memcpyb.o ABSOLUTE
     ../clib/microlib/string/memset.c         0x00000000   Number         0  memseta.o ABSOLUTE
+    ../clib/microlib/string/strcat.c         0x00000000   Number         0  strcat.o ABSOLUTE
+    ../clib/microlib/string/strcpy.c         0x00000000   Number         0  strcpy.o ABSOLUTE
+    ../clib/microlib/string/strlen.c         0x00000000   Number         0  strlen.o ABSOLUTE
+    ../clib/microlib/string/strncmp.c        0x00000000   Number         0  strncmp.o ABSOLUTE
     ..\..\Bsp\74HC4051BQ.c                   0x00000000   Number         0  74hc4051bq.o ABSOLUTE
     ..\..\Bsp\adc.c                          0x00000000   Number         0  adc.o ABSOLUTE
+    ..\..\Bsp\at_commit_base.c               0x00000000   Number         0  at_commit_base.o ABSOLUTE
+    ..\..\Bsp\ble_hc04.c                     0x00000000   Number         0  ble_hc04.o ABSOLUTE
     ..\..\Bsp\can.c                          0x00000000   Number         0  can.o ABSOLUTE
     ..\..\Bsp\circular_buffer.c              0x00000000   Number         0  circular_buffer.o ABSOLUTE
     ..\..\Bsp\flash.c                        0x00000000   Number         0  flash.o ABSOLUTE
@@ -1138,6 +1354,8 @@ Image Symbol Table
     ..\..\Firmware\GD32E10x_standard_peripheral\Source\gd32e10x_wwdgt.c 0x00000000   Number         0  gd32e10x_wwdgt.o ABSOLUTE
     ..\\..\\Bsp\\74HC4051BQ.c                0x00000000   Number         0  74hc4051bq.o ABSOLUTE
     ..\\..\\Bsp\\adc.c                       0x00000000   Number         0  adc.o ABSOLUTE
+    ..\\..\\Bsp\\at_commit_base.c            0x00000000   Number         0  at_commit_base.o ABSOLUTE
+    ..\\..\\Bsp\\ble_hc04.c                  0x00000000   Number         0  ble_hc04.o ABSOLUTE
     ..\\..\\Bsp\\can.c                       0x00000000   Number         0  can.o ABSOLUTE
     ..\\..\\Bsp\\flash.c                     0x00000000   Number         0  flash.o ABSOLUTE
     ..\\..\\Bsp\\i2c.c                       0x00000000   Number         0  i2c.o ABSOLUTE
@@ -1184,127 +1402,141 @@ Image Symbol Table
     .ARM.Collect$$$$00000008                 0x08000158   Section        0  entry7b.o(.ARM.Collect$$$$00000008)
     .ARM.Collect$$$$0000000A                 0x08000158   Section        0  entry8b.o(.ARM.Collect$$$$0000000A)
     .ARM.Collect$$$$0000000B                 0x08000158   Section        8  entry9a.o(.ARM.Collect$$$$0000000B)
-    .ARM.Collect$$$$0000000D                 0x08000160   Section        0  entry10a.o(.ARM.Collect$$$$0000000D)
-    .ARM.Collect$$$$0000000F                 0x08000160   Section        0  entry11a.o(.ARM.Collect$$$$0000000F)
-    .ARM.Collect$$$$00002712                 0x08000160   Section        4  entry2.o(.ARM.Collect$$$$00002712)
-    __lit__00000000                          0x08000160   Data           4  entry2.o(.ARM.Collect$$$$00002712)
-    .text                                    0x08000164   Section       36  startup_gd32e10x.o(.text)
-    $v0                                      0x08000164   Number         0  startup_gd32e10x.o(.text)
-    .text                                    0x08000188   Section        0  memcpya.o(.text)
-    .text                                    0x080001ac   Section        0  memseta.o(.text)
-    .text                                    0x080001d0   Section       36  init.o(.text)
-    i.BusFault_Handler                       0x080001f4   Section        0  gd32e10x_it.o(i.BusFault_Handler)
-    i.CAN0_RX0_IRQHandler                    0x080001f8   Section        0  main.o(i.CAN0_RX0_IRQHandler)
-    i.CalChecksum                            0x08000224   Section        0  main.o(i.CalChecksum)
-    i.CircBuf_Init                           0x0800023e   Section        0  circular_buffer.o(i.CircBuf_Init)
-    i.CircBuf_Push                           0x0800027a   Section        0  circular_buffer.o(i.CircBuf_Push)
-    i.DMA0_Channel0_IRQHandler               0x080002f0   Section        0  adc.o(i.DMA0_Channel0_IRQHandler)
-    i.DMA0_Channel3_IRQHandler               0x08000314   Section        0  uart.o(i.DMA0_Channel3_IRQHandler)
-    i.DMA0_Channel4_IRQHandler               0x0800033c   Section        0  uart.o(i.DMA0_Channel4_IRQHandler)
-    i.DebugMon_Handler                       0x0800035c   Section        0  gd32e10x_it.o(i.DebugMon_Handler)
-    i.GetAdcValue                            0x08000360   Section        0  adc.o(i.GetAdcValue)
-    i.HardFault_Handler                      0x08000378   Section        0  gd32e10x_it.o(i.HardFault_Handler)
-    i.Hc4051Delay                            0x0800037c   Section        0  74hc4051bq.o(i.Hc4051Delay)
-    i.Hc4051IoInit                           0x08000388   Section        0  74hc4051bq.o(i.Hc4051IoInit)
-    i.IsPowerOf2                             0x0800041c   Section        0  circular_buffer.o(i.IsPowerOf2)
-    i.MemManage_Handler                      0x0800044c   Section        0  gd32e10x_it.o(i.MemManage_Handler)
-    i.NMI_Handler                            0x08000450   Section        0  gd32e10x_it.o(i.NMI_Handler)
-    i.NVIC_SetPriority                       0x08000454   Section        0  systick.o(i.NVIC_SetPriority)
-    NVIC_SetPriority                         0x08000455   Thumb Code    32  systick.o(i.NVIC_SetPriority)
-    i.PendSV_Handler                         0x0800047c   Section        0  gd32e10x_it.o(i.PendSV_Handler)
-    i.RoundDown_PowerOf2                     0x0800047e   Section        0  circular_buffer.o(i.RoundDown_PowerOf2)
-    i.SVC_Handler                            0x080004b6   Section        0  gd32e10x_it.o(i.SVC_Handler)
-    i.SysTick_Handler                        0x080004b8   Section        0  gd32e10x_it.o(i.SysTick_Handler)
-    i.SystemInit                             0x080004c0   Section        0  system_gd32e10x.o(i.SystemInit)
-    i.TIMER2_IRQHandler                      0x08000518   Section        0  gd32e10x_it.o(i.TIMER2_IRQHandler)
-    i.TIMER3_IRQHandler                      0x080005c0   Section        0  main.o(i.TIMER3_IRQHandler)
-    i.USART0_IRQHandler                      0x080005dc   Section        0  uart.o(i.USART0_IRQHandler)
-    i.UsageFault_Handler                     0x08000650   Section        0  gd32e10x_it.o(i.UsageFault_Handler)
-    i.__scatterload_copy                     0x08000654   Section       14  handlers.o(i.__scatterload_copy)
-    i.__scatterload_null                     0x08000662   Section        2  handlers.o(i.__scatterload_null)
-    i.__scatterload_zeroinit                 0x08000664   Section       14  handlers.o(i.__scatterload_zeroinit)
-    i.adc_calculation_calibration_once       0x08000672   Section        0  74hc4051bq.o(i.adc_calculation_calibration_once)
-    i.adc_calibration_enable                 0x08000736   Section        0  gd32e10x_adc.o(i.adc_calibration_enable)
-    i.adc_channel_length_config              0x08000760   Section        0  gd32e10x_adc.o(i.adc_channel_length_config)
-    i.adc_config                             0x080007a8   Section        0  adc.o(i.adc_config)
-    i.adc_data_alignment_config              0x08000878   Section        0  gd32e10x_adc.o(i.adc_data_alignment_config)
-    i.adc_deinit                             0x08000890   Section        0  gd32e10x_adc.o(i.adc_deinit)
-    i.adc_dma_mode_enable                    0x080008d0   Section        0  gd32e10x_adc.o(i.adc_dma_mode_enable)
-    i.adc_enable                             0x080008da   Section        0  gd32e10x_adc.o(i.adc_enable)
-    i.adc_external_trigger_config            0x080008ec   Section        0  gd32e10x_adc.o(i.adc_external_trigger_config)
-    i.adc_external_trigger_source_config     0x0800092a   Section        0  gd32e10x_adc.o(i.adc_external_trigger_source_config)
-    i.adc_init                               0x0800095a   Section        0  adc.o(i.adc_init)
-    i.adc_mode_config                        0x08000974   Section        0  gd32e10x_adc.o(i.adc_mode_config)
-    i.adc_regular_channel_config             0x08000990   Section        0  gd32e10x_adc.o(i.adc_regular_channel_config)
-    i.adc_software_trigger_enable            0x08000a3c   Section        0  gd32e10x_adc.o(i.adc_software_trigger_enable)
-    i.adc_special_function_config            0x08000a5a   Section        0  gd32e10x_adc.o(i.adc_special_function_config)
-    i.adc_value_read                         0x08000ab4   Section        0  74hc4051bq.o(i.adc_value_read)
-    i.can_message_receive                    0x08000bdc   Section        0  gd32e10x_can.o(i.can_message_receive)
-    i.delay_1ms                              0x08000da0   Section        0  systick.o(i.delay_1ms)
-    i.delay_decrement                        0x08000db4   Section        0  systick.o(i.delay_decrement)
-    i.dma0_ch3_usart0_tx_init                0x08000dcc   Section        0  uart.o(i.dma0_ch3_usart0_tx_init)
-    i.dma0_ch4_usart0_rx_init                0x08000e48   Section        0  uart.o(i.dma0_ch4_usart0_rx_init)
-    i.dma_channel_disable                    0x08000ed8   Section        0  gd32e10x_dma.o(i.dma_channel_disable)
-    i.dma_channel_enable                     0x08000f0a   Section        0  gd32e10x_dma.o(i.dma_channel_enable)
-    i.dma_circulation_disable                0x08000f3c   Section        0  gd32e10x_dma.o(i.dma_circulation_disable)
-    i.dma_circulation_enable                 0x08000f6e   Section        0  gd32e10x_dma.o(i.dma_circulation_enable)
-    i.dma_config                             0x08000fa0   Section        0  adc.o(i.dma_config)
-    i.dma_deinit                             0x08001000   Section        0  gd32e10x_dma.o(i.dma_deinit)
-    i.dma_init                               0x08001070   Section        0  gd32e10x_dma.o(i.dma_init)
-    i.dma_interrupt_enable                   0x0800119e   Section        0  gd32e10x_dma.o(i.dma_interrupt_enable)
-    i.dma_interrupt_flag_clear               0x080011d0   Section        0  gd32e10x_dma.o(i.dma_interrupt_flag_clear)
-    i.dma_interrupt_flag_get                 0x080011e0   Section        0  gd32e10x_dma.o(i.dma_interrupt_flag_get)
-    i.dma_memory_address_config              0x08001262   Section        0  gd32e10x_dma.o(i.dma_memory_address_config)
-    i.dma_memory_to_memory_disable           0x08001286   Section        0  gd32e10x_dma.o(i.dma_memory_to_memory_disable)
-    i.dma_periph_and_channel_check           0x080012b8   Section        0  gd32e10x_dma.o(i.dma_periph_and_channel_check)
-    dma_periph_and_channel_check             0x080012b9   Thumb Code    18  gd32e10x_dma.o(i.dma_periph_and_channel_check)
-    i.dma_send_data                          0x080012d0   Section        0  uart.o(i.dma_send_data)
-    i.dma_struct_para_init                   0x08001320   Section        0  gd32e10x_dma.o(i.dma_struct_para_init)
-    i.dma_transfer_number_config             0x0800133c   Section        0  gd32e10x_dma.o(i.dma_transfer_number_config)
-    i.dma_transfer_number_get                0x08001362   Section        0  gd32e10x_dma.o(i.dma_transfer_number_get)
-    i.gd_eval_com_init                       0x08001384   Section        0  uart.o(i.gd_eval_com_init)
-    i.gpio_bit_reset                         0x0800141c   Section        0  gd32e10x_gpio.o(i.gpio_bit_reset)
-    i.gpio_bit_set                           0x08001420   Section        0  gd32e10x_gpio.o(i.gpio_bit_set)
-    i.gpio_config                            0x08001424   Section        0  adc.o(i.gpio_config)
-    i.gpio_init                              0x0800148c   Section        0  gd32e10x_gpio.o(i.gpio_init)
-    i.gpio_output_port_get                   0x08001548   Section        0  gd32e10x_gpio.o(i.gpio_output_port_get)
-    i.gpio_pin_remap_config                  0x08001550   Section        0  gd32e10x_gpio.o(i.gpio_pin_remap_config)
-    i.gpio_port_write                        0x080015e0   Section        0  gd32e10x_gpio.o(i.gpio_port_write)
-    i.main                                   0x080015e4   Section        0  main.o(i.main)
-    i.nvic_config                            0x080016d8   Section        0  uart.o(i.nvic_config)
-    i.nvic_irq_enable                        0x080016fc   Section        0  gd32e10x_misc.o(i.nvic_irq_enable)
-    i.nvic_priority_group_set                0x080017a8   Section        0  gd32e10x_misc.o(i.nvic_priority_group_set)
-    i.nvic_vector_table_set                  0x080017bc   Section        0  gd32e10x_misc.o(i.nvic_vector_table_set)
-    i.rcu_adc_clock_config                   0x080017d0   Section        0  gd32e10x_rcu.o(i.rcu_adc_clock_config)
-    i.rcu_clock_freq_get                     0x0800183c   Section        0  gd32e10x_rcu.o(i.rcu_clock_freq_get)
-    i.rcu_config                             0x080019c0   Section        0  adc.o(i.rcu_config)
-    i.rcu_periph_clock_enable                0x080019e4   Section        0  gd32e10x_rcu.o(i.rcu_periph_clock_enable)
-    i.rcu_periph_reset_disable               0x08001a04   Section        0  gd32e10x_rcu.o(i.rcu_periph_reset_disable)
-    i.rcu_periph_reset_enable                0x08001a24   Section        0  gd32e10x_rcu.o(i.rcu_periph_reset_enable)
-    i.read_adc_value                         0x08001a44   Section        0  adc.o(i.read_adc_value)
-    i.read_can0_data                         0x08001a8c   Section        0  main.o(i.read_can0_data)
-    i.select_x_control                       0x08001aa0   Section        0  74hc4051bq.o(i.select_x_control)
-    i.select_y_control_volt                  0x08001ae0   Section        0  74hc4051bq.o(i.select_y_control_volt)
-    i.system_clock_120m_hxtal                0x08001b54   Section        0  system_gd32e10x.o(i.system_clock_120m_hxtal)
-    system_clock_120m_hxtal                  0x08001b55   Thumb Code   226  system_gd32e10x.o(i.system_clock_120m_hxtal)
-    i.system_clock_config                    0x08001c50   Section        0  system_gd32e10x.o(i.system_clock_config)
-    system_clock_config                      0x08001c51   Thumb Code     8  system_gd32e10x.o(i.system_clock_config)
-    i.systick_config                         0x08001c58   Section        0  systick.o(i.systick_config)
-    i.timer_channel_capture_value_register_read 0x08001ca8   Section        0  gd32e10x_timer.o(i.timer_channel_capture_value_register_read)
-    i.timer_interrupt_flag_clear             0x08001cd2   Section        0  gd32e10x_timer.o(i.timer_interrupt_flag_clear)
-    i.timer_interrupt_flag_get               0x08001cd8   Section        0  gd32e10x_timer.o(i.timer_interrupt_flag_get)
-    i.usart0_init                            0x08001cf0   Section        0  uart.o(i.usart0_init)
-    i.usart_baudrate_set                     0x08001d20   Section        0  gd32e10x_usart.o(i.usart_baudrate_set)
-    i.usart_deinit                           0x08001db0   Section        0  gd32e10x_usart.o(i.usart_deinit)
-    i.usart_dma_receive_config               0x08001e40   Section        0  gd32e10x_usart.o(i.usart_dma_receive_config)
-    i.usart_dma_transmit_config              0x08001e50   Section        0  gd32e10x_usart.o(i.usart_dma_transmit_config)
-    i.usart_enable                           0x08001e60   Section        0  gd32e10x_usart.o(i.usart_enable)
-    i.usart_interrupt_enable                 0x08001e6a   Section        0  gd32e10x_usart.o(i.usart_interrupt_enable)
-    i.usart_interrupt_flag_get               0x08001e84   Section        0  gd32e10x_usart.o(i.usart_interrupt_flag_get)
-    i.usart_receive_config                   0x08001ebc   Section        0  gd32e10x_usart.o(i.usart_receive_config)
-    i.usart_transmit_config                  0x08001ecc   Section        0  gd32e10x_usart.o(i.usart_transmit_config)
-    .constdata                               0x08001edc   Section      192  gd32e10x_can.o(.constdata)
-    timing_pts                               0x08001ee4   Data         184  gd32e10x_can.o(.constdata)
+    .ARM.Collect$$$$0000000E                 0x08000160   Section        4  entry12b.o(.ARM.Collect$$$$0000000E)
+    .ARM.Collect$$$$0000000F                 0x08000164   Section        0  entry10a.o(.ARM.Collect$$$$0000000F)
+    .ARM.Collect$$$$00000011                 0x08000164   Section        0  entry11a.o(.ARM.Collect$$$$00000011)
+    .ARM.Collect$$$$00002712                 0x08000164   Section        4  entry2.o(.ARM.Collect$$$$00002712)
+    __lit__00000000                          0x08000164   Data           4  entry2.o(.ARM.Collect$$$$00002712)
+    .text                                    0x08000168   Section       36  startup_gd32e10x.o(.text)
+    $v0                                      0x08000168   Number         0  startup_gd32e10x.o(.text)
+    .text                                    0x0800018c   Section        0  memcpya.o(.text)
+    .text                                    0x080001b0   Section        0  memseta.o(.text)
+    .text                                    0x080001d4   Section       36  init.o(.text)
+    i.BusFault_Handler                       0x080001f8   Section        0  gd32e10x_it.o(i.BusFault_Handler)
+    i.CAN0_RX0_IRQHandler                    0x080001fc   Section        0  main.o(i.CAN0_RX0_IRQHandler)
+    i.CalChecksum                            0x08000228   Section        0  main.o(i.CalChecksum)
+    i.CircBuf_Init                           0x08000242   Section        0  circular_buffer.o(i.CircBuf_Init)
+    i.CircBuf_Push                           0x0800027e   Section        0  circular_buffer.o(i.CircBuf_Push)
+    i.DMA0_Channel0_IRQHandler               0x080002f4   Section        0  adc.o(i.DMA0_Channel0_IRQHandler)
+    i.DMA0_Channel1_IRQHandler               0x08000318   Section        0  uart.o(i.DMA0_Channel1_IRQHandler)
+    i.DMA0_Channel3_IRQHandler               0x08000340   Section        0  uart.o(i.DMA0_Channel3_IRQHandler)
+    i.DMA0_Channel4_IRQHandler               0x08000368   Section        0  uart.o(i.DMA0_Channel4_IRQHandler)
+    i.DMA0_Channel6_IRQHandler               0x08000388   Section        0  uart.o(i.DMA0_Channel6_IRQHandler)
+    i.DMA1_Channel4_IRQHandler               0x080003b0   Section        0  uart.o(i.DMA1_Channel4_IRQHandler)
+    i.DebugMon_Handler                       0x080003d8   Section        0  gd32e10x_it.o(i.DebugMon_Handler)
+    i.GetAdcValue                            0x080003dc   Section        0  adc.o(i.GetAdcValue)
+    i.HardFault_Handler                      0x080003f4   Section        0  gd32e10x_it.o(i.HardFault_Handler)
+    i.Hc4051Delay                            0x080003f8   Section        0  74hc4051bq.o(i.Hc4051Delay)
+    i.Hc4051IoInit                           0x08000404   Section        0  74hc4051bq.o(i.Hc4051IoInit)
+    i.IsPowerOf2                             0x08000498   Section        0  circular_buffer.o(i.IsPowerOf2)
+    i.MemManage_Handler                      0x080004c8   Section        0  gd32e10x_it.o(i.MemManage_Handler)
+    i.NMI_Handler                            0x080004cc   Section        0  gd32e10x_it.o(i.NMI_Handler)
+    i.NVIC_SetPriority                       0x080004d0   Section        0  systick.o(i.NVIC_SetPriority)
+    NVIC_SetPriority                         0x080004d1   Thumb Code    32  systick.o(i.NVIC_SetPriority)
+    i.PendSV_Handler                         0x080004f8   Section        0  gd32e10x_it.o(i.PendSV_Handler)
+    i.RoundDown_PowerOf2                     0x080004fa   Section        0  circular_buffer.o(i.RoundDown_PowerOf2)
+    i.SVC_Handler                            0x08000532   Section        0  gd32e10x_it.o(i.SVC_Handler)
+    i.SysTick_Handler                        0x08000534   Section        0  gd32e10x_it.o(i.SysTick_Handler)
+    i.SystemInit                             0x0800053c   Section        0  system_gd32e10x.o(i.SystemInit)
+    i.TIMER2_IRQHandler                      0x08000594   Section        0  gd32e10x_it.o(i.TIMER2_IRQHandler)
+    i.TIMER3_IRQHandler                      0x0800063c   Section        0  main.o(i.TIMER3_IRQHandler)
+    i.UART3_IRQHandler                       0x08000658   Section        0  uart.o(i.UART3_IRQHandler)
+    i.USART0_IRQHandler                      0x080006c0   Section        0  uart.o(i.USART0_IRQHandler)
+    i.USART1_IRQHandler                      0x08000728   Section        0  uart.o(i.USART1_IRQHandler)
+    i.USART2_IRQHandler                      0x08000790   Section        0  uart.o(i.USART2_IRQHandler)
+    i.UsageFault_Handler                     0x080007f8   Section        0  gd32e10x_it.o(i.UsageFault_Handler)
+    i.__scatterload_copy                     0x080007fc   Section       14  handlers.o(i.__scatterload_copy)
+    i.__scatterload_null                     0x0800080a   Section        2  handlers.o(i.__scatterload_null)
+    i.__scatterload_zeroinit                 0x0800080c   Section       14  handlers.o(i.__scatterload_zeroinit)
+    i.adc_calculation_calibration_once       0x0800081a   Section        0  74hc4051bq.o(i.adc_calculation_calibration_once)
+    i.adc_calibration_enable                 0x080008de   Section        0  gd32e10x_adc.o(i.adc_calibration_enable)
+    i.adc_channel_length_config              0x08000908   Section        0  gd32e10x_adc.o(i.adc_channel_length_config)
+    i.adc_config                             0x08000950   Section        0  adc.o(i.adc_config)
+    i.adc_data_alignment_config              0x08000a20   Section        0  gd32e10x_adc.o(i.adc_data_alignment_config)
+    i.adc_deinit                             0x08000a38   Section        0  gd32e10x_adc.o(i.adc_deinit)
+    i.adc_dma_mode_enable                    0x08000a78   Section        0  gd32e10x_adc.o(i.adc_dma_mode_enable)
+    i.adc_enable                             0x08000a82   Section        0  gd32e10x_adc.o(i.adc_enable)
+    i.adc_external_trigger_config            0x08000a94   Section        0  gd32e10x_adc.o(i.adc_external_trigger_config)
+    i.adc_external_trigger_source_config     0x08000ad2   Section        0  gd32e10x_adc.o(i.adc_external_trigger_source_config)
+    i.adc_init                               0x08000b02   Section        0  adc.o(i.adc_init)
+    i.adc_mode_config                        0x08000b1c   Section        0  gd32e10x_adc.o(i.adc_mode_config)
+    i.adc_regular_channel_config             0x08000b38   Section        0  gd32e10x_adc.o(i.adc_regular_channel_config)
+    i.adc_software_trigger_enable            0x08000be4   Section        0  gd32e10x_adc.o(i.adc_software_trigger_enable)
+    i.adc_special_function_config            0x08000c02   Section        0  gd32e10x_adc.o(i.adc_special_function_config)
+    i.adc_value_read                         0x08000c5c   Section        0  74hc4051bq.o(i.adc_value_read)
+    i.ble_hc04_gpio_init                     0x08000d84   Section        0  ble_hc04.o(i.ble_hc04_gpio_init)
+    i.ble_hc04_thread_loop                   0x08000da0   Section        0  ble_hc04.o(i.ble_hc04_thread_loop)
+    i.can_message_receive                    0x08000dd4   Section        0  gd32e10x_can.o(i.can_message_receive)
+    i.delay_1ms                              0x08000f98   Section        0  systick.o(i.delay_1ms)
+    i.delay_decrement                        0x08000fac   Section        0  systick.o(i.delay_decrement)
+    i.dma0_ch3_usart0_tx_init                0x08000fc4   Section        0  uart.o(i.dma0_ch3_usart0_tx_init)
+    i.dma0_ch4_usart0_rx_init                0x08001044   Section        0  uart.o(i.dma0_ch4_usart0_rx_init)
+    i.dma_channel_disable                    0x080010c4   Section        0  gd32e10x_dma.o(i.dma_channel_disable)
+    i.dma_channel_enable                     0x080010f6   Section        0  gd32e10x_dma.o(i.dma_channel_enable)
+    i.dma_circulation_disable                0x08001128   Section        0  gd32e10x_dma.o(i.dma_circulation_disable)
+    i.dma_circulation_enable                 0x0800115a   Section        0  gd32e10x_dma.o(i.dma_circulation_enable)
+    i.dma_config                             0x0800118c   Section        0  adc.o(i.dma_config)
+    i.dma_deinit                             0x080011ec   Section        0  gd32e10x_dma.o(i.dma_deinit)
+    i.dma_init                               0x0800125c   Section        0  gd32e10x_dma.o(i.dma_init)
+    i.dma_interrupt_enable                   0x0800138a   Section        0  gd32e10x_dma.o(i.dma_interrupt_enable)
+    i.dma_interrupt_flag_clear               0x080013bc   Section        0  gd32e10x_dma.o(i.dma_interrupt_flag_clear)
+    i.dma_interrupt_flag_get                 0x080013cc   Section        0  gd32e10x_dma.o(i.dma_interrupt_flag_get)
+    i.dma_memory_address_config              0x0800144e   Section        0  gd32e10x_dma.o(i.dma_memory_address_config)
+    i.dma_memory_to_memory_disable           0x08001472   Section        0  gd32e10x_dma.o(i.dma_memory_to_memory_disable)
+    i.dma_periph_and_channel_check           0x080014a4   Section        0  gd32e10x_dma.o(i.dma_periph_and_channel_check)
+    dma_periph_and_channel_check             0x080014a5   Thumb Code    18  gd32e10x_dma.o(i.dma_periph_and_channel_check)
+    i.dma_struct_para_init                   0x080014bc   Section        0  gd32e10x_dma.o(i.dma_struct_para_init)
+    i.dma_transfer_number_config             0x080014d8   Section        0  gd32e10x_dma.o(i.dma_transfer_number_config)
+    i.dma_transfer_number_get                0x080014fe   Section        0  gd32e10x_dma.o(i.dma_transfer_number_get)
+    i.gd_eval_com_init                       0x08001520   Section        0  uart.o(i.gd_eval_com_init)
+    i.gpio_bit_reset                         0x080015dc   Section        0  gd32e10x_gpio.o(i.gpio_bit_reset)
+    i.gpio_bit_set                           0x080015e0   Section        0  gd32e10x_gpio.o(i.gpio_bit_set)
+    i.gpio_config                            0x080015e4   Section        0  adc.o(i.gpio_config)
+    i.gpio_init                              0x0800164c   Section        0  gd32e10x_gpio.o(i.gpio_init)
+    i.gpio_input_bit_get                     0x08001708   Section        0  gd32e10x_gpio.o(i.gpio_input_bit_get)
+    i.gpio_output_port_get                   0x08001718   Section        0  gd32e10x_gpio.o(i.gpio_output_port_get)
+    i.gpio_pin_remap_config                  0x08001720   Section        0  gd32e10x_gpio.o(i.gpio_pin_remap_config)
+    i.gpio_port_write                        0x080017b0   Section        0  gd32e10x_gpio.o(i.gpio_port_write)
+    i.main                                   0x080017b4   Section        0  main.o(i.main)
+    i.nvic_config                            0x080018c4   Section        0  uart.o(i.nvic_config)
+    i.nvic_irq_enable                        0x0800196c   Section        0  gd32e10x_misc.o(i.nvic_irq_enable)
+    i.nvic_priority_group_set                0x08001a18   Section        0  gd32e10x_misc.o(i.nvic_priority_group_set)
+    i.nvic_vector_table_set                  0x08001a2c   Section        0  gd32e10x_misc.o(i.nvic_vector_table_set)
+    i.rcu_adc_clock_config                   0x08001a40   Section        0  gd32e10x_rcu.o(i.rcu_adc_clock_config)
+    i.rcu_clock_freq_get                     0x08001aac   Section        0  gd32e10x_rcu.o(i.rcu_clock_freq_get)
+    i.rcu_config                             0x08001c30   Section        0  adc.o(i.rcu_config)
+    i.rcu_periph_clock_enable                0x08001c54   Section        0  gd32e10x_rcu.o(i.rcu_periph_clock_enable)
+    i.rcu_periph_reset_disable               0x08001c74   Section        0  gd32e10x_rcu.o(i.rcu_periph_reset_disable)
+    i.rcu_periph_reset_enable                0x08001c94   Section        0  gd32e10x_rcu.o(i.rcu_periph_reset_enable)
+    i.read_adc_value                         0x08001cb4   Section        0  adc.o(i.read_adc_value)
+    i.read_can0_data                         0x08001cfc   Section        0  main.o(i.read_can0_data)
+    i.select_x_control                       0x08001d10   Section        0  74hc4051bq.o(i.select_x_control)
+    i.select_y_control_volt                  0x08001d50   Section        0  74hc4051bq.o(i.select_y_control_volt)
+    i.system_clock_120m_hxtal                0x08001dc4   Section        0  system_gd32e10x.o(i.system_clock_120m_hxtal)
+    system_clock_120m_hxtal                  0x08001dc5   Thumb Code   226  system_gd32e10x.o(i.system_clock_120m_hxtal)
+    i.system_clock_config                    0x08001ec0   Section        0  system_gd32e10x.o(i.system_clock_config)
+    system_clock_config                      0x08001ec1   Thumb Code     8  system_gd32e10x.o(i.system_clock_config)
+    i.systick_config                         0x08001ec8   Section        0  systick.o(i.systick_config)
+    i.timer_channel_capture_value_register_read 0x08001f18   Section        0  gd32e10x_timer.o(i.timer_channel_capture_value_register_read)
+    i.timer_interrupt_flag_clear             0x08001f42   Section        0  gd32e10x_timer.o(i.timer_interrupt_flag_clear)
+    i.timer_interrupt_flag_get               0x08001f48   Section        0  gd32e10x_timer.o(i.timer_interrupt_flag_get)
+    i.uart3_dma_send_data                    0x08001f60   Section        0  uart.o(i.uart3_dma_send_data)
+    i.usart0_dma_send_data                   0x08001fb0   Section        0  uart.o(i.usart0_dma_send_data)
+    i.usart0_init                            0x08002000   Section        0  uart.o(i.usart0_init)
+    i.usart1_dma_send_data                   0x08002034   Section        0  uart.o(i.usart1_dma_send_data)
+    i.usart2_dma_send_data                   0x08002084   Section        0  uart.o(i.usart2_dma_send_data)
+    i.usart_baudrate_set                     0x080020d4   Section        0  gd32e10x_usart.o(i.usart_baudrate_set)
+    i.usart_deinit                           0x08002164   Section        0  gd32e10x_usart.o(i.usart_deinit)
+    i.usart_dma_receive_config               0x080021f4   Section        0  gd32e10x_usart.o(i.usart_dma_receive_config)
+    i.usart_dma_send_data                    0x08002204   Section        0  uart.o(i.usart_dma_send_data)
+    i.usart_dma_transmit_config              0x0800224c   Section        0  gd32e10x_usart.o(i.usart_dma_transmit_config)
+    i.usart_enable                           0x0800225c   Section        0  gd32e10x_usart.o(i.usart_enable)
+    i.usart_interrupt_enable                 0x08002266   Section        0  gd32e10x_usart.o(i.usart_interrupt_enable)
+    i.usart_interrupt_flag_get               0x08002280   Section        0  gd32e10x_usart.o(i.usart_interrupt_flag_get)
+    i.usart_receive_config                   0x080022b8   Section        0  gd32e10x_usart.o(i.usart_receive_config)
+    i.usart_transmit_config                  0x080022c8   Section        0  gd32e10x_usart.o(i.usart_transmit_config)
+    .constdata                               0x080022d8   Section      192  gd32e10x_can.o(.constdata)
+    timing_pts                               0x080022e0   Data         184  gd32e10x_can.o(.constdata)
     .data                                    0x20000000   Section        9  main.o(.data)
     led_flag_red                             0x20000008   Data           1  main.o(.data)
     .data                                    0x2000000c   Section        4  systick.o(.data)
@@ -1312,16 +1544,16 @@ Image Symbol Table
     .data                                    0x20000010   Section       14  gd32e10x_it.o(.data)
     .data                                    0x20000020   Section        4  system_gd32e10x.o(.data)
     .data                                    0x20000024   Section       88  74hc4051bq.o(.data)
-    .data                                    0x2000007c   Section       24  uart.o(.data)
-    COM_CLK                                  0x2000007e   Data           2  uart.o(.data)
-    COM_TX_PIN                               0x20000080   Data           4  uart.o(.data)
-    COM_RX_PIN                               0x20000084   Data           4  uart.o(.data)
-    COM_GPIO_PORT                            0x20000088   Data           4  uart.o(.data)
-    COM_GPIO_CLK                             0x2000008c   Data           2  uart.o(.data)
-    .bss                                     0x20000094   Section    10636  main.o(.bss)
-    .bss                                     0x20002a20   Section       32  adc.o(.bss)
-    .bss                                     0x20002a40   Section    20016  uart.o(.bss)
-    STACK                                    0x20007870   Section     1024  startup_gd32e10x.o(STACK)
+    .data                                    0x2000007c   Section       68  uart.o(.data)
+    COM_CLK                                  0x20000080   Data           8  uart.o(.data)
+    COM_TX_PIN                               0x20000088   Data          16  uart.o(.data)
+    COM_RX_PIN                               0x20000098   Data          16  uart.o(.data)
+    COM_GPIO_PORT                            0x200000a8   Data          16  uart.o(.data)
+    COM_GPIO_CLK                             0x200000b8   Data           8  uart.o(.data)
+    .bss                                     0x200000c0   Section    10640  main.o(.bss)
+    .bss                                     0x20002a50   Section       32  adc.o(.bss)
+    .bss                                     0x20002a70   Section     6208  uart.o(.bss)
+    STACK                                    0x200042b0   Section     1024  startup_gd32e10x.o(STACK)
 
     Global Symbols
 
@@ -1329,6 +1561,7 @@ Image Symbol Table
 
     BuildAttributes$$THM_ISAv4$E$P$D$K$B$S$7EM$VFPi3$EXTD16$VFPS$VFMA$PE$A:L22UL41UL21$X:L11$S22US41US21$IEEE1$IW$USESV6$~STKCKD$USESV7$~SHL$OSPACE$EBA8$MICROLIB$REQ8$PRES8$EABIv2 0x00000000   Number         0  anon$$obj.o ABSOLUTE
     __ARM_use_no_argv                        0x00000000   Number         0  main.o ABSOLUTE
+    __arm_fini_                               - Undefined Weak Reference
     __cpp_initialize__aeabi_                  - Undefined Weak Reference
     __cxa_finalize                            - Undefined Weak Reference
     __decompress                              - Undefined Weak Reference
@@ -1344,183 +1577,191 @@ Image Symbol Table
     _main_clock                              0x08000159   Thumb Code     0  entry7b.o(.ARM.Collect$$$$00000008)
     _main_cpp_init                           0x08000159   Thumb Code     0  entry8b.o(.ARM.Collect$$$$0000000A)
     _main_init                               0x08000159   Thumb Code     0  entry9a.o(.ARM.Collect$$$$0000000B)
-    __rt_final_cpp                           0x08000161   Thumb Code     0  entry10a.o(.ARM.Collect$$$$0000000D)
-    __rt_final_exit                          0x08000161   Thumb Code     0  entry11a.o(.ARM.Collect$$$$0000000F)
-    Reset_Handler                            0x08000165   Thumb Code     8  startup_gd32e10x.o(.text)
-    ADC0_1_IRQHandler                        0x0800017f   Thumb Code     0  startup_gd32e10x.o(.text)
-    CAN0_EWMC_IRQHandler                     0x0800017f   Thumb Code     0  startup_gd32e10x.o(.text)
-    CAN0_RX1_IRQHandler                      0x0800017f   Thumb Code     0  startup_gd32e10x.o(.text)
-    CAN0_TX_IRQHandler                       0x0800017f   Thumb Code     0  startup_gd32e10x.o(.text)
-    CAN1_EWMC_IRQHandler                     0x0800017f   Thumb Code     0  startup_gd32e10x.o(.text)
-    CAN1_RX0_IRQHandler                      0x0800017f   Thumb Code     0  startup_gd32e10x.o(.text)
-    CAN1_RX1_IRQHandler                      0x0800017f   Thumb Code     0  startup_gd32e10x.o(.text)
-    CAN1_TX_IRQHandler                       0x0800017f   Thumb Code     0  startup_gd32e10x.o(.text)
-    DMA0_Channel1_IRQHandler                 0x0800017f   Thumb Code     0  startup_gd32e10x.o(.text)
-    DMA0_Channel2_IRQHandler                 0x0800017f   Thumb Code     0  startup_gd32e10x.o(.text)
-    DMA0_Channel5_IRQHandler                 0x0800017f   Thumb Code     0  startup_gd32e10x.o(.text)
-    DMA0_Channel6_IRQHandler                 0x0800017f   Thumb Code     0  startup_gd32e10x.o(.text)
-    DMA1_Channel0_IRQHandler                 0x0800017f   Thumb Code     0  startup_gd32e10x.o(.text)
-    DMA1_Channel1_IRQHandler                 0x0800017f   Thumb Code     0  startup_gd32e10x.o(.text)
-    DMA1_Channel2_IRQHandler                 0x0800017f   Thumb Code     0  startup_gd32e10x.o(.text)
-    DMA1_Channel3_IRQHandler                 0x0800017f   Thumb Code     0  startup_gd32e10x.o(.text)
-    DMA1_Channel4_IRQHandler                 0x0800017f   Thumb Code     0  startup_gd32e10x.o(.text)
-    EXMC_IRQHandler                          0x0800017f   Thumb Code     0  startup_gd32e10x.o(.text)
-    EXTI0_IRQHandler                         0x0800017f   Thumb Code     0  startup_gd32e10x.o(.text)
-    EXTI10_15_IRQHandler                     0x0800017f   Thumb Code     0  startup_gd32e10x.o(.text)
-    EXTI1_IRQHandler                         0x0800017f   Thumb Code     0  startup_gd32e10x.o(.text)
-    EXTI2_IRQHandler                         0x0800017f   Thumb Code     0  startup_gd32e10x.o(.text)
-    EXTI3_IRQHandler                         0x0800017f   Thumb Code     0  startup_gd32e10x.o(.text)
-    EXTI4_IRQHandler                         0x0800017f   Thumb Code     0  startup_gd32e10x.o(.text)
-    EXTI5_9_IRQHandler                       0x0800017f   Thumb Code     0  startup_gd32e10x.o(.text)
-    FMC_IRQHandler                           0x0800017f   Thumb Code     0  startup_gd32e10x.o(.text)
-    I2C0_ER_IRQHandler                       0x0800017f   Thumb Code     0  startup_gd32e10x.o(.text)
-    I2C0_EV_IRQHandler                       0x0800017f   Thumb Code     0  startup_gd32e10x.o(.text)
-    I2C1_ER_IRQHandler                       0x0800017f   Thumb Code     0  startup_gd32e10x.o(.text)
-    I2C1_EV_IRQHandler                       0x0800017f   Thumb Code     0  startup_gd32e10x.o(.text)
-    LVD_IRQHandler                           0x0800017f   Thumb Code     0  startup_gd32e10x.o(.text)
-    RCU_CTC_IRQHandler                       0x0800017f   Thumb Code     0  startup_gd32e10x.o(.text)
-    RTC_Alarm_IRQHandler                     0x0800017f   Thumb Code     0  startup_gd32e10x.o(.text)
-    RTC_IRQHandler                           0x0800017f   Thumb Code     0  startup_gd32e10x.o(.text)
-    SPI0_IRQHandler                          0x0800017f   Thumb Code     0  startup_gd32e10x.o(.text)
-    SPI1_IRQHandler                          0x0800017f   Thumb Code     0  startup_gd32e10x.o(.text)
-    SPI2_IRQHandler                          0x0800017f   Thumb Code     0  startup_gd32e10x.o(.text)
-    TAMPER_IRQHandler                        0x0800017f   Thumb Code     0  startup_gd32e10x.o(.text)
-    TIMER0_BRK_TIMER8_IRQHandler             0x0800017f   Thumb Code     0  startup_gd32e10x.o(.text)
-    TIMER0_Channel_IRQHandler                0x0800017f   Thumb Code     0  startup_gd32e10x.o(.text)
-    TIMER0_TRG_CMT_TIMER10_IRQHandler        0x0800017f   Thumb Code     0  startup_gd32e10x.o(.text)
-    TIMER0_UP_TIMER9_IRQHandler              0x0800017f   Thumb Code     0  startup_gd32e10x.o(.text)
-    TIMER1_IRQHandler                        0x0800017f   Thumb Code     0  startup_gd32e10x.o(.text)
-    TIMER4_IRQHandler                        0x0800017f   Thumb Code     0  startup_gd32e10x.o(.text)
-    TIMER5_IRQHandler                        0x0800017f   Thumb Code     0  startup_gd32e10x.o(.text)
-    TIMER6_IRQHandler                        0x0800017f   Thumb Code     0  startup_gd32e10x.o(.text)
-    TIMER7_BRK_TIMER11_IRQHandler            0x0800017f   Thumb Code     0  startup_gd32e10x.o(.text)
-    TIMER7_Channel_IRQHandler                0x0800017f   Thumb Code     0  startup_gd32e10x.o(.text)
-    TIMER7_TRG_CMT_TIMER13_IRQHandler        0x0800017f   Thumb Code     0  startup_gd32e10x.o(.text)
-    TIMER7_UP_TIMER12_IRQHandler             0x0800017f   Thumb Code     0  startup_gd32e10x.o(.text)
-    UART3_IRQHandler                         0x0800017f   Thumb Code     0  startup_gd32e10x.o(.text)
-    UART4_IRQHandler                         0x0800017f   Thumb Code     0  startup_gd32e10x.o(.text)
-    USART1_IRQHandler                        0x0800017f   Thumb Code     0  startup_gd32e10x.o(.text)
-    USART2_IRQHandler                        0x0800017f   Thumb Code     0  startup_gd32e10x.o(.text)
-    USBFS_IRQHandler                         0x0800017f   Thumb Code     0  startup_gd32e10x.o(.text)
-    USBFS_WKUP_IRQHandler                    0x0800017f   Thumb Code     0  startup_gd32e10x.o(.text)
-    WWDGT_IRQHandler                         0x0800017f   Thumb Code     0  startup_gd32e10x.o(.text)
-    __aeabi_memcpy                           0x08000189   Thumb Code    36  memcpya.o(.text)
-    __aeabi_memcpy4                          0x08000189   Thumb Code     0  memcpya.o(.text)
-    __aeabi_memcpy8                          0x08000189   Thumb Code     0  memcpya.o(.text)
-    __aeabi_memset                           0x080001ad   Thumb Code    14  memseta.o(.text)
-    __aeabi_memset4                          0x080001ad   Thumb Code     0  memseta.o(.text)
-    __aeabi_memset8                          0x080001ad   Thumb Code     0  memseta.o(.text)
-    __aeabi_memclr                           0x080001bb   Thumb Code     4  memseta.o(.text)
-    __aeabi_memclr4                          0x080001bb   Thumb Code     0  memseta.o(.text)
-    __aeabi_memclr8                          0x080001bb   Thumb Code     0  memseta.o(.text)
-    _memset$wrapper                          0x080001bf   Thumb Code    18  memseta.o(.text)
-    __scatterload                            0x080001d1   Thumb Code    28  init.o(.text)
-    __scatterload_rt2                        0x080001d1   Thumb Code     0  init.o(.text)
-    BusFault_Handler                         0x080001f5   Thumb Code     4  gd32e10x_it.o(i.BusFault_Handler)
-    CAN0_RX0_IRQHandler                      0x080001f9   Thumb Code    36  main.o(i.CAN0_RX0_IRQHandler)
-    CalChecksum                              0x08000225   Thumb Code    26  main.o(i.CalChecksum)
-    CircBuf_Init                             0x0800023f   Thumb Code    60  circular_buffer.o(i.CircBuf_Init)
-    CircBuf_Push                             0x0800027b   Thumb Code   116  circular_buffer.o(i.CircBuf_Push)
-    DMA0_Channel0_IRQHandler                 0x080002f1   Thumb Code    30  adc.o(i.DMA0_Channel0_IRQHandler)
-    DMA0_Channel3_IRQHandler                 0x08000315   Thumb Code    32  uart.o(i.DMA0_Channel3_IRQHandler)
-    DMA0_Channel4_IRQHandler                 0x0800033d   Thumb Code    26  uart.o(i.DMA0_Channel4_IRQHandler)
-    DebugMon_Handler                         0x0800035d   Thumb Code     2  gd32e10x_it.o(i.DebugMon_Handler)
-    GetAdcValue                              0x08000361   Thumb Code    18  adc.o(i.GetAdcValue)
-    HardFault_Handler                        0x08000379   Thumb Code     4  gd32e10x_it.o(i.HardFault_Handler)
-    Hc4051Delay                              0x0800037d   Thumb Code    12  74hc4051bq.o(i.Hc4051Delay)
-    Hc4051IoInit                             0x08000389   Thumb Code   132  74hc4051bq.o(i.Hc4051IoInit)
-    IsPowerOf2                               0x0800041d   Thumb Code    48  circular_buffer.o(i.IsPowerOf2)
-    MemManage_Handler                        0x0800044d   Thumb Code     4  gd32e10x_it.o(i.MemManage_Handler)
-    NMI_Handler                              0x08000451   Thumb Code     2  gd32e10x_it.o(i.NMI_Handler)
-    PendSV_Handler                           0x0800047d   Thumb Code     2  gd32e10x_it.o(i.PendSV_Handler)
-    RoundDown_PowerOf2                       0x0800047f   Thumb Code    56  circular_buffer.o(i.RoundDown_PowerOf2)
-    SVC_Handler                              0x080004b7   Thumb Code     2  gd32e10x_it.o(i.SVC_Handler)
-    SysTick_Handler                          0x080004b9   Thumb Code     8  gd32e10x_it.o(i.SysTick_Handler)
-    SystemInit                               0x080004c1   Thumb Code    76  system_gd32e10x.o(i.SystemInit)
-    TIMER2_IRQHandler                        0x08000519   Thumb Code   138  gd32e10x_it.o(i.TIMER2_IRQHandler)
-    TIMER3_IRQHandler                        0x080005c1   Thumb Code    24  main.o(i.TIMER3_IRQHandler)
-    USART0_IRQHandler                        0x080005dd   Thumb Code    90  uart.o(i.USART0_IRQHandler)
-    UsageFault_Handler                       0x08000651   Thumb Code     4  gd32e10x_it.o(i.UsageFault_Handler)
-    __scatterload_copy                       0x08000655   Thumb Code    14  handlers.o(i.__scatterload_copy)
-    __scatterload_null                       0x08000663   Thumb Code     2  handlers.o(i.__scatterload_null)
-    __scatterload_zeroinit                   0x08000665   Thumb Code    14  handlers.o(i.__scatterload_zeroinit)
-    adc_calculation_calibration_once         0x08000673   Thumb Code   196  74hc4051bq.o(i.adc_calculation_calibration_once)
-    adc_calibration_enable                   0x08000737   Thumb Code    42  gd32e10x_adc.o(i.adc_calibration_enable)
-    adc_channel_length_config                0x08000761   Thumb Code    70  gd32e10x_adc.o(i.adc_channel_length_config)
-    adc_config                               0x080007a9   Thumb Code   204  adc.o(i.adc_config)
-    adc_data_alignment_config                0x08000879   Thumb Code    22  gd32e10x_adc.o(i.adc_data_alignment_config)
-    adc_deinit                               0x08000891   Thumb Code    60  gd32e10x_adc.o(i.adc_deinit)
-    adc_dma_mode_enable                      0x080008d1   Thumb Code    10  gd32e10x_adc.o(i.adc_dma_mode_enable)
-    adc_enable                               0x080008db   Thumb Code    18  gd32e10x_adc.o(i.adc_enable)
-    adc_external_trigger_config              0x080008ed   Thumb Code    62  gd32e10x_adc.o(i.adc_external_trigger_config)
-    adc_external_trigger_source_config       0x0800092b   Thumb Code    48  gd32e10x_adc.o(i.adc_external_trigger_source_config)
-    adc_init                                 0x0800095b   Thumb Code    24  adc.o(i.adc_init)
-    adc_mode_config                          0x08000975   Thumb Code    22  gd32e10x_adc.o(i.adc_mode_config)
-    adc_regular_channel_config               0x08000991   Thumb Code   172  gd32e10x_adc.o(i.adc_regular_channel_config)
-    adc_software_trigger_enable              0x08000a3d   Thumb Code    30  gd32e10x_adc.o(i.adc_software_trigger_enable)
-    adc_special_function_config              0x08000a5b   Thumb Code    90  gd32e10x_adc.o(i.adc_special_function_config)
-    adc_value_read                           0x08000ab5   Thumb Code   282  74hc4051bq.o(i.adc_value_read)
-    can_message_receive                      0x08000bdd   Thumb Code   448  gd32e10x_can.o(i.can_message_receive)
-    delay_1ms                                0x08000da1   Thumb Code    16  systick.o(i.delay_1ms)
-    delay_decrement                          0x08000db5   Thumb Code    18  systick.o(i.delay_decrement)
-    dma0_ch3_usart0_tx_init                  0x08000dcd   Thumb Code   110  uart.o(i.dma0_ch3_usart0_tx_init)
-    dma0_ch4_usart0_rx_init                  0x08000e49   Thumb Code   132  uart.o(i.dma0_ch4_usart0_rx_init)
-    dma_channel_disable                      0x08000ed9   Thumb Code    50  gd32e10x_dma.o(i.dma_channel_disable)
-    dma_channel_enable                       0x08000f0b   Thumb Code    50  gd32e10x_dma.o(i.dma_channel_enable)
-    dma_circulation_disable                  0x08000f3d   Thumb Code    50  gd32e10x_dma.o(i.dma_circulation_disable)
-    dma_circulation_enable                   0x08000f6f   Thumb Code    50  gd32e10x_dma.o(i.dma_circulation_enable)
-    dma_config                               0x08000fa1   Thumb Code    84  adc.o(i.dma_config)
-    dma_deinit                               0x08001001   Thumb Code   112  gd32e10x_dma.o(i.dma_deinit)
-    dma_init                                 0x08001071   Thumb Code   302  gd32e10x_dma.o(i.dma_init)
-    dma_interrupt_enable                     0x0800119f   Thumb Code    50  gd32e10x_dma.o(i.dma_interrupt_enable)
-    dma_interrupt_flag_clear                 0x080011d1   Thumb Code    16  gd32e10x_dma.o(i.dma_interrupt_flag_clear)
-    dma_interrupt_flag_get                   0x080011e1   Thumb Code   130  gd32e10x_dma.o(i.dma_interrupt_flag_get)
-    dma_memory_address_config                0x08001263   Thumb Code    36  gd32e10x_dma.o(i.dma_memory_address_config)
-    dma_memory_to_memory_disable             0x08001287   Thumb Code    50  gd32e10x_dma.o(i.dma_memory_to_memory_disable)
-    dma_send_data                            0x080012d1   Thumb Code    68  uart.o(i.dma_send_data)
-    dma_struct_para_init                     0x08001321   Thumb Code    28  gd32e10x_dma.o(i.dma_struct_para_init)
-    dma_transfer_number_config               0x0800133d   Thumb Code    38  gd32e10x_dma.o(i.dma_transfer_number_config)
-    dma_transfer_number_get                  0x08001363   Thumb Code    34  gd32e10x_dma.o(i.dma_transfer_number_get)
-    gd_eval_com_init                         0x08001385   Thumb Code   126  uart.o(i.gd_eval_com_init)
-    gpio_bit_reset                           0x0800141d   Thumb Code     4  gd32e10x_gpio.o(i.gpio_bit_reset)
-    gpio_bit_set                             0x08001421   Thumb Code     4  gd32e10x_gpio.o(i.gpio_bit_set)
-    gpio_config                              0x08001425   Thumb Code   100  adc.o(i.gpio_config)
-    gpio_init                                0x0800148d   Thumb Code   188  gd32e10x_gpio.o(i.gpio_init)
-    gpio_output_port_get                     0x08001549   Thumb Code     8  gd32e10x_gpio.o(i.gpio_output_port_get)
-    gpio_pin_remap_config                    0x08001551   Thumb Code   138  gd32e10x_gpio.o(i.gpio_pin_remap_config)
-    gpio_port_write                          0x080015e1   Thumb Code     4  gd32e10x_gpio.o(i.gpio_port_write)
-    main                                     0x080015e5   Thumb Code   222  main.o(i.main)
-    nvic_config                              0x080016d9   Thumb Code    34  uart.o(i.nvic_config)
-    nvic_irq_enable                          0x080016fd   Thumb Code   162  gd32e10x_misc.o(i.nvic_irq_enable)
-    nvic_priority_group_set                  0x080017a9   Thumb Code    10  gd32e10x_misc.o(i.nvic_priority_group_set)
-    nvic_vector_table_set                    0x080017bd   Thumb Code    12  gd32e10x_misc.o(i.nvic_vector_table_set)
-    rcu_adc_clock_config                     0x080017d1   Thumb Code    98  gd32e10x_rcu.o(i.rcu_adc_clock_config)
-    rcu_clock_freq_get                       0x0800183d   Thumb Code   352  gd32e10x_rcu.o(i.rcu_clock_freq_get)
-    rcu_config                               0x080019c1   Thumb Code    34  adc.o(i.rcu_config)
-    rcu_periph_clock_enable                  0x080019e5   Thumb Code    28  gd32e10x_rcu.o(i.rcu_periph_clock_enable)
-    rcu_periph_reset_disable                 0x08001a05   Thumb Code    28  gd32e10x_rcu.o(i.rcu_periph_reset_disable)
-    rcu_periph_reset_enable                  0x08001a25   Thumb Code    28  gd32e10x_rcu.o(i.rcu_periph_reset_enable)
-    read_adc_value                           0x08001a45   Thumb Code    64  adc.o(i.read_adc_value)
-    read_can0_data                           0x08001a8d   Thumb Code    18  main.o(i.read_can0_data)
-    select_x_control                         0x08001aa1   Thumb Code    58  74hc4051bq.o(i.select_x_control)
-    select_y_control_volt                    0x08001ae1   Thumb Code   104  74hc4051bq.o(i.select_y_control_volt)
-    systick_config                           0x08001c59   Thumb Code    74  systick.o(i.systick_config)
-    timer_channel_capture_value_register_read 0x08001ca9   Thumb Code    42  gd32e10x_timer.o(i.timer_channel_capture_value_register_read)
-    timer_interrupt_flag_clear               0x08001cd3   Thumb Code     6  gd32e10x_timer.o(i.timer_interrupt_flag_clear)
-    timer_interrupt_flag_get                 0x08001cd9   Thumb Code    24  gd32e10x_timer.o(i.timer_interrupt_flag_get)
-    usart0_init                              0x08001cf1   Thumb Code    34  uart.o(i.usart0_init)
-    usart_baudrate_set                       0x08001d21   Thumb Code   136  gd32e10x_usart.o(i.usart_baudrate_set)
-    usart_deinit                             0x08001db1   Thumb Code   136  gd32e10x_usart.o(i.usart_deinit)
-    usart_dma_receive_config                 0x08001e41   Thumb Code    16  gd32e10x_usart.o(i.usart_dma_receive_config)
-    usart_dma_transmit_config                0x08001e51   Thumb Code    16  gd32e10x_usart.o(i.usart_dma_transmit_config)
-    usart_enable                             0x08001e61   Thumb Code    10  gd32e10x_usart.o(i.usart_enable)
-    usart_interrupt_enable                   0x08001e6b   Thumb Code    26  gd32e10x_usart.o(i.usart_interrupt_enable)
-    usart_interrupt_flag_get                 0x08001e85   Thumb Code    56  gd32e10x_usart.o(i.usart_interrupt_flag_get)
-    usart_receive_config                     0x08001ebd   Thumb Code    16  gd32e10x_usart.o(i.usart_receive_config)
-    usart_transmit_config                    0x08001ecd   Thumb Code    16  gd32e10x_usart.o(i.usart_transmit_config)
-    g_can_fdlength_table                     0x08001edc   Data           7  gd32e10x_can.o(.constdata)
-    Region$$Table$$Base                      0x08001f9c   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x08001fbc   Number         0  anon$$obj.o(Region$$Table)
+    __rt_lib_shutdown_fini                   0x08000161   Thumb Code     0  entry12b.o(.ARM.Collect$$$$0000000E)
+    __rt_final_cpp                           0x08000165   Thumb Code     0  entry10a.o(.ARM.Collect$$$$0000000F)
+    __rt_final_exit                          0x08000165   Thumb Code     0  entry11a.o(.ARM.Collect$$$$00000011)
+    Reset_Handler                            0x08000169   Thumb Code     8  startup_gd32e10x.o(.text)
+    ADC0_1_IRQHandler                        0x08000183   Thumb Code     0  startup_gd32e10x.o(.text)
+    CAN0_EWMC_IRQHandler                     0x08000183   Thumb Code     0  startup_gd32e10x.o(.text)
+    CAN0_RX1_IRQHandler                      0x08000183   Thumb Code     0  startup_gd32e10x.o(.text)
+    CAN0_TX_IRQHandler                       0x08000183   Thumb Code     0  startup_gd32e10x.o(.text)
+    CAN1_EWMC_IRQHandler                     0x08000183   Thumb Code     0  startup_gd32e10x.o(.text)
+    CAN1_RX0_IRQHandler                      0x08000183   Thumb Code     0  startup_gd32e10x.o(.text)
+    CAN1_RX1_IRQHandler                      0x08000183   Thumb Code     0  startup_gd32e10x.o(.text)
+    CAN1_TX_IRQHandler                       0x08000183   Thumb Code     0  startup_gd32e10x.o(.text)
+    DMA0_Channel2_IRQHandler                 0x08000183   Thumb Code     0  startup_gd32e10x.o(.text)
+    DMA0_Channel5_IRQHandler                 0x08000183   Thumb Code     0  startup_gd32e10x.o(.text)
+    DMA1_Channel0_IRQHandler                 0x08000183   Thumb Code     0  startup_gd32e10x.o(.text)
+    DMA1_Channel1_IRQHandler                 0x08000183   Thumb Code     0  startup_gd32e10x.o(.text)
+    DMA1_Channel2_IRQHandler                 0x08000183   Thumb Code     0  startup_gd32e10x.o(.text)
+    DMA1_Channel3_IRQHandler                 0x08000183   Thumb Code     0  startup_gd32e10x.o(.text)
+    EXMC_IRQHandler                          0x08000183   Thumb Code     0  startup_gd32e10x.o(.text)
+    EXTI0_IRQHandler                         0x08000183   Thumb Code     0  startup_gd32e10x.o(.text)
+    EXTI10_15_IRQHandler                     0x08000183   Thumb Code     0  startup_gd32e10x.o(.text)
+    EXTI1_IRQHandler                         0x08000183   Thumb Code     0  startup_gd32e10x.o(.text)
+    EXTI2_IRQHandler                         0x08000183   Thumb Code     0  startup_gd32e10x.o(.text)
+    EXTI3_IRQHandler                         0x08000183   Thumb Code     0  startup_gd32e10x.o(.text)
+    EXTI4_IRQHandler                         0x08000183   Thumb Code     0  startup_gd32e10x.o(.text)
+    EXTI5_9_IRQHandler                       0x08000183   Thumb Code     0  startup_gd32e10x.o(.text)
+    FMC_IRQHandler                           0x08000183   Thumb Code     0  startup_gd32e10x.o(.text)
+    I2C0_ER_IRQHandler                       0x08000183   Thumb Code     0  startup_gd32e10x.o(.text)
+    I2C0_EV_IRQHandler                       0x08000183   Thumb Code     0  startup_gd32e10x.o(.text)
+    I2C1_ER_IRQHandler                       0x08000183   Thumb Code     0  startup_gd32e10x.o(.text)
+    I2C1_EV_IRQHandler                       0x08000183   Thumb Code     0  startup_gd32e10x.o(.text)
+    LVD_IRQHandler                           0x08000183   Thumb Code     0  startup_gd32e10x.o(.text)
+    RCU_CTC_IRQHandler                       0x08000183   Thumb Code     0  startup_gd32e10x.o(.text)
+    RTC_Alarm_IRQHandler                     0x08000183   Thumb Code     0  startup_gd32e10x.o(.text)
+    RTC_IRQHandler                           0x08000183   Thumb Code     0  startup_gd32e10x.o(.text)
+    SPI0_IRQHandler                          0x08000183   Thumb Code     0  startup_gd32e10x.o(.text)
+    SPI1_IRQHandler                          0x08000183   Thumb Code     0  startup_gd32e10x.o(.text)
+    SPI2_IRQHandler                          0x08000183   Thumb Code     0  startup_gd32e10x.o(.text)
+    TAMPER_IRQHandler                        0x08000183   Thumb Code     0  startup_gd32e10x.o(.text)
+    TIMER0_BRK_TIMER8_IRQHandler             0x08000183   Thumb Code     0  startup_gd32e10x.o(.text)
+    TIMER0_Channel_IRQHandler                0x08000183   Thumb Code     0  startup_gd32e10x.o(.text)
+    TIMER0_TRG_CMT_TIMER10_IRQHandler        0x08000183   Thumb Code     0  startup_gd32e10x.o(.text)
+    TIMER0_UP_TIMER9_IRQHandler              0x08000183   Thumb Code     0  startup_gd32e10x.o(.text)
+    TIMER1_IRQHandler                        0x08000183   Thumb Code     0  startup_gd32e10x.o(.text)
+    TIMER4_IRQHandler                        0x08000183   Thumb Code     0  startup_gd32e10x.o(.text)
+    TIMER5_IRQHandler                        0x08000183   Thumb Code     0  startup_gd32e10x.o(.text)
+    TIMER6_IRQHandler                        0x08000183   Thumb Code     0  startup_gd32e10x.o(.text)
+    TIMER7_BRK_TIMER11_IRQHandler            0x08000183   Thumb Code     0  startup_gd32e10x.o(.text)
+    TIMER7_Channel_IRQHandler                0x08000183   Thumb Code     0  startup_gd32e10x.o(.text)
+    TIMER7_TRG_CMT_TIMER13_IRQHandler        0x08000183   Thumb Code     0  startup_gd32e10x.o(.text)
+    TIMER7_UP_TIMER12_IRQHandler             0x08000183   Thumb Code     0  startup_gd32e10x.o(.text)
+    UART4_IRQHandler                         0x08000183   Thumb Code     0  startup_gd32e10x.o(.text)
+    USBFS_IRQHandler                         0x08000183   Thumb Code     0  startup_gd32e10x.o(.text)
+    USBFS_WKUP_IRQHandler                    0x08000183   Thumb Code     0  startup_gd32e10x.o(.text)
+    WWDGT_IRQHandler                         0x08000183   Thumb Code     0  startup_gd32e10x.o(.text)
+    __aeabi_memcpy                           0x0800018d   Thumb Code    36  memcpya.o(.text)
+    __aeabi_memcpy4                          0x0800018d   Thumb Code     0  memcpya.o(.text)
+    __aeabi_memcpy8                          0x0800018d   Thumb Code     0  memcpya.o(.text)
+    __aeabi_memset                           0x080001b1   Thumb Code    14  memseta.o(.text)
+    __aeabi_memset4                          0x080001b1   Thumb Code     0  memseta.o(.text)
+    __aeabi_memset8                          0x080001b1   Thumb Code     0  memseta.o(.text)
+    __aeabi_memclr                           0x080001bf   Thumb Code     4  memseta.o(.text)
+    __aeabi_memclr4                          0x080001bf   Thumb Code     0  memseta.o(.text)
+    __aeabi_memclr8                          0x080001bf   Thumb Code     0  memseta.o(.text)
+    _memset$wrapper                          0x080001c3   Thumb Code    18  memseta.o(.text)
+    __scatterload                            0x080001d5   Thumb Code    28  init.o(.text)
+    __scatterload_rt2                        0x080001d5   Thumb Code     0  init.o(.text)
+    BusFault_Handler                         0x080001f9   Thumb Code     4  gd32e10x_it.o(i.BusFault_Handler)
+    CAN0_RX0_IRQHandler                      0x080001fd   Thumb Code    36  main.o(i.CAN0_RX0_IRQHandler)
+    CalChecksum                              0x08000229   Thumb Code    26  main.o(i.CalChecksum)
+    CircBuf_Init                             0x08000243   Thumb Code    60  circular_buffer.o(i.CircBuf_Init)
+    CircBuf_Push                             0x0800027f   Thumb Code   116  circular_buffer.o(i.CircBuf_Push)
+    DMA0_Channel0_IRQHandler                 0x080002f5   Thumb Code    30  adc.o(i.DMA0_Channel0_IRQHandler)
+    DMA0_Channel1_IRQHandler                 0x08000319   Thumb Code    32  uart.o(i.DMA0_Channel1_IRQHandler)
+    DMA0_Channel3_IRQHandler                 0x08000341   Thumb Code    32  uart.o(i.DMA0_Channel3_IRQHandler)
+    DMA0_Channel4_IRQHandler                 0x08000369   Thumb Code    26  uart.o(i.DMA0_Channel4_IRQHandler)
+    DMA0_Channel6_IRQHandler                 0x08000389   Thumb Code    32  uart.o(i.DMA0_Channel6_IRQHandler)
+    DMA1_Channel4_IRQHandler                 0x080003b1   Thumb Code    32  uart.o(i.DMA1_Channel4_IRQHandler)
+    DebugMon_Handler                         0x080003d9   Thumb Code     2  gd32e10x_it.o(i.DebugMon_Handler)
+    GetAdcValue                              0x080003dd   Thumb Code    18  adc.o(i.GetAdcValue)
+    HardFault_Handler                        0x080003f5   Thumb Code     4  gd32e10x_it.o(i.HardFault_Handler)
+    Hc4051Delay                              0x080003f9   Thumb Code    12  74hc4051bq.o(i.Hc4051Delay)
+    Hc4051IoInit                             0x08000405   Thumb Code   132  74hc4051bq.o(i.Hc4051IoInit)
+    IsPowerOf2                               0x08000499   Thumb Code    48  circular_buffer.o(i.IsPowerOf2)
+    MemManage_Handler                        0x080004c9   Thumb Code     4  gd32e10x_it.o(i.MemManage_Handler)
+    NMI_Handler                              0x080004cd   Thumb Code     2  gd32e10x_it.o(i.NMI_Handler)
+    PendSV_Handler                           0x080004f9   Thumb Code     2  gd32e10x_it.o(i.PendSV_Handler)
+    RoundDown_PowerOf2                       0x080004fb   Thumb Code    56  circular_buffer.o(i.RoundDown_PowerOf2)
+    SVC_Handler                              0x08000533   Thumb Code     2  gd32e10x_it.o(i.SVC_Handler)
+    SysTick_Handler                          0x08000535   Thumb Code     8  gd32e10x_it.o(i.SysTick_Handler)
+    SystemInit                               0x0800053d   Thumb Code    76  system_gd32e10x.o(i.SystemInit)
+    TIMER2_IRQHandler                        0x08000595   Thumb Code   138  gd32e10x_it.o(i.TIMER2_IRQHandler)
+    TIMER3_IRQHandler                        0x0800063d   Thumb Code    24  main.o(i.TIMER3_IRQHandler)
+    UART3_IRQHandler                         0x08000659   Thumb Code    84  uart.o(i.UART3_IRQHandler)
+    USART0_IRQHandler                        0x080006c1   Thumb Code    84  uart.o(i.USART0_IRQHandler)
+    USART1_IRQHandler                        0x08000729   Thumb Code    84  uart.o(i.USART1_IRQHandler)
+    USART2_IRQHandler                        0x08000791   Thumb Code    84  uart.o(i.USART2_IRQHandler)
+    UsageFault_Handler                       0x080007f9   Thumb Code     4  gd32e10x_it.o(i.UsageFault_Handler)
+    __scatterload_copy                       0x080007fd   Thumb Code    14  handlers.o(i.__scatterload_copy)
+    __scatterload_null                       0x0800080b   Thumb Code     2  handlers.o(i.__scatterload_null)
+    __scatterload_zeroinit                   0x0800080d   Thumb Code    14  handlers.o(i.__scatterload_zeroinit)
+    adc_calculation_calibration_once         0x0800081b   Thumb Code   196  74hc4051bq.o(i.adc_calculation_calibration_once)
+    adc_calibration_enable                   0x080008df   Thumb Code    42  gd32e10x_adc.o(i.adc_calibration_enable)
+    adc_channel_length_config                0x08000909   Thumb Code    70  gd32e10x_adc.o(i.adc_channel_length_config)
+    adc_config                               0x08000951   Thumb Code   204  adc.o(i.adc_config)
+    adc_data_alignment_config                0x08000a21   Thumb Code    22  gd32e10x_adc.o(i.adc_data_alignment_config)
+    adc_deinit                               0x08000a39   Thumb Code    60  gd32e10x_adc.o(i.adc_deinit)
+    adc_dma_mode_enable                      0x08000a79   Thumb Code    10  gd32e10x_adc.o(i.adc_dma_mode_enable)
+    adc_enable                               0x08000a83   Thumb Code    18  gd32e10x_adc.o(i.adc_enable)
+    adc_external_trigger_config              0x08000a95   Thumb Code    62  gd32e10x_adc.o(i.adc_external_trigger_config)
+    adc_external_trigger_source_config       0x08000ad3   Thumb Code    48  gd32e10x_adc.o(i.adc_external_trigger_source_config)
+    adc_init                                 0x08000b03   Thumb Code    24  adc.o(i.adc_init)
+    adc_mode_config                          0x08000b1d   Thumb Code    22  gd32e10x_adc.o(i.adc_mode_config)
+    adc_regular_channel_config               0x08000b39   Thumb Code   172  gd32e10x_adc.o(i.adc_regular_channel_config)
+    adc_software_trigger_enable              0x08000be5   Thumb Code    30  gd32e10x_adc.o(i.adc_software_trigger_enable)
+    adc_special_function_config              0x08000c03   Thumb Code    90  gd32e10x_adc.o(i.adc_special_function_config)
+    adc_value_read                           0x08000c5d   Thumb Code   282  74hc4051bq.o(i.adc_value_read)
+    ble_hc04_gpio_init                       0x08000d85   Thumb Code    24  ble_hc04.o(i.ble_hc04_gpio_init)
+    ble_hc04_thread_loop                     0x08000da1   Thumb Code    48  ble_hc04.o(i.ble_hc04_thread_loop)
+    can_message_receive                      0x08000dd5   Thumb Code   448  gd32e10x_can.o(i.can_message_receive)
+    delay_1ms                                0x08000f99   Thumb Code    16  systick.o(i.delay_1ms)
+    delay_decrement                          0x08000fad   Thumb Code    18  systick.o(i.delay_decrement)
+    dma0_ch3_usart0_tx_init                  0x08000fc5   Thumb Code   114  uart.o(i.dma0_ch3_usart0_tx_init)
+    dma0_ch4_usart0_rx_init                  0x08001045   Thumb Code   114  uart.o(i.dma0_ch4_usart0_rx_init)
+    dma_channel_disable                      0x080010c5   Thumb Code    50  gd32e10x_dma.o(i.dma_channel_disable)
+    dma_channel_enable                       0x080010f7   Thumb Code    50  gd32e10x_dma.o(i.dma_channel_enable)
+    dma_circulation_disable                  0x08001129   Thumb Code    50  gd32e10x_dma.o(i.dma_circulation_disable)
+    dma_circulation_enable                   0x0800115b   Thumb Code    50  gd32e10x_dma.o(i.dma_circulation_enable)
+    dma_config                               0x0800118d   Thumb Code    84  adc.o(i.dma_config)
+    dma_deinit                               0x080011ed   Thumb Code   112  gd32e10x_dma.o(i.dma_deinit)
+    dma_init                                 0x0800125d   Thumb Code   302  gd32e10x_dma.o(i.dma_init)
+    dma_interrupt_enable                     0x0800138b   Thumb Code    50  gd32e10x_dma.o(i.dma_interrupt_enable)
+    dma_interrupt_flag_clear                 0x080013bd   Thumb Code    16  gd32e10x_dma.o(i.dma_interrupt_flag_clear)
+    dma_interrupt_flag_get                   0x080013cd   Thumb Code   130  gd32e10x_dma.o(i.dma_interrupt_flag_get)
+    dma_memory_address_config                0x0800144f   Thumb Code    36  gd32e10x_dma.o(i.dma_memory_address_config)
+    dma_memory_to_memory_disable             0x08001473   Thumb Code    50  gd32e10x_dma.o(i.dma_memory_to_memory_disable)
+    dma_struct_para_init                     0x080014bd   Thumb Code    28  gd32e10x_dma.o(i.dma_struct_para_init)
+    dma_transfer_number_config               0x080014d9   Thumb Code    38  gd32e10x_dma.o(i.dma_transfer_number_config)
+    dma_transfer_number_get                  0x080014ff   Thumb Code    34  gd32e10x_dma.o(i.dma_transfer_number_get)
+    gd_eval_com_init                         0x08001521   Thumb Code   152  uart.o(i.gd_eval_com_init)
+    gpio_bit_reset                           0x080015dd   Thumb Code     4  gd32e10x_gpio.o(i.gpio_bit_reset)
+    gpio_bit_set                             0x080015e1   Thumb Code     4  gd32e10x_gpio.o(i.gpio_bit_set)
+    gpio_config                              0x080015e5   Thumb Code   100  adc.o(i.gpio_config)
+    gpio_init                                0x0800164d   Thumb Code   188  gd32e10x_gpio.o(i.gpio_init)
+    gpio_input_bit_get                       0x08001709   Thumb Code    16  gd32e10x_gpio.o(i.gpio_input_bit_get)
+    gpio_output_port_get                     0x08001719   Thumb Code     8  gd32e10x_gpio.o(i.gpio_output_port_get)
+    gpio_pin_remap_config                    0x08001721   Thumb Code   138  gd32e10x_gpio.o(i.gpio_pin_remap_config)
+    gpio_port_write                          0x080017b1   Thumb Code     4  gd32e10x_gpio.o(i.gpio_port_write)
+    main                                     0x080017b5   Thumb Code   246  main.o(i.main)
+    nvic_config                              0x080018c5   Thumb Code   162  uart.o(i.nvic_config)
+    nvic_irq_enable                          0x0800196d   Thumb Code   162  gd32e10x_misc.o(i.nvic_irq_enable)
+    nvic_priority_group_set                  0x08001a19   Thumb Code    10  gd32e10x_misc.o(i.nvic_priority_group_set)
+    nvic_vector_table_set                    0x08001a2d   Thumb Code    12  gd32e10x_misc.o(i.nvic_vector_table_set)
+    rcu_adc_clock_config                     0x08001a41   Thumb Code    98  gd32e10x_rcu.o(i.rcu_adc_clock_config)
+    rcu_clock_freq_get                       0x08001aad   Thumb Code   352  gd32e10x_rcu.o(i.rcu_clock_freq_get)
+    rcu_config                               0x08001c31   Thumb Code    34  adc.o(i.rcu_config)
+    rcu_periph_clock_enable                  0x08001c55   Thumb Code    28  gd32e10x_rcu.o(i.rcu_periph_clock_enable)
+    rcu_periph_reset_disable                 0x08001c75   Thumb Code    28  gd32e10x_rcu.o(i.rcu_periph_reset_disable)
+    rcu_periph_reset_enable                  0x08001c95   Thumb Code    28  gd32e10x_rcu.o(i.rcu_periph_reset_enable)
+    read_adc_value                           0x08001cb5   Thumb Code    64  adc.o(i.read_adc_value)
+    read_can0_data                           0x08001cfd   Thumb Code    18  main.o(i.read_can0_data)
+    select_x_control                         0x08001d11   Thumb Code    58  74hc4051bq.o(i.select_x_control)
+    select_y_control_volt                    0x08001d51   Thumb Code   104  74hc4051bq.o(i.select_y_control_volt)
+    systick_config                           0x08001ec9   Thumb Code    74  systick.o(i.systick_config)
+    timer_channel_capture_value_register_read 0x08001f19   Thumb Code    42  gd32e10x_timer.o(i.timer_channel_capture_value_register_read)
+    timer_interrupt_flag_clear               0x08001f43   Thumb Code     6  gd32e10x_timer.o(i.timer_interrupt_flag_clear)
+    timer_interrupt_flag_get                 0x08001f49   Thumb Code    24  gd32e10x_timer.o(i.timer_interrupt_flag_get)
+    uart3_dma_send_data                      0x08001f61   Thumb Code    68  uart.o(i.uart3_dma_send_data)
+    usart0_dma_send_data                     0x08001fb1   Thumb Code    68  uart.o(i.usart0_dma_send_data)
+    usart0_init                              0x08002001   Thumb Code    40  uart.o(i.usart0_init)
+    usart1_dma_send_data                     0x08002035   Thumb Code    68  uart.o(i.usart1_dma_send_data)
+    usart2_dma_send_data                     0x08002085   Thumb Code    68  uart.o(i.usart2_dma_send_data)
+    usart_baudrate_set                       0x080020d5   Thumb Code   136  gd32e10x_usart.o(i.usart_baudrate_set)
+    usart_deinit                             0x08002165   Thumb Code   136  gd32e10x_usart.o(i.usart_deinit)
+    usart_dma_receive_config                 0x080021f5   Thumb Code    16  gd32e10x_usart.o(i.usart_dma_receive_config)
+    usart_dma_send_data                      0x08002205   Thumb Code    72  uart.o(i.usart_dma_send_data)
+    usart_dma_transmit_config                0x0800224d   Thumb Code    16  gd32e10x_usart.o(i.usart_dma_transmit_config)
+    usart_enable                             0x0800225d   Thumb Code    10  gd32e10x_usart.o(i.usart_enable)
+    usart_interrupt_enable                   0x08002267   Thumb Code    26  gd32e10x_usart.o(i.usart_interrupt_enable)
+    usart_interrupt_flag_get                 0x08002281   Thumb Code    56  gd32e10x_usart.o(i.usart_interrupt_flag_get)
+    usart_receive_config                     0x080022b9   Thumb Code    16  gd32e10x_usart.o(i.usart_receive_config)
+    usart_transmit_config                    0x080022c9   Thumb Code    16  gd32e10x_usart.o(i.usart_transmit_config)
+    g_can_fdlength_table                     0x080022d8   Data           7  gd32e10x_can.o(.constdata)
+    Region$$Table$$Base                      0x08002398   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x080023b8   Number         0  anon$$obj.o(Region$$Table)
     timer3_interrupt                         0x20000000   Data           1  main.o(.data)
     time_1ms                                 0x20000004   Data           4  main.o(.data)
     readvalue1                               0x20000010   Data           2  gd32e10x_it.o(.data)
@@ -1534,16 +1775,31 @@ Image Symbol Table
     type_b_rank                              0x20000034   Data           8  74hc4051bq.o(.data)
     refine_y_pos_normal                      0x2000003c   Data          32  74hc4051bq.o(.data)
     refine_y_pos_aosha                       0x2000005c   Data          32  74hc4051bq.o(.data)
-    dma_idle                                 0x2000007c   Data           1  uart.o(.data)
-    get_dma_len                              0x20000090   Data           4  uart.o(.data)
-    serial_frame                             0x20000094   Data        2056  main.o(.bss)
-    process_handle                           0x2000089c   Data        8580  main.o(.bss)
-    adc_value                                0x20002a20   Data          16  adc.o(.bss)
-    adc_v                                    0x20002a30   Data          16  adc.o(.bss)
-    USART1_RxBuff                            0x20002a40   Data       10000  uart.o(.bss)
-    USART1_TxBuff                            0x20005150   Data       10000  uart.o(.bss)
-    USART1_RxCBuf                            0x20007860   Data          16  uart.o(.bss)
-    __initial_sp                             0x20007c70   Data           0  startup_gd32e10x.o(STACK)
+    dma0_ch1_idle                            0x2000007c   Data           1  uart.o(.data)
+    dma0_ch3_idle                            0x2000007d   Data           1  uart.o(.data)
+    dma0_ch6_idle                            0x2000007e   Data           1  uart.o(.data)
+    dma1_ch4_idle                            0x2000007f   Data           1  uart.o(.data)
+    serial_frame                             0x200000c0   Data        2056  main.o(.bss)
+    process_handle                           0x200008c8   Data        8584  main.o(.bss)
+    adc_value                                0x20002a50   Data          16  adc.o(.bss)
+    adc_v                                    0x20002a60   Data          16  adc.o(.bss)
+    USART0_RxBuff                            0x20002a70   Data         512  uart.o(.bss)
+    USART0_TxBuff                            0x20002c70   Data         512  uart.o(.bss)
+    USART1_RxBuff                            0x20002e70   Data         512  uart.o(.bss)
+    USART1_TxBuff                            0x20003070   Data         512  uart.o(.bss)
+    USART2_RxBuff                            0x20003270   Data         512  uart.o(.bss)
+    USART2_TxBuff                            0x20003470   Data         512  uart.o(.bss)
+    USART3_RxBuff                            0x20003670   Data         512  uart.o(.bss)
+    USART3_TxBuff                            0x20003870   Data         512  uart.o(.bss)
+    USART0_RX_CACHE_BUFFER                   0x20003a70   Data         512  uart.o(.bss)
+    USART1_RX_CACHE_BUFFER                   0x20003c70   Data         512  uart.o(.bss)
+    USART2_RX_CACHE_BUFFER                   0x20003e70   Data         512  uart.o(.bss)
+    USART3_RX_CACHE_BUFFER                   0x20004070   Data         512  uart.o(.bss)
+    USART0_RxCBuf                            0x20004270   Data          16  uart.o(.bss)
+    USART1_RxCBuf                            0x20004280   Data          16  uart.o(.bss)
+    USART2_RxCBuf                            0x20004290   Data          16  uart.o(.bss)
+    USART3_RxCBuf                            0x200042a0   Data          16  uart.o(.bss)
+    __initial_sp                             0x200046b0   Data           0  startup_gd32e10x.o(STACK)
 
 
 
@@ -1553,161 +1809,174 @@ Memory Map of the image
 
   Image Entry point : 0x08000151
 
-  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x00002050, Max: 0x00020000, ABSOLUTE)
+  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x00002478, Max: 0x00020000, ABSOLUTE)
 
-    Execution Region ER_IROM1 (Base: 0x08000000, Size: 0x00001fbc, Max: 0x00020000, ABSOLUTE)
+    Execution Region ER_IROM1 (Exec base: 0x08000000, Load base: 0x08000000, Size: 0x000023b8, Max: 0x00020000, ABSOLUTE)
 
-    Base Addr    Size         Type   Attr      Idx    E Section Name        Object
+    Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
-    0x08000000   0x00000150   Data   RO         4049    RESET               startup_gd32e10x.o
-    0x08000150   0x00000000   Code   RO         4789  * .ARM.Collect$$$$00000000  mc_w.l(entry.o)
-    0x08000150   0x00000004   Code   RO         4828    .ARM.Collect$$$$00000001  mc_w.l(entry2.o)
-    0x08000154   0x00000004   Code   RO         4831    .ARM.Collect$$$$00000004  mc_w.l(entry5.o)
-    0x08000158   0x00000000   Code   RO         4833    .ARM.Collect$$$$00000008  mc_w.l(entry7b.o)
-    0x08000158   0x00000000   Code   RO         4835    .ARM.Collect$$$$0000000A  mc_w.l(entry8b.o)
-    0x08000158   0x00000008   Code   RO         4836    .ARM.Collect$$$$0000000B  mc_w.l(entry9a.o)
-    0x08000160   0x00000000   Code   RO         4838    .ARM.Collect$$$$0000000D  mc_w.l(entry10a.o)
-    0x08000160   0x00000000   Code   RO         4840    .ARM.Collect$$$$0000000F  mc_w.l(entry11a.o)
-    0x08000160   0x00000004   Code   RO         4829    .ARM.Collect$$$$00002712  mc_w.l(entry2.o)
-    0x08000164   0x00000024   Code   RO         4050    .text               startup_gd32e10x.o
-    0x08000188   0x00000024   Code   RO         4792    .text               mc_w.l(memcpya.o)
-    0x080001ac   0x00000024   Code   RO         4794    .text               mc_w.l(memseta.o)
-    0x080001d0   0x00000024   Code   RO         4844    .text               mc_w.l(init.o)
-    0x080001f4   0x00000004   Code   RO          236    i.BusFault_Handler  gd32e10x_it.o
-    0x080001f8   0x0000002c   Code   RO            3    i.CAN0_RX0_IRQHandler  main.o
-    0x08000224   0x0000001a   Code   RO            4    i.CalChecksum       main.o
-    0x0800023e   0x0000003c   Code   RO         4385    i.CircBuf_Init      circular_buffer.o
-    0x0800027a   0x00000074   Code   RO         4390    i.CircBuf_Push      circular_buffer.o
-    0x080002ee   0x00000002   PAD
-    0x080002f0   0x00000024   Code   RO         4127    i.DMA0_Channel0_IRQHandler  adc.o
-    0x08000314   0x00000028   Code   RO         4270    i.DMA0_Channel3_IRQHandler  uart.o
-    0x0800033c   0x00000020   Code   RO         4271    i.DMA0_Channel4_IRQHandler  uart.o
-    0x0800035c   0x00000002   Code   RO          237    i.DebugMon_Handler  gd32e10x_it.o
-    0x0800035e   0x00000002   PAD
-    0x08000360   0x00000018   Code   RO         4128    i.GetAdcValue       adc.o
-    0x08000378   0x00000004   Code   RO          238    i.HardFault_Handler  gd32e10x_it.o
-    0x0800037c   0x0000000c   Code   RO         4056    i.Hc4051Delay       74hc4051bq.o
-    0x08000388   0x00000094   Code   RO         4057    i.Hc4051IoInit      74hc4051bq.o
-    0x0800041c   0x00000030   Code   RO         4392    i.IsPowerOf2        circular_buffer.o
-    0x0800044c   0x00000004   Code   RO          239    i.MemManage_Handler  gd32e10x_it.o
-    0x08000450   0x00000002   Code   RO          240    i.NMI_Handler       gd32e10x_it.o
-    0x08000452   0x00000002   PAD
-    0x08000454   0x00000028   Code   RO          193    i.NVIC_SetPriority  systick.o
-    0x0800047c   0x00000002   Code   RO          241    i.PendSV_Handler    gd32e10x_it.o
-    0x0800047e   0x00000038   Code   RO         4393    i.RoundDown_PowerOf2  circular_buffer.o
-    0x080004b6   0x00000002   Code   RO          242    i.SVC_Handler       gd32e10x_it.o
-    0x080004b8   0x00000008   Code   RO          243    i.SysTick_Handler   gd32e10x_it.o
-    0x080004c0   0x00000058   Code   RO          333    i.SystemInit        system_gd32e10x.o
-    0x08000518   0x000000a8   Code   RO          244    i.TIMER2_IRQHandler  gd32e10x_it.o
-    0x080005c0   0x0000001c   Code   RO            5    i.TIMER3_IRQHandler  main.o
-    0x080005dc   0x00000074   Code   RO         4272    i.USART0_IRQHandler  uart.o
-    0x08000650   0x00000004   Code   RO          245    i.UsageFault_Handler  gd32e10x_it.o
-    0x08000654   0x0000000e   Code   RO         4848    i.__scatterload_copy  mc_w.l(handlers.o)
-    0x08000662   0x00000002   Code   RO         4849    i.__scatterload_null  mc_w.l(handlers.o)
-    0x08000664   0x0000000e   Code   RO         4850    i.__scatterload_zeroinit  mc_w.l(handlers.o)
-    0x08000672   0x000000c4   Code   RO         4059    i.adc_calculation_calibration_once  74hc4051bq.o
-    0x08000736   0x0000002a   Code   RO          374    i.adc_calibration_enable  gd32e10x_adc.o
-    0x08000760   0x00000046   Code   RO          375    i.adc_channel_length_config  gd32e10x_adc.o
-    0x080007a6   0x00000002   PAD
-    0x080007a8   0x000000d0   Code   RO         4129    i.adc_config        adc.o
-    0x08000878   0x00000016   Code   RO          376    i.adc_data_alignment_config  gd32e10x_adc.o
-    0x0800088e   0x00000002   PAD
-    0x08000890   0x00000040   Code   RO          377    i.adc_deinit        gd32e10x_adc.o
-    0x080008d0   0x0000000a   Code   RO          381    i.adc_dma_mode_enable  gd32e10x_adc.o
-    0x080008da   0x00000012   Code   RO          382    i.adc_enable        gd32e10x_adc.o
-    0x080008ec   0x0000003e   Code   RO          383    i.adc_external_trigger_config  gd32e10x_adc.o
-    0x0800092a   0x00000030   Code   RO          384    i.adc_external_trigger_source_config  gd32e10x_adc.o
-    0x0800095a   0x00000018   Code   RO         4130    i.adc_init          adc.o
-    0x08000972   0x00000002   PAD
-    0x08000974   0x0000001c   Code   RO          395    i.adc_mode_config   gd32e10x_adc.o
-    0x08000990   0x000000ac   Code   RO          399    i.adc_regular_channel_config  gd32e10x_adc.o
-    0x08000a3c   0x0000001e   Code   RO          403    i.adc_software_trigger_enable  gd32e10x_adc.o
-    0x08000a5a   0x0000005a   Code   RO          404    i.adc_special_function_config  gd32e10x_adc.o
-    0x08000ab4   0x00000128   Code   RO         4060    i.adc_value_read    74hc4051bq.o
-    0x08000bdc   0x000001c4   Code   RO          839    i.can_message_receive  gd32e10x_can.o
-    0x08000da0   0x00000014   Code   RO          194    i.delay_1ms         systick.o
-    0x08000db4   0x00000018   Code   RO          195    i.delay_decrement   systick.o
-    0x08000dcc   0x0000007c   Code   RO         4278    i.dma0_ch3_usart0_tx_init  uart.o
-    0x08000e48   0x00000090   Code   RO         4279    i.dma0_ch4_usart0_rx_init  uart.o
-    0x08000ed8   0x00000032   Code   RO         1467    i.dma_channel_disable  gd32e10x_dma.o
-    0x08000f0a   0x00000032   Code   RO         1468    i.dma_channel_enable  gd32e10x_dma.o
-    0x08000f3c   0x00000032   Code   RO         1469    i.dma_circulation_disable  gd32e10x_dma.o
-    0x08000f6e   0x00000032   Code   RO         1470    i.dma_circulation_enable  gd32e10x_dma.o
-    0x08000fa0   0x00000060   Code   RO         4131    i.dma_config        adc.o
-    0x08001000   0x00000070   Code   RO         1471    i.dma_deinit        gd32e10x_dma.o
-    0x08001070   0x0000012e   Code   RO         1474    i.dma_init          gd32e10x_dma.o
-    0x0800119e   0x00000032   Code   RO         1476    i.dma_interrupt_enable  gd32e10x_dma.o
-    0x080011d0   0x00000010   Code   RO         1477    i.dma_interrupt_flag_clear  gd32e10x_dma.o
-    0x080011e0   0x00000082   Code   RO         1478    i.dma_interrupt_flag_get  gd32e10x_dma.o
-    0x08001262   0x00000024   Code   RO         1479    i.dma_memory_address_config  gd32e10x_dma.o
-    0x08001286   0x00000032   Code   RO         1482    i.dma_memory_to_memory_disable  gd32e10x_dma.o
-    0x080012b8   0x00000018   Code   RO         1486    i.dma_periph_and_channel_check  gd32e10x_dma.o
-    0x080012d0   0x00000050   Code   RO         4280    i.dma_send_data     uart.o
-    0x08001320   0x0000001c   Code   RO         1491    i.dma_struct_para_init  gd32e10x_dma.o
-    0x0800133c   0x00000026   Code   RO         1493    i.dma_transfer_number_config  gd32e10x_dma.o
-    0x08001362   0x00000022   Code   RO         1494    i.dma_transfer_number_get  gd32e10x_dma.o
-    0x08001384   0x00000098   Code   RO         4282    i.gd_eval_com_init  uart.o
-    0x0800141c   0x00000004   Code   RO         2079    i.gpio_bit_reset    gd32e10x_gpio.o
-    0x08001420   0x00000004   Code   RO         2080    i.gpio_bit_set      gd32e10x_gpio.o
-    0x08001424   0x00000068   Code   RO         4132    i.gpio_config       adc.o
-    0x0800148c   0x000000bc   Code   RO         2089    i.gpio_init         gd32e10x_gpio.o
-    0x08001548   0x00000008   Code   RO         2093    i.gpio_output_port_get  gd32e10x_gpio.o
-    0x08001550   0x00000090   Code   RO         2095    i.gpio_pin_remap_config  gd32e10x_gpio.o
-    0x080015e0   0x00000004   Code   RO         2096    i.gpio_port_write   gd32e10x_gpio.o
-    0x080015e4   0x000000f4   Code   RO            6    i.main              main.o
-    0x080016d8   0x00000022   Code   RO         4283    i.nvic_config       uart.o
-    0x080016fa   0x00000002   PAD
-    0x080016fc   0x000000ac   Code   RO         2437    i.nvic_irq_enable   gd32e10x_misc.o
-    0x080017a8   0x00000014   Code   RO         2438    i.nvic_priority_group_set  gd32e10x_misc.o
-    0x080017bc   0x00000014   Code   RO         2439    i.nvic_vector_table_set  gd32e10x_misc.o
-    0x080017d0   0x0000006c   Code   RO         2585    i.rcu_adc_clock_config  gd32e10x_rcu.o
-    0x0800183c   0x00000184   Code   RO         2594    i.rcu_clock_freq_get  gd32e10x_rcu.o
-    0x080019c0   0x00000022   Code   RO         4133    i.rcu_config        adc.o
-    0x080019e2   0x00000002   PAD
-    0x080019e4   0x00000020   Code   RO         2614    i.rcu_periph_clock_enable  gd32e10x_rcu.o
-    0x08001a04   0x00000020   Code   RO         2617    i.rcu_periph_reset_disable  gd32e10x_rcu.o
-    0x08001a24   0x00000020   Code   RO         2618    i.rcu_periph_reset_enable  gd32e10x_rcu.o
-    0x08001a44   0x00000048   Code   RO         4134    i.read_adc_value    adc.o
-    0x08001a8c   0x00000012   Code   RO            7    i.read_can0_data    main.o
-    0x08001a9e   0x00000002   PAD
-    0x08001aa0   0x00000040   Code   RO         4061    i.select_x_control  74hc4051bq.o
-    0x08001ae0   0x00000074   Code   RO         4062    i.select_y_control_volt  74hc4051bq.o
-    0x08001b54   0x000000fc   Code   RO          334    i.system_clock_120m_hxtal  system_gd32e10x.o
-    0x08001c50   0x00000008   Code   RO          335    i.system_clock_config  system_gd32e10x.o
-    0x08001c58   0x00000050   Code   RO          196    i.systick_config    systick.o
-    0x08001ca8   0x0000002a   Code   RO         3236    i.timer_channel_capture_value_register_read  gd32e10x_timer.o
-    0x08001cd2   0x00000006   Code   RO         3281    i.timer_interrupt_flag_clear  gd32e10x_timer.o
-    0x08001cd8   0x00000018   Code   RO         3282    i.timer_interrupt_flag_get  gd32e10x_timer.o
-    0x08001cf0   0x00000030   Code   RO         4284    i.usart0_init       uart.o
-    0x08001d20   0x00000090   Code   RO         3671    i.usart_baudrate_set  gd32e10x_usart.o
-    0x08001db0   0x00000090   Code   RO         3676    i.usart_deinit      gd32e10x_usart.o
-    0x08001e40   0x00000010   Code   RO         3678    i.usart_dma_receive_config  gd32e10x_usart.o
-    0x08001e50   0x00000010   Code   RO         3679    i.usart_dma_transmit_config  gd32e10x_usart.o
-    0x08001e60   0x0000000a   Code   RO         3680    i.usart_enable      gd32e10x_usart.o
-    0x08001e6a   0x0000001a   Code   RO         3690    i.usart_interrupt_enable  gd32e10x_usart.o
-    0x08001e84   0x00000038   Code   RO         3692    i.usart_interrupt_flag_get  gd32e10x_usart.o
-    0x08001ebc   0x00000010   Code   RO         3705    i.usart_receive_config  gd32e10x_usart.o
-    0x08001ecc   0x00000010   Code   RO         3719    i.usart_transmit_config  gd32e10x_usart.o
-    0x08001edc   0x000000c0   Data   RO          853    .constdata          gd32e10x_can.o
-    0x08001f9c   0x00000020   Data   RO         4846    Region$$Table       anon$$obj.o
+    0x08000000   0x08000000   0x00000150   Data   RO         4052    RESET               startup_gd32e10x.o
+    0x08000150   0x08000150   0x00000000   Code   RO         5022  * .ARM.Collect$$$$00000000  mc_w.l(entry.o)
+    0x08000150   0x08000150   0x00000004   Code   RO         5069    .ARM.Collect$$$$00000001  mc_w.l(entry2.o)
+    0x08000154   0x08000154   0x00000004   Code   RO         5072    .ARM.Collect$$$$00000004  mc_w.l(entry5.o)
+    0x08000158   0x08000158   0x00000000   Code   RO         5074    .ARM.Collect$$$$00000008  mc_w.l(entry7b.o)
+    0x08000158   0x08000158   0x00000000   Code   RO         5076    .ARM.Collect$$$$0000000A  mc_w.l(entry8b.o)
+    0x08000158   0x08000158   0x00000008   Code   RO         5077    .ARM.Collect$$$$0000000B  mc_w.l(entry9a.o)
+    0x08000160   0x08000160   0x00000004   Code   RO         5084    .ARM.Collect$$$$0000000E  mc_w.l(entry12b.o)
+    0x08000164   0x08000164   0x00000000   Code   RO         5079    .ARM.Collect$$$$0000000F  mc_w.l(entry10a.o)
+    0x08000164   0x08000164   0x00000000   Code   RO         5081    .ARM.Collect$$$$00000011  mc_w.l(entry11a.o)
+    0x08000164   0x08000164   0x00000004   Code   RO         5070    .ARM.Collect$$$$00002712  mc_w.l(entry2.o)
+    0x08000168   0x08000168   0x00000024   Code   RO         4053    .text               startup_gd32e10x.o
+    0x0800018c   0x0800018c   0x00000024   Code   RO         5025    .text               mc_w.l(memcpya.o)
+    0x080001b0   0x080001b0   0x00000024   Code   RO         5027    .text               mc_w.l(memseta.o)
+    0x080001d4   0x080001d4   0x00000024   Code   RO         5087    .text               mc_w.l(init.o)
+    0x080001f8   0x080001f8   0x00000004   Code   RO          239    i.BusFault_Handler  gd32e10x_it.o
+    0x080001fc   0x080001fc   0x0000002c   Code   RO            3    i.CAN0_RX0_IRQHandler  main.o
+    0x08000228   0x08000228   0x0000001a   Code   RO            4    i.CalChecksum       main.o
+    0x08000242   0x08000242   0x0000003c   Code   RO         4514    i.CircBuf_Init      circular_buffer.o
+    0x0800027e   0x0800027e   0x00000074   Code   RO         4519    i.CircBuf_Push      circular_buffer.o
+    0x080002f2   0x080002f2   0x00000002   PAD
+    0x080002f4   0x080002f4   0x00000024   Code   RO         4130    i.DMA0_Channel0_IRQHandler  adc.o
+    0x08000318   0x08000318   0x00000028   Code   RO         4273    i.DMA0_Channel1_IRQHandler  uart.o
+    0x08000340   0x08000340   0x00000028   Code   RO         4274    i.DMA0_Channel3_IRQHandler  uart.o
+    0x08000368   0x08000368   0x00000020   Code   RO         4275    i.DMA0_Channel4_IRQHandler  uart.o
+    0x08000388   0x08000388   0x00000028   Code   RO         4276    i.DMA0_Channel6_IRQHandler  uart.o
+    0x080003b0   0x080003b0   0x00000028   Code   RO         4277    i.DMA1_Channel4_IRQHandler  uart.o
+    0x080003d8   0x080003d8   0x00000002   Code   RO          240    i.DebugMon_Handler  gd32e10x_it.o
+    0x080003da   0x080003da   0x00000002   PAD
+    0x080003dc   0x080003dc   0x00000018   Code   RO         4131    i.GetAdcValue       adc.o
+    0x080003f4   0x080003f4   0x00000004   Code   RO          241    i.HardFault_Handler  gd32e10x_it.o
+    0x080003f8   0x080003f8   0x0000000c   Code   RO         4059    i.Hc4051Delay       74hc4051bq.o
+    0x08000404   0x08000404   0x00000094   Code   RO         4060    i.Hc4051IoInit      74hc4051bq.o
+    0x08000498   0x08000498   0x00000030   Code   RO         4521    i.IsPowerOf2        circular_buffer.o
+    0x080004c8   0x080004c8   0x00000004   Code   RO          242    i.MemManage_Handler  gd32e10x_it.o
+    0x080004cc   0x080004cc   0x00000002   Code   RO          243    i.NMI_Handler       gd32e10x_it.o
+    0x080004ce   0x080004ce   0x00000002   PAD
+    0x080004d0   0x080004d0   0x00000028   Code   RO          196    i.NVIC_SetPriority  systick.o
+    0x080004f8   0x080004f8   0x00000002   Code   RO          244    i.PendSV_Handler    gd32e10x_it.o
+    0x080004fa   0x080004fa   0x00000038   Code   RO         4522    i.RoundDown_PowerOf2  circular_buffer.o
+    0x08000532   0x08000532   0x00000002   Code   RO          245    i.SVC_Handler       gd32e10x_it.o
+    0x08000534   0x08000534   0x00000008   Code   RO          246    i.SysTick_Handler   gd32e10x_it.o
+    0x0800053c   0x0800053c   0x00000058   Code   RO          336    i.SystemInit        system_gd32e10x.o
+    0x08000594   0x08000594   0x000000a8   Code   RO          247    i.TIMER2_IRQHandler  gd32e10x_it.o
+    0x0800063c   0x0800063c   0x0000001c   Code   RO            5    i.TIMER3_IRQHandler  main.o
+    0x08000658   0x08000658   0x00000068   Code   RO         4278    i.UART3_IRQHandler  uart.o
+    0x080006c0   0x080006c0   0x00000068   Code   RO         4279    i.USART0_IRQHandler  uart.o
+    0x08000728   0x08000728   0x00000068   Code   RO         4280    i.USART1_IRQHandler  uart.o
+    0x08000790   0x08000790   0x00000068   Code   RO         4281    i.USART2_IRQHandler  uart.o
+    0x080007f8   0x080007f8   0x00000004   Code   RO          248    i.UsageFault_Handler  gd32e10x_it.o
+    0x080007fc   0x080007fc   0x0000000e   Code   RO         5091    i.__scatterload_copy  mc_w.l(handlers.o)
+    0x0800080a   0x0800080a   0x00000002   Code   RO         5092    i.__scatterload_null  mc_w.l(handlers.o)
+    0x0800080c   0x0800080c   0x0000000e   Code   RO         5093    i.__scatterload_zeroinit  mc_w.l(handlers.o)
+    0x0800081a   0x0800081a   0x000000c4   Code   RO         4062    i.adc_calculation_calibration_once  74hc4051bq.o
+    0x080008de   0x080008de   0x0000002a   Code   RO          377    i.adc_calibration_enable  gd32e10x_adc.o
+    0x08000908   0x08000908   0x00000046   Code   RO          378    i.adc_channel_length_config  gd32e10x_adc.o
+    0x0800094e   0x0800094e   0x00000002   PAD
+    0x08000950   0x08000950   0x000000d0   Code   RO         4132    i.adc_config        adc.o
+    0x08000a20   0x08000a20   0x00000016   Code   RO          379    i.adc_data_alignment_config  gd32e10x_adc.o
+    0x08000a36   0x08000a36   0x00000002   PAD
+    0x08000a38   0x08000a38   0x00000040   Code   RO          380    i.adc_deinit        gd32e10x_adc.o
+    0x08000a78   0x08000a78   0x0000000a   Code   RO          384    i.adc_dma_mode_enable  gd32e10x_adc.o
+    0x08000a82   0x08000a82   0x00000012   Code   RO          385    i.adc_enable        gd32e10x_adc.o
+    0x08000a94   0x08000a94   0x0000003e   Code   RO          386    i.adc_external_trigger_config  gd32e10x_adc.o
+    0x08000ad2   0x08000ad2   0x00000030   Code   RO          387    i.adc_external_trigger_source_config  gd32e10x_adc.o
+    0x08000b02   0x08000b02   0x00000018   Code   RO         4133    i.adc_init          adc.o
+    0x08000b1a   0x08000b1a   0x00000002   PAD
+    0x08000b1c   0x08000b1c   0x0000001c   Code   RO          398    i.adc_mode_config   gd32e10x_adc.o
+    0x08000b38   0x08000b38   0x000000ac   Code   RO          402    i.adc_regular_channel_config  gd32e10x_adc.o
+    0x08000be4   0x08000be4   0x0000001e   Code   RO          406    i.adc_software_trigger_enable  gd32e10x_adc.o
+    0x08000c02   0x08000c02   0x0000005a   Code   RO          407    i.adc_special_function_config  gd32e10x_adc.o
+    0x08000c5c   0x08000c5c   0x00000128   Code   RO         4063    i.adc_value_read    74hc4051bq.o
+    0x08000d84   0x08000d84   0x0000001c   Code   RO         4986    i.ble_hc04_gpio_init  ble_hc04.o
+    0x08000da0   0x08000da0   0x00000034   Code   RO         4988    i.ble_hc04_thread_loop  ble_hc04.o
+    0x08000dd4   0x08000dd4   0x000001c4   Code   RO          842    i.can_message_receive  gd32e10x_can.o
+    0x08000f98   0x08000f98   0x00000014   Code   RO          197    i.delay_1ms         systick.o
+    0x08000fac   0x08000fac   0x00000018   Code   RO          198    i.delay_decrement   systick.o
+    0x08000fc4   0x08000fc4   0x00000080   Code   RO         4284    i.dma0_ch3_usart0_tx_init  uart.o
+    0x08001044   0x08001044   0x00000080   Code   RO         4285    i.dma0_ch4_usart0_rx_init  uart.o
+    0x080010c4   0x080010c4   0x00000032   Code   RO         1470    i.dma_channel_disable  gd32e10x_dma.o
+    0x080010f6   0x080010f6   0x00000032   Code   RO         1471    i.dma_channel_enable  gd32e10x_dma.o
+    0x08001128   0x08001128   0x00000032   Code   RO         1472    i.dma_circulation_disable  gd32e10x_dma.o
+    0x0800115a   0x0800115a   0x00000032   Code   RO         1473    i.dma_circulation_enable  gd32e10x_dma.o
+    0x0800118c   0x0800118c   0x00000060   Code   RO         4134    i.dma_config        adc.o
+    0x080011ec   0x080011ec   0x00000070   Code   RO         1474    i.dma_deinit        gd32e10x_dma.o
+    0x0800125c   0x0800125c   0x0000012e   Code   RO         1477    i.dma_init          gd32e10x_dma.o
+    0x0800138a   0x0800138a   0x00000032   Code   RO         1479    i.dma_interrupt_enable  gd32e10x_dma.o
+    0x080013bc   0x080013bc   0x00000010   Code   RO         1480    i.dma_interrupt_flag_clear  gd32e10x_dma.o
+    0x080013cc   0x080013cc   0x00000082   Code   RO         1481    i.dma_interrupt_flag_get  gd32e10x_dma.o
+    0x0800144e   0x0800144e   0x00000024   Code   RO         1482    i.dma_memory_address_config  gd32e10x_dma.o
+    0x08001472   0x08001472   0x00000032   Code   RO         1485    i.dma_memory_to_memory_disable  gd32e10x_dma.o
+    0x080014a4   0x080014a4   0x00000018   Code   RO         1489    i.dma_periph_and_channel_check  gd32e10x_dma.o
+    0x080014bc   0x080014bc   0x0000001c   Code   RO         1494    i.dma_struct_para_init  gd32e10x_dma.o
+    0x080014d8   0x080014d8   0x00000026   Code   RO         1496    i.dma_transfer_number_config  gd32e10x_dma.o
+    0x080014fe   0x080014fe   0x00000022   Code   RO         1497    i.dma_transfer_number_get  gd32e10x_dma.o
+    0x08001520   0x08001520   0x000000bc   Code   RO         4291    i.gd_eval_com_init  uart.o
+    0x080015dc   0x080015dc   0x00000004   Code   RO         2082    i.gpio_bit_reset    gd32e10x_gpio.o
+    0x080015e0   0x080015e0   0x00000004   Code   RO         2083    i.gpio_bit_set      gd32e10x_gpio.o
+    0x080015e4   0x080015e4   0x00000068   Code   RO         4135    i.gpio_config       adc.o
+    0x0800164c   0x0800164c   0x000000bc   Code   RO         2092    i.gpio_init         gd32e10x_gpio.o
+    0x08001708   0x08001708   0x00000010   Code   RO         2093    i.gpio_input_bit_get  gd32e10x_gpio.o
+    0x08001718   0x08001718   0x00000008   Code   RO         2096    i.gpio_output_port_get  gd32e10x_gpio.o
+    0x08001720   0x08001720   0x00000090   Code   RO         2098    i.gpio_pin_remap_config  gd32e10x_gpio.o
+    0x080017b0   0x080017b0   0x00000004   Code   RO         2099    i.gpio_port_write   gd32e10x_gpio.o
+    0x080017b4   0x080017b4   0x00000110   Code   RO            6    i.main              main.o
+    0x080018c4   0x080018c4   0x000000a8   Code   RO         4292    i.nvic_config       uart.o
+    0x0800196c   0x0800196c   0x000000ac   Code   RO         2440    i.nvic_irq_enable   gd32e10x_misc.o
+    0x08001a18   0x08001a18   0x00000014   Code   RO         2441    i.nvic_priority_group_set  gd32e10x_misc.o
+    0x08001a2c   0x08001a2c   0x00000014   Code   RO         2442    i.nvic_vector_table_set  gd32e10x_misc.o
+    0x08001a40   0x08001a40   0x0000006c   Code   RO         2588    i.rcu_adc_clock_config  gd32e10x_rcu.o
+    0x08001aac   0x08001aac   0x00000184   Code   RO         2597    i.rcu_clock_freq_get  gd32e10x_rcu.o
+    0x08001c30   0x08001c30   0x00000022   Code   RO         4136    i.rcu_config        adc.o
+    0x08001c52   0x08001c52   0x00000002   PAD
+    0x08001c54   0x08001c54   0x00000020   Code   RO         2617    i.rcu_periph_clock_enable  gd32e10x_rcu.o
+    0x08001c74   0x08001c74   0x00000020   Code   RO         2620    i.rcu_periph_reset_disable  gd32e10x_rcu.o
+    0x08001c94   0x08001c94   0x00000020   Code   RO         2621    i.rcu_periph_reset_enable  gd32e10x_rcu.o
+    0x08001cb4   0x08001cb4   0x00000048   Code   RO         4137    i.read_adc_value    adc.o
+    0x08001cfc   0x08001cfc   0x00000012   Code   RO            7    i.read_can0_data    main.o
+    0x08001d0e   0x08001d0e   0x00000002   PAD
+    0x08001d10   0x08001d10   0x00000040   Code   RO         4064    i.select_x_control  74hc4051bq.o
+    0x08001d50   0x08001d50   0x00000074   Code   RO         4065    i.select_y_control_volt  74hc4051bq.o
+    0x08001dc4   0x08001dc4   0x000000fc   Code   RO          337    i.system_clock_120m_hxtal  system_gd32e10x.o
+    0x08001ec0   0x08001ec0   0x00000008   Code   RO          338    i.system_clock_config  system_gd32e10x.o
+    0x08001ec8   0x08001ec8   0x00000050   Code   RO          199    i.systick_config    systick.o
+    0x08001f18   0x08001f18   0x0000002a   Code   RO         3239    i.timer_channel_capture_value_register_read  gd32e10x_timer.o
+    0x08001f42   0x08001f42   0x00000006   Code   RO         3284    i.timer_interrupt_flag_clear  gd32e10x_timer.o
+    0x08001f48   0x08001f48   0x00000018   Code   RO         3285    i.timer_interrupt_flag_get  gd32e10x_timer.o
+    0x08001f60   0x08001f60   0x00000050   Code   RO         4293    i.uart3_dma_send_data  uart.o
+    0x08001fb0   0x08001fb0   0x00000050   Code   RO         4294    i.usart0_dma_send_data  uart.o
+    0x08002000   0x08002000   0x00000034   Code   RO         4295    i.usart0_init       uart.o
+    0x08002034   0x08002034   0x00000050   Code   RO         4296    i.usart1_dma_send_data  uart.o
+    0x08002084   0x08002084   0x00000050   Code   RO         4298    i.usart2_dma_send_data  uart.o
+    0x080020d4   0x080020d4   0x00000090   Code   RO         3674    i.usart_baudrate_set  gd32e10x_usart.o
+    0x08002164   0x08002164   0x00000090   Code   RO         3679    i.usart_deinit      gd32e10x_usart.o
+    0x080021f4   0x080021f4   0x00000010   Code   RO         3681    i.usart_dma_receive_config  gd32e10x_usart.o
+    0x08002204   0x08002204   0x00000048   Code   RO         4302    i.usart_dma_send_data  uart.o
+    0x0800224c   0x0800224c   0x00000010   Code   RO         3682    i.usart_dma_transmit_config  gd32e10x_usart.o
+    0x0800225c   0x0800225c   0x0000000a   Code   RO         3683    i.usart_enable      gd32e10x_usart.o
+    0x08002266   0x08002266   0x0000001a   Code   RO         3693    i.usart_interrupt_enable  gd32e10x_usart.o
+    0x08002280   0x08002280   0x00000038   Code   RO         3695    i.usart_interrupt_flag_get  gd32e10x_usart.o
+    0x080022b8   0x080022b8   0x00000010   Code   RO         3708    i.usart_receive_config  gd32e10x_usart.o
+    0x080022c8   0x080022c8   0x00000010   Code   RO         3722    i.usart_transmit_config  gd32e10x_usart.o
+    0x080022d8   0x080022d8   0x000000c0   Data   RO          856    .constdata          gd32e10x_can.o
+    0x08002398   0x08002398   0x00000020   Data   RO         5089    Region$$Table       anon$$obj.o
 
 
-    Execution Region RW_IRAM1 (Base: 0x20000000, Size: 0x00007c70, Max: 0x00008000, ABSOLUTE)
+    Execution Region RW_IRAM1 (Exec base: 0x20000000, Load base: 0x080023b8, Size: 0x000046b0, Max: 0x00008000, ABSOLUTE)
 
-    Base Addr    Size         Type   Attr      Idx    E Section Name        Object
+    Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
-    0x20000000   0x00000009   Data   RW            9    .data               main.o
-    0x20000009   0x00000003   PAD
-    0x2000000c   0x00000004   Data   RW          197    .data               systick.o
-    0x20000010   0x0000000e   Data   RW          246    .data               gd32e10x_it.o
-    0x2000001e   0x00000002   PAD
-    0x20000020   0x00000004   Data   RW          336    .data               system_gd32e10x.o
-    0x20000024   0x00000058   Data   RW         4063    .data               74hc4051bq.o
-    0x2000007c   0x00000018   Data   RW         4286    .data               uart.o
-    0x20000094   0x0000298c   Zero   RW            8    .bss                main.o
-    0x20002a20   0x00000020   Zero   RW         4135    .bss                adc.o
-    0x20002a40   0x00004e30   Zero   RW         4285    .bss                uart.o
-    0x20007870   0x00000400   Zero   RW         4047    STACK               startup_gd32e10x.o
+    0x20000000   0x080023b8   0x00000009   Data   RW            9    .data               main.o
+    0x20000009   0x080023c1   0x00000003   PAD
+    0x2000000c   0x080023c4   0x00000004   Data   RW          200    .data               systick.o
+    0x20000010   0x080023c8   0x0000000e   Data   RW          249    .data               gd32e10x_it.o
+    0x2000001e   0x080023d6   0x00000002   PAD
+    0x20000020   0x080023d8   0x00000004   Data   RW          339    .data               system_gd32e10x.o
+    0x20000024   0x080023dc   0x00000058   Data   RW         4066    .data               74hc4051bq.o
+    0x2000007c   0x08002434   0x00000044   Data   RW         4309    .data               uart.o
+    0x200000c0        -       0x00002990   Zero   RW            8    .bss                main.o
+    0x20002a50        -       0x00000020   Zero   RW         4138    .bss                adc.o
+    0x20002a70        -       0x00001840   Zero   RW         4308    .bss                uart.o
+    0x200042b0        -       0x00000400   Zero   RW         4050    STACK               startup_gd32e10x.o
 
 
 ==============================================================================
@@ -1717,28 +1986,29 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
 
-       832         48          0         88          0       6598   74hc4051bq.o
-       598         40          0          0         32       5144   adc.o
-       280          0          0          0          0       3888   circular_buffer.o
-       656         10          0          0          0       8827   gd32e10x_adc.o
-       452          4        192          0          0      20045   gd32e10x_can.o
-      1020          6          0          0          0      16814   gd32e10x_dma.o
-       352          6          0          0          0       4617   gd32e10x_gpio.o
-       200         30          0         14          0       5697   gd32e10x_it.o
-       212         28          0          0          0       2264   gd32e10x_misc.o
-       592         70          0          0          0      20571   gd32e10x_rcu.o
-        72          0          0          0          0       2308   gd32e10x_timer.o
-       444         16          0          0          0      13437   gd32e10x_usart.o
-       360         34          0          9      10636      53036   main.o
-        36          8        336          0       1024        928   startup_gd32e10x.o
-       348         38          0          4          0       2179   system_gd32e10x.o
-       164         24          0          4          0      27462   systick.o
-       770        118          0         24      20016       6974   uart.o
+       832         48          0         88          0       6902   74hc4051bq.o
+       598         40          0          0         32       5424   adc.o
+        80          8          0          0          0       3084   ble_hc04.o
+       280          0          0          0          0       4056   circular_buffer.o
+       656         10          0          0          0       9163   gd32e10x_adc.o
+       452          4        192          0          0      20157   gd32e10x_can.o
+      1020          6          0          0          0      17290   gd32e10x_dma.o
+       368          6          0          0          0       5554   gd32e10x_gpio.o
+       200         30          0         14          0       6033   gd32e10x_it.o
+       212         28          0          0          0       2348   gd32e10x_misc.o
+       592         70          0          0          0      20739   gd32e10x_rcu.o
+        72          0          0          0          0       2392   gd32e10x_timer.o
+       444         16          0          0          0      13717   gd32e10x_usart.o
+       388         38          0          9      10640      53456   main.o
+        36          8        336          0       1024        960   startup_gd32e10x.o
+       348         38          0          4          0       2291   system_gd32e10x.o
+       164         24          0          4          0      27658   systick.o
+      1664        248          0         68       6208      15880   uart.o
 
     ----------------------------------------------------------------------
-      7406        480        560        148      31708     200789   Object Totals
+      8422        622        560        192      17904     217104   Object Totals
          0          0         32          0          0          0   (incl. Generated)
-        18          0          0          5          0          0   (incl. Padding)
+        16          0          0          5          0          0   (incl. Padding)
 
     ----------------------------------------------------------------------
 
@@ -1747,6 +2017,7 @@ Image component sizes
          0          0          0          0          0          0   entry.o
          0          0          0          0          0          0   entry10a.o
          0          0          0          0          0          0   entry11a.o
+         4          0          0          0          0          0   entry12b.o
          8          4          0          0          0          0   entry2.o
          4          0          0          0          0          0   entry5.o
          0          0          0          0          0          0   entry7b.o
@@ -1758,17 +2029,17 @@ Image component sizes
         36          0          0          0          0        108   memseta.o
 
     ----------------------------------------------------------------------
-       158         16          0          0          0        244   Library Totals
+       162         16          0          0          0        244   Library Totals
          0          0          0          0          0          0   (incl. Padding)
 
     ----------------------------------------------------------------------
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Library Name
 
-       158         16          0          0          0        244   mc_w.l
+       162         16          0          0          0        244   mc_w.l
 
     ----------------------------------------------------------------------
-       158         16          0          0          0        244   Library Totals
+       162         16          0          0          0        244   Library Totals
 
     ----------------------------------------------------------------------
 
@@ -1777,15 +2048,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-      7564        496        560        148      31708     191485   Grand Totals
-      7564        496        560        148      31708     191485   ELF Image Totals
-      7564        496        560        148          0          0   ROM Totals
+      8584        638        560        192      17904     206500   Grand Totals
+      8584        638        560        192      17904     206500   ELF Image Totals
+      8584        638        560        192          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                 8124 (   7.93kB)
-    Total RW  Size (RW Data + ZI Data)             31856 (  31.11kB)
-    Total ROM Size (Code + RO Data + RW Data)       8272 (   8.08kB)
+    Total RO  Size (Code + RO Data)                 9144 (   8.93kB)
+    Total RW  Size (RW Data + ZI Data)             18096 (  17.67kB)
+    Total ROM Size (Code + RO Data + RW Data)       9336 (   9.12kB)
 
 ==============================================================================
 

@@ -142,7 +142,7 @@ void select_y_control_volt(process_handle_t *process_handle, uint8_t y_value, AD
     switch (adc_mode)
     {
         case SINGLE_VCC_READ:
-            y_value = refine_y_pos_normal[y_value];
+            y_value = refine_y_pos_aosha[y_value];
 
             if (y_value > 15) {
                 y_value -= 16;
@@ -218,11 +218,11 @@ void adc_calculation_calibration_once(process_handle_t *process_handle)
         for (count_x = 0; count_x < SENSOR_POS_X; count_x ++)
         {
             adc_value_2 = process_handle->adc_raw_value[count_x][count_y];
-            if (adc_value_2 < 40) {
+            if (adc_value_2 < 20) {
                 process_handle->adc_cali_value[count_x][count_y] = 0;
             } else {
                 process_handle->adc_cali_value[count_x][count_y]
-                    = 255 * adc_value_2 / (4096 - (process_handle->adc_total_vcc_value[count_y] - adc_value_2));
+                    = 200 * adc_value_2 / (4096 - (process_handle->adc_total_vcc_value[count_y] - adc_value_2));
             }
 
         }
