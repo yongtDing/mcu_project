@@ -13,12 +13,5 @@ void led_init(void)
     rcu_periph_clock_enable(RCU_AF);
     gpio_pin_remap_config(GPIO_SWJ_SWDPENABLE_REMAP, ENABLE);
     gpio_init(GPIOA, GPIO_MODE_OUT_OD, GPIO_OSPEED_10MHZ,  GPIO_PIN_15);
-
-    rcu_periph_clock_enable(RCU_GPIOB);
-    rcu_periph_clock_enable(RCU_AF);
-    gpio_pin_remap_config(GPIO_SWJ_SWDPENABLE_REMAP, ENABLE);
-    gpio_init(GPIOB, GPIO_MODE_OUT_OD, GPIO_OSPEED_10MHZ,  GPIO_PIN_5);
-    BUZZER_ENABLE(1);
-
 }
 

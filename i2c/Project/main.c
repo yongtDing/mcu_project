@@ -44,12 +44,10 @@
 #include "74hc4051bq.h"
 #include "flash.h"
 #include "main.h"
-#include "oled.h"
 #include "math_filter.h"
-#include "car_driver.h"
 #include "led.h"
-#include "pid.h"
 #include "priv_i2c.h"
+#include "i2c_XL9555.h"
 
 /*!
   \brief      main function
@@ -58,8 +56,8 @@
   \retval     none
   */
 
-#define POS_X 2
-#define POS_Y 4
+#define POS_X 64
+#define POS_Y 128
 
 
 #define LOG_PRINTF 0
@@ -74,47 +72,14 @@ typedef struct {
     uint16_t checksum;
 } SerialFrame_t;
 
-typedef struct {
-    uint16_t sof;
-    uint8_t tran_type;
-    uint16_t len;
-    uint8_t type;
-    uint8_t adc_value[4];
-    uint16_t checksum;
-} single_frame_t;
-
-typedef struct {
-    uint16_t sof;
-    uint16_t len;
-    uint8_t adc_value[POS_Y];
-    uint32_t crc32_mpeg_2;
-} ProductSerialFrame_t;
-
-typedef struct {
-    uint8_t header;
-    uint8_t cmd;
-    uint8_t moto_id;
-    uint8_t moto_value_length;
-    uint8_t checksum_header;
-    int16_t power_value;
-    uint8_t checksum_value;
-} moto_frame_t;
 
 #pragma pack ()
 
 bool timer3_interrupt = true;
 
 SerialFrame_t serial_frame;
-single_frame_t single_frame = {0};
-uint8_t moto_control[16] = {0x3E, 0xA8, 0x01, 0x08, 0xEF, 0xA0, 0x8C, 0x00, 0x00, 0x20, 0x4E, 0x00, 0x00, 0x9A};
-moto_frame_t moto_frame = {0};
-uint8_t moto_contorl_rx[256] = {0};
-
-
-ProductSerialFrame_t product_frame = {0};
 
 process_handle_t process_handle = {0};
-PID_TypeDef motor_pid;
 
 uint16_t CalChecksum(uint8_t * data, uint16_t len);
 uint32_t do_crc_table(unsigned char *ptr, int32_t len);
@@ -124,7 +89,7 @@ int main(void)
 {
     bool led_flag = false;
     uint64_t time_1ms = 0;
-    uint16_t usart0_len = 0;
+    uint8_t count_x = 0;
     void *usb_handle = NULL;
 
     process_handle.x_max = POS_X;
@@ -133,44 +98,42 @@ int main(void)
 
     adc_init();
     led_init();
+    rs2251IoInit();
 
     usart0_init();
 //    usart1_init();
 
     usb_init(&usb_handle);
-#if 1
-    pid_init(&motor_pid);
-    motor_pid.f_param_init(&motor_pid,
-                           PID_Speed,
-                           1000,
-                           150,
-                           0,
-                           0,
-                           200,
-                           0,
-                           7,
-                           0.15,
-                           0);
-
-
-#endif
+    delay_1ms(100);
 
     i2c_init(I2C_COM0, 400 * 1000);
+
+    xl9555_init();
     while( 1 )
     {
         time_1ms ++;
-        if(time_1ms % 200 == 0)
+        if(time_1ms % 1000 == 0)
         {
             led_flag = !led_flag;
             GREEN_LED(led_flag);
-            i2c_thread_task();
+            //i2c_thread_task();
         }
 
-        if(time_1ms % 5 == 0)
+        if(time_1ms % 1 == 0)
         {
+            xl9555_io_set(count_x, 0);
+            count_x ++;
+            if (count_x == 128)
+                count_x = 0;
 
-            adc_value_read(&process_handle, 0);
+            //adc_value_read(&process_handle, 0);
 
+        }
+
+
+#if 1
+        if(time_1ms % 100 == 0)
+        {
             serial_frame.sof = 0x5aa5;
             serial_frame.tran_type = 0x01;
             serial_frame.len = sizeof(serial_frame) - 2;
@@ -179,63 +142,12 @@ int main(void)
             memcpy((uint8_t *)serial_frame.adc_value, (uint8_t *)process_handle.adc_raw_value, process_handle.x_max * process_handle.y_max);
             serial_frame.checksum = CalChecksum((uint8_t *)&serial_frame, sizeof(serial_frame) - 2);
 
-
-            motor_pid.target = process_handle.adc_raw_value[0][6];
-            if (motor_pid.target < 5)
-                motor_pid.target = 0;
-            motor_pid.f_cal_pid(&motor_pid, process_handle.adc_raw_value[0][1]);
-
-            moto_frame.header = 0x3e;
-            moto_frame.cmd = 0xa0;
-            moto_frame.moto_id = 0x01;
-            moto_frame.moto_value_length = 0x02;
-            moto_frame.checksum_header = CalChecksum((uint8_t *)&moto_frame, 4);
-					
-#if 0
-            if (process_handle.adc_raw_value[0][6] > process_handle.adc_raw_value[0][5])
-            {
-                moto_frame.power_value = process_handle.adc_raw_value[0][6] * 6;
-            } else {
-                moto_frame.power_value = process_handle.adc_raw_value[0][5] * -6;
-            }
-#else
-
-            if (process_handle.adc_raw_value[0][5] > 50)
-            {
-                moto_frame.power_value = process_handle.adc_raw_value[0][5] * -6;
-            } else {
-                moto_frame.power_value = (int16_t)motor_pid.output;
-                if (process_handle.adc_raw_value[0][1] < 5
-                    && process_handle.adc_raw_value[0][6] < 5)
-                {
-                    moto_frame.power_value = 0;
-                }
-            }
-    
-            sprintf((char *)process_handle.printf_buffer, "target/input %d/%d, output %d\n",
-                                                           (uint16_t)motor_pid.target,
-                                                           process_handle.adc_raw_value[0][1],
-                                                           moto_frame.power_value);
-						//usb_send_buffer(usb_handle, process_handle.printf_buffer, strlen((char *)process_handle.printf_buffer));
-#endif
-						
-            moto_frame.checksum_value = CalChecksum((uint8_t *)&moto_frame.power_value, sizeof(moto_frame.power_value));
-
-            usart0_dma_send_data((uint8_t *)&moto_frame, sizeof(moto_frame_t));
-            //usb_send_buffer(usb_handle, (uint8_t *)&moto_frame, sizeof(moto_frame_t));
             usb_send_buffer(usb_handle, (uint8_t *)&serial_frame, sizeof(serial_frame));
         }
-
-
-#if 1
+#else
         if(time_1ms % 10 == 0)
         {
-            if (!usart0_rx_probe())
-            {
-                usart0_len = USART0_GetDataCount();
-                USART0_Recv((uint8_t *)moto_contorl_rx, usart0_len);
-//								usb_send_buffer(usb_handle, moto_contorl_rx, usart0_len);
-            }
+            usb_send_buffer(usb_handle, process_handle.printf_buffer, strlen(process_handle.printf_buffer));
         }
 #endif	
         delay_1ms(1);

@@ -7,56 +7,84 @@
 #include "oled.h"
 
 
-#define ADC_DELAY_TIME (5 * 220) //9 ns * 120
+#define ADC_DELAY_TIME (13 * 220) //9 ns * 120
 
-void Hc4051Delay(uint32_t num)
+void rs2251Delay(uint32_t num)
 {
     while(num --);
 }
 
-void Hc4051IoInit(void)
+void rs2251IoInit(void)
 {
-    rcu_periph_clock_enable(RCU_GPIOB);
+    rcu_periph_clock_enable(RCU_GPIOC);
     rcu_periph_clock_enable(RCU_AF);
-    gpio_pin_remap_config(GPIO_SWJ_SWDPENABLE_REMAP, ENABLE);
+    gpio_init(GPIOC, GPIO_MODE_OUT_PP, GPIO_OSPEED_50MHZ,  GPIO_PIN_7 | GPIO_PIN_8 | GPIO_PIN_9);
 }
 
-uint8_t adc_rank[8] = {0, 1, 7, 4, 6, 5 ,4, 7};
-uint8_t type_a_rank[8] = {6, 5, 4, 7, 0, 3, 1, 2};
-uint8_t type_b_rank[8] = {5, 6, 7, 4, 3, 0, 2, 1};
-float adc_value_compensate[2][4] = {{1.11, 1.08,  1.26, 1.32},  //x
-    {1.09, 1.19,  1.23 , 1.36}}; //y
+uint8_t adc_rank[16] = { 9,  8, 15, 14,
+                         7,  6,  5,  4,
+                         3,  2,  1,  0,
+                        13, 12, 11, 10};
+
+uint8_t adc_rank_value[16] = {11,  10,  9,  8,
+                               7,  6,  5,  4,
+                               1,  0, 15, 14,
+                              13,  12, 3,  2};
 
 
 void adc_value_read(process_handle_t *process_handle, uint8_t count_y)
 {
-    uint8_t count = 0;
+    uint8_t count = 0, count_rs2251 = 0;
     uint16_t adc_value = 0;
+#if 0
+    sprintf(process_handle->printf_buffer, "%d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d\n", GetAdcValue(0),
+                                                   GetAdcValue(1),
+                                                   GetAdcValue(2),
+                                                   GetAdcValue(3),
+                                                   GetAdcValue(4),
+                                                   GetAdcValue(5),
+                                                   GetAdcValue(6),
+                                                   GetAdcValue(7),
+                                                   GetAdcValue(8),
+                                                   GetAdcValue(9),
+                                                   GetAdcValue(10),
+                                                   GetAdcValue(11),
+                                                   GetAdcValue(12),
+                                                   GetAdcValue(13),
+                                                   GetAdcValue(14),
+                                                   GetAdcValue(15)
+                                                   );
 
-    for (count = 0; count < 8; count ++)
+    return ;
+#endif
+    for (count_rs2251 = 0; count_rs2251 < 8; count_rs2251 ++)
     {
-        adc_value  = GetAdcValue(count) * 100;
-        if (adc_value > 254)
-            adc_value = 254;
-       
-        process_handle->adc_raw_value[count_y][count] = adc_value;
+        select_x_control(count_rs2251);
+        rs2251Delay(ADC_DELAY_TIME);
+        for (count = 0; count < 16; count ++)
+        {
+            adc_value  = GetAdcValue(count) / 16;
+            if (adc_value > 254)
+                adc_value = 254;
+
+            process_handle->adc_raw_value[count_y][adc_rank_value[count] * 8 + count_rs2251]
+                = adc_value;
+        }
     }
 }
 
-uint8_t switch_x_refine[8] = {4, 6, 7, 5, 2, 1, 0, 3};
+uint8_t single_adc_rank[8] = {2, 1, 0, 3, 5, 7, 6, 4};
 void select_x_control(uint8_t x_value)
 {
     uint16_t y_default = 0x00;
 
-    y_default = gpio_output_port_get(GPIOB);
+    y_default = gpio_output_port_get(GPIOC);
 
-    y_default &= 0xffc7;
+    y_default &= 0xfc7f;
 
-    y_default
-  |= (switch_x_refine[x_value] << 3);
+    y_default |= (single_adc_rank[x_value] << 7);
 
-    gpio_port_write(GPIOB, y_default);
-
+    gpio_port_write(GPIOC, y_default);
 }
 
 void select_y_control(process_handle_t *process_handle, uint8_t y_value)

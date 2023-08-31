@@ -1,6 +1,6 @@
 #include "adc.h"
 
-volatile uint16_t adc_value[1][8];
+volatile uint16_t adc_value[1][16];
 float adc_v[8] = { 0 };
 
 void read_adc_value(void)
@@ -18,12 +18,11 @@ void read_adc_value(void)
 	}
 }
 
-float GetAdcValue(uint8_t index)
+uint16_t GetAdcValue(uint8_t index)
 {
-	read_adc_value();
-    if(index < 9)
+    if(index < 16)
     {
-        return adc_v[index];
+        return adc_value[0][index];
     }
     else
     {
@@ -56,6 +55,7 @@ void rcu_config(void)
     /* enable GPIO clock */
     rcu_periph_clock_enable(RCU_GPIOC);
     rcu_periph_clock_enable(RCU_GPIOA);
+    rcu_periph_clock_enable(RCU_GPIOB);
     /* enable ADC clock */
     rcu_periph_clock_enable(RCU_ADC0);
     /* enable DMA0 clock */
@@ -81,6 +81,17 @@ void gpio_config(void)
 	gpio_init(GPIOA, GPIO_MODE_AIN, GPIO_OSPEED_MAX, GPIO_PIN_5);
 	gpio_init(GPIOA, GPIO_MODE_AIN, GPIO_OSPEED_MAX, GPIO_PIN_6);
 	gpio_init(GPIOA, GPIO_MODE_AIN, GPIO_OSPEED_MAX, GPIO_PIN_7);
+
+	gpio_init(GPIOB, GPIO_MODE_AIN, GPIO_OSPEED_MAX, GPIO_PIN_0);
+	gpio_init(GPIOB, GPIO_MODE_AIN, GPIO_OSPEED_MAX, GPIO_PIN_1);
+
+    gpio_init(GPIOC, GPIO_MODE_AIN, GPIO_OSPEED_MAX, GPIO_PIN_0);
+    gpio_init(GPIOC, GPIO_MODE_AIN, GPIO_OSPEED_MAX, GPIO_PIN_1);
+    gpio_init(GPIOC, GPIO_MODE_AIN, GPIO_OSPEED_MAX, GPIO_PIN_2);
+    gpio_init(GPIOC, GPIO_MODE_AIN, GPIO_OSPEED_MAX, GPIO_PIN_3);
+    gpio_init(GPIOC, GPIO_MODE_AIN, GPIO_OSPEED_MAX, GPIO_PIN_4);
+	gpio_init(GPIOC, GPIO_MODE_AIN, GPIO_OSPEED_MAX, GPIO_PIN_5);
+
 }
 
 /*!
@@ -105,7 +116,7 @@ void dma_config(void)
     dma_data_parameter.periph_width = DMA_PERIPHERAL_WIDTH_16BIT;
     dma_data_parameter.memory_width = DMA_MEMORY_WIDTH_16BIT;
     dma_data_parameter.direction = DMA_PERIPHERAL_TO_MEMORY;
-    dma_data_parameter.number = 8;
+    dma_data_parameter.number = 16;
     dma_data_parameter.priority = DMA_PRIORITY_HIGH;
     dma_init(DMA0, DMA_CH0, &dma_data_parameter);
 
@@ -147,7 +158,7 @@ void adc_config(void)
     adc_data_alignment_config(ADC0, ADC_DATAALIGN_RIGHT);
 
     /* ADC channel length config */
-    adc_channel_length_config(ADC0, ADC_REGULAR_CHANNEL, 8);
+    adc_channel_length_config(ADC0, ADC_REGULAR_CHANNEL, 16);
     /* ADC regular channel config */
     adc_regular_channel_config(ADC0, 0, ADC_CHANNEL_0, ADC_SAMPLETIME_55POINT5);
     adc_regular_channel_config(ADC0, 1, ADC_CHANNEL_1, ADC_SAMPLETIME_55POINT5);
@@ -157,6 +168,16 @@ void adc_config(void)
     adc_regular_channel_config(ADC0, 5, ADC_CHANNEL_5, ADC_SAMPLETIME_55POINT5);
     adc_regular_channel_config(ADC0, 6, ADC_CHANNEL_6, ADC_SAMPLETIME_55POINT5);
     adc_regular_channel_config(ADC0, 7, ADC_CHANNEL_7, ADC_SAMPLETIME_55POINT5);
+    adc_regular_channel_config(ADC0, 8, ADC_CHANNEL_8, ADC_SAMPLETIME_55POINT5);
+    adc_regular_channel_config(ADC0, 9, ADC_CHANNEL_9, ADC_SAMPLETIME_55POINT5);
+    adc_regular_channel_config(ADC0, 10, ADC_CHANNEL_10, ADC_SAMPLETIME_55POINT5);
+    adc_regular_channel_config(ADC0, 11, ADC_CHANNEL_11, ADC_SAMPLETIME_55POINT5);
+    adc_regular_channel_config(ADC0, 12, ADC_CHANNEL_12, ADC_SAMPLETIME_55POINT5);
+    adc_regular_channel_config(ADC0, 13, ADC_CHANNEL_13, ADC_SAMPLETIME_55POINT5);
+    adc_regular_channel_config(ADC0, 14, ADC_CHANNEL_14, ADC_SAMPLETIME_55POINT5);
+    adc_regular_channel_config(ADC0, 15, ADC_CHANNEL_15, ADC_SAMPLETIME_55POINT5);
+
+
     /* ADC trigger config *///规则通道组， 软件触发
     adc_external_trigger_source_config(ADC0, ADC_REGULAR_CHANNEL, ADC0_1_EXTTRIG_REGULAR_NONE);
     adc_external_trigger_config(ADC0, ADC_REGULAR_CHANNEL, ENABLE);

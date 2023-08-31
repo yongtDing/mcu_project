@@ -2662,6 +2662,9 @@ I2C0_ER_IRQn	.\Firmware\CMSIS\GD\GD32E10x\Include\gd32e10x.h	/^    I2C0_ER_IRQn 
 I2C0_EV_IRQHandler	.\Firmware\CMSIS\GD\GD32E10x\Source\ARM\startup_gd32e10x.s	/^I2C0_EV_IRQHandler                $/;"	l
 I2C0_EV_IRQHandler	.\Firmware\CMSIS\GD\GD32E10x\Source\IAR\startup_gd32e10x.s	/^I2C0_EV_IRQHandler                $/;"	l
 I2C0_EV_IRQn	.\Firmware\CMSIS\GD\GD32E10x\Include\gd32e10x.h	/^    I2C0_EV_IRQn                 = 31,     \/*!< I2C0 event interrupt                                     *\/$/;"	e	enum:IRQn
+I2C0_OWN_ADDRESS7	.\Bsp\priv_i2c.c	11;"	d	file:
+I2C0_SLAVE_1_ADDRESS7	.\Bsp\priv_i2c.c	13;"	d	file:
+I2C0_SLAVE_ADDRESS7	.\Bsp\priv_i2c.c	12;"	d	file:
 I2C1	.\Firmware\GD32E10x_standard_peripheral\Include\gd32e10x_i2c.h	45;"	d
 I2C1_ER_IRQHandler	.\Firmware\CMSIS\GD\GD32E10x\Source\ARM\startup_gd32e10x.s	/^I2C1_ER_IRQHandler               $/;"	l
 I2C1_ER_IRQHandler	.\Firmware\CMSIS\GD\GD32E10x\Source\IAR\startup_gd32e10x.s	/^I2C1_ER_IRQHandler                $/;"	l
@@ -2688,6 +2691,10 @@ I2C_CKCFG	.\Firmware\GD32E10x_standard_peripheral\Include\gd32e10x_i2c.h	55;"	d
 I2C_CKCFG_CLKC	.\Firmware\GD32E10x_standard_peripheral\Include\gd32e10x_i2c.h	125;"	d
 I2C_CKCFG_DTCY	.\Firmware\GD32E10x_standard_peripheral\Include\gd32e10x_i2c.h	126;"	d
 I2C_CKCFG_FAST	.\Firmware\GD32E10x_standard_peripheral\Include\gd32e10x_i2c.h	127;"	d
+I2C_COM	.\Bsp\priv_i2c.h	/^typedef enum I2C_COM {$/;"	g
+I2C_COM0	.\Bsp\priv_i2c.h	/^    I2C_COM0,$/;"	e	enum:I2C_COM
+I2C_COM1	.\Bsp\priv_i2c.h	/^    I2C_COM1$/;"	e	enum:I2C_COM
+I2C_COM_T	.\Bsp\priv_i2c.h	/^} I2C_COM_T;$/;"	t	typeref:enum:I2C_COM
 I2C_CTL0	.\Firmware\GD32E10x_standard_peripheral\Include\gd32e10x_i2c.h	48;"	d
 I2C_CTL0_ACKEN	.\Firmware\GD32E10x_standard_peripheral\Include\gd32e10x_i2c.h	71;"	d
 I2C_CTL0_ARPEN	.\Firmware\GD32E10x_standard_peripheral\Include\gd32e10x_i2c.h	65;"	d
@@ -2995,7 +3002,7 @@ LOCATE_HCHCTL	.\Firmware\GD32E10x_usbfs_driver\Include\usb_regs.h	46;"	d
 LOCATE_HCHINTEN	.\Firmware\GD32E10x_usbfs_driver\Include\usb_regs.h	48;"	d
 LOCATE_HCHINTF	.\Firmware\GD32E10x_usbfs_driver\Include\usb_regs.h	47;"	d
 LOCATE_HCHLEN	.\Firmware\GD32E10x_usbfs_driver\Include\usb_regs.h	49;"	d
-LOG_PRINTF	.\Project\main.c	64;"	d	file:
+LOG_PRINTF	.\Project\main.c	65;"	d	file:
 LOWBYTE	.\Firmware\GD32E10x_usbfs_driver\Include\usbd_std.h	64;"	d
 LSB_16BIT_MASK	.\Firmware\GD32E10x_standard_peripheral\Source\gd32e10x_gpio.c	41;"	d	file:
 LSR	.\Firmware\CMSIS\core_cm4.h	/^  __I  uint32_t LSR;                     \/*!< Offset: 0xFB4 (R\/ )  ITM Lock Status Register                  *\/$/;"	m	struct:__anon18
@@ -3259,8 +3266,8 @@ PMU_LVDT_5	.\Firmware\GD32E10x_standard_peripheral\Include\gd32e10x_pmu.h	74;"	d
 PMU_LVDT_6	.\Firmware\GD32E10x_standard_peripheral\Include\gd32e10x_pmu.h	75;"	d
 PMU_LVDT_7	.\Firmware\GD32E10x_standard_peripheral\Include\gd32e10x_pmu.h	76;"	d
 PORT	.\Firmware\CMSIS\core_cm4.h	/^  }  PORT [32];                          \/*!< Offset: 0x000 ( \/W)  ITM Stimulus Port Registers               *\/$/;"	m	struct:__anon18	typeref:union:__anon18::__anon19
-POS_X	.\Project\main.c	60;"	d	file:
-POS_Y	.\Project\main.c	61;"	d	file:
+POS_X	.\Project\main.c	61;"	d	file:
+POS_Y	.\Project\main.c	62;"	d	file:
 PSC_PSC	.\Firmware\GD32E10x_standard_peripheral\Include\gd32e10x_fwdgt.h	67;"	d
 PWRCLKCTL_SHCLK	.\Firmware\GD32E10x_usbfs_driver\Include\usb_regs.h	453;"	d
 PWRCLKCTL_SUCLK	.\Firmware\GD32E10x_usbfs_driver\Include\usb_regs.h	454;"	d
@@ -5221,54 +5228,62 @@ Y_SELECT	.\Bsp\math_filter.h	/^    Y_SELECT,$/;"	e	enum:__anon4
 Z	.\Firmware\CMSIS\core_cm4.h	/^    uint32_t Z:1;                        \/*!< bit:     30  Zero condition code flag           *\/$/;"	m	struct:__anon10::__anon11
 Z	.\Firmware\CMSIS\core_cm4.h	/^    uint32_t Z:1;                        \/*!< bit:     30  Zero condition code flag           *\/$/;"	m	struct:__anon6::__anon7
 [0]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[0]"><\/a>cdc_acm_init<\/STRONG> (Thumb, 84 bytes, Stack size 24 bytes, cdc_acm_core.o(i.cdc_acm_init))$/;"	a
-[100]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[100]"><\/a>usbd_disconnect<\/STRONG> (Thumb, 28 bytes, Stack size 8 bytes, usbd_core.o(i.usbd_disconnect))$/;"	a
-[101]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[101]"><\/a>usbd_emptytxfifo_write<\/STRONG> (Thumb, 140 bytes, Stack size 24 bytes, drv_usbd_int.o(i.usbd_emptytxfifo_write))$/;"	a
-[102]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[102]"><\/a>usbd_enum_error<\/STRONG> (Thumb, 30 bytes, Stack size 16 bytes, usbd_enum.o(i.usbd_enum_error))$/;"	a
-[103]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[103]"><\/a>usb_transc_deactivate<\/STRONG> (Thumb, 100 bytes, Stack size 12 bytes, drv_usb_dev.o(i.usb_transc_deactivate))$/;"	a
-[104]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[104]"><\/a>usb_transc_outxfer<\/STRONG> (Thumb, 126 bytes, Stack size 20 bytes, drv_usb_dev.o(i.usb_transc_outxfer))$/;"	a
-[105]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[105]"><\/a>usb_transc_active<\/STRONG> (Thumb, 142 bytes, Stack size 20 bytes, drv_usb_dev.o(i.usb_transc_active))$/;"	a
-[106]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[106]"><\/a>usb_transc_stall<\/STRONG> (Thumb, 66 bytes, Stack size 8 bytes, drv_usb_dev.o(i.usb_transc_stall))$/;"	a
-[107]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[107]"><\/a>usb_transc_clrstall<\/STRONG> (Thumb, 68 bytes, Stack size 8 bytes, drv_usb_dev.o(i.usb_transc_clrstall))$/;"	a
-[108]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[108]"><\/a>usbd_in_transc<\/STRONG> (Thumb, 146 bytes, Stack size 16 bytes, usbd_transc.o(i.usbd_in_transc))$/;"	a
-[109]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[109]"><\/a>usb_curmode_set<\/STRONG> (Thumb, 46 bytes, Stack size 0 bytes, drv_usb_core.o(i.usb_curmode_set))$/;"	a
+[100]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[100]"><\/a>usb_txfifo_write<\/STRONG> (Thumb, 34 bytes, Stack size 20 bytes, drv_usb_core.o(i.usb_txfifo_write))$/;"	a
+[101]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[101]"><\/a>usbd_connect<\/STRONG> (Thumb, 28 bytes, Stack size 8 bytes, usbd_core.o(i.usbd_connect))$/;"	a
+[102]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[102]"><\/a>usbd_ctl_recev<\/STRONG> (Thumb, 46 bytes, Stack size 16 bytes, usbd_transc.o(i.usbd_ctl_recev))$/;"	a
+[103]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[103]"><\/a>usbd_ep_recev<\/STRONG> (Thumb, 52 bytes, Stack size 24 bytes, usbd_core.o(i.usbd_ep_recev))$/;"	a
+[104]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[104]"><\/a>usbd_ctl_send<\/STRONG> (Thumb, 46 bytes, Stack size 16 bytes, usbd_transc.o(i.usbd_ctl_send))$/;"	a
+[105]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[105]"><\/a>usbd_ctl_status_recev<\/STRONG> (Thumb, 32 bytes, Stack size 8 bytes, usbd_transc.o(i.usbd_ctl_status_recev))$/;"	a
+[106]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[106]"><\/a>usb_ctlep_startout<\/STRONG> (Thumb, 8 bytes, Stack size 0 bytes, drv_usb_dev.o(i.usb_ctlep_startout))$/;"	a
+[107]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[107]"><\/a>usbd_ctl_status_send<\/STRONG> (Thumb, 32 bytes, Stack size 8 bytes, usbd_transc.o(i.usbd_ctl_status_send))$/;"	a
+[108]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[108]"><\/a>usbd_disconnect<\/STRONG> (Thumb, 28 bytes, Stack size 8 bytes, usbd_core.o(i.usbd_disconnect))$/;"	a
+[109]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[109]"><\/a>usbd_emptytxfifo_write<\/STRONG> (Thumb, 140 bytes, Stack size 24 bytes, drv_usbd_int.o(i.usbd_emptytxfifo_write))$/;"	a
 [10]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[10]"><\/a>_usb_std_setinterface<\/STRONG> (Thumb, 68 bytes, Stack size 16 bytes, usbd_enum.o(i._usb_std_setinterface))$/;"	a
-[10a]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[10a]"><\/a>usbd_int_epin<\/STRONG> (Thumb, 116 bytes, Stack size 24 bytes, drv_usbd_int.o(i.usbd_int_epin))$/;"	a
-[10b]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[10b]"><\/a>usb_iepintr_read<\/STRONG> (Thumb, 42 bytes, Stack size 12 bytes, drv_usb_dev.o(i.usb_iepintr_read))$/;"	a
-[10c]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[10c]"><\/a>usbd_int_epout<\/STRONG> (Thumb, 126 bytes, Stack size 24 bytes, drv_usbd_int.o(i.usbd_int_epout))$/;"	a
-[10d]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[10d]"><\/a>usbd_out_transc<\/STRONG> (Thumb, 118 bytes, Stack size 16 bytes, usbd_transc.o(i.usbd_out_transc))$/;"	a
-[10e]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[10e]"><\/a>usbd_setup_transc<\/STRONG> (Thumb, 132 bytes, Stack size 24 bytes, usbd_transc.o(i.usbd_setup_transc))$/;"	a
-[10f]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[10f]"><\/a>usbd_int_reset<\/STRONG> (Thumb, 208 bytes, Stack size 64 bytes, drv_usbd_int.o(i.usbd_int_reset))$/;"	a
-[110]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[110]"><\/a>usbd_int_rxfifo<\/STRONG> (Thumb, 178 bytes, Stack size 32 bytes, drv_usbd_int.o(i.usbd_int_rxfifo))$/;"	a
-[111]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[111]"><\/a>usb_rxfifo_read<\/STRONG> (Thumb, 30 bytes, Stack size 16 bytes, drv_usb_core.o(i.usb_rxfifo_read))$/;"	a
-[112]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[112]"><\/a>usbd_int_suspend<\/STRONG> (Thumb, 102 bytes, Stack size 24 bytes, drv_usbd_int.o(i.usbd_int_suspend))$/;"	a
-[113]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[113]"><\/a>pmu_to_deepsleepmode<\/STRONG> (Thumb, 170 bytes, Stack size 0 bytes, gd32e10x_pmu.o(i.pmu_to_deepsleepmode))$/;"	a
-[114]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[114]"><\/a>usbd_int_enumfinish<\/STRONG> (Thumb, 98 bytes, Stack size 0 bytes, drv_usbd_int.o(i.usbd_int_enumfinish))$/;"	a
-[115]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[115]"><\/a>usbd_standard_request<\/STRONG> (Thumb, 22 bytes, Stack size 16 bytes, usbd_enum.o(i.usbd_standard_request))$/;"	a
-[116]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[116]"><\/a>usbd_class_request<\/STRONG> (Thumb, 38 bytes, Stack size 16 bytes, usbd_enum.o(i.usbd_class_request))$/;"	a
-[117]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[117]"><\/a>usbd_vendor_request<\/STRONG> (Thumb, 6 bytes, Stack size 0 bytes, usbd_enum.o(i.usbd_vendor_request))$/;"	a
-[118]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[118]"><\/a>_main_stk<\/STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry2.o(.ARM.Collect$$$$00000001))$/;"	a
-[119]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[119]"><\/a>_main_clock<\/STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry7b.o(.ARM.Collect$$$$00000008))$/;"	a
+[10a]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[10a]"><\/a>usbd_enum_error<\/STRONG> (Thumb, 30 bytes, Stack size 16 bytes, usbd_enum.o(i.usbd_enum_error))$/;"	a
+[10b]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[10b]"><\/a>usb_transc_deactivate<\/STRONG> (Thumb, 100 bytes, Stack size 12 bytes, drv_usb_dev.o(i.usb_transc_deactivate))$/;"	a
+[10c]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[10c]"><\/a>usb_transc_outxfer<\/STRONG> (Thumb, 126 bytes, Stack size 20 bytes, drv_usb_dev.o(i.usb_transc_outxfer))$/;"	a
+[10d]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[10d]"><\/a>usb_transc_active<\/STRONG> (Thumb, 142 bytes, Stack size 20 bytes, drv_usb_dev.o(i.usb_transc_active))$/;"	a
+[10e]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[10e]"><\/a>usb_transc_stall<\/STRONG> (Thumb, 66 bytes, Stack size 8 bytes, drv_usb_dev.o(i.usb_transc_stall))$/;"	a
+[10f]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[10f]"><\/a>usb_transc_clrstall<\/STRONG> (Thumb, 68 bytes, Stack size 8 bytes, drv_usb_dev.o(i.usb_transc_clrstall))$/;"	a
+[110]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[110]"><\/a>usbd_in_transc<\/STRONG> (Thumb, 146 bytes, Stack size 16 bytes, usbd_transc.o(i.usbd_in_transc))$/;"	a
+[111]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[111]"><\/a>usb_curmode_set<\/STRONG> (Thumb, 46 bytes, Stack size 0 bytes, drv_usb_core.o(i.usb_curmode_set))$/;"	a
+[112]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[112]"><\/a>usbd_int_epin<\/STRONG> (Thumb, 116 bytes, Stack size 24 bytes, drv_usbd_int.o(i.usbd_int_epin))$/;"	a
+[113]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[113]"><\/a>usb_iepintr_read<\/STRONG> (Thumb, 42 bytes, Stack size 12 bytes, drv_usb_dev.o(i.usb_iepintr_read))$/;"	a
+[114]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[114]"><\/a>usbd_int_epout<\/STRONG> (Thumb, 126 bytes, Stack size 24 bytes, drv_usbd_int.o(i.usbd_int_epout))$/;"	a
+[115]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[115]"><\/a>usbd_out_transc<\/STRONG> (Thumb, 118 bytes, Stack size 16 bytes, usbd_transc.o(i.usbd_out_transc))$/;"	a
+[116]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[116]"><\/a>usbd_setup_transc<\/STRONG> (Thumb, 132 bytes, Stack size 24 bytes, usbd_transc.o(i.usbd_setup_transc))$/;"	a
+[117]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[117]"><\/a>usbd_int_reset<\/STRONG> (Thumb, 208 bytes, Stack size 64 bytes, drv_usbd_int.o(i.usbd_int_reset))$/;"	a
+[118]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[118]"><\/a>usbd_int_rxfifo<\/STRONG> (Thumb, 178 bytes, Stack size 32 bytes, drv_usbd_int.o(i.usbd_int_rxfifo))$/;"	a
+[119]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[119]"><\/a>usb_rxfifo_read<\/STRONG> (Thumb, 30 bytes, Stack size 16 bytes, drv_usb_core.o(i.usb_rxfifo_read))$/;"	a
 [11]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[11]"><\/a>_usb_std_synchframe<\/STRONG> (Thumb, 6 bytes, Stack size 0 bytes, usbd_enum.o(i._usb_std_synchframe))$/;"	a
-[11a]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[11a]"><\/a>_main_cpp_init<\/STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry8b.o(.ARM.Collect$$$$0000000A))$/;"	a
-[11b]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[11b]"><\/a>_main_init<\/STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry9a.o(.ARM.Collect$$$$0000000B))$/;"	a
-[11c]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[11c]"><\/a>__rt_lib_shutdown_fini<\/STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry12b.o(.ARM.Collect$$$$0000000E))$/;"	a
-[11d]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[11d]"><\/a>__rt_final_cpp<\/STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry10a.o(.ARM.Collect$$$$0000000F))$/;"	a
-[11e]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[11e]"><\/a>__rt_final_exit<\/STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry11a.o(.ARM.Collect$$$$00000011))$/;"	a
-[11f]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[11f]"><\/a>__aeabi_memcpy8<\/STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memcpya.o(.text), UNUSED)$/;"	a
-[120]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[120]"><\/a>__aeabi_memset4<\/STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memseta.o(.text), UNUSED)$/;"	a
-[121]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[121]"><\/a>__aeabi_memset8<\/STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memseta.o(.text), UNUSED)$/;"	a
-[122]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[122]"><\/a>__aeabi_memclr8<\/STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memseta.o(.text), UNUSED)$/;"	a
-[123]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[123]"><\/a>__aeabi_uidiv<\/STRONG> (Thumb, 0 bytes, Stack size 12 bytes, uidiv.o(.text), UNUSED)$/;"	a
-[124]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[124]"><\/a>_ll_shift_l<\/STRONG> (Thumb, 0 bytes, Stack size 0 bytes, llshl.o(.text), UNUSED)$/;"	a
-[125]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[125]"><\/a>_ll_ushift_r<\/STRONG> (Thumb, 0 bytes, Stack size 0 bytes, llushr.o(.text), UNUSED)$/;"	a
-[126]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[126]"><\/a>__scatterload_rt2<\/STRONG> (Thumb, 0 bytes, Stack size 0 bytes, init.o(.text), UNUSED)$/;"	a
-[127]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[127]"><\/a>__decompress<\/STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __dczerorl2.o(.text), UNUSED)$/;"	a
-[128]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[128]"><\/a>__decompress1<\/STRONG> (Thumb, 86 bytes, Stack size unknown bytes, __dczerorl2.o(.text), UNUSED)$/;"	a
-[129]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[129]"><\/a>__1sprintf$1<\/STRONG> (Thumb, 0 bytes, Stack size 24 bytes, printf1.o(i.__0sprintf$1), UNUSED)$/;"	a
+[11a]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[11a]"><\/a>usbd_int_suspend<\/STRONG> (Thumb, 102 bytes, Stack size 24 bytes, drv_usbd_int.o(i.usbd_int_suspend))$/;"	a
+[11b]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[11b]"><\/a>pmu_to_deepsleepmode<\/STRONG> (Thumb, 170 bytes, Stack size 0 bytes, gd32e10x_pmu.o(i.pmu_to_deepsleepmode))$/;"	a
+[11c]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[11c]"><\/a>usbd_int_enumfinish<\/STRONG> (Thumb, 98 bytes, Stack size 0 bytes, drv_usbd_int.o(i.usbd_int_enumfinish))$/;"	a
+[11d]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[11d]"><\/a>usbd_standard_request<\/STRONG> (Thumb, 22 bytes, Stack size 16 bytes, usbd_enum.o(i.usbd_standard_request))$/;"	a
+[11e]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[11e]"><\/a>usbd_class_request<\/STRONG> (Thumb, 38 bytes, Stack size 16 bytes, usbd_enum.o(i.usbd_class_request))$/;"	a
+[11f]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[11f]"><\/a>usbd_vendor_request<\/STRONG> (Thumb, 6 bytes, Stack size 0 bytes, usbd_enum.o(i.usbd_vendor_request))$/;"	a
+[120]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[120]"><\/a>_main_stk<\/STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry2.o(.ARM.Collect$$$$00000001))$/;"	a
+[121]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[121]"><\/a>_main_clock<\/STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry7b.o(.ARM.Collect$$$$00000008))$/;"	a
+[122]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[122]"><\/a>_main_cpp_init<\/STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry8b.o(.ARM.Collect$$$$0000000A))$/;"	a
+[123]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[123]"><\/a>_main_init<\/STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry9a.o(.ARM.Collect$$$$0000000B))$/;"	a
+[124]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[124]"><\/a>__rt_lib_shutdown_fini<\/STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry12b.o(.ARM.Collect$$$$0000000E))$/;"	a
+[125]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[125]"><\/a>__rt_final_cpp<\/STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry10a.o(.ARM.Collect$$$$0000000F))$/;"	a
+[126]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[126]"><\/a>__rt_final_exit<\/STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry11a.o(.ARM.Collect$$$$00000011))$/;"	a
+[127]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[127]"><\/a>__aeabi_memcpy8<\/STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memcpya.o(.text), UNUSED)$/;"	a
+[128]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[128]"><\/a>__aeabi_memset4<\/STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memseta.o(.text), UNUSED)$/;"	a
+[129]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[129]"><\/a>__aeabi_memset8<\/STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memseta.o(.text), UNUSED)$/;"	a
 [12]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[12]"><\/a>_usb_dev_desc_get<\/STRONG> (Thumb, 20 bytes, Stack size 0 bytes, usbd_enum.o(i._usb_dev_desc_get))$/;"	a
-[12a]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[12a]"><\/a>__scatterload_copy<\/STRONG> (Thumb, 14 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_copy), UNUSED)$/;"	a
-[12b]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[12b]"><\/a>__scatterload_null<\/STRONG> (Thumb, 2 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_null), UNUSED)$/;"	a
-[12c]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[12c]"><\/a>__scatterload_zeroinit<\/STRONG> (Thumb, 14 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_zeroinit), UNUSED)$/;"	a
+[12a]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[12a]"><\/a>__aeabi_memclr8<\/STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memseta.o(.text), UNUSED)$/;"	a
+[12b]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[12b]"><\/a>__aeabi_uidiv<\/STRONG> (Thumb, 0 bytes, Stack size 12 bytes, uidiv.o(.text), UNUSED)$/;"	a
+[12c]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[12c]"><\/a>_ll_shift_l<\/STRONG> (Thumb, 0 bytes, Stack size 0 bytes, llshl.o(.text), UNUSED)$/;"	a
+[12d]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[12d]"><\/a>_ll_ushift_r<\/STRONG> (Thumb, 0 bytes, Stack size 0 bytes, llushr.o(.text), UNUSED)$/;"	a
+[12e]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[12e]"><\/a>__scatterload_rt2<\/STRONG> (Thumb, 0 bytes, Stack size 0 bytes, init.o(.text), UNUSED)$/;"	a
+[12f]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[12f]"><\/a>__decompress<\/STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __dczerorl2.o(.text), UNUSED)$/;"	a
+[130]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[130]"><\/a>__decompress1<\/STRONG> (Thumb, 86 bytes, Stack size unknown bytes, __dczerorl2.o(.text), UNUSED)$/;"	a
+[131]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[131]"><\/a>__1sprintf$1<\/STRONG> (Thumb, 0 bytes, Stack size 24 bytes, printf1.o(i.__0sprintf$1), UNUSED)$/;"	a
+[132]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[132]"><\/a>__scatterload_copy<\/STRONG> (Thumb, 14 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_copy), UNUSED)$/;"	a
+[133]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[133]"><\/a>__scatterload_null<\/STRONG> (Thumb, 2 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_null), UNUSED)$/;"	a
+[134]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[134]"><\/a>__scatterload_zeroinit<\/STRONG> (Thumb, 14 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_zeroinit), UNUSED)$/;"	a
 [13]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[13]"><\/a>_usb_config_desc_get<\/STRONG> (Thumb, 34 bytes, Stack size 8 bytes, usbd_enum.o(i._usb_config_desc_get))$/;"	a
 [14]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[14]"><\/a>_usb_str_desc_get<\/STRONG> (Thumb, 20 bytes, Stack size 8 bytes, usbd_enum.o(i._usb_str_desc_get))$/;"	a
 [15]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[15]"><\/a>Reset_Handler<\/STRONG> (Thumb, 8 bytes, Stack size 0 bytes, startup_gd32e10x.o(.text))$/;"	a
@@ -5350,177 +5365,177 @@ Z	.\Firmware\CMSIS\core_cm4.h	/^    uint32_t Z:1;                        \/*!< b
 [5c]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[5c]"><\/a>CAN1_RX1_IRQHandler<\/STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_gd32e10x.o(.text))$/;"	a
 [5d]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[5d]"><\/a>CAN1_EWMC_IRQHandler<\/STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_gd32e10x.o(.text))$/;"	a
 [5e]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[5e]"><\/a>USBFS_IRQHandler<\/STRONG> (Thumb, 8 bytes, Stack size 8 bytes, gd32e10x_it.o(i.USBFS_IRQHandler))$/;"	a
-[5f]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[5f]"><\/a>main<\/STRONG> (Thumb, 636 bytes, Stack size 24 bytes, main.o(i.main))$/;"	a
+[5f]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[5f]"><\/a>main<\/STRONG> (Thumb, 510 bytes, Stack size 16 bytes, main.o(i.main))$/;"	a
 [60]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[60]"><\/a>SystemInit<\/STRONG> (Thumb, 76 bytes, Stack size 8 bytes, system_gd32e10x.o(i.SystemInit))$/;"	a
 [61]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[61]"><\/a>__main<\/STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry.o(.ARM.Collect$$$$00000000))$/;"	a
 [62]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[62]"><\/a>_sputc<\/STRONG> (Thumb, 10 bytes, Stack size 0 bytes, printf1.o(i._sputc))$/;"	a
-[63]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[63]"><\/a>pid_param_init<\/STRONG> (Thumb, 88 bytes, Stack size 0 bytes, pid.o(i.pid_param_init))$/;"	a
-[64]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[64]"><\/a>pid_reset<\/STRONG> (Thumb, 14 bytes, Stack size 0 bytes, pid.o(i.pid_reset))$/;"	a
-[65]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[65]"><\/a>pid_calculate<\/STRONG> (Thumb, 326 bytes, Stack size 16 bytes, pid.o(i.pid_calculate))$/;"	a
-[66]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[66]"><\/a>_main_scatterload<\/STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry5.o(.ARM.Collect$$$$00000004))$/;"	a
-[67]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[67]"><\/a>__scatterload<\/STRONG> (Thumb, 28 bytes, Stack size 0 bytes, init.o(.text))$/;"	a
-[68]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[68]"><\/a>__aeabi_uldivmod<\/STRONG> (Thumb, 98 bytes, Stack size 40 bytes, uldiv.o(.text))$/;"	a
-[69]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[69]"><\/a>__aeabi_llsr<\/STRONG> (Thumb, 32 bytes, Stack size 0 bytes, llushr.o(.text))$/;"	a
+[63]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[63]"><\/a>_main_scatterload<\/STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry5.o(.ARM.Collect$$$$00000004))$/;"	a
+[64]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[64]"><\/a>__scatterload<\/STRONG> (Thumb, 28 bytes, Stack size 0 bytes, init.o(.text))$/;"	a
+[65]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[65]"><\/a>__aeabi_uldivmod<\/STRONG> (Thumb, 98 bytes, Stack size 40 bytes, uldiv.o(.text))$/;"	a
+[66]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[66]"><\/a>__aeabi_llsr<\/STRONG> (Thumb, 32 bytes, Stack size 0 bytes, llushr.o(.text))$/;"	a
+[67]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[67]"><\/a>__aeabi_llsl<\/STRONG> (Thumb, 30 bytes, Stack size 0 bytes, llshl.o(.text))$/;"	a
+[68]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[68]"><\/a>__aeabi_memclr<\/STRONG> (Thumb, 4 bytes, Stack size 0 bytes, memseta.o(.text), UNUSED)$/;"	a
+[69]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[69]"><\/a>__aeabi_memset<\/STRONG> (Thumb, 14 bytes, Stack size 0 bytes, memseta.o(.text), UNUSED)$/;"	a
 [6]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[6]"><\/a>_usb_std_getstatus<\/STRONG> (Thumb, 192 bytes, Stack size 16 bytes, usbd_enum.o(i._usb_std_getstatus))$/;"	a
-[6a]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[6a]"><\/a>__aeabi_llsl<\/STRONG> (Thumb, 30 bytes, Stack size 0 bytes, llshl.o(.text))$/;"	a
-[6b]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[6b]"><\/a>__aeabi_memclr<\/STRONG> (Thumb, 4 bytes, Stack size 0 bytes, memseta.o(.text), UNUSED)$/;"	a
-[6c]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[6c]"><\/a>__aeabi_memset<\/STRONG> (Thumb, 14 bytes, Stack size 0 bytes, memseta.o(.text), UNUSED)$/;"	a
-[6d]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[6d]"><\/a>_memset$wrapper<\/STRONG> (Thumb, 18 bytes, Stack size 8 bytes, memseta.o(.text), UNUSED)$/;"	a
-[6e]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[6e]"><\/a>calloc<\/STRONG> (Thumb, 28 bytes, Stack size 8 bytes, calloc.o(.text))$/;"	a
-[6f]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[6f]"><\/a>malloc<\/STRONG> (Thumb, 92 bytes, Stack size 20 bytes, malloc.o(i.malloc))$/;"	a
-[70]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[70]"><\/a>__main_after_scatterload<\/STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry5.o(.ARM.Collect$$$$00000004))$/;"	a
-[71]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[71]"><\/a>can_message_receive<\/STRONG> (Thumb, 448 bytes, Stack size 24 bytes, gd32e10x_can.o(i.can_message_receive))$/;"	a
-[72]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[72]"><\/a>CircBuf_Init<\/STRONG> (Thumb, 60 bytes, Stack size 16 bytes, circular_buffer.o(i.CircBuf_Init))$/;"	a
-[73]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[73]"><\/a>IsPowerOf2<\/STRONG> (Thumb, 48 bytes, Stack size 12 bytes, circular_buffer.o(i.IsPowerOf2))$/;"	a
-[74]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[74]"><\/a>RoundDown_PowerOf2<\/STRONG> (Thumb, 56 bytes, Stack size 12 bytes, circular_buffer.o(i.RoundDown_PowerOf2))$/;"	a
-[75]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[75]"><\/a>CircBuf_Pop<\/STRONG> (Thumb, 108 bytes, Stack size 24 bytes, circular_buffer.o(i.CircBuf_Pop))$/;"	a
-[76]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[76]"><\/a>__aeabi_memcpy<\/STRONG> (Thumb, 36 bytes, Stack size 0 bytes, memcpya.o(.text))$/;"	a
-[77]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[77]"><\/a>CircBuf_Push<\/STRONG> (Thumb, 116 bytes, Stack size 24 bytes, circular_buffer.o(i.CircBuf_Push))$/;"	a
-[78]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[78]"><\/a>dma_interrupt_flag_get<\/STRONG> (Thumb, 130 bytes, Stack size 16 bytes, gd32e10x_dma.o(i.dma_interrupt_flag_get))$/;"	a
-[79]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[79]"><\/a>dma_interrupt_flag_clear<\/STRONG> (Thumb, 16 bytes, Stack size 8 bytes, gd32e10x_dma.o(i.dma_interrupt_flag_clear))$/;"	a
+[6a]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[6a]"><\/a>_memset$wrapper<\/STRONG> (Thumb, 18 bytes, Stack size 8 bytes, memseta.o(.text), UNUSED)$/;"	a
+[6b]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[6b]"><\/a>calloc<\/STRONG> (Thumb, 28 bytes, Stack size 8 bytes, calloc.o(.text))$/;"	a
+[6c]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[6c]"><\/a>malloc<\/STRONG> (Thumb, 92 bytes, Stack size 20 bytes, malloc.o(i.malloc))$/;"	a
+[6d]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[6d]"><\/a>__main_after_scatterload<\/STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry5.o(.ARM.Collect$$$$00000004))$/;"	a
+[6e]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[6e]"><\/a>can_message_receive<\/STRONG> (Thumb, 448 bytes, Stack size 24 bytes, gd32e10x_can.o(i.can_message_receive))$/;"	a
+[6f]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[6f]"><\/a>CircBuf_Init<\/STRONG> (Thumb, 60 bytes, Stack size 16 bytes, circular_buffer.o(i.CircBuf_Init))$/;"	a
+[70]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[70]"><\/a>IsPowerOf2<\/STRONG> (Thumb, 48 bytes, Stack size 12 bytes, circular_buffer.o(i.IsPowerOf2))$/;"	a
+[71]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[71]"><\/a>RoundDown_PowerOf2<\/STRONG> (Thumb, 56 bytes, Stack size 12 bytes, circular_buffer.o(i.RoundDown_PowerOf2))$/;"	a
+[72]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[72]"><\/a>CircBuf_Pop<\/STRONG> (Thumb, 108 bytes, Stack size 24 bytes, circular_buffer.o(i.CircBuf_Pop))$/;"	a
+[73]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[73]"><\/a>__aeabi_memcpy<\/STRONG> (Thumb, 36 bytes, Stack size 0 bytes, memcpya.o(.text))$/;"	a
+[74]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[74]"><\/a>CircBuf_Push<\/STRONG> (Thumb, 116 bytes, Stack size 24 bytes, circular_buffer.o(i.CircBuf_Push))$/;"	a
+[75]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[75]"><\/a>dma_interrupt_flag_get<\/STRONG> (Thumb, 130 bytes, Stack size 16 bytes, gd32e10x_dma.o(i.dma_interrupt_flag_get))$/;"	a
+[76]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[76]"><\/a>dma_interrupt_flag_clear<\/STRONG> (Thumb, 16 bytes, Stack size 8 bytes, gd32e10x_dma.o(i.dma_interrupt_flag_clear))$/;"	a
+[77]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[77]"><\/a>read_adc_value<\/STRONG> (Thumb, 98 bytes, Stack size 0 bytes, adc.o(i.read_adc_value))$/;"	a
+[78]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[78]"><\/a>GetAdcValue<\/STRONG> (Thumb, 30 bytes, Stack size 4 bytes, adc.o(i.GetAdcValue))$/;"	a
+[79]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[79]"><\/a>delay_decrement<\/STRONG> (Thumb, 36 bytes, Stack size 0 bytes, systick.o(i.delay_decrement))$/;"	a
 [7]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[7]"><\/a>_usb_std_clearfeature<\/STRONG> (Thumb, 116 bytes, Stack size 16 bytes, usbd_enum.o(i._usb_std_clearfeature))$/;"	a
-[7a]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[7a]"><\/a>read_adc_value<\/STRONG> (Thumb, 98 bytes, Stack size 0 bytes, adc.o(i.read_adc_value))$/;"	a
-[7b]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[7b]"><\/a>GetAdcValue<\/STRONG> (Thumb, 30 bytes, Stack size 4 bytes, adc.o(i.GetAdcValue))$/;"	a
-[7c]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[7c]"><\/a>delay_decrement<\/STRONG> (Thumb, 36 bytes, Stack size 0 bytes, systick.o(i.delay_decrement))$/;"	a
-[7d]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[7d]"><\/a>system_clock_config<\/STRONG> (Thumb, 8 bytes, Stack size 8 bytes, system_gd32e10x.o(i.system_clock_config))$/;"	a
-[7e]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[7e]"><\/a>nvic_vector_table_set<\/STRONG> (Thumb, 12 bytes, Stack size 0 bytes, gd32e10x_misc.o(i.nvic_vector_table_set))$/;"	a
-[7f]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[7f]"><\/a>TIMER2_IRQHandler_lib<\/STRONG> (Thumb, 8 bytes, Stack size 8 bytes, gd32e10x_it.o(i.TIMER2_IRQHandler_lib))$/;"	a
-[80]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[80]"><\/a>usb_timer_irq<\/STRONG> (Thumb, 46 bytes, Stack size 8 bytes, gd32e10x_hw.o(i.usb_timer_irq))$/;"	a
-[81]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[81]"><\/a>timer_interrupt_flag_get<\/STRONG> (Thumb, 24 bytes, Stack size 0 bytes, gd32e10x_timer.o(i.timer_interrupt_flag_get))$/;"	a
-[82]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[82]"><\/a>timer_interrupt_flag_clear<\/STRONG> (Thumb, 6 bytes, Stack size 0 bytes, gd32e10x_timer.o(i.timer_interrupt_flag_clear))$/;"	a
-[83]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[83]"><\/a>USART0_GetDataCount<\/STRONG> (Thumb, 10 bytes, Stack size 8 bytes, uart.o(i.USART0_GetDataCount))$/;"	a
-[84]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[84]"><\/a>CircBuf_GetUsedSize<\/STRONG> (Thumb, 10 bytes, Stack size 0 bytes, circular_buffer.o(i.CircBuf_GetUsedSize))$/;"	a
-[85]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[85]"><\/a>usart_interrupt_flag_get<\/STRONG> (Thumb, 56 bytes, Stack size 16 bytes, gd32e10x_usart.o(i.usart_interrupt_flag_get))$/;"	a
-[86]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[86]"><\/a>dma_channel_disable<\/STRONG> (Thumb, 50 bytes, Stack size 16 bytes, gd32e10x_dma.o(i.dma_channel_disable))$/;"	a
-[87]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[87]"><\/a>dma_transfer_number_get<\/STRONG> (Thumb, 34 bytes, Stack size 16 bytes, gd32e10x_dma.o(i.dma_transfer_number_get))$/;"	a
-[88]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[88]"><\/a>dma_transfer_number_config<\/STRONG> (Thumb, 38 bytes, Stack size 16 bytes, gd32e10x_dma.o(i.dma_transfer_number_config))$/;"	a
-[89]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[89]"><\/a>dma_channel_enable<\/STRONG> (Thumb, 50 bytes, Stack size 16 bytes, gd32e10x_dma.o(i.dma_channel_enable))$/;"	a
+[7a]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[7a]"><\/a>system_clock_config<\/STRONG> (Thumb, 8 bytes, Stack size 8 bytes, system_gd32e10x.o(i.system_clock_config))$/;"	a
+[7b]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[7b]"><\/a>nvic_vector_table_set<\/STRONG> (Thumb, 12 bytes, Stack size 0 bytes, gd32e10x_misc.o(i.nvic_vector_table_set))$/;"	a
+[7c]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[7c]"><\/a>TIMER2_IRQHandler_lib<\/STRONG> (Thumb, 8 bytes, Stack size 8 bytes, gd32e10x_it.o(i.TIMER2_IRQHandler_lib))$/;"	a
+[7d]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[7d]"><\/a>usb_timer_irq<\/STRONG> (Thumb, 46 bytes, Stack size 8 bytes, gd32e10x_hw.o(i.usb_timer_irq))$/;"	a
+[7e]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[7e]"><\/a>timer_interrupt_flag_get<\/STRONG> (Thumb, 24 bytes, Stack size 0 bytes, gd32e10x_timer.o(i.timer_interrupt_flag_get))$/;"	a
+[7f]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[7f]"><\/a>timer_interrupt_flag_clear<\/STRONG> (Thumb, 6 bytes, Stack size 0 bytes, gd32e10x_timer.o(i.timer_interrupt_flag_clear))$/;"	a
+[80]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[80]"><\/a>USART0_GetDataCount<\/STRONG> (Thumb, 10 bytes, Stack size 8 bytes, uart.o(i.USART0_GetDataCount))$/;"	a
+[81]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[81]"><\/a>CircBuf_GetUsedSize<\/STRONG> (Thumb, 10 bytes, Stack size 0 bytes, circular_buffer.o(i.CircBuf_GetUsedSize))$/;"	a
+[82]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[82]"><\/a>usart_interrupt_flag_get<\/STRONG> (Thumb, 56 bytes, Stack size 16 bytes, gd32e10x_usart.o(i.usart_interrupt_flag_get))$/;"	a
+[83]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[83]"><\/a>dma_channel_disable<\/STRONG> (Thumb, 50 bytes, Stack size 16 bytes, gd32e10x_dma.o(i.dma_channel_disable))$/;"	a
+[84]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[84]"><\/a>dma_transfer_number_get<\/STRONG> (Thumb, 34 bytes, Stack size 16 bytes, gd32e10x_dma.o(i.dma_transfer_number_get))$/;"	a
+[85]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[85]"><\/a>dma_transfer_number_config<\/STRONG> (Thumb, 38 bytes, Stack size 16 bytes, gd32e10x_dma.o(i.dma_transfer_number_config))$/;"	a
+[86]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[86]"><\/a>dma_channel_enable<\/STRONG> (Thumb, 50 bytes, Stack size 16 bytes, gd32e10x_dma.o(i.dma_channel_enable))$/;"	a
+[87]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[87]"><\/a>USART0_Recv<\/STRONG> (Thumb, 26 bytes, Stack size 16 bytes, uart.o(i.USART0_Recv))$/;"	a
+[88]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[88]"><\/a>USBFS_IRQHandler_lib<\/STRONG> (Thumb, 12 bytes, Stack size 8 bytes, gd32e10x_it.o(i.USBFS_IRQHandler_lib))$/;"	a
+[89]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[89]"><\/a>usbd_isr<\/STRONG> (Thumb, 222 bytes, Stack size 16 bytes, drv_usbd_int.o(i.usbd_isr))$/;"	a
 [8]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[8]"><\/a>_usb_std_reserved<\/STRONG> (Thumb, 6 bytes, Stack size 0 bytes, usbd_enum.o(i._usb_std_reserved))$/;"	a
-[8a]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[8a]"><\/a>USART0_Recv<\/STRONG> (Thumb, 26 bytes, Stack size 16 bytes, uart.o(i.USART0_Recv))$/;"	a
-[8b]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[8b]"><\/a>USBFS_IRQHandler_lib<\/STRONG> (Thumb, 12 bytes, Stack size 8 bytes, gd32e10x_it.o(i.USBFS_IRQHandler_lib))$/;"	a
-[8c]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[8c]"><\/a>usbd_isr<\/STRONG> (Thumb, 222 bytes, Stack size 16 bytes, drv_usbd_int.o(i.usbd_isr))$/;"	a
-[8d]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[8d]"><\/a>USBFS_WKUP_IRQHandler_lib<\/STRONG> (Thumb, 48 bytes, Stack size 8 bytes, gd32e10x_it.o(i.USBFS_WKUP_IRQHandler_lib))$/;"	a
-[8e]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[8e]"><\/a>rcu_usb_clock_config<\/STRONG> (Thumb, 18 bytes, Stack size 0 bytes, gd32e10x_rcu.o(i.rcu_usb_clock_config))$/;"	a
-[8f]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[8f]"><\/a>rcu_periph_clock_enable<\/STRONG> (Thumb, 28 bytes, Stack size 0 bytes, gd32e10x_rcu.o(i.rcu_periph_clock_enable))$/;"	a
-[90]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[90]"><\/a>usb_clock_active<\/STRONG> (Thumb, 32 bytes, Stack size 0 bytes, drv_usb_dev.o(i.usb_clock_active))$/;"	a
-[91]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[91]"><\/a>exti_interrupt_flag_clear<\/STRONG> (Thumb, 6 bytes, Stack size 0 bytes, gd32e10x_exti.o(i.exti_interrupt_flag_clear))$/;"	a
-[92]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[92]"><\/a>__0sprintf$1<\/STRONG> (Thumb, 34 bytes, Stack size 24 bytes, printf1.o(i.__0sprintf$1), UNUSED)$/;"	a
-[93]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[93]"><\/a>_printf_core<\/STRONG> (Thumb, 336 bytes, Stack size 88 bytes, printf1.o(i._printf_core), UNUSED)$/;"	a
-[94]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[94]"><\/a>__aeabi_uidivmod<\/STRONG> (Thumb, 44 bytes, Stack size 12 bytes, uidiv.o(.text), UNUSED)$/;"	a
-[95]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[95]"><\/a>usbd_ep_stall_clear<\/STRONG> (Thumb, 58 bytes, Stack size 16 bytes, usbd_core.o(i.usbd_ep_stall_clear))$/;"	a
-[96]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[96]"><\/a>_usb_bos_desc_get<\/STRONG> (Thumb, 20 bytes, Stack size 0 bytes, usbd_enum.o(i._usb_bos_desc_get))$/;"	a
-[97]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[97]"><\/a>usbd_ep_stall<\/STRONG> (Thumb, 58 bytes, Stack size 16 bytes, usbd_core.o(i.usbd_ep_stall))$/;"	a
-[98]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[98]"><\/a>adc_config<\/STRONG> (Thumb, 204 bytes, Stack size 8 bytes, adc.o(i.adc_config))$/;"	a
-[99]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[99]"><\/a>adc_deinit<\/STRONG> (Thumb, 60 bytes, Stack size 8 bytes, gd32e10x_adc.o(i.adc_deinit))$/;"	a
+[8a]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[8a]"><\/a>USBFS_WKUP_IRQHandler_lib<\/STRONG> (Thumb, 48 bytes, Stack size 8 bytes, gd32e10x_it.o(i.USBFS_WKUP_IRQHandler_lib))$/;"	a
+[8b]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[8b]"><\/a>rcu_usb_clock_config<\/STRONG> (Thumb, 18 bytes, Stack size 0 bytes, gd32e10x_rcu.o(i.rcu_usb_clock_config))$/;"	a
+[8c]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[8c]"><\/a>rcu_periph_clock_enable<\/STRONG> (Thumb, 28 bytes, Stack size 0 bytes, gd32e10x_rcu.o(i.rcu_periph_clock_enable))$/;"	a
+[8d]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[8d]"><\/a>usb_clock_active<\/STRONG> (Thumb, 32 bytes, Stack size 0 bytes, drv_usb_dev.o(i.usb_clock_active))$/;"	a
+[8e]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[8e]"><\/a>exti_interrupt_flag_clear<\/STRONG> (Thumb, 6 bytes, Stack size 0 bytes, gd32e10x_exti.o(i.exti_interrupt_flag_clear))$/;"	a
+[8f]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[8f]"><\/a>__0sprintf$1<\/STRONG> (Thumb, 34 bytes, Stack size 24 bytes, printf1.o(i.__0sprintf$1), UNUSED)$/;"	a
+[90]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[90]"><\/a>_printf_core<\/STRONG> (Thumb, 336 bytes, Stack size 88 bytes, printf1.o(i._printf_core), UNUSED)$/;"	a
+[91]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[91]"><\/a>__aeabi_uidivmod<\/STRONG> (Thumb, 44 bytes, Stack size 12 bytes, uidiv.o(.text), UNUSED)$/;"	a
+[92]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[92]"><\/a>usbd_ep_stall_clear<\/STRONG> (Thumb, 58 bytes, Stack size 16 bytes, usbd_core.o(i.usbd_ep_stall_clear))$/;"	a
+[93]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[93]"><\/a>_usb_bos_desc_get<\/STRONG> (Thumb, 20 bytes, Stack size 0 bytes, usbd_enum.o(i._usb_bos_desc_get))$/;"	a
+[94]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[94]"><\/a>usbd_ep_stall<\/STRONG> (Thumb, 58 bytes, Stack size 16 bytes, usbd_core.o(i.usbd_ep_stall))$/;"	a
+[95]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[95]"><\/a>adc_config<\/STRONG> (Thumb, 204 bytes, Stack size 8 bytes, adc.o(i.adc_config))$/;"	a
+[96]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[96]"><\/a>adc_deinit<\/STRONG> (Thumb, 60 bytes, Stack size 8 bytes, gd32e10x_adc.o(i.adc_deinit))$/;"	a
+[97]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[97]"><\/a>adc_mode_config<\/STRONG> (Thumb, 22 bytes, Stack size 0 bytes, gd32e10x_adc.o(i.adc_mode_config))$/;"	a
+[98]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[98]"><\/a>adc_special_function_config<\/STRONG> (Thumb, 90 bytes, Stack size 0 bytes, gd32e10x_adc.o(i.adc_special_function_config))$/;"	a
+[99]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[99]"><\/a>adc_data_alignment_config<\/STRONG> (Thumb, 22 bytes, Stack size 0 bytes, gd32e10x_adc.o(i.adc_data_alignment_config))$/;"	a
 [9]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[9]"><\/a>_usb_std_setfeature<\/STRONG> (Thumb, 104 bytes, Stack size 16 bytes, usbd_enum.o(i._usb_std_setfeature))$/;"	a
-[9a]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[9a]"><\/a>adc_mode_config<\/STRONG> (Thumb, 22 bytes, Stack size 0 bytes, gd32e10x_adc.o(i.adc_mode_config))$/;"	a
-[9b]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[9b]"><\/a>adc_special_function_config<\/STRONG> (Thumb, 90 bytes, Stack size 0 bytes, gd32e10x_adc.o(i.adc_special_function_config))$/;"	a
-[9c]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[9c]"><\/a>adc_data_alignment_config<\/STRONG> (Thumb, 22 bytes, Stack size 0 bytes, gd32e10x_adc.o(i.adc_data_alignment_config))$/;"	a
-[9d]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[9d]"><\/a>adc_channel_length_config<\/STRONG> (Thumb, 70 bytes, Stack size 12 bytes, gd32e10x_adc.o(i.adc_channel_length_config))$/;"	a
-[9e]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[9e]"><\/a>adc_regular_channel_config<\/STRONG> (Thumb, 172 bytes, Stack size 20 bytes, gd32e10x_adc.o(i.adc_regular_channel_config))$/;"	a
-[9f]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[9f]"><\/a>adc_external_trigger_source_config<\/STRONG> (Thumb, 48 bytes, Stack size 0 bytes, gd32e10x_adc.o(i.adc_external_trigger_source_config))$/;"	a
-[a0]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[a0]"><\/a>adc_external_trigger_config<\/STRONG> (Thumb, 62 bytes, Stack size 0 bytes, gd32e10x_adc.o(i.adc_external_trigger_config))$/;"	a
-[a1]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[a1]"><\/a>adc_enable<\/STRONG> (Thumb, 18 bytes, Stack size 0 bytes, gd32e10x_adc.o(i.adc_enable))$/;"	a
-[a2]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[a2]"><\/a>delay_1ms<\/STRONG> (Thumb, 16 bytes, Stack size 0 bytes, systick.o(i.delay_1ms))$/;"	a
-[a3]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[a3]"><\/a>adc_calibration_enable<\/STRONG> (Thumb, 42 bytes, Stack size 0 bytes, gd32e10x_adc.o(i.adc_calibration_enable))$/;"	a
-[a4]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[a4]"><\/a>adc_dma_mode_enable<\/STRONG> (Thumb, 10 bytes, Stack size 0 bytes, gd32e10x_adc.o(i.adc_dma_mode_enable))$/;"	a
-[a5]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[a5]"><\/a>adc_software_trigger_enable<\/STRONG> (Thumb, 30 bytes, Stack size 0 bytes, gd32e10x_adc.o(i.adc_software_trigger_enable))$/;"	a
-[a6]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[a6]"><\/a>rcu_periph_reset_enable<\/STRONG> (Thumb, 28 bytes, Stack size 0 bytes, gd32e10x_rcu.o(i.rcu_periph_reset_enable))$/;"	a
-[a7]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[a7]"><\/a>rcu_periph_reset_disable<\/STRONG> (Thumb, 28 bytes, Stack size 0 bytes, gd32e10x_rcu.o(i.rcu_periph_reset_disable))$/;"	a
-[a8]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[a8]"><\/a>adc_init<\/STRONG> (Thumb, 24 bytes, Stack size 8 bytes, adc.o(i.adc_init))$/;"	a
-[a9]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[a9]"><\/a>rcu_config<\/STRONG> (Thumb, 42 bytes, Stack size 8 bytes, adc.o(i.rcu_config))$/;"	a
+[9a]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[9a]"><\/a>adc_channel_length_config<\/STRONG> (Thumb, 70 bytes, Stack size 12 bytes, gd32e10x_adc.o(i.adc_channel_length_config))$/;"	a
+[9b]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[9b]"><\/a>adc_regular_channel_config<\/STRONG> (Thumb, 172 bytes, Stack size 20 bytes, gd32e10x_adc.o(i.adc_regular_channel_config))$/;"	a
+[9c]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[9c]"><\/a>adc_external_trigger_source_config<\/STRONG> (Thumb, 48 bytes, Stack size 0 bytes, gd32e10x_adc.o(i.adc_external_trigger_source_config))$/;"	a
+[9d]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[9d]"><\/a>adc_external_trigger_config<\/STRONG> (Thumb, 62 bytes, Stack size 0 bytes, gd32e10x_adc.o(i.adc_external_trigger_config))$/;"	a
+[9e]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[9e]"><\/a>adc_enable<\/STRONG> (Thumb, 18 bytes, Stack size 0 bytes, gd32e10x_adc.o(i.adc_enable))$/;"	a
+[9f]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[9f]"><\/a>delay_1ms<\/STRONG> (Thumb, 16 bytes, Stack size 0 bytes, systick.o(i.delay_1ms))$/;"	a
+[a0]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[a0]"><\/a>adc_calibration_enable<\/STRONG> (Thumb, 42 bytes, Stack size 0 bytes, gd32e10x_adc.o(i.adc_calibration_enable))$/;"	a
+[a1]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[a1]"><\/a>adc_dma_mode_enable<\/STRONG> (Thumb, 10 bytes, Stack size 0 bytes, gd32e10x_adc.o(i.adc_dma_mode_enable))$/;"	a
+[a2]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[a2]"><\/a>adc_software_trigger_enable<\/STRONG> (Thumb, 30 bytes, Stack size 0 bytes, gd32e10x_adc.o(i.adc_software_trigger_enable))$/;"	a
+[a3]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[a3]"><\/a>rcu_periph_reset_enable<\/STRONG> (Thumb, 28 bytes, Stack size 0 bytes, gd32e10x_rcu.o(i.rcu_periph_reset_enable))$/;"	a
+[a4]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[a4]"><\/a>rcu_periph_reset_disable<\/STRONG> (Thumb, 28 bytes, Stack size 0 bytes, gd32e10x_rcu.o(i.rcu_periph_reset_disable))$/;"	a
+[a5]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[a5]"><\/a>adc_init<\/STRONG> (Thumb, 24 bytes, Stack size 8 bytes, adc.o(i.adc_init))$/;"	a
+[a6]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[a6]"><\/a>rcu_config<\/STRONG> (Thumb, 42 bytes, Stack size 8 bytes, adc.o(i.rcu_config))$/;"	a
+[a7]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[a7]"><\/a>systick_config<\/STRONG> (Thumb, 74 bytes, Stack size 8 bytes, systick.o(i.systick_config))$/;"	a
+[a8]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[a8]"><\/a>gpio_config<\/STRONG> (Thumb, 100 bytes, Stack size 8 bytes, adc.o(i.gpio_config))$/;"	a
+[a9]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[a9]"><\/a>dma_config<\/STRONG> (Thumb, 84 bytes, Stack size 32 bytes, adc.o(i.dma_config))$/;"	a
 [a]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[a]"><\/a>_usb_std_setaddress<\/STRONG> (Thumb, 92 bytes, Stack size 8 bytes, usbd_enum.o(i._usb_std_setaddress))$/;"	a
-[aa]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[aa]"><\/a>systick_config<\/STRONG> (Thumb, 74 bytes, Stack size 8 bytes, systick.o(i.systick_config))$/;"	a
-[ab]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[ab]"><\/a>gpio_config<\/STRONG> (Thumb, 100 bytes, Stack size 8 bytes, adc.o(i.gpio_config))$/;"	a
-[ac]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[ac]"><\/a>dma_config<\/STRONG> (Thumb, 84 bytes, Stack size 32 bytes, adc.o(i.dma_config))$/;"	a
-[ad]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[ad]"><\/a>adc_value_read<\/STRONG> (Thumb, 68 bytes, Stack size 24 bytes, 74hc4051bq.o(i.adc_value_read))$/;"	a
-[ae]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[ae]"><\/a>usbd_ep_clear<\/STRONG> (Thumb, 52 bytes, Stack size 16 bytes, usbd_core.o(i.usbd_ep_clear))$/;"	a
-[af]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[af]"><\/a>usbd_ep_send<\/STRONG> (Thumb, 52 bytes, Stack size 24 bytes, usbd_core.o(i.usbd_ep_send))$/;"	a
-[b0]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[b0]"><\/a>usbd_ep_setup<\/STRONG> (Thumb, 106 bytes, Stack size 24 bytes, usbd_core.o(i.usbd_ep_setup))$/;"	a
-[b1]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[b1]"><\/a>dma0_ch3_usart0_tx_init<\/STRONG> (Thumb, 114 bytes, Stack size 32 bytes, uart.o(i.dma0_ch3_usart0_tx_init))$/;"	a
-[b2]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[b2]"><\/a>dma_deinit<\/STRONG> (Thumb, 112 bytes, Stack size 16 bytes, gd32e10x_dma.o(i.dma_deinit))$/;"	a
-[b3]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[b3]"><\/a>dma_struct_para_init<\/STRONG> (Thumb, 28 bytes, Stack size 0 bytes, gd32e10x_dma.o(i.dma_struct_para_init))$/;"	a
-[b4]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[b4]"><\/a>dma_init<\/STRONG> (Thumb, 302 bytes, Stack size 24 bytes, gd32e10x_dma.o(i.dma_init))$/;"	a
-[b5]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[b5]"><\/a>dma_circulation_disable<\/STRONG> (Thumb, 50 bytes, Stack size 16 bytes, gd32e10x_dma.o(i.dma_circulation_disable))$/;"	a
-[b6]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[b6]"><\/a>dma_memory_to_memory_disable<\/STRONG> (Thumb, 50 bytes, Stack size 16 bytes, gd32e10x_dma.o(i.dma_memory_to_memory_disable))$/;"	a
-[b7]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[b7]"><\/a>dma_interrupt_enable<\/STRONG> (Thumb, 50 bytes, Stack size 16 bytes, gd32e10x_dma.o(i.dma_interrupt_enable))$/;"	a
-[b8]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[b8]"><\/a>dma0_ch4_usart0_rx_init<\/STRONG> (Thumb, 112 bytes, Stack size 32 bytes, uart.o(i.dma0_ch4_usart0_rx_init))$/;"	a
-[b9]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[b9]"><\/a>usart_dma_receive_config<\/STRONG> (Thumb, 16 bytes, Stack size 0 bytes, gd32e10x_usart.o(i.usart_dma_receive_config))$/;"	a
+[aa]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[aa]"><\/a>adc_value_read<\/STRONG> (Thumb, 68 bytes, Stack size 24 bytes, 74hc4051bq.o(i.adc_value_read))$/;"	a
+[ab]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[ab]"><\/a>usbd_ep_clear<\/STRONG> (Thumb, 52 bytes, Stack size 16 bytes, usbd_core.o(i.usbd_ep_clear))$/;"	a
+[ac]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[ac]"><\/a>usbd_ep_send<\/STRONG> (Thumb, 52 bytes, Stack size 24 bytes, usbd_core.o(i.usbd_ep_send))$/;"	a
+[ad]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[ad]"><\/a>usbd_ep_setup<\/STRONG> (Thumb, 106 bytes, Stack size 24 bytes, usbd_core.o(i.usbd_ep_setup))$/;"	a
+[ae]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[ae]"><\/a>dma0_ch3_usart0_tx_init<\/STRONG> (Thumb, 114 bytes, Stack size 32 bytes, uart.o(i.dma0_ch3_usart0_tx_init))$/;"	a
+[af]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[af]"><\/a>dma_deinit<\/STRONG> (Thumb, 112 bytes, Stack size 16 bytes, gd32e10x_dma.o(i.dma_deinit))$/;"	a
+[b0]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[b0]"><\/a>dma_struct_para_init<\/STRONG> (Thumb, 28 bytes, Stack size 0 bytes, gd32e10x_dma.o(i.dma_struct_para_init))$/;"	a
+[b1]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[b1]"><\/a>dma_init<\/STRONG> (Thumb, 302 bytes, Stack size 24 bytes, gd32e10x_dma.o(i.dma_init))$/;"	a
+[b2]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[b2]"><\/a>dma_circulation_disable<\/STRONG> (Thumb, 50 bytes, Stack size 16 bytes, gd32e10x_dma.o(i.dma_circulation_disable))$/;"	a
+[b3]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[b3]"><\/a>dma_memory_to_memory_disable<\/STRONG> (Thumb, 50 bytes, Stack size 16 bytes, gd32e10x_dma.o(i.dma_memory_to_memory_disable))$/;"	a
+[b4]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[b4]"><\/a>dma_interrupt_enable<\/STRONG> (Thumb, 50 bytes, Stack size 16 bytes, gd32e10x_dma.o(i.dma_interrupt_enable))$/;"	a
+[b5]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[b5]"><\/a>dma0_ch4_usart0_rx_init<\/STRONG> (Thumb, 112 bytes, Stack size 32 bytes, uart.o(i.dma0_ch4_usart0_rx_init))$/;"	a
+[b6]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[b6]"><\/a>usart_dma_receive_config<\/STRONG> (Thumb, 16 bytes, Stack size 0 bytes, gd32e10x_usart.o(i.usart_dma_receive_config))$/;"	a
+[b7]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[b7]"><\/a>dma_periph_and_channel_check<\/STRONG> (Thumb, 18 bytes, Stack size 0 bytes, gd32e10x_dma.o(i.dma_periph_and_channel_check))$/;"	a
+[b8]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[b8]"><\/a>dma_circulation_enable<\/STRONG> (Thumb, 50 bytes, Stack size 16 bytes, gd32e10x_dma.o(i.dma_circulation_enable))$/;"	a
+[b9]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[b9]"><\/a>dma_memory_address_config<\/STRONG> (Thumb, 36 bytes, Stack size 16 bytes, gd32e10x_dma.o(i.dma_memory_address_config))$/;"	a
 [b]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[b]"><\/a>_usb_std_getdescriptor<\/STRONG> (Thumb, 266 bytes, Stack size 32 bytes, usbd_enum.o(i._usb_std_getdescriptor))$/;"	a
-[ba]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[ba]"><\/a>dma_periph_and_channel_check<\/STRONG> (Thumb, 18 bytes, Stack size 0 bytes, gd32e10x_dma.o(i.dma_periph_and_channel_check))$/;"	a
-[bb]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[bb]"><\/a>dma_circulation_enable<\/STRONG> (Thumb, 50 bytes, Stack size 16 bytes, gd32e10x_dma.o(i.dma_circulation_enable))$/;"	a
-[bc]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[bc]"><\/a>dma_memory_address_config<\/STRONG> (Thumb, 36 bytes, Stack size 16 bytes, gd32e10x_dma.o(i.dma_memory_address_config))$/;"	a
-[bd]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[bd]"><\/a>gd_eval_com_init<\/STRONG> (Thumb, 132 bytes, Stack size 16 bytes, uart.o(i.gd_eval_com_init))$/;"	a
-[be]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[be]"><\/a>gpio_init<\/STRONG> (Thumb, 188 bytes, Stack size 20 bytes, gd32e10x_gpio.o(i.gpio_init))$/;"	a
-[bf]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[bf]"><\/a>usart_deinit<\/STRONG> (Thumb, 136 bytes, Stack size 8 bytes, gd32e10x_usart.o(i.usart_deinit))$/;"	a
-[c0]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[c0]"><\/a>usart_baudrate_set<\/STRONG> (Thumb, 136 bytes, Stack size 32 bytes, gd32e10x_usart.o(i.usart_baudrate_set))$/;"	a
-[c1]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[c1]"><\/a>usart_receive_config<\/STRONG> (Thumb, 16 bytes, Stack size 0 bytes, gd32e10x_usart.o(i.usart_receive_config))$/;"	a
-[c2]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[c2]"><\/a>usart_transmit_config<\/STRONG> (Thumb, 16 bytes, Stack size 0 bytes, gd32e10x_usart.o(i.usart_transmit_config))$/;"	a
-[c3]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[c3]"><\/a>usart_enable<\/STRONG> (Thumb, 10 bytes, Stack size 0 bytes, gd32e10x_usart.o(i.usart_enable))$/;"	a
-[c4]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[c4]"><\/a>usart_interrupt_enable<\/STRONG> (Thumb, 26 bytes, Stack size 8 bytes, gd32e10x_usart.o(i.usart_interrupt_enable))$/;"	a
-[c5]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[c5]"><\/a>hw_delay<\/STRONG> (Thumb, 34 bytes, Stack size 16 bytes, gd32e10x_hw.o(i.hw_delay))$/;"	a
-[c6]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[c6]"><\/a>hw_time_set<\/STRONG> (Thumb, 102 bytes, Stack size 24 bytes, gd32e10x_hw.o(i.hw_time_set))$/;"	a
-[c7]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[c7]"><\/a>timer_disable<\/STRONG> (Thumb, 10 bytes, Stack size 0 bytes, gd32e10x_timer.o(i.timer_disable))$/;"	a
-[c8]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[c8]"><\/a>timer_interrupt_disable<\/STRONG> (Thumb, 8 bytes, Stack size 0 bytes, gd32e10x_timer.o(i.timer_interrupt_disable))$/;"	a
-[c9]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[c9]"><\/a>timer_init<\/STRONG> (Thumb, 134 bytes, Stack size 0 bytes, gd32e10x_timer.o(i.timer_init))$/;"	a
+[ba]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[ba]"><\/a>gd_eval_com_init<\/STRONG> (Thumb, 132 bytes, Stack size 16 bytes, uart.o(i.gd_eval_com_init))$/;"	a
+[bb]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[bb]"><\/a>gpio_init<\/STRONG> (Thumb, 188 bytes, Stack size 20 bytes, gd32e10x_gpio.o(i.gpio_init))$/;"	a
+[bc]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[bc]"><\/a>usart_deinit<\/STRONG> (Thumb, 136 bytes, Stack size 8 bytes, gd32e10x_usart.o(i.usart_deinit))$/;"	a
+[bd]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[bd]"><\/a>usart_baudrate_set<\/STRONG> (Thumb, 136 bytes, Stack size 32 bytes, gd32e10x_usart.o(i.usart_baudrate_set))$/;"	a
+[be]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[be]"><\/a>usart_receive_config<\/STRONG> (Thumb, 16 bytes, Stack size 0 bytes, gd32e10x_usart.o(i.usart_receive_config))$/;"	a
+[bf]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[bf]"><\/a>usart_transmit_config<\/STRONG> (Thumb, 16 bytes, Stack size 0 bytes, gd32e10x_usart.o(i.usart_transmit_config))$/;"	a
+[c0]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[c0]"><\/a>usart_enable<\/STRONG> (Thumb, 10 bytes, Stack size 0 bytes, gd32e10x_usart.o(i.usart_enable))$/;"	a
+[c1]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[c1]"><\/a>usart_interrupt_enable<\/STRONG> (Thumb, 26 bytes, Stack size 8 bytes, gd32e10x_usart.o(i.usart_interrupt_enable))$/;"	a
+[c2]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[c2]"><\/a>hw_delay<\/STRONG> (Thumb, 34 bytes, Stack size 16 bytes, gd32e10x_hw.o(i.hw_delay))$/;"	a
+[c3]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[c3]"><\/a>hw_time_set<\/STRONG> (Thumb, 102 bytes, Stack size 24 bytes, gd32e10x_hw.o(i.hw_time_set))$/;"	a
+[c4]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[c4]"><\/a>timer_disable<\/STRONG> (Thumb, 10 bytes, Stack size 0 bytes, gd32e10x_timer.o(i.timer_disable))$/;"	a
+[c5]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[c5]"><\/a>timer_interrupt_disable<\/STRONG> (Thumb, 8 bytes, Stack size 0 bytes, gd32e10x_timer.o(i.timer_interrupt_disable))$/;"	a
+[c6]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[c6]"><\/a>timer_init<\/STRONG> (Thumb, 134 bytes, Stack size 0 bytes, gd32e10x_timer.o(i.timer_init))$/;"	a
+[c7]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[c7]"><\/a>timer_auto_reload_shadow_enable<\/STRONG> (Thumb, 10 bytes, Stack size 0 bytes, gd32e10x_timer.o(i.timer_auto_reload_shadow_enable))$/;"	a
+[c8]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[c8]"><\/a>timer_interrupt_enable<\/STRONG> (Thumb, 8 bytes, Stack size 0 bytes, gd32e10x_timer.o(i.timer_interrupt_enable))$/;"	a
+[c9]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[c9]"><\/a>timer_enable<\/STRONG> (Thumb, 10 bytes, Stack size 0 bytes, gd32e10x_timer.o(i.timer_enable))$/;"	a
 [c]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[c]"><\/a>_usb_std_setdescriptor<\/STRONG> (Thumb, 6 bytes, Stack size 0 bytes, usbd_enum.o(i._usb_std_setdescriptor))$/;"	a
-[ca]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[ca]"><\/a>timer_auto_reload_shadow_enable<\/STRONG> (Thumb, 10 bytes, Stack size 0 bytes, gd32e10x_timer.o(i.timer_auto_reload_shadow_enable))$/;"	a
-[cb]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[cb]"><\/a>timer_interrupt_enable<\/STRONG> (Thumb, 8 bytes, Stack size 0 bytes, gd32e10x_timer.o(i.timer_interrupt_enable))$/;"	a
-[cc]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[cc]"><\/a>timer_enable<\/STRONG> (Thumb, 10 bytes, Stack size 0 bytes, gd32e10x_timer.o(i.timer_enable))$/;"	a
-[cd]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[cd]"><\/a>led_init<\/STRONG> (Thumb, 86 bytes, Stack size 8 bytes, led.o(i.led_init))$/;"	a
-[ce]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[ce]"><\/a>gpio_pin_remap_config<\/STRONG> (Thumb, 138 bytes, Stack size 20 bytes, gd32e10x_gpio.o(i.gpio_pin_remap_config))$/;"	a
-[cf]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[cf]"><\/a>gpio_bit_set<\/STRONG> (Thumb, 4 bytes, Stack size 0 bytes, gd32e10x_gpio.o(i.gpio_bit_set))$/;"	a
-[d0]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[d0]"><\/a>usart0_init<\/STRONG> (Thumb, 36 bytes, Stack size 8 bytes, uart.o(i.usart0_init))$/;"	a
-[d1]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[d1]"><\/a>usb_init<\/STRONG> (Thumb, 50 bytes, Stack size 16 bytes, app.o(i.usb_init))$/;"	a
-[d2]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[d2]"><\/a>pid_init<\/STRONG> (Thumb, 14 bytes, Stack size 0 bytes, pid.o(i.pid_init))$/;"	a
-[d3]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[d3]"><\/a>gpio_bit_reset<\/STRONG> (Thumb, 4 bytes, Stack size 0 bytes, gd32e10x_gpio.o(i.gpio_bit_reset))$/;"	a
-[d4]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[d4]"><\/a>CalChecksum<\/STRONG> (Thumb, 26 bytes, Stack size 8 bytes, main.o(i.CalChecksum))$/;"	a
-[d5]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[d5]"><\/a>__2sprintf<\/STRONG> (Thumb, 0 bytes, Stack size 24 bytes, printf1.o(i.__0sprintf$1))$/;"	a
-[d6]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[d6]"><\/a>usart0_dma_send_data<\/STRONG> (Thumb, 68 bytes, Stack size 16 bytes, uart.o(i.usart0_dma_send_data))$/;"	a
-[d7]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[d7]"><\/a>usb_send_buffer<\/STRONG> (Thumb, 22 bytes, Stack size 16 bytes, app.o(i.usb_send_buffer))$/;"	a
-[d8]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[d8]"><\/a>usart0_rx_probe<\/STRONG> (Thumb, 10 bytes, Stack size 8 bytes, uart.o(i.usart0_rx_probe))$/;"	a
-[d9]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[d9]"><\/a>nvic_config<\/STRONG> (Thumb, 80 bytes, Stack size 8 bytes, uart.o(i.nvic_config))$/;"	a
+[ca]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[ca]"><\/a>i2c_clock_config<\/STRONG> (Thumb, 306 bytes, Stack size 40 bytes, gd32e10x_i2c.o(i.i2c_clock_config))$/;"	a
+[cb]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[cb]"><\/a>rcu_clock_freq_get<\/STRONG> (Thumb, 352 bytes, Stack size 96 bytes, gd32e10x_rcu.o(i.rcu_clock_freq_get))$/;"	a
+[cc]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[cc]"><\/a>i2c_init<\/STRONG> (Thumb, 122 bytes, Stack size 16 bytes, priv_i2c.o(i.i2c_init))$/;"	a
+[cd]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[cd]"><\/a>i2c_mode_addr_config<\/STRONG> (Thumb, 28 bytes, Stack size 12 bytes, gd32e10x_i2c.o(i.i2c_mode_addr_config))$/;"	a
+[ce]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[ce]"><\/a>i2c_enable<\/STRONG> (Thumb, 10 bytes, Stack size 0 bytes, gd32e10x_i2c.o(i.i2c_enable))$/;"	a
+[cf]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[cf]"><\/a>i2c_write_data<\/STRONG> (Thumb, 176 bytes, Stack size 24 bytes, priv_i2c.o(i.i2c_write_data))$/;"	a
+[d0]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[d0]"><\/a>i2c_thread_task<\/STRONG> (Thumb, 56 bytes, Stack size 8 bytes, priv_i2c.o(i.i2c_thread_task))$/;"	a
+[d1]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[d1]"><\/a>i2c_ack_config<\/STRONG> (Thumb, 24 bytes, Stack size 0 bytes, gd32e10x_i2c.o(i.i2c_ack_config))$/;"	a
+[d2]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[d2]"><\/a>i2c_flag_get<\/STRONG> (Thumb, 30 bytes, Stack size 8 bytes, gd32e10x_i2c.o(i.i2c_flag_get))$/;"	a
+[d3]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[d3]"><\/a>i2c_start_on_bus<\/STRONG> (Thumb, 10 bytes, Stack size 0 bytes, gd32e10x_i2c.o(i.i2c_start_on_bus))$/;"	a
+[d4]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[d4]"><\/a>i2c_master_addressing<\/STRONG> (Thumb, 20 bytes, Stack size 0 bytes, gd32e10x_i2c.o(i.i2c_master_addressing))$/;"	a
+[d5]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[d5]"><\/a>i2c_flag_clear<\/STRONG> (Thumb, 40 bytes, Stack size 8 bytes, gd32e10x_i2c.o(i.i2c_flag_clear))$/;"	a
+[d6]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[d6]"><\/a>i2c_data_transmit<\/STRONG> (Thumb, 6 bytes, Stack size 0 bytes, gd32e10x_i2c.o(i.i2c_data_transmit))$/;"	a
+[d7]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[d7]"><\/a>i2c_stop_on_bus<\/STRONG> (Thumb, 10 bytes, Stack size 0 bytes, gd32e10x_i2c.o(i.i2c_stop_on_bus))$/;"	a
+[d8]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[d8]"><\/a>led_init<\/STRONG> (Thumb, 86 bytes, Stack size 8 bytes, led.o(i.led_init))$/;"	a
+[d9]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[d9]"><\/a>gpio_pin_remap_config<\/STRONG> (Thumb, 138 bytes, Stack size 20 bytes, gd32e10x_gpio.o(i.gpio_pin_remap_config))$/;"	a
 [d]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[d]"><\/a>_usb_std_getconfiguration<\/STRONG> (Thumb, 64 bytes, Stack size 8 bytes, usbd_enum.o(i._usb_std_getconfiguration))$/;"	a
-[da]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[da]"><\/a>nvic_irq_enable<\/STRONG> (Thumb, 162 bytes, Stack size 24 bytes, gd32e10x_misc.o(i.nvic_irq_enable))$/;"	a
-[db]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[db]"><\/a>nvic_priority_group_set<\/STRONG> (Thumb, 10 bytes, Stack size 0 bytes, gd32e10x_misc.o(i.nvic_priority_group_set))$/;"	a
-[dc]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[dc]"><\/a>systick_get_tick<\/STRONG> (Thumb, 6 bytes, Stack size 0 bytes, systick.o(i.systick_get_tick))$/;"	a
-[dd]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[dd]"><\/a>rcu_adc_clock_config<\/STRONG> (Thumb, 98 bytes, Stack size 0 bytes, gd32e10x_rcu.o(i.rcu_adc_clock_config))$/;"	a
-[de]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[de]"><\/a>serial_string_get<\/STRONG> (Thumb, 66 bytes, Stack size 20 bytes, usbd_enum.o(i.serial_string_get))$/;"	a
-[df]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[df]"><\/a>int_to_unicode<\/STRONG> (Thumb, 60 bytes, Stack size 12 bytes, usbd_enum.o(i.int_to_unicode))$/;"	a
-[e0]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[e0]"><\/a>system_clock_120m_hxtal<\/STRONG> (Thumb, 226 bytes, Stack size 0 bytes, system_gd32e10x.o(i.system_clock_120m_hxtal))$/;"	a
-[e1]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[e1]"><\/a>NVIC_SetPriority<\/STRONG> (Thumb, 32 bytes, Stack size 8 bytes, systick.o(i.NVIC_SetPriority))$/;"	a
-[e2]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[e2]"><\/a>usart_dma_transmit_config<\/STRONG> (Thumb, 16 bytes, Stack size 0 bytes, gd32e10x_usart.o(i.usart_dma_transmit_config))$/;"	a
-[e3]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[e3]"><\/a>CircBuf_IsEmpty<\/STRONG> (Thumb, 22 bytes, Stack size 0 bytes, circular_buffer.o(i.CircBuf_IsEmpty))$/;"	a
-[e4]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[e4]"><\/a>rcu_clock_freq_get<\/STRONG> (Thumb, 352 bytes, Stack size 96 bytes, gd32e10x_rcu.o(i.rcu_clock_freq_get))$/;"	a
-[e5]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[e5]"><\/a>usb_basic_init<\/STRONG> (Thumb, 218 bytes, Stack size 208 bytes, drv_usb_core.o(i.usb_basic_init))$/;"	a
-[e6]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[e6]"><\/a>__aeabi_memclr4<\/STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memseta.o(.text))$/;"	a
-[e7]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[e7]"><\/a>__aeabi_memcpy4<\/STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memcpya.o(.text))$/;"	a
-[e8]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[e8]"><\/a>usb_core_init<\/STRONG> (Thumb, 146 bytes, Stack size 24 bytes, drv_usb_core.o(i.usb_core_init))$/;"	a
-[e9]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[e9]"><\/a>usb_core_reset<\/STRONG> (Thumb, 38 bytes, Stack size 8 bytes, drv_usb_core.o(i.usb_core_reset))$/;"	a
+[da]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[da]"><\/a>gpio_bit_set<\/STRONG> (Thumb, 4 bytes, Stack size 0 bytes, gd32e10x_gpio.o(i.gpio_bit_set))$/;"	a
+[db]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[db]"><\/a>usart0_init<\/STRONG> (Thumb, 36 bytes, Stack size 8 bytes, uart.o(i.usart0_init))$/;"	a
+[dc]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[dc]"><\/a>usb_init<\/STRONG> (Thumb, 50 bytes, Stack size 16 bytes, app.o(i.usb_init))$/;"	a
+[dd]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[dd]"><\/a>gpio_bit_reset<\/STRONG> (Thumb, 4 bytes, Stack size 0 bytes, gd32e10x_gpio.o(i.gpio_bit_reset))$/;"	a
+[de]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[de]"><\/a>CalChecksum<\/STRONG> (Thumb, 26 bytes, Stack size 8 bytes, main.o(i.CalChecksum))$/;"	a
+[df]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[df]"><\/a>__2sprintf<\/STRONG> (Thumb, 0 bytes, Stack size 24 bytes, printf1.o(i.__0sprintf$1))$/;"	a
+[e0]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[e0]"><\/a>usart0_dma_send_data<\/STRONG> (Thumb, 68 bytes, Stack size 16 bytes, uart.o(i.usart0_dma_send_data))$/;"	a
+[e1]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[e1]"><\/a>usb_send_buffer<\/STRONG> (Thumb, 22 bytes, Stack size 16 bytes, app.o(i.usb_send_buffer))$/;"	a
+[e2]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[e2]"><\/a>usart0_rx_probe<\/STRONG> (Thumb, 10 bytes, Stack size 8 bytes, uart.o(i.usart0_rx_probe))$/;"	a
+[e3]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[e3]"><\/a>nvic_config<\/STRONG> (Thumb, 80 bytes, Stack size 8 bytes, uart.o(i.nvic_config))$/;"	a
+[e4]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[e4]"><\/a>nvic_irq_enable<\/STRONG> (Thumb, 162 bytes, Stack size 24 bytes, gd32e10x_misc.o(i.nvic_irq_enable))$/;"	a
+[e5]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[e5]"><\/a>nvic_priority_group_set<\/STRONG> (Thumb, 10 bytes, Stack size 0 bytes, gd32e10x_misc.o(i.nvic_priority_group_set))$/;"	a
+[e6]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[e6]"><\/a>rcu_adc_clock_config<\/STRONG> (Thumb, 98 bytes, Stack size 0 bytes, gd32e10x_rcu.o(i.rcu_adc_clock_config))$/;"	a
+[e7]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[e7]"><\/a>serial_string_get<\/STRONG> (Thumb, 66 bytes, Stack size 20 bytes, usbd_enum.o(i.serial_string_get))$/;"	a
+[e8]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[e8]"><\/a>int_to_unicode<\/STRONG> (Thumb, 60 bytes, Stack size 12 bytes, usbd_enum.o(i.int_to_unicode))$/;"	a
+[e9]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[e9]"><\/a>system_clock_120m_hxtal<\/STRONG> (Thumb, 226 bytes, Stack size 0 bytes, system_gd32e10x.o(i.system_clock_120m_hxtal))$/;"	a
 [e]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[e]"><\/a>_usb_std_setconfiguration<\/STRONG> (Thumb, 176 bytes, Stack size 16 bytes, usbd_enum.o(i._usb_std_setconfiguration))$/;"	a
-[ea]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[ea]"><\/a>usb_mdelay<\/STRONG> (Thumb, 14 bytes, Stack size 8 bytes, gd32e10x_hw.o(i.usb_mdelay))$/;"	a
-[eb]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[eb]"><\/a>usb_udelay<\/STRONG> (Thumb, 14 bytes, Stack size 8 bytes, gd32e10x_hw.o(i.usb_udelay))$/;"	a
-[ec]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[ec]"><\/a>usb_devcore_init<\/STRONG> (Thumb, 330 bytes, Stack size 16 bytes, drv_usb_dev.o(i.usb_devcore_init))$/;"	a
-[ed]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[ed]"><\/a>usb_set_txfifo<\/STRONG> (Thumb, 72 bytes, Stack size 16 bytes, drv_usb_core.o(i.usb_set_txfifo))$/;"	a
-[ee]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[ee]"><\/a>usb_txfifo_flush<\/STRONG> (Thumb, 40 bytes, Stack size 16 bytes, drv_usb_core.o(i.usb_txfifo_flush))$/;"	a
-[ef]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[ef]"><\/a>usb_rxfifo_flush<\/STRONG> (Thumb, 34 bytes, Stack size 8 bytes, drv_usb_core.o(i.usb_rxfifo_flush))$/;"	a
-[f0]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[f0]"><\/a>usb_devint_enable<\/STRONG> (Thumb, 56 bytes, Stack size 0 bytes, drv_usb_dev.o(i.usb_devint_enable))$/;"	a
-[f1]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[f1]"><\/a>usb_rcu_config<\/STRONG> (Thumb, 112 bytes, Stack size 8 bytes, gd32e10x_hw.o(i.usb_rcu_config))$/;"	a
-[f2]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[f2]"><\/a>usb_timer_init<\/STRONG> (Thumb, 30 bytes, Stack size 8 bytes, gd32e10x_hw.o(i.usb_timer_init))$/;"	a
-[f3]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[f3]"><\/a>usbd_init<\/STRONG> (Thumb, 124 bytes, Stack size 24 bytes, usbd_core.o(i.usbd_init))$/;"	a
-[f4]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[f4]"><\/a>usb_intr_config<\/STRONG> (Thumb, 68 bytes, Stack size 8 bytes, gd32e10x_hw.o(i.usb_intr_config))$/;"	a
-[f5]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[f5]"><\/a>exti_init<\/STRONG> (Thumb, 178 bytes, Stack size 8 bytes, gd32e10x_exti.o(i.exti_init))$/;"	a
-[f6]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[f6]"><\/a>exti_interrupt_enable<\/STRONG> (Thumb, 12 bytes, Stack size 0 bytes, gd32e10x_exti.o(i.exti_interrupt_enable))$/;"	a
-[f7]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[f7]"><\/a>usb_transc_inxfer<\/STRONG> (Thumb, 262 bytes, Stack size 32 bytes, drv_usb_dev.o(i.usb_transc_inxfer))$/;"	a
-[f8]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[f8]"><\/a>usb_txfifo_write<\/STRONG> (Thumb, 34 bytes, Stack size 20 bytes, drv_usb_core.o(i.usb_txfifo_write))$/;"	a
-[f9]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[f9]"><\/a>usbd_connect<\/STRONG> (Thumb, 28 bytes, Stack size 8 bytes, usbd_core.o(i.usbd_connect))$/;"	a
+[ea]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[ea]"><\/a>NVIC_SetPriority<\/STRONG> (Thumb, 32 bytes, Stack size 8 bytes, systick.o(i.NVIC_SetPriority))$/;"	a
+[eb]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[eb]"><\/a>usart_dma_transmit_config<\/STRONG> (Thumb, 16 bytes, Stack size 0 bytes, gd32e10x_usart.o(i.usart_dma_transmit_config))$/;"	a
+[ec]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[ec]"><\/a>CircBuf_IsEmpty<\/STRONG> (Thumb, 22 bytes, Stack size 0 bytes, circular_buffer.o(i.CircBuf_IsEmpty))$/;"	a
+[ed]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[ed]"><\/a>usb_basic_init<\/STRONG> (Thumb, 218 bytes, Stack size 208 bytes, drv_usb_core.o(i.usb_basic_init))$/;"	a
+[ee]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[ee]"><\/a>__aeabi_memclr4<\/STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memseta.o(.text))$/;"	a
+[ef]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[ef]"><\/a>__aeabi_memcpy4<\/STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memcpya.o(.text))$/;"	a
+[f0]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[f0]"><\/a>usb_core_init<\/STRONG> (Thumb, 146 bytes, Stack size 24 bytes, drv_usb_core.o(i.usb_core_init))$/;"	a
+[f1]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[f1]"><\/a>usb_core_reset<\/STRONG> (Thumb, 38 bytes, Stack size 8 bytes, drv_usb_core.o(i.usb_core_reset))$/;"	a
+[f2]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[f2]"><\/a>usb_mdelay<\/STRONG> (Thumb, 14 bytes, Stack size 8 bytes, gd32e10x_hw.o(i.usb_mdelay))$/;"	a
+[f3]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[f3]"><\/a>usb_udelay<\/STRONG> (Thumb, 14 bytes, Stack size 8 bytes, gd32e10x_hw.o(i.usb_udelay))$/;"	a
+[f4]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[f4]"><\/a>usb_devcore_init<\/STRONG> (Thumb, 330 bytes, Stack size 16 bytes, drv_usb_dev.o(i.usb_devcore_init))$/;"	a
+[f5]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[f5]"><\/a>usb_set_txfifo<\/STRONG> (Thumb, 72 bytes, Stack size 16 bytes, drv_usb_core.o(i.usb_set_txfifo))$/;"	a
+[f6]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[f6]"><\/a>usb_txfifo_flush<\/STRONG> (Thumb, 40 bytes, Stack size 16 bytes, drv_usb_core.o(i.usb_txfifo_flush))$/;"	a
+[f7]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[f7]"><\/a>usb_rxfifo_flush<\/STRONG> (Thumb, 34 bytes, Stack size 8 bytes, drv_usb_core.o(i.usb_rxfifo_flush))$/;"	a
+[f8]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[f8]"><\/a>usb_devint_enable<\/STRONG> (Thumb, 56 bytes, Stack size 0 bytes, drv_usb_dev.o(i.usb_devint_enable))$/;"	a
+[f9]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[f9]"><\/a>usb_rcu_config<\/STRONG> (Thumb, 112 bytes, Stack size 8 bytes, gd32e10x_hw.o(i.usb_rcu_config))$/;"	a
 [f]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[f]"><\/a>_usb_std_getinterface<\/STRONG> (Thumb, 60 bytes, Stack size 0 bytes, usbd_enum.o(i._usb_std_getinterface))$/;"	a
-[fa]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[fa]"><\/a>usbd_ctl_recev<\/STRONG> (Thumb, 46 bytes, Stack size 16 bytes, usbd_transc.o(i.usbd_ctl_recev))$/;"	a
-[fb]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[fb]"><\/a>usbd_ep_recev<\/STRONG> (Thumb, 52 bytes, Stack size 24 bytes, usbd_core.o(i.usbd_ep_recev))$/;"	a
-[fc]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[fc]"><\/a>usbd_ctl_send<\/STRONG> (Thumb, 46 bytes, Stack size 16 bytes, usbd_transc.o(i.usbd_ctl_send))$/;"	a
-[fd]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[fd]"><\/a>usbd_ctl_status_recev<\/STRONG> (Thumb, 32 bytes, Stack size 8 bytes, usbd_transc.o(i.usbd_ctl_status_recev))$/;"	a
-[fe]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[fe]"><\/a>usb_ctlep_startout<\/STRONG> (Thumb, 8 bytes, Stack size 0 bytes, drv_usb_dev.o(i.usb_ctlep_startout))$/;"	a
-[ff]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[ff]"><\/a>usbd_ctl_status_send<\/STRONG> (Thumb, 32 bytes, Stack size 8 bytes, usbd_transc.o(i.usbd_ctl_status_send))$/;"	a
+[fa]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[fa]"><\/a>usb_timer_init<\/STRONG> (Thumb, 30 bytes, Stack size 8 bytes, gd32e10x_hw.o(i.usb_timer_init))$/;"	a
+[fb]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[fb]"><\/a>usbd_init<\/STRONG> (Thumb, 124 bytes, Stack size 24 bytes, usbd_core.o(i.usbd_init))$/;"	a
+[fc]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[fc]"><\/a>usb_intr_config<\/STRONG> (Thumb, 68 bytes, Stack size 8 bytes, gd32e10x_hw.o(i.usb_intr_config))$/;"	a
+[fd]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[fd]"><\/a>exti_init<\/STRONG> (Thumb, 178 bytes, Stack size 8 bytes, gd32e10x_exti.o(i.exti_init))$/;"	a
+[fe]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[fe]"><\/a>exti_interrupt_enable<\/STRONG> (Thumb, 12 bytes, Stack size 0 bytes, gd32e10x_exti.o(i.exti_interrupt_enable))$/;"	a
+[ff]	.\Project\Keil_project\output\Project.htm	/^<P><STRONG><a name="[ff]"><\/a>usb_transc_inxfer<\/STRONG> (Thumb, 262 bytes, Stack size 32 bytes, drv_usb_dev.o(i.usb_transc_inxfer))$/;"	a
 _PID_H	.\Bsp\pid.h	17;"	d
 _PID_TypeDef	.\Bsp\pid.h	/^typedef struct _PID_TypeDef$/;"	s
 _WIDE_STRING	.\Firmware\GD32E10x_usbfs_driver\Include\usbd_std.h	70;"	d
@@ -5584,6 +5599,7 @@ __GD32E10x_STDPERIPH_VERSION_SUB2	.\Firmware\CMSIS\GD\GD32E10x\Include\gd32e10x.
 __HXTAL	.\Firmware\CMSIS\GD\GD32E10x\Source\system_gd32e10x.c	42;"	d	file:
 __I	.\Firmware\CMSIS\core_cm4.h	235;"	d
 __I	.\Firmware\CMSIS\core_cm4.h	237;"	d
+__I2C_XL9555_H__	.\Bsp\i2c_XL9555.h	10;"	d
 __INLINE	.\Firmware\CMSIS\core_cm4.h	100;"	d
 __INLINE	.\Firmware\CMSIS\core_cm4.h	106;"	d
 __INLINE	.\Firmware\CMSIS\core_cm4.h	81;"	d
@@ -6379,7 +6395,7 @@ i2c_enable	.\Firmware\GD32E10x_standard_peripheral\Source\gd32e10x_i2c.c	/^void 
 i2c_flag_clear	.\Firmware\GD32E10x_standard_peripheral\Source\gd32e10x_i2c.c	/^void i2c_flag_clear(uint32_t i2c_periph, i2c_flag_enum flag)$/;"	f
 i2c_flag_enum	.\Firmware\GD32E10x_standard_peripheral\Include\gd32e10x_i2c.h	/^}i2c_flag_enum;$/;"	t	typeref:enum:__anon53
 i2c_flag_get	.\Firmware\GD32E10x_standard_peripheral\Source\gd32e10x_i2c.c	/^FlagStatus i2c_flag_get(uint32_t i2c_periph, i2c_flag_enum flag)$/;"	f
-i2c_init	.\Bsp\priv_i2c.c	/^void i2c_init(void)$/;"	f
+i2c_init	.\Bsp\priv_i2c.c	/^void i2c_init(I2C_COM_T com, uint32_t speed)$/;"	f
 i2c_interrupt_disable	.\Firmware\GD32E10x_standard_peripheral\Source\gd32e10x_i2c.c	/^void i2c_interrupt_disable(uint32_t i2c_periph, i2c_interrupt_enum interrupt)$/;"	f
 i2c_interrupt_enable	.\Firmware\GD32E10x_standard_peripheral\Source\gd32e10x_i2c.c	/^void i2c_interrupt_enable(uint32_t i2c_periph, i2c_interrupt_enum interrupt)$/;"	f
 i2c_interrupt_enum	.\Firmware\GD32E10x_standard_peripheral\Include\gd32e10x_i2c.h	/^}i2c_interrupt_enum;$/;"	t	typeref:enum:__anon55
@@ -6391,6 +6407,7 @@ i2c_mode_addr_config	.\Firmware\GD32E10x_standard_peripheral\Source\gd32e10x_i2c
 i2c_pec_enable	.\Firmware\GD32E10x_standard_peripheral\Source\gd32e10x_i2c.c	/^void i2c_pec_enable(uint32_t i2c_periph, uint32_t pecstate)$/;"	f
 i2c_pec_transfer_enable	.\Firmware\GD32E10x_standard_peripheral\Source\gd32e10x_i2c.c	/^void i2c_pec_transfer_enable(uint32_t i2c_periph, uint32_t pecpara)$/;"	f
 i2c_pec_value_get	.\Firmware\GD32E10x_standard_peripheral\Source\gd32e10x_i2c.c	/^uint8_t i2c_pec_value_get(uint32_t i2c_periph)$/;"	f
+i2c_read_reg	.\Bsp\priv_i2c.c	/^uint8_t i2c_read_reg(I2C_COM_T com, uint8_t address, uint8_t reg)$/;"	f
 i2c_sam_disable	.\Firmware\GD32E10x_standard_peripheral\Source\gd32e10x_i2c.c	/^void i2c_sam_disable(uint32_t i2c_periph)$/;"	f
 i2c_sam_enable	.\Firmware\GD32E10x_standard_peripheral\Source\gd32e10x_i2c.c	/^void i2c_sam_enable(uint32_t i2c_periph)$/;"	f
 i2c_sam_timeout_disable	.\Firmware\GD32E10x_standard_peripheral\Source\gd32e10x_i2c.c	/^void i2c_sam_timeout_disable(uint32_t i2c_periph)$/;"	f
@@ -6403,6 +6420,12 @@ i2c_software_reset_config	.\Firmware\GD32E10x_standard_peripheral\Source\gd32e10
 i2c_start_on_bus	.\Firmware\GD32E10x_standard_peripheral\Source\gd32e10x_i2c.c	/^void i2c_start_on_bus(uint32_t i2c_periph)$/;"	f
 i2c_stop_on_bus	.\Firmware\GD32E10x_standard_peripheral\Source\gd32e10x_i2c.c	/^void i2c_stop_on_bus(uint32_t i2c_periph)$/;"	f
 i2c_stretch_scl_low_config	.\Firmware\GD32E10x_standard_peripheral\Source\gd32e10x_i2c.c	/^void i2c_stretch_scl_low_config(uint32_t i2c_periph, uint32_t stretchpara)$/;"	f
+i2c_thread_task	.\Bsp\priv_i2c.c	/^void i2c_thread_task(void)$/;"	f
+i2c_transmitter	.\Bsp\priv_i2c.c	/^uint8_t i2c_transmitter[8] = {0x00};$/;"	v
+i2c_write_data	.\Bsp\priv_i2c.c	/^int i2c_write_data(I2C_COM_T com, uint8_t address, uint8_t reg, uint8_t value)$/;"	f
+i2c_write_data_process_start_address	.\Bsp\priv_i2c.c	/^int i2c_write_data_process_start_address(I2C_COM_T com, uint8_t address)$/;"	f
+i2c_write_data_process_stop	.\Bsp\priv_i2c.c	/^int i2c_write_data_process_stop(I2C_COM_T com)$/;"	f
+i2c_write_data_process_write_reg	.\Bsp\priv_i2c.c	/^int i2c_write_data_process_write_reg(I2C_COM_T com, uint8_t reg, uint8_t value)$/;"	f
 i2s_disable	.\Firmware\GD32E10x_standard_peripheral\Source\gd32e10x_spi.c	/^void i2s_disable(uint32_t spi_periph)$/;"	f
 i2s_enable	.\Firmware\GD32E10x_standard_peripheral\Source\gd32e10x_spi.c	/^void i2s_enable(uint32_t spi_periph)$/;"	f
 i2s_init	.\Firmware\GD32E10x_standard_peripheral\Source\gd32e10x_spi.c	/^void i2s_init(uint32_t spi_periph, uint32_t mode, uint32_t standard, uint32_t ckpl)$/;"	f

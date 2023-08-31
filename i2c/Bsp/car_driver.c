@@ -29,7 +29,7 @@ void car_bumper_cal(process_handle_t *process_handle)
     adc_value_read(process_handle, 0);
     for (count = 0; count < 8; count ++)
     {
-        process_handle->adc_target_value[0][count] = process_handle->adc_raw_value[0][count] + 17;
+//        process_handle->adc_target_value[0][count] = process_handle->adc_raw_value[0][count] + 17;
     }
 
 }

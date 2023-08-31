@@ -12,6 +12,6 @@ void dma_config(void);
 void adc_config(void);
 void adc_init(void);
 void read_adc_value(void);
-float GetAdcValue(uint8_t index);
+uint16_t GetAdcValue(uint8_t index);
 #endif
 

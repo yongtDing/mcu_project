@@ -9,8 +9,10 @@
 #include "priv_i2c.h"
 
 #define I2C0_OWN_ADDRESS7      0x72
+
 #define I2C0_SLAVE_ADDRESS7    0x42
 #define I2C0_SLAVE_1_ADDRESS7    0x40
+
 
 uint8_t i2c_transmitter[8] = {0x00};
 
@@ -30,11 +32,6 @@ void i2c_init(I2C_COM_T com, uint32_t speed)
             i2c_mode_addr_config(I2C0, I2C_I2CMODE_ENABLE, I2C_ADDFORMAT_7BITS, I2C0_OWN_ADDRESS7);
             /* enable I2C0 */
             i2c_enable(I2C0);
-    i2c_write_data(I2C_COM0, I2C0_SLAVE_ADDRESS7, 0x06, 0x00);
-    i2c_write_data(I2C_COM0, I2C0_SLAVE_ADDRESS7, 0x07, 0x00);
-
-    i2c_write_data(I2C_COM0, I2C0_SLAVE_1_ADDRESS7, 0x06, 0x00);
-    i2c_write_data(I2C_COM0, I2C0_SLAVE_1_ADDRESS7, 0x07, 0x00);
 
             break;
 
@@ -178,10 +175,10 @@ int i2c_write_data_process_stop(I2C_COM_T com)
 void i2c_thread_task(void)
 {
     static uint8_t led_flag = 0x00;
-//    i2c_write_data(I2C_COM0, I2C0_SLAVE_ADDRESS7, 0x06, 0xfe);
+    //    i2c_write_data(I2C_COM0, I2C0_SLAVE_ADDRESS7, 0x06, 0xfe);
     i2c_write_data(I2C_COM0, I2C0_SLAVE_ADDRESS7, 0x02, led_flag);
     i2c_write_data(I2C_COM0, I2C0_SLAVE_1_ADDRESS7, 0x02, ~led_flag);
-//    i2c_read_reg(I2C_COM0, I2C0_SLAVE_ADDRESS7, 0x06);
+    //    i2c_read_reg(I2C_COM0, I2C0_SLAVE_ADDRESS7, 0x06);
     if (led_flag == 0)
         led_flag = 1;
     else
