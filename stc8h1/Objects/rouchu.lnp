@@ -1,0 +1,12 @@
+".\Objects\STC8G_H_Delay.obj",
+".\Objects\STC8G_H_Exti.obj",
+".\Objects\STC8G_H_Exti_Isr.obj",
+".\Objects\STC8G_H_GPIO.obj",
+".\Objects\STC8G_H_NVIC.obj",
+".\Objects\STC8G_H_UART.obj",
+".\Objects\STC8G_H_UART_Isr.obj",
+".\Objects\STC8G_H_ADC.obj",
+".\Objects\main.obj" 
+TO ".\Objects\rouchu" 
+
+PRINT(".\Listings\rouchu.map") REMOVEUNUSED 

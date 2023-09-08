@@ -1,0 +1,208 @@
+C51 COMPILER V9.60.7.0   MAIN                                                              09/08/2023 16:31:31 PAGE 1   
+
+
+C51 COMPILER V9.60.7.0, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE main.c OMF2 OPTIMIZE(8,SPEED) BROWSE INCDIR(.\base_lib;..\stc8h1) DEBUG 
+                    -PRINT(.\Listings\main.lst) TABS(2) OBJECT(.\Objects\main.obj)
+
+line level    source
+
+   1          /*---------------------------------------------------------------------*/
+   2          /* --- STC MCU Limited ------------------------------------------------*/
+   3          /* --- STC 1T Series MCU Demo Programme -------------------------------*/
+   4          /* --- Mobile: (86)13922805190 ----------------------------------------*/
+   5          /* --- Fax: 86-0513-55012956,55012947,55012969 ------------------------*/
+   6          /* --- Tel: 86-0513-55012928,55012929,55012966 ------------------------*/
+   7          /* --- Web: www.STCAI.com ---------------------------------------------*/
+   8          /* --- BBS: www.STCAIMCU.com  -----------------------------------------*/
+   9          /* --- QQ:  800003751 -------------------------------------------------*/
+  10          /* Èç¹ûÒªÔÚ³ÌÐòÖÐÊ¹ÓÃ´Ë´úÂë,ÇëÔÚ³ÌÐòÖÐ×¢Ã÷Ê¹ÓÃÁËSTCµÄ×ÊÁÏ¼°³ÌÐò            */
+  11          /*---------------------------------------------------------------------*/
+  12          
+  13          #include  "config.h"
+  14          #include  "STC8G_H_ADC.h"
+  15          #include  "STC8G_H_GPIO.h"
+  16          #include  "STC8G_H_Exti.h"
+  17          #include  "STC8G_H_UART.h"
+  18          #include  "STC8G_H_Delay.h"
+  19          #include  "STC8G_H_NVIC.h"
+  20          #include  "STC8G_H_Switch.h"
+  21          
+  22          /*************  ¹¦ÄÜËµÃ÷  **************
+  23          
+  24            ±¾Àý³Ì»ùÓÚSTC8H8K64UÎªÖ÷¿ØÐ¾Æ¬µÄÊµÑéÏä8½øÐÐ±àÐ´²âÊÔ£¬STC8G¡¢STC8HÏµÁÐÐ¾Æ¬¿ÉÍ¨ÓÃ²Î¿¼.
+  25          
+  26            ÑÝÊ¾INT0~INT4 5¸ö»½ÐÑÔ´½«MCU´ÓÐÝÃß»½ÐÑ.
+  27          
+  28            ´Ó´®¿ÚÊä³ö»½ÐÑÔ´¸ú»½ÐÑ´ÎÊý£¬115200,N,8,1.
+  29          
+  30            ÏÂÔØÊ±, Ñ¡ÔñÊ±ÖÓ 22.1184MHz (ÓÃ»§¿ÉÔÚ"config.h"ÐÞ¸ÄÆµÂÊ).
+  31          
+  32           ******************************************/
+  33          
+  34          /*************  ±¾µØ³£Á¿ÉùÃ÷  **************/
+  35          
+  36          
+  37          /*************  ±¾µØ±äÁ¿ÉùÃ÷  **************/
+  38          
+  39          u8 WakeUpCnt;
+  40          
+  41          /*************  ±¾µØº¯ÊýÉùÃ÷  **************/
+  42          
+  43          
+  44          
+  45          /*************  Íâ²¿º¯ÊýºÍ±äÁ¿ÉùÃ÷ *****************/
+  46          
+  47          
+  48          
+  49          /******************** IO¿ÚÅäÖÃ ********************/
+  50          void  GPIO_config(void)
+  51          {
+  52   1          GPIO_InitTypeDef  GPIO_InitStructure;       //½á¹¹¶¨Òå
+  53   1      
+  54   1          GPIO_InitStructure.Pin  = GPIO_Pin_3;     //Ö¸¶¨Òª³õÊ¼»¯µÄIO, GPIO_Pin_0 ~ GPIO_Pin_7, »ò²Ù×÷
+C51 COMPILER V9.60.7.0   MAIN                                                              09/08/2023 16:31:31 PAGE 2   
+
+  55   1          GPIO_InitStructure.Mode = GPIO_PullUp;      //Ö¸¶¨IOµÄÊäÈë»òÊä³ö·½Ê½,GPIO_PullUp,GPIO_HighZ,GPIO_OUT_OD,G
+             -PIO_OUT_PP
+  56   1          GPIO_Inilize(GPIO_P3,&GPIO_InitStructure);  //³õÊ¼»¯
+  57   1      
+  58   1        /* adc 10 IO */
+  59   1        GPIO_InitStructure.Pin =  GPIO_Pin_2;
+  60   1        GPIO_InitStructure.Mode = GPIO_HighZ;
+  61   1        GPIO_Inilize(GPIO_P3,&GPIO_InitStructure);
+  62   1      
+  63   1          /* uart1 IO */
+  64   1        GPIO_InitStructure.Pin  = GPIO_Pin_0 | GPIO_Pin_1;
+  65   1        GPIO_InitStructure.Mode = GPIO_PullUp;
+  66   1        GPIO_Inilize(GPIO_P3,&GPIO_InitStructure);
+  67   1        
+  68   1          /* LED O R */
+  69   1        GPIO_InitStructure.Pin  = GPIO_Pin_7 | GPIO_Pin_6;
+  70   1        GPIO_InitStructure.Mode = GPIO_OUT_OD;
+  71   1        GPIO_Inilize(GPIO_P3,&GPIO_InitStructure);
+  72   1        
+  73   1        GPIO_InitStructure.Pin  = GPIO_Pin_5 | GPIO_Pin_6 | GPIO_Pin_7;
+  74   1        GPIO_InitStructure.Mode = GPIO_OUT_OD;
+  75   1        GPIO_Inilize(GPIO_P1,&GPIO_InitStructure);
+  76   1        
+  77   1        GPIO_InitStructure.Pin  = GPIO_Pin_4;
+  78   1        GPIO_InitStructure.Mode = GPIO_OUT_OD;
+  79   1        GPIO_Inilize(GPIO_P5,&GPIO_InitStructure);
+  80   1      
+  81   1          /* PLC STATE */
+  82   1        GPIO_InitStructure.Pin  = GPIO_Pin_4;
+  83   1        GPIO_InitStructure.Mode = GPIO_OUT_PP;
+  84   1        GPIO_Inilize(GPIO_P3,&GPIO_InitStructure);
+  85   1      
+  86   1      }
+  87          
+  88          /******************** INTÅäÖÃ ********************/
+  89          void  Exti_config(void)
+  90          {
+  91   1          EXTI_InitTypeDef  Exti_InitStructure;             //½á¹¹¶¨Òå
+  92   1      
+  93   1          Exti_InitStructure.EXTI_Mode      = EXT_MODE_Fall;//ÖÐ¶ÏÄ£Ê½,   EXT_MODE_RiseFall,EXT_MODE_Fall
+  94   1          Ext_Inilize(EXT_INT1,&Exti_InitStructure);        //³õÊ¼»¯
+  95   1          NVIC_INT1_Init(ENABLE,Priority_0);    //ÖÐ¶ÏÊ¹ÄÜ, ENABLE/DISABLE; ÓÅÏÈ¼¶(µÍµ½¸ß) Priority_0,Priority_1,P
+             -riority_2,Priority_3
+  96   1      }
+  97          
+  98          /****************  ´®¿Ú³õÊ¼»¯º¯Êý *****************/
+  99          void  UART_config(void)
+ 100          {
+ 101   1          COMx_InitDefine   COMx_InitStructure;       //½á¹¹¶¨Òå
+ 102   1      
+ 103   1          COMx_InitStructure.UART_Mode      = UART_8bit_BRTx; //Ä£Ê½, UART_ShiftRight,UART_8bit_BRTx,UART_9bit,U
+             -ART_9bit_BRTx
+ 104   1          COMx_InitStructure.UART_BRT_Use   = BRT_Timer1;   //Ñ¡Ôñ²¨ÌØÂÊ·¢ÉúÆ÷, BRT_Timer1, BRT_Timer2 (×¢Òâ: ´®¿
+             -Ú2¹Ì¶¨Ê¹ÓÃBRT_Timer2)
+ 105   1          COMx_InitStructure.UART_BaudRate  = 115200ul;   //²¨ÌØÂÊ, Ò»°ã 110 ~ 115200
+ 106   1          COMx_InitStructure.UART_RxEnable  = ENABLE;     //½ÓÊÕÔÊÐí,   ENABLE»òDISABLE
+ 107   1          COMx_InitStructure.BaudRateDouble = DISABLE;    //²¨ÌØÂÊ¼Ó±¶, ENABLE»òDISABLE
+ 108   1          UART_Configuration(UART1, &COMx_InitStructure);   //³õÊ¼»¯´®¿Ú1 UART1,UART2,UART3,UART4
+ 109   1          NVIC_UART1_Init(ENABLE,Priority_1);   //ÖÐ¶ÏÊ¹ÄÜ, ENABLE/DISABLE; ÓÅÏÈ¼¶(µÍµ½¸ß) Priority_0,Priority_1,
+             -Priority_2,Priority_3
+ 110   1      
+ 111   1          UART1_SW(UART1_SW_P30_P31);   //UART1_SW_P30_P31,UART1_SW_P36_P37,UART1_SW_P16_P17,UART1_SW_P43_P44
+C51 COMPILER V9.60.7.0   MAIN                                                              09/08/2023 16:31:31 PAGE 3   
+
+ 112   1      }
+ 113          
+ 114          /******************** Ö÷º¯Êý***********************/
+ 115          void main(void)
+ 116          {
+ 117   1          uint8 flag = 0;
+ 118   1          GPIO_config();
+ 119   1          UART_config();
+ 120   1          //  Exti_config();
+ 121   1          EA  = 1;    //Enable all interrupt
+ 122   1      
+ 123   1          PrintString1("STC8H8K64U EXINT Wakeup Test Programme!\r\n");  //UART1·¢ËÍÒ»¸ö×Ö·û´®
+ 124   1      
+ 125   1          while(1)
+ 126   1          {
+ 127   2              //    while(!INT0); //µÈ´ýÍâÖÐ¶ÏÎª¸ßµçÆ½
+ 128   2      //        while(!INT1); //µÈ´ýÍâÖÐ¶ÏÎª¸ßµçÆ½
+ 129   2              //    while(!INT2); //µÈ´ýÍâÖÐ¶ÏÎª¸ßµçÆ½
+ 130   2              //    while(!INT3); //µÈ´ýÍâÖÐ¶ÏÎª¸ßµçÆ½
+ 131   2              //    while(!INT4); //µÈ´ýÍâÖÐ¶ÏÎª¸ßµçÆ½
+ 132   2              delay_ms(100);  //delay 10ms
+ 133   2      
+ 134   2      //        while(!INT1); //µÈ´ýÍâÖÐ¶ÏÎª¸ßµçÆ½
+ 135   2      
+ 136   2              Exti_config();
+ 137   2      
+ 138   2              //PCON |= 0x02; ; //Sleep
+ 139   2              _nop_();
+ 140   2              _nop_();
+ 141   2              _nop_();
+ 142   2              _nop_();
+ 143   2              _nop_();
+ 144   2              _nop_();
+ 145   2              _nop_();
+ 146   2              _nop_();
+ 147   2      
+ 148   2              if(WakeUpSource != 0) PrintString1("ÍâÖÐ¶ÏINT1»½ÐÑ  \r\n");
+ 149   2              WakeUpSource = 0;
+ 150   2              
+ 151   2      
+ 152   2              P37 = flag;
+ 153   2              P36 = flag;
+ 154   2              P15 = flag;
+ 155   2              P16 = flag;
+ 156   2              P17 = flag;
+ 157   2              P54 = flag;
+ 158   2      
+ 159   2              flag = ~flag;
+ 160   2      
+ 161   2              WakeUpCnt++;
+ 162   2              //TX1_write2buff(WakeUpCnt/100+'0');
+ 163   2              //TX1_write2buff(WakeUpCnt%100/10+'0');
+ 164   2              //TX1_write2buff(WakeUpCnt%10+'0');
+ 165   2              //PrintString1("´Î»½ÐÑ\r\n");
+ 166   2          }
+ 167   1      
+ 168   1      }
+ 169          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    258    ----
+C51 COMPILER V9.60.7.0   MAIN                                                              09/08/2023 16:31:31 PAGE 4   
+
+   CONSTANT SIZE    =     61    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      1      13
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+   EDATA SIZE       =   ----    ----
+   HDATA SIZE       =   ----    ----
+   XDATA CONST SIZE =   ----    ----
+   FAR CONST SIZE   =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
