@@ -416,6 +416,11 @@
               <FileType>1</FileType>
               <FilePath>.\base_lib\STC8G_H_ADC.c</FilePath>
             </File>
+            <File>
+              <FileName>STC8G_H_EEPROM.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\base_lib\STC8G_H_EEPROM.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

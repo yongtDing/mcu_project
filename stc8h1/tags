@@ -73,6 +73,7 @@ ADC_SPEED_2X9T	.\base_lib\STC8G_H_ADC.h	71;"	d
 ADC_START	.\base_lib\STC8G_H_ADC.h	43;"	d
 ADC_Speed	.\base_lib\STC8G_H_ADC.h	/^	u8	ADC_Speed;			\/\/设置 ADC 工作时钟频率	ADC_SPEED_2X1T~ADC_SPEED_2X16T$/;"	m	struct:__anon1
 ADC_VECTOR	.\base_lib\STC8H.h	1005;"	d
+ADC_config	.\main.c	/^void	ADC_config(void)$/;"	f
 ALAHOUR	.\base_lib\STC8H.h	288;"	d
 ALAMIN	.\base_lib\STC8H.h	289;"	d
 ALASEC	.\base_lib\STC8H.h	290;"	d
@@ -341,10 +342,15 @@ DPH1	.\base_lib\STC8H.h	/^sfr         DPH1        =           0xe5;$/;"	v
 DPL	.\base_lib\STC8H.h	/^sfr         DPL         =           0x82;$/;"	v
 DPL1	.\base_lib\STC8H.h	/^sfr         DPL1        =           0xe4;$/;"	v
 DPS	.\base_lib\STC8H.h	/^sfr         DPS         =           0xe3;$/;"	v
+DisableEEPROM	.\base_lib\STC8G_H_EEPROM.c	/^void	DisableEEPROM(void)$/;"	f
 EA	.\base_lib\STC8H.h	/^sbit        EA          =           IE^7;$/;"	v
 EADC	.\base_lib\STC8H.h	/^sbit        EADC        =           IE^5;$/;"	v
 EAXRAM	.\base_lib\STC8H.h	1050;"	d
 EAXSFR	.\base_lib\STC8H.h	1049;"	d
+EEPROM_SectorErase	.\base_lib\STC8G_H_EEPROM.c	/^void EEPROM_SectorErase(u16 EE_address)$/;"	f
+EEPROM_Trig	.\base_lib\STC8G_H_EEPROM.c	/^void EEPROM_Trig(void)$/;"	f
+EEPROM_read_n	.\base_lib\STC8G_H_EEPROM.c	/^void EEPROM_read_n(u16 EE_address,u8 *DataAddress,u16 number)$/;"	f
+EEPROM_write_n	.\base_lib\STC8G_H_EEPROM.c	/^void EEPROM_write_n(u16 EE_address,u8 *DataAddress,u16 number)$/;"	f
 ELVD	.\base_lib\STC8H.h	/^sbit        ELVD        =           IE^6;$/;"	v
 ENABLE	.\base_lib\Type_def.h	48;"	d
 ENSUS	.\base_lib\STC8H.h	904;"	d
@@ -385,7 +391,7 @@ EXT_INT4	.\base_lib\STC8G_H_Exti.h	39;"	d
 EXT_MODE_Fall	.\base_lib\STC8G_H_Exti.h	42;"	d
 EXT_MODE_RiseFall	.\base_lib\STC8G_H_Exti.h	41;"	d
 Ext_Inilize	.\base_lib\STC8G_H_Exti.c	/^u8	Ext_Inilize(u8 EXT, EXTI_InitTypeDef *INTx)$/;"	f
-Exti_config	.\main.c	/^void	Exti_config(void)$/;"	f
+Exti_config	.\main.c	/^void Exti_config(void)$/;"	f
 F0	.\base_lib\STC8H.h	/^sbit        F0          =           PSW^5;$/;"	v
 F1	.\base_lib\STC8H.h	/^sbit        F1          =           PSW^1;$/;"	v
 FADDR	.\base_lib\STC8H.h	897;"	d
@@ -425,7 +431,7 @@ GPIO_Pin_All	.\base_lib\STC8G_H_GPIO.h	187;"	d
 GPIO_Pin_HIGH	.\base_lib\STC8G_H_GPIO.h	186;"	d
 GPIO_Pin_LOW	.\base_lib\STC8G_H_GPIO.h	185;"	d
 GPIO_PullUp	.\base_lib\STC8G_H_GPIO.h	172;"	d
-GPIO_config	.\main.c	/^void	GPIO_config(void)$/;"	f
+GPIO_config	.\main.c	/^void GPIO_config(void)$/;"	f
 Get_ADCResult	.\base_lib\STC8G_H_ADC.c	/^u16	Get_ADCResult(u8 channel)	\/\/channel = 0~15$/;"	f
 HIRCCR	.\base_lib\STC8H.h	227;"	d
 HOUR	.\base_lib\STC8H.h	302;"	d
@@ -457,10 +463,21 @@ I2C_VECTOR	.\base_lib\STC8H.h	1019;"	d
 IAP_ADDRH	.\base_lib\STC8H.h	/^sfr         IAP_ADDRH   =           0xc3;$/;"	v
 IAP_ADDRL	.\base_lib\STC8H.h	/^sfr         IAP_ADDRL   =           0xc4;$/;"	v
 IAP_CMD	.\base_lib\STC8H.h	/^sfr         IAP_CMD     =           0xc5;$/;"	v
+IAP_CMD_FAIL	.\base_lib\STC8G_H_EEPROM.h	36;"	d
 IAP_CONTR	.\base_lib\STC8H.h	/^sfr         IAP_CONTR   =           0xc7;$/;"	v
 IAP_DATA	.\base_lib\STC8H.h	/^sfr         IAP_DATA    =           0xc2;$/;"	v
+IAP_DISABLE	.\base_lib\STC8G_H_EEPROM.h	39;"	d
+IAP_EN	.\base_lib\STC8G_H_EEPROM.h	33;"	d
+IAP_ENABLE	.\base_lib\STC8G_H_EEPROM.h	38;"	d
+IAP_ERASE	.\base_lib\STC8G_H_EEPROM.h	26;"	d
+IAP_READ	.\base_lib\STC8G_H_EEPROM.h	24;"	d
+IAP_STANDBY	.\base_lib\STC8G_H_EEPROM.h	23;"	d
+IAP_SWBS	.\base_lib\STC8G_H_EEPROM.h	34;"	d
+IAP_SWRST	.\base_lib\STC8G_H_EEPROM.h	35;"	d
 IAP_TPS	.\base_lib\STC8H.h	/^sfr         IAP_TPS     =           0xf5;$/;"	v
+IAP_TRIG	.\base_lib\STC8G_H_EEPROM.h	29;"	d
 IAP_TRIG	.\base_lib\STC8H.h	/^sfr         IAP_TRIG    =           0xc6;$/;"	v
+IAP_WRITE	.\base_lib\STC8G_H_EEPROM.h	25;"	d
 IE	.\base_lib\STC8H.h	/^sfr         IE          =           0xa8;$/;"	v
 IE0	.\base_lib\STC8H.h	/^sbit        IE0         =           TCON^1;$/;"	v
 IE1	.\base_lib\STC8H.h	/^sbit        IE1         =           TCON^3;$/;"	v
@@ -551,6 +568,7 @@ MCLKOCR	.\base_lib\STC8H.h	230;"	d
 MCLKO_SW	.\base_lib\STC8G_H_Switch.h	31;"	d
 MCLKO_SW_P16	.\base_lib\STC8G_H_Switch.h	86;"	d
 MCLKO_SW_P54	.\base_lib\STC8G_H_Switch.h	85;"	d
+MCU_Type	.\base_lib\STC8G_H_EEPROM.h	51;"	d
 MD0	.\base_lib\STC8H.h	597;"	d
 MD1	.\base_lib\STC8H.h	596;"	d
 MD2	.\base_lib\STC8H.h	595;"	d
@@ -559,6 +577,11 @@ MD4	.\base_lib\STC8H.h	599;"	d
 MD5	.\base_lib\STC8H.h	598;"	d
 MIN	.\base_lib\STC8H.h	303;"	d
 MONTH	.\base_lib\STC8H.h	300;"	d
+MOVC_ShiftAddress	.\base_lib\STC8G_H_EEPROM.h	64;"	d
+MOVC_ShiftAddress	.\base_lib\STC8G_H_EEPROM.h	66;"	d
+MOVC_ShiftAddress	.\base_lib\STC8G_H_EEPROM.h	68;"	d
+MOVC_ShiftAddress	.\base_lib\STC8G_H_EEPROM.h	70;"	d
+MOVC_ShiftAddress	.\base_lib\STC8G_H_EEPROM.h	72;"	d
 Mode	.\base_lib\STC8G_H_GPIO.h	/^	u8	Mode;		\/\/IO模式,  		GPIO_PullUp,GPIO_HighZ,GPIO_OUT_OD,GPIO_OUT_PP$/;"	m	struct:__anon3
 Morecommunicate	.\base_lib\STC8G_H_UART.h	/^	u8	Morecommunicate;	\/\/多机通讯允许, ENABLE,DISABLE$/;"	m	struct:__anon5
 NIE	.\base_lib\Type_def.h	60;"	d
@@ -1323,6 +1346,10 @@ SPI_VECTOR	.\base_lib\STC8H.h	1008;"	d
 SPSTAT	.\base_lib\STC8H.h	/^sfr         SPSTAT      =           0xcd;$/;"	v
 SSEC	.\base_lib\STC8H.h	305;"	d
 SSUEND	.\base_lib\STC8H.h	946;"	d
+STC8X1K08	.\base_lib\STC8G_H_EEPROM.h	45;"	d
+STC8X1K16	.\base_lib\STC8G_H_EEPROM.h	46;"	d
+STC8XxK32	.\base_lib\STC8G_H_EEPROM.h	47;"	d
+STC8XxK60	.\base_lib\STC8G_H_EEPROM.h	48;"	d
 STSTL	.\base_lib\STC8H.h	951;"	d
 SUCCESS	.\base_lib\Type_def.h	51;"	d
 SUEND	.\base_lib\STC8H.h	949;"	d
@@ -1490,7 +1517,7 @@ UART_Mode	.\base_lib\STC8G_H_UART.h	/^	u8	UART_Mode;			\/\/模式,         UART_Sh
 UART_QUEUE_MODE	.\base_lib\STC8G_H_UART.h	27;"	d
 UART_RxEnable	.\base_lib\STC8G_H_UART.h	/^	u8	UART_RxEnable;		\/\/允许接收,   ENABLE,DISABLE$/;"	m	struct:__anon5
 UART_ShiftRight	.\base_lib\STC8G_H_UART.h	48;"	d
-UART_config	.\main.c	/^void	UART_config(void)$/;"	f
+UART_config	.\main.c	/^void UART_config(void)$/;"	f
 UPDATE	.\base_lib\STC8H.h	898;"	d
 USBADR	.\base_lib\STC8H.h	/^sfr         USBADR      =           0xfc;$/;"	v
 USBBASE	.\base_lib\STC8H.h	896;"	d
@@ -1517,6 +1544,7 @@ YEAR	.\base_lib\STC8H.h	299;"	d
 __CONFIG_H	.\config.h	14;"	d
 __STC8G_H_ADC_H	.\base_lib\STC8G_H_ADC.h	14;"	d
 __STC8G_H_DELAY_H	.\base_lib\STC8G_H_Delay.h	14;"	d
+__STC8G_H_EEPROM_H	.\base_lib\STC8G_H_EEPROM.h	14;"	d
 __STC8G_H_EXTI_H	.\base_lib\STC8G_H_Exti.h	14;"	d
 __STC8G_H_GPIO_H	.\base_lib\STC8G_H_GPIO.h	14;"	d
 __STC8G_H_NVIC_H	.\base_lib\STC8G_H_NVIC.h	14;"	d
@@ -1536,3 +1564,4 @@ u8	.\base_lib\Type_def.h	/^typedef unsigned char   u8;     \/\/  8 bits $/;"	t
 uint16	.\base_lib\Type_def.h	/^typedef unsigned int    uint16; \/\/ 16 bits $/;"	t
 uint32	.\base_lib\Type_def.h	/^typedef unsigned long   uint32; \/\/ 32 bits $/;"	t
 uint8	.\base_lib\Type_def.h	/^typedef unsigned char   uint8;  \/\/  8 bits $/;"	t
+value_ladder	.\main.c	/^uint8 value_ladder[5] = {5, 33, 65, 90, 120};$/;"	v

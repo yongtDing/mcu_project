@@ -1,4 +1,4 @@
-C51 COMPILER V9.60.7.0   STC8G_H_UART_ISR                                                  09/08/2023 16:31:30 PAGE 1   
+C51 COMPILER V9.60.7.0   STC8G_H_UART_ISR                                                  09/12/2023 18:15:08 PAGE 1   
 
 
 C51 COMPILER V9.60.7.0, COMPILATION OF MODULE STC8G_H_UART_ISR
@@ -62,7 +62,7 @@ line level    source
   52          //========================================================================
   53          // 函数: UART2_ISR_Handler
   54          // 描述: UART2中断函数.
-C51 COMPILER V9.60.7.0   STC8G_H_UART_ISR                                                  09/08/2023 16:31:30 PAGE 2   
+C51 COMPILER V9.60.7.0   STC8G_H_UART_ISR                                                  09/12/2023 18:15:08 PAGE 2   
 
   55          // 参数: none.
   56          // 返回: none.
@@ -126,7 +126,7 @@ line level    source
                   if(COM3.TX_send != COM3.TX_write)
                   {
                     S3BUF = TX3_Buffer[COM3.TX_send];
-C51 COMPILER V9.60.7.0   STC8G_H_UART_ISR                                                  09/08/2023 16:31:30 PAGE 3   
+C51 COMPILER V9.60.7.0   STC8G_H_UART_ISR                                                  09/12/2023 18:15:08 PAGE 3   
 
                     if(++COM3.TX_send >= COM_TX3_Lenth)   COM3.TX_send = 0;
                   }

@@ -1,4 +1,4 @@
-C51 COMPILER V9.60.7.0   STC8G_H_NVIC                                                      09/08/2023 16:31:30 PAGE 1   
+C51 COMPILER V9.60.7.0   STC8G_H_NVIC                                                      09/12/2023 18:15:08 PAGE 1   
 
 
 C51 COMPILER V9.60.7.0, COMPILATION OF MODULE STC8G_H_NVIC
@@ -62,7 +62,7 @@ line level    source
   52          // 参数: State:    中断使能状态, ENABLE/DISABLE.
   53          // 参数: Priority: 中断优先级, NULL.
   54          // 返回: 执行结果 SUCCESS/FAIL.
-C51 COMPILER V9.60.7.0   STC8G_H_NVIC                                                      09/08/2023 16:31:30 PAGE 2   
+C51 COMPILER V9.60.7.0   STC8G_H_NVIC                                                      09/12/2023 18:15:08 PAGE 2   
 
   55          // 版本: V1.0, 2020-09-29
   56          //========================================================================
@@ -126,7 +126,7 @@ line level    source
  114   1        return SUCCESS;
  115   1      }
  116          
-C51 COMPILER V9.60.7.0   STC8G_H_NVIC                                                      09/08/2023 16:31:30 PAGE 3   
+C51 COMPILER V9.60.7.0   STC8G_H_NVIC                                                      09/12/2023 18:15:08 PAGE 3   
 
  117          //========================================================================
  118          // 函数: NVIC_INT1_Init
@@ -190,7 +190,7 @@ line level    source
  176   1        if(State > ENABLE) return FAIL;
  177   1        INT4_Interrupt(State);
  178   1        Priority = NULL;
-C51 COMPILER V9.60.7.0   STC8G_H_NVIC                                                      09/08/2023 16:31:30 PAGE 4   
+C51 COMPILER V9.60.7.0   STC8G_H_NVIC                                                      09/12/2023 18:15:08 PAGE 4   
 
  179   1        return SUCCESS;
  180   1      }
@@ -254,7 +254,7 @@ line level    source
  238   2          I2CSLCR = (I2CSLCR & ~0x78) | State;
  239   2        }
  240   1        CMP_Priority(Priority);
-C51 COMPILER V9.60.7.0   STC8G_H_NVIC                                                      09/08/2023 16:31:30 PAGE 5   
+C51 COMPILER V9.60.7.0   STC8G_H_NVIC                                                      09/12/2023 18:15:08 PAGE 5   
 
  241   1        return SUCCESS;
  242   1      }
@@ -318,7 +318,7 @@ line level    source
  300          // 返回: 执行结果 SUCCESS/FAIL.
  301          // 版本: V1.0, 2020-09-29
  302          //========================================================================
-C51 COMPILER V9.60.7.0   STC8G_H_NVIC                                                      09/08/2023 16:31:30 PAGE 6   
+C51 COMPILER V9.60.7.0   STC8G_H_NVIC                                                      09/12/2023 18:15:08 PAGE 6   
 
  303          u8 NVIC_UART4_Init(u8 State, u8 Priority)
  304          {
@@ -382,7 +382,7 @@ line level    source
  362          //========================================================================
  363          // 函数: NVIC_RTC_Init
  364          // 描述: SPI嵌套向量中断控制器初始化.
-C51 COMPILER V9.60.7.0   STC8G_H_NVIC                                                      09/08/2023 16:31:30 PAGE 7   
+C51 COMPILER V9.60.7.0   STC8G_H_NVIC                                                      09/12/2023 18:15:08 PAGE 7   
 
  365          // 参数: State:    中断使能状态, 中断使能, 0x80:闹钟中断, 0x40:日中断, 0x20:小时中断, 0x10:分钟中断, 0x08:
              -秒中断, 0x04:1/2秒中断, 0x02:1/8秒中断, 0x01:1/32秒中断 /DISABLE.

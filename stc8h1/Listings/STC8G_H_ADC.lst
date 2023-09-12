@@ -1,4 +1,4 @@
-C51 COMPILER V9.60.7.0   STC8G_H_ADC                                                       09/08/2023 16:31:30 PAGE 1   
+C51 COMPILER V9.60.7.0   STC8G_H_ADC                                                       09/12/2023 18:15:08 PAGE 1   
 
 
 C51 COMPILER V9.60.7.0, COMPILATION OF MODULE STC8G_H_ADC
@@ -62,7 +62,7 @@ line level    source
   51          // 参数: channel: 选择要转换的ADC通道.
   52          // 返回: ADC转换结果.
   53          // 版本: V1.0, 2012-10-22
-C51 COMPILER V9.60.7.0   STC8G_H_ADC                                                       09/08/2023 16:31:30 PAGE 2   
+C51 COMPILER V9.60.7.0   STC8G_H_ADC                                                       09/12/2023 18:15:08 PAGE 2   
 
   54          //========================================================================
   55          u16 Get_ADCResult(u8 channel) //channel = 0~15
@@ -89,12 +89,12 @@ line level    source
   76   3            else    //转换结果左对齐。 
   77   3            {
   78   4              #if ADC_RES_12BIT==1
-  79   4                adc = (u16)ADC_RES;
-  80   4                adc = (adc << 4) | ((ADC_RESL >> 4)&0x0f);
-  81   4              #else
                         adc = (u16)ADC_RES;
-                        adc = (adc << 2) | ((ADC_RESL >> 6)&0x03);
-                      #endif
+                        adc = (adc << 4) | ((ADC_RESL >> 4)&0x0f);
+                      #else
+  82   4                adc = (u16)ADC_RES;
+  83   4                adc = (adc << 2) | ((ADC_RESL >> 6)&0x03);
+  84   4              #endif
   85   4            }
   86   3            return  adc;
   87   3          }
@@ -104,7 +104,7 @@ line level    source
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    205    ----
+   CODE SIZE        =    214    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----

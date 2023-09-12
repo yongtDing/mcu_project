@@ -11,6 +11,7 @@
 /*---------------------------------------------------------------------*/
 
 #include	"config.h"
+#include    "string.h"
 #include	"STC8G_H_ADC.h"
 #include	"STC8G_H_GPIO.h"
 #include	"STC8G_H_Exti.h"
@@ -18,6 +19,7 @@
 #include	"STC8G_H_Delay.h"
 #include	"STC8G_H_NVIC.h"
 #include	"STC8G_H_Switch.h"
+#include    "STC8G_H_EEPROM.h"
 
 /*************	功能说明	**************
 
@@ -47,9 +49,9 @@ u8 WakeUpCnt;
 
 
 /******************** IO口配置 ********************/
-void	GPIO_config(void)
+void GPIO_config(void)
 {
-    GPIO_InitTypeDef	GPIO_InitStructure;				//结构定义
+    GPIO_InitTypeDef GPIO_InitStructure;				//结构定义
 
     GPIO_InitStructure.Pin  = GPIO_Pin_3;			//指定要初始化的IO, GPIO_Pin_0 ~ GPIO_Pin_7, 或操作
     GPIO_InitStructure.Mode = GPIO_PullUp;			//指定IO的输入或输出方式,GPIO_PullUp,GPIO_HighZ,GPIO_OUT_OD,GPIO_OUT_PP
@@ -85,8 +87,23 @@ void	GPIO_config(void)
 
 }
 
+/******************* AD配置函数 *******************/
+void	ADC_config(void)
+{
+	ADC_InitTypeDef		ADC_InitStructure;		//结构定义
+
+	ADC_InitStructure.ADC_SMPduty   = 31;		//ADC 模拟信号采样时间控制, 0~31（注意： SMPDUTY 一定不能设置小于 10）
+	ADC_InitStructure.ADC_CsSetup   = 0;		//ADC 通道选择时间控制 0(默认),1
+	ADC_InitStructure.ADC_CsHold    = 3;		//ADC 通道选择保持时间控制 0,1(默认),2,3
+	ADC_InitStructure.ADC_Speed     = ADC_SPEED_2X16T;		//设置 ADC 工作时钟频率	ADC_SPEED_2X1T~ADC_SPEED_2X16T
+	ADC_InitStructure.ADC_AdjResult = ADC_RIGHT_JUSTIFIED;	//ADC结果调整,	ADC_LEFT_JUSTIFIED,ADC_RIGHT_JUSTIFIED
+	ADC_Inilize(&ADC_InitStructure);		//初始化
+	ADC_PowerControl(ENABLE);				//ADC电源开关, ENABLE或DISABLE
+	NVIC_ADC_Init(DISABLE,Priority_0);		//中断使能, ENABLE/DISABLE; 优先级(低到高) Priority_0,Priority_1,Priority_2,Priority_3
+}
+
 /******************** INT配置 ********************/
-void	Exti_config(void)
+void Exti_config(void)
 {
     EXTI_InitTypeDef	Exti_InitStructure;							//结构定义
 
@@ -96,7 +113,7 @@ void	Exti_config(void)
 }
 
 /****************  串口初始化函数 *****************/
-void	UART_config(void)
+void UART_config(void)
 {
     COMx_InitDefine		COMx_InitStructure;				//结构定义
 
@@ -111,59 +128,143 @@ void	UART_config(void)
     UART1_SW(UART1_SW_P30_P31);		//UART1_SW_P30_P31,UART1_SW_P36_P37,UART1_SW_P16_P17,UART1_SW_P43_P44
 }
 
+uint8 value_ladder[5] = {8, 33, 65, 90, 120};
+
+#define PRINTF_BUFFER_SIZE 32
+#define FLASH_ADDRESS_START 0x00
+
 /******************** 主函数***********************/
 void main(void)
 {
     uint8 flag = 0;
+    uint8 printf_buffer[PRINTF_BUFFER_SIZE] = {0x00};
+    uint8 printf_buffer_len = 0;
+    int16 plc_flag = 0;
+    uint16 adc_value = 0;
+    uint32 time_10 = 0;
+    uint16 addr = 0x04;
+
     GPIO_config();
+    ADC_config();
     UART_config();
     //	Exti_config();
     EA  = 1;		//Enable all interrupt
 
-    PrintString1("STC8H8K64U EXINT Wakeup Test Programme!\r\n");	//UART1发送一个字符串
+
+    P54 = 0;
+
+#if 0
+	EEPROM_SectorErase(addr);           //擦除扇区
+	EEPROM_write_n(addr,&RX1_Buffer[9],j);      //写N个字节
+	EEPROM_read_n(addr,tmp,j);
+#endif
+
+    PrintString1("system init finish\r\n");
+    EEPROM_read_n(FLASH_ADDRESS_START, printf_buffer, 2);
+
+    memcpy(&plc_flag, printf_buffer, 2);
+
+    if (plc_flag < 3 || plc_flag > 1024)
+        plc_flag = 3;
+
+
+    sprintf(printf_buffer, "plc flag %d\r\n", plc_flag);
+    PrintString1(printf_buffer);
+    memset(printf_buffer, 0x00, PRINTF_BUFFER_SIZE);
+
 
     while(1)
     {
-        //		while(!INT0);	//等待外中断为高电平
-//        while(!INT1);	//等待外中断为高电平
-        //		while(!INT2);	//等待外中断为高电平
-        //		while(!INT3);	//等待外中断为高电平
-        //		while(!INT4);	//等待外中断为高电平
-        delay_ms(100);	//delay 10ms
-
-//        while(!INT1);	//等待外中断为高电平
+        time_10 ++;
+        delay_ms(20);	//delay 10ms
 
         Exti_config();
 
-        //PCON |= 0x02; ;	//Sleep
-        _nop_();
-        _nop_();
-        _nop_();
-        _nop_();
-        _nop_();
-        _nop_();
-        _nop_();
-        _nop_();
+        if(WakeUpSource == 2)
+        {
+            PrintString1("外中断INT1唤醒  \r\n");
+            EEPROM_SectorErase(FLASH_ADDRESS_START);
+            memset(printf_buffer, 0x00, PRINTF_BUFFER_SIZE);
+            sprintf(printf_buffer, "write buffer %d\r\n", adc_value);
+            PrintString1(printf_buffer);
 
-        if(WakeUpSource != 0)	PrintString1("外中断INT1唤醒  \r\n");
+            memset(printf_buffer, 0x00, PRINTF_BUFFER_SIZE);
+            memcpy(printf_buffer, &adc_value, 2);
+            plc_flag = adc_value;
+            
+            EEPROM_write_n(FLASH_ADDRESS_START, printf_buffer, 2);
+        }
         WakeUpSource = 0;
-        
 
-        P37 = flag;
-        P36 = flag;
-        P15 = flag;
-        P16 = flag;
-        P17 = flag;
-        P54 = flag;
+        adc_value = Get_ADCResult(10);
+        if (adc_value > 1024) adc_value = 1024;
+
+#if 0
+        if (adc_value > value_ladder[0])
+            P36 = 0;
+        else P36 = 1;
+
+        if (adc_value > value_ladder[1])
+            P37 = 0;
+        else P37 = 1;
+
+        if (adc_value > value_ladder[2])
+            P15 = 0;
+        else P15 = 1;
+
+        if (adc_value > value_ladder[3])
+            P16 = 0;
+        else P16 = 1;
+
+        if (adc_value > value_ladder[4])
+            P17 = 0;
+        else P17 = 1;
+#else
+        if (adc_value >= value_ladder[0] && adc_value < value_ladder[1])
+            P36 = 0;
+        else P36 = 1;
+
+        if (adc_value >= value_ladder[1] && adc_value < value_ladder[2])
+            P37 = 0;
+        else P37 = 1;
+
+        if (adc_value >= value_ladder[2] && adc_value < value_ladder[3])
+            P15 = 0;
+        else P15 = 1;
+
+        if (adc_value >= value_ladder[3] && adc_value < value_ladder[4])
+            P16 = 0;
+        else P16 = 1;
+
+        if (adc_value >= value_ladder[4])
+            P17 = 0;
+        else P17 = 1;
+
+#endif
+
+        if (adc_value > plc_flag)
+        {
+            P54 = 0;
+            P34 = 0;
+        }
+        else
+        {
+            P54 = 1;
+            P34 = 1;
+        }
 
         flag = ~flag;
-
-        WakeUpCnt++;
-        //TX1_write2buff(WakeUpCnt/100+'0');
-        //TX1_write2buff(WakeUpCnt%100/10+'0');
-        //TX1_write2buff(WakeUpCnt%10+'0');
-        //PrintString1("次唤醒\r\n");
+     
+        if (!(time_10 % 20))
+        {
+            //sprintf(printf_buffer, "adc value %d\r\n", adc_value);
+            if (printf_buffer_len != 0)
+            {
+                //memset(printf_buffer, 0x00, PRINTF_BUFFER_SIZE);
+                //EEPROM_read_n(FLASH_ADDRESS_START, printf_buffer, printf_buffer_len);
+                //PrintString1(printf_buffer);
+            }
+        }
     }
-
 }
 

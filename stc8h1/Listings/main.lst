@@ -1,4 +1,4 @@
-C51 COMPILER V9.60.7.0   MAIN                                                              09/08/2023 16:31:31 PAGE 1   
+C51 COMPILER V9.60.7.0   MAIN                                                              09/12/2023 18:15:08 PAGE 1   
 
 
 C51 COMPILER V9.60.7.0, COMPILATION OF MODULE MAIN
@@ -21,181 +21,288 @@ line level    source
   11          /*---------------------------------------------------------------------*/
   12          
   13          #include  "config.h"
-  14          #include  "STC8G_H_ADC.h"
-  15          #include  "STC8G_H_GPIO.h"
-  16          #include  "STC8G_H_Exti.h"
-  17          #include  "STC8G_H_UART.h"
-  18          #include  "STC8G_H_Delay.h"
-  19          #include  "STC8G_H_NVIC.h"
-  20          #include  "STC8G_H_Switch.h"
-  21          
-  22          /*************  ¹¦ÄÜËµÃ÷  **************
+  14          #include    "string.h"
+  15          #include  "STC8G_H_ADC.h"
+  16          #include  "STC8G_H_GPIO.h"
+  17          #include  "STC8G_H_Exti.h"
+  18          #include  "STC8G_H_UART.h"
+  19          #include  "STC8G_H_Delay.h"
+  20          #include  "STC8G_H_NVIC.h"
+  21          #include  "STC8G_H_Switch.h"
+  22          #include    "STC8G_H_EEPROM.h"
   23          
-  24            ±¾Àý³Ì»ùÓÚSTC8H8K64UÎªÖ÷¿ØÐ¾Æ¬µÄÊµÑéÏä8½øÐÐ±àÐ´²âÊÔ£¬STC8G¡¢STC8HÏµÁÐÐ¾Æ¬¿ÉÍ¨ÓÃ²Î¿¼.
+  24          /*************  ¹¦ÄÜËµÃ÷  **************
   25          
-  26            ÑÝÊ¾INT0~INT4 5¸ö»½ÐÑÔ´½«MCU´ÓÐÝÃß»½ÐÑ.
+  26            ±¾Àý³Ì»ùÓÚSTC8H8K64UÎªÖ÷¿ØÐ¾Æ¬µÄÊµÑéÏä8½øÐÐ±àÐ´²âÊÔ£¬STC8G¡¢STC8HÏµÁÐÐ¾Æ¬¿ÉÍ¨ÓÃ²Î¿¼.
   27          
-  28            ´Ó´®¿ÚÊä³ö»½ÐÑÔ´¸ú»½ÐÑ´ÎÊý£¬115200,N,8,1.
+  28            ÑÝÊ¾INT0~INT4 5¸ö»½ÐÑÔ´½«MCU´ÓÐÝÃß»½ÐÑ.
   29          
-  30            ÏÂÔØÊ±, Ñ¡ÔñÊ±ÖÓ 22.1184MHz (ÓÃ»§¿ÉÔÚ"config.h"ÐÞ¸ÄÆµÂÊ).
+  30            ´Ó´®¿ÚÊä³ö»½ÐÑÔ´¸ú»½ÐÑ´ÎÊý£¬115200,N,8,1.
   31          
-  32           ******************************************/
+  32            ÏÂÔØÊ±, Ñ¡ÔñÊ±ÖÓ 22.1184MHz (ÓÃ»§¿ÉÔÚ"config.h"ÐÞ¸ÄÆµÂÊ).
   33          
-  34          /*************  ±¾µØ³£Á¿ÉùÃ÷  **************/
+  34           ******************************************/
   35          
-  36          
-  37          /*************  ±¾µØ±äÁ¿ÉùÃ÷  **************/
+  36          /*************  ±¾µØ³£Á¿ÉùÃ÷  **************/
+  37          
   38          
-  39          u8 WakeUpCnt;
+  39          /*************  ±¾µØ±äÁ¿ÉùÃ÷  **************/
   40          
-  41          /*************  ±¾µØº¯ÊýÉùÃ÷  **************/
+  41          u8 WakeUpCnt;
   42          
-  43          
+  43          /*************  ±¾µØº¯ÊýÉùÃ÷  **************/
   44          
-  45          /*************  Íâ²¿º¯ÊýºÍ±äÁ¿ÉùÃ÷ *****************/
+  45          
   46          
-  47          
+  47          /*************  Íâ²¿º¯ÊýºÍ±äÁ¿ÉùÃ÷ *****************/
   48          
-  49          /******************** IO¿ÚÅäÖÃ ********************/
-  50          void  GPIO_config(void)
-  51          {
-  52   1          GPIO_InitTypeDef  GPIO_InitStructure;       //½á¹¹¶¨Òå
-  53   1      
-  54   1          GPIO_InitStructure.Pin  = GPIO_Pin_3;     //Ö¸¶¨Òª³õÊ¼»¯µÄIO, GPIO_Pin_0 ~ GPIO_Pin_7, »ò²Ù×÷
-C51 COMPILER V9.60.7.0   MAIN                                                              09/08/2023 16:31:31 PAGE 2   
+  49          
+  50          
+  51          /******************** IO¿ÚÅäÖÃ ********************/
+  52          void GPIO_config(void)
+  53          {
+  54   1          GPIO_InitTypeDef GPIO_InitStructure;        //½á¹¹¶¨Òå
+C51 COMPILER V9.60.7.0   MAIN                                                              09/12/2023 18:15:08 PAGE 2   
 
-  55   1          GPIO_InitStructure.Mode = GPIO_PullUp;      //Ö¸¶¨IOµÄÊäÈë»òÊä³ö·½Ê½,GPIO_PullUp,GPIO_HighZ,GPIO_OUT_OD,G
+  55   1      
+  56   1          GPIO_InitStructure.Pin  = GPIO_Pin_3;     //Ö¸¶¨Òª³õÊ¼»¯µÄIO, GPIO_Pin_0 ~ GPIO_Pin_7, »ò²Ù×÷
+  57   1          GPIO_InitStructure.Mode = GPIO_PullUp;      //Ö¸¶¨IOµÄÊäÈë»òÊä³ö·½Ê½,GPIO_PullUp,GPIO_HighZ,GPIO_OUT_OD,G
              -PIO_OUT_PP
-  56   1          GPIO_Inilize(GPIO_P3,&GPIO_InitStructure);  //³õÊ¼»¯
-  57   1      
-  58   1        /* adc 10 IO */
-  59   1        GPIO_InitStructure.Pin =  GPIO_Pin_2;
-  60   1        GPIO_InitStructure.Mode = GPIO_HighZ;
-  61   1        GPIO_Inilize(GPIO_P3,&GPIO_InitStructure);
-  62   1      
-  63   1          /* uart1 IO */
-  64   1        GPIO_InitStructure.Pin  = GPIO_Pin_0 | GPIO_Pin_1;
-  65   1        GPIO_InitStructure.Mode = GPIO_PullUp;
-  66   1        GPIO_Inilize(GPIO_P3,&GPIO_InitStructure);
-  67   1        
-  68   1          /* LED O R */
-  69   1        GPIO_InitStructure.Pin  = GPIO_Pin_7 | GPIO_Pin_6;
-  70   1        GPIO_InitStructure.Mode = GPIO_OUT_OD;
-  71   1        GPIO_Inilize(GPIO_P3,&GPIO_InitStructure);
-  72   1        
-  73   1        GPIO_InitStructure.Pin  = GPIO_Pin_5 | GPIO_Pin_6 | GPIO_Pin_7;
-  74   1        GPIO_InitStructure.Mode = GPIO_OUT_OD;
-  75   1        GPIO_Inilize(GPIO_P1,&GPIO_InitStructure);
-  76   1        
-  77   1        GPIO_InitStructure.Pin  = GPIO_Pin_4;
-  78   1        GPIO_InitStructure.Mode = GPIO_OUT_OD;
-  79   1        GPIO_Inilize(GPIO_P5,&GPIO_InitStructure);
-  80   1      
-  81   1          /* PLC STATE */
-  82   1        GPIO_InitStructure.Pin  = GPIO_Pin_4;
-  83   1        GPIO_InitStructure.Mode = GPIO_OUT_PP;
-  84   1        GPIO_Inilize(GPIO_P3,&GPIO_InitStructure);
-  85   1      
-  86   1      }
-  87          
-  88          /******************** INTÅäÖÃ ********************/
-  89          void  Exti_config(void)
-  90          {
-  91   1          EXTI_InitTypeDef  Exti_InitStructure;             //½á¹¹¶¨Òå
-  92   1      
-  93   1          Exti_InitStructure.EXTI_Mode      = EXT_MODE_Fall;//ÖÐ¶ÏÄ£Ê½,   EXT_MODE_RiseFall,EXT_MODE_Fall
-  94   1          Ext_Inilize(EXT_INT1,&Exti_InitStructure);        //³õÊ¼»¯
-  95   1          NVIC_INT1_Init(ENABLE,Priority_0);    //ÖÐ¶ÏÊ¹ÄÜ, ENABLE/DISABLE; ÓÅÏÈ¼¶(µÍµ½¸ß) Priority_0,Priority_1,P
-             -riority_2,Priority_3
-  96   1      }
-  97          
-  98          /****************  ´®¿Ú³õÊ¼»¯º¯Êý *****************/
-  99          void  UART_config(void)
- 100          {
- 101   1          COMx_InitDefine   COMx_InitStructure;       //½á¹¹¶¨Òå
- 102   1      
- 103   1          COMx_InitStructure.UART_Mode      = UART_8bit_BRTx; //Ä£Ê½, UART_ShiftRight,UART_8bit_BRTx,UART_9bit,U
-             -ART_9bit_BRTx
- 104   1          COMx_InitStructure.UART_BRT_Use   = BRT_Timer1;   //Ñ¡Ôñ²¨ÌØÂÊ·¢ÉúÆ÷, BRT_Timer1, BRT_Timer2 (×¢Òâ: ´®¿
-             -Ú2¹Ì¶¨Ê¹ÓÃBRT_Timer2)
- 105   1          COMx_InitStructure.UART_BaudRate  = 115200ul;   //²¨ÌØÂÊ, Ò»°ã 110 ~ 115200
- 106   1          COMx_InitStructure.UART_RxEnable  = ENABLE;     //½ÓÊÕÔÊÐí,   ENABLE»òDISABLE
- 107   1          COMx_InitStructure.BaudRateDouble = DISABLE;    //²¨ÌØÂÊ¼Ó±¶, ENABLE»òDISABLE
- 108   1          UART_Configuration(UART1, &COMx_InitStructure);   //³õÊ¼»¯´®¿Ú1 UART1,UART2,UART3,UART4
- 109   1          NVIC_UART1_Init(ENABLE,Priority_1);   //ÖÐ¶ÏÊ¹ÄÜ, ENABLE/DISABLE; ÓÅÏÈ¼¶(µÍµ½¸ß) Priority_0,Priority_1,
-             -Priority_2,Priority_3
- 110   1      
- 111   1          UART1_SW(UART1_SW_P30_P31);   //UART1_SW_P30_P31,UART1_SW_P36_P37,UART1_SW_P16_P17,UART1_SW_P43_P44
-C51 COMPILER V9.60.7.0   MAIN                                                              09/08/2023 16:31:31 PAGE 3   
+  58   1          GPIO_Inilize(GPIO_P3,&GPIO_InitStructure);  //³õÊ¼»¯
+  59   1      
+  60   1        /* adc 10 IO */
+  61   1        GPIO_InitStructure.Pin =  GPIO_Pin_2;
+  62   1        GPIO_InitStructure.Mode = GPIO_HighZ;
+  63   1        GPIO_Inilize(GPIO_P3,&GPIO_InitStructure);
+  64   1      
+  65   1          /* uart1 IO */
+  66   1        GPIO_InitStructure.Pin  = GPIO_Pin_0 | GPIO_Pin_1;
+  67   1        GPIO_InitStructure.Mode = GPIO_PullUp;
+  68   1        GPIO_Inilize(GPIO_P3,&GPIO_InitStructure);
+  69   1        
+  70   1          /* LED O R */
+  71   1        GPIO_InitStructure.Pin  = GPIO_Pin_7 | GPIO_Pin_6;
+  72   1        GPIO_InitStructure.Mode = GPIO_OUT_OD;
+  73   1        GPIO_Inilize(GPIO_P3,&GPIO_InitStructure);
+  74   1        
+  75   1        GPIO_InitStructure.Pin  = GPIO_Pin_5 | GPIO_Pin_6 | GPIO_Pin_7;
+  76   1        GPIO_InitStructure.Mode = GPIO_OUT_OD;
+  77   1        GPIO_Inilize(GPIO_P1,&GPIO_InitStructure);
+  78   1        
+  79   1        GPIO_InitStructure.Pin  = GPIO_Pin_4;
+  80   1        GPIO_InitStructure.Mode = GPIO_OUT_OD;
+  81   1        GPIO_Inilize(GPIO_P5,&GPIO_InitStructure);
+  82   1      
+  83   1          /* PLC STATE */
+  84   1        GPIO_InitStructure.Pin  = GPIO_Pin_4;
+  85   1        GPIO_InitStructure.Mode = GPIO_OUT_PP;
+  86   1        GPIO_Inilize(GPIO_P3,&GPIO_InitStructure);
+  87   1      
+  88   1      }
+  89          
+  90          /******************* ADÅäÖÃº¯Êý *******************/
+  91          void  ADC_config(void)
+  92          {
+  93   1        ADC_InitTypeDef   ADC_InitStructure;    //½á¹¹¶¨Òå
+  94   1      
+  95   1        ADC_InitStructure.ADC_SMPduty   = 31;   //ADC Ä£ÄâÐÅºÅ²ÉÑùÊ±¼ä¿ØÖÆ, 0~31£¨×¢Òâ£º SMPDUTY Ò»¶¨²»ÄÜÉèÖÃÐ¡ÓÚ 
+             -10£©
+  96   1        ADC_InitStructure.ADC_CsSetup   = 0;    //ADC Í¨µÀÑ¡ÔñÊ±¼ä¿ØÖÆ 0(Ä¬ÈÏ),1
+  97   1        ADC_InitStructure.ADC_CsHold    = 3;    //ADC Í¨µÀÑ¡Ôñ±£³ÖÊ±¼ä¿ØÖÆ 0,1(Ä¬ÈÏ),2,3
+  98   1        ADC_InitStructure.ADC_Speed     = ADC_SPEED_2X16T;    //ÉèÖÃ ADC ¹¤×÷Ê±ÖÓÆµÂÊ ADC_SPEED_2X1T~ADC_SPEED_2X16
+             -T
+  99   1        ADC_InitStructure.ADC_AdjResult = ADC_RIGHT_JUSTIFIED;  //ADC½á¹ûµ÷Õû,  ADC_LEFT_JUSTIFIED,ADC_RIGHT_JUSTIF
+             -IED
+ 100   1        ADC_Inilize(&ADC_InitStructure);    //³õÊ¼»¯
+ 101   1        ADC_PowerControl(ENABLE);       //ADCµçÔ´¿ª¹Ø, ENABLE»òDISABLE
+ 102   1        NVIC_ADC_Init(DISABLE,Priority_0);    //ÖÐ¶ÏÊ¹ÄÜ, ENABLE/DISABLE; ÓÅÏÈ¼¶(µÍµ½¸ß) Priority_0,Priority_1,Prio
+             -rity_2,Priority_3
+ 103   1      }
+ 104          
+ 105          /******************** INTÅäÖÃ ********************/
+ 106          void Exti_config(void)
+ 107          {
+ 108   1          EXTI_InitTypeDef  Exti_InitStructure;             //½á¹¹¶¨Òå
+ 109   1      
+ 110   1          Exti_InitStructure.EXTI_Mode      = EXT_MODE_Fall;//ÖÐ¶ÏÄ£Ê½,   EXT_MODE_RiseFall,EXT_MODE_Fall
+ 111   1          Ext_Inilize(EXT_INT1,&Exti_InitStructure);        //³õÊ¼»¯
+C51 COMPILER V9.60.7.0   MAIN                                                              09/12/2023 18:15:08 PAGE 3   
 
- 112   1      }
- 113          
- 114          /******************** Ö÷º¯Êý***********************/
- 115          void main(void)
- 116          {
- 117   1          uint8 flag = 0;
- 118   1          GPIO_config();
- 119   1          UART_config();
- 120   1          //  Exti_config();
- 121   1          EA  = 1;    //Enable all interrupt
- 122   1      
- 123   1          PrintString1("STC8H8K64U EXINT Wakeup Test Programme!\r\n");  //UART1·¢ËÍÒ»¸ö×Ö·û´®
- 124   1      
- 125   1          while(1)
- 126   1          {
- 127   2              //    while(!INT0); //µÈ´ýÍâÖÐ¶ÏÎª¸ßµçÆ½
- 128   2      //        while(!INT1); //µÈ´ýÍâÖÐ¶ÏÎª¸ßµçÆ½
- 129   2              //    while(!INT2); //µÈ´ýÍâÖÐ¶ÏÎª¸ßµçÆ½
- 130   2              //    while(!INT3); //µÈ´ýÍâÖÐ¶ÏÎª¸ßµçÆ½
- 131   2              //    while(!INT4); //µÈ´ýÍâÖÐ¶ÏÎª¸ßµçÆ½
- 132   2              delay_ms(100);  //delay 10ms
- 133   2      
- 134   2      //        while(!INT1); //µÈ´ýÍâÖÐ¶ÏÎª¸ßµçÆ½
- 135   2      
- 136   2              Exti_config();
- 137   2      
- 138   2              //PCON |= 0x02; ; //Sleep
- 139   2              _nop_();
- 140   2              _nop_();
- 141   2              _nop_();
- 142   2              _nop_();
- 143   2              _nop_();
- 144   2              _nop_();
- 145   2              _nop_();
- 146   2              _nop_();
- 147   2      
- 148   2              if(WakeUpSource != 0) PrintString1("ÍâÖÐ¶ÏINT1»½ÐÑ  \r\n");
- 149   2              WakeUpSource = 0;
- 150   2              
- 151   2      
- 152   2              P37 = flag;
- 153   2              P36 = flag;
- 154   2              P15 = flag;
- 155   2              P16 = flag;
- 156   2              P17 = flag;
- 157   2              P54 = flag;
- 158   2      
- 159   2              flag = ~flag;
- 160   2      
- 161   2              WakeUpCnt++;
- 162   2              //TX1_write2buff(WakeUpCnt/100+'0');
- 163   2              //TX1_write2buff(WakeUpCnt%100/10+'0');
- 164   2              //TX1_write2buff(WakeUpCnt%10+'0');
- 165   2              //PrintString1("´Î»½ÐÑ\r\n");
- 166   2          }
- 167   1      
- 168   1      }
- 169          
+ 112   1          NVIC_INT1_Init(ENABLE,Priority_0);    //ÖÐ¶ÏÊ¹ÄÜ, ENABLE/DISABLE; ÓÅÏÈ¼¶(µÍµ½¸ß) Priority_0,Priority_1,P
+             -riority_2,Priority_3
+ 113   1      }
+ 114          
+ 115          /****************  ´®¿Ú³õÊ¼»¯º¯Êý *****************/
+ 116          void UART_config(void)
+ 117          {
+ 118   1          COMx_InitDefine   COMx_InitStructure;       //½á¹¹¶¨Òå
+ 119   1      
+ 120   1          COMx_InitStructure.UART_Mode      = UART_8bit_BRTx; //Ä£Ê½, UART_ShiftRight,UART_8bit_BRTx,UART_9bit,U
+             -ART_9bit_BRTx
+ 121   1          COMx_InitStructure.UART_BRT_Use   = BRT_Timer1;   //Ñ¡Ôñ²¨ÌØÂÊ·¢ÉúÆ÷, BRT_Timer1, BRT_Timer2 (×¢Òâ: ´®¿
+             -Ú2¹Ì¶¨Ê¹ÓÃBRT_Timer2)
+ 122   1          COMx_InitStructure.UART_BaudRate  = 115200ul;   //²¨ÌØÂÊ, Ò»°ã 110 ~ 115200
+ 123   1          COMx_InitStructure.UART_RxEnable  = ENABLE;     //½ÓÊÕÔÊÐí,   ENABLE»òDISABLE
+ 124   1          COMx_InitStructure.BaudRateDouble = DISABLE;    //²¨ÌØÂÊ¼Ó±¶, ENABLE»òDISABLE
+ 125   1          UART_Configuration(UART1, &COMx_InitStructure);   //³õÊ¼»¯´®¿Ú1 UART1,UART2,UART3,UART4
+ 126   1          NVIC_UART1_Init(ENABLE,Priority_1);   //ÖÐ¶ÏÊ¹ÄÜ, ENABLE/DISABLE; ÓÅÏÈ¼¶(µÍµ½¸ß) Priority_0,Priority_1,
+             -Priority_2,Priority_3
+ 127   1      
+ 128   1          UART1_SW(UART1_SW_P30_P31);   //UART1_SW_P30_P31,UART1_SW_P36_P37,UART1_SW_P16_P17,UART1_SW_P43_P44
+ 129   1      }
+ 130          
+ 131          uint8 value_ladder[5] = {8, 33, 65, 90, 120};
+ 132          
+ 133          #define PRINTF_BUFFER_SIZE 32
+ 134          #define FLASH_ADDRESS_START 0x00
+ 135          
+ 136          /******************** Ö÷º¯Êý***********************/
+ 137          void main(void)
+ 138          {
+ 139   1          uint8 flag = 0;
+ 140   1          uint8 printf_buffer[PRINTF_BUFFER_SIZE] = {0x00};
+ 141   1          uint8 printf_buffer_len = 0;
+ 142   1          int16 plc_flag = 0;
+ 143   1          uint16 adc_value = 0;
+ 144   1          uint32 time_10 = 0;
+ 145   1          uint16 addr = 0x04;
+ 146   1      
+ 147   1          GPIO_config();
+ 148   1          ADC_config();
+ 149   1          UART_config();
+ 150   1          //  Exti_config();
+ 151   1          EA  = 1;    //Enable all interrupt
+ 152   1      
+ 153   1      
+ 154   1          P54 = 0;
+ 155   1      
+ 156   1      #if 0
+                EEPROM_SectorErase(addr);           //²Á³ýÉÈÇø
+                EEPROM_write_n(addr,&RX1_Buffer[9],j);      //Ð´N¸ö×Ö½Ú
+                EEPROM_read_n(addr,tmp,j);
+              #endif
+ 161   1      
+ 162   1          PrintString1("system init finish\r\n");
+ 163   1          EEPROM_read_n(FLASH_ADDRESS_START, printf_buffer, 2);
+ 164   1      
+ 165   1          memcpy(&plc_flag, printf_buffer, 2);
+ 166   1      
+ 167   1          if (plc_flag < 3 || plc_flag > 1024)
+ 168   1              plc_flag = 3;
+ 169   1      
+C51 COMPILER V9.60.7.0   MAIN                                                              09/12/2023 18:15:08 PAGE 4   
+
+ 170   1      
+ 171   1          sprintf(printf_buffer, "plc flag %d\r\n", plc_flag);
+ 172   1          PrintString1(printf_buffer);
+ 173   1          memset(printf_buffer, 0x00, PRINTF_BUFFER_SIZE);
+ 174   1      
+ 175   1      
+ 176   1          while(1)
+ 177   1          {
+ 178   2              time_10 ++;
+ 179   2              delay_ms(20); //delay 10ms
+ 180   2      
+ 181   2              Exti_config();
+ 182   2      
+ 183   2              if(WakeUpSource == 2)
+ 184   2              {
+ 185   3                  PrintString1("ÍâÖÐ¶ÏINT1»½ÐÑ  \r\n");
+ 186   3                  EEPROM_SectorErase(FLASH_ADDRESS_START);
+ 187   3                  memset(printf_buffer, 0x00, PRINTF_BUFFER_SIZE);
+ 188   3                  sprintf(printf_buffer, "write buffer %d\r\n", adc_value);
+ 189   3                  PrintString1(printf_buffer);
+ 190   3      
+ 191   3                  memset(printf_buffer, 0x00, PRINTF_BUFFER_SIZE);
+ 192   3                  memcpy(printf_buffer, &adc_value, 2);
+ 193   3                  plc_flag = adc_value;
+ 194   3                  
+ 195   3                  EEPROM_write_n(FLASH_ADDRESS_START, printf_buffer, 2);
+ 196   3              }
+ 197   2              WakeUpSource = 0;
+ 198   2      
+ 199   2              adc_value = Get_ADCResult(10);
+ 200   2              if (adc_value > 1024) adc_value = 1024;
+ 201   2      
+ 202   2      #if 0
+                      if (adc_value > value_ladder[0])
+                          P36 = 0;
+                      else P36 = 1;
+              
+                      if (adc_value > value_ladder[1])
+                          P37 = 0;
+                      else P37 = 1;
+              
+                      if (adc_value > value_ladder[2])
+                          P15 = 0;
+                      else P15 = 1;
+              
+                      if (adc_value > value_ladder[3])
+                          P16 = 0;
+                      else P16 = 1;
+              
+                      if (adc_value > value_ladder[4])
+                          P17 = 0;
+                      else P17 = 1;
+              #else
+ 223   2              if (adc_value >= value_ladder[0] && adc_value < value_ladder[1])
+ 224   2                  P36 = 0;
+ 225   2              else P36 = 1;
+ 226   2      
+ 227   2              if (adc_value >= value_ladder[1] && adc_value < value_ladder[2])
+ 228   2                  P37 = 0;
+ 229   2              else P37 = 1;
+ 230   2      
+ 231   2              if (adc_value >= value_ladder[2] && adc_value < value_ladder[3])
+C51 COMPILER V9.60.7.0   MAIN                                                              09/12/2023 18:15:08 PAGE 5   
+
+ 232   2                  P15 = 0;
+ 233   2              else P15 = 1;
+ 234   2      
+ 235   2              if (adc_value >= value_ladder[3] && adc_value < value_ladder[4])
+ 236   2                  P16 = 0;
+ 237   2              else P16 = 1;
+ 238   2      
+ 239   2              if (adc_value >= value_ladder[4])
+ 240   2                  P17 = 0;
+ 241   2              else P17 = 1;
+ 242   2      
+ 243   2      #endif
+ 244   2      
+ 245   2              if (adc_value > plc_flag)
+ 246   2              {
+ 247   3                  P54 = 0;
+ 248   3                  P34 = 0;
+ 249   3              }
+ 250   2              else
+ 251   2              {
+ 252   3                  P54 = 1;
+ 253   3                  P34 = 1;
+ 254   3              }
+ 255   2      
+ 256   2              flag = ~flag;
+ 257   2           
+ 258   2              if (!(time_10 % 20))
+ 259   2              {
+ 260   3                  //sprintf(printf_buffer, "adc value %d\r\n", adc_value);
+ 261   3                  if (printf_buffer_len != 0)
+ 262   3                  {
+ 263   4                      //memset(printf_buffer, 0x00, PRINTF_BUFFER_SIZE);
+ 264   4                      //EEPROM_read_n(FLASH_ADDRESS_START, printf_buffer, printf_buffer_len);
+ 265   4                      //PrintString1(printf_buffer);
+ 266   4                  }
+ 267   3              }
+ 268   2          }
+ 269   1      }
+ 270          
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    258    ----
-C51 COMPILER V9.60.7.0   MAIN                                                              09/08/2023 16:31:31 PAGE 4   
-
-   CONSTANT SIZE    =     61    ----
+   CODE SIZE        =    773    ----
+   CONSTANT SIZE    =    104    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----
-   DATA SIZE        =      1      13
+   DATA SIZE        =      6      61
    IDATA SIZE       =   ----    ----
    BIT SIZE         =   ----    ----
    EDATA SIZE       =   ----    ----

@@ -26,7 +26,7 @@
 //                              定义声明
 //========================================================================
 
-#define ADC_RES_12BIT	1		//0: MCU为10位ADC; 1: MCU为12位ADC
+#define ADC_RES_12BIT	0		//0: MCU为10位ADC; 1: MCU为12位ADC
 
 
 #define	ADC_P10		0x01	//IO引脚 Px.0

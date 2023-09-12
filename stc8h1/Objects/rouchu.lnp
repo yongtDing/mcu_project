@@ -6,6 +6,7 @@
 ".\Objects\STC8G_H_UART.obj",
 ".\Objects\STC8G_H_UART_Isr.obj",
 ".\Objects\STC8G_H_ADC.obj",
+".\Objects\STC8G_H_EEPROM.obj",
 ".\Objects\main.obj" 
 TO ".\Objects\rouchu" 
 
