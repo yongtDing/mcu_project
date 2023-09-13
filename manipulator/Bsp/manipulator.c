@@ -90,22 +90,22 @@ void manipulator_pos_ctrl(uint16_t pos)
         USART0_Recv((uint8_t *)&moto_ack, usart0_len);
     }
 }
-
-float manipulator_pos = 1000;
+#define INIT_POS 1000
+float manipulator_pos = INIT_POS;
 float manipulator_spd_ctrl(float speed, bool clean_flag)
 {
 
     if (clean_flag == true)
     {
-        manipulator_pos = 1000;
+        manipulator_pos = INIT_POS;
         return manipulator_pos;
     }
 
     manipulator_pos += speed;
 
-    if (manipulator_pos >= 1000)
+    if (manipulator_pos >= INIT_POS)
     {
-        manipulator_pos = 1000;
+        manipulator_pos = INIT_POS;
     }
 
     if (manipulator_pos < 10)

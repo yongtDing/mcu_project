@@ -111,7 +111,7 @@ unsigned short calculateModbusCRC(unsigned char *data, uint16_t length);
 uint16_t CalChecksum(uint8_t * data, uint16_t len);
 uint32_t do_crc_table(unsigned char *ptr, int32_t len);
 volatile uint64_t total_time_1 = 0x00;
-
+#define INIT_POS_MAIN 1000
 int main(void)
 {
     bool led_flag = false;
@@ -193,7 +193,7 @@ int main(void)
 
             if (process_handle.adc_raw_value[0][4] <= 2)
             {
-                manipulator_pos_ctrl(1000);
+                manipulator_pos_ctrl(INIT_POS_MAIN);
                 manipulator_spd_ctrl(0, true);
             }
             else {
